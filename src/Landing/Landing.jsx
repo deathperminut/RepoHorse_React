@@ -10,7 +10,6 @@ function Landing() {
         <Home/>
         </div>
         <Footer/>
-
     </React.Fragment>
       
 
