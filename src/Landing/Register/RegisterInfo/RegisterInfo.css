@@ -1,0 +1,23 @@
+.RegisterInfoContainer{
+    width:30%;
+    height:70%;
+    border-radius: 1rem;
+    border:0.1rem solid rgb(33, 35, 59);
+    background: linear-gradient(270deg,#41464b, #638192);
+    position: absolute;
+    top:16%;
+    left:35%; 
+    padding: 1%;
+}
+
+.RegisterTitle{
+    text-align: center;
+    color: white;
+    margin-bottom: 4rem !important;
+    
+}
+.ButtonRegister{
+    border: 0.1rem solid rgb(33, 35, 59);
+    border-radius:0.5rem;
+    height: 7vh;
+}
