@@ -2,18 +2,25 @@
 import React from 'react';
 import './App.css';
 import Landing from './Landing/Landing';
-import {Routes, Route} from 'react-router-dom';
+import {Navigate,Routes, Route} from 'react-router-dom';
 import Login from './Landing/Login/Login';
 import Register from './Landing/Register/Register';
+import ForgetPassword from './Landing/ForgetPassword/ForgetPassword';
+import Main from './Main/Main';
+import ChangePassword from './Landing/ChangePassword/ChangePassword';
 
 function App() {
   return (
      <React.Fragment>
-       <Routes>
-         <Route path='/' element={<Landing/>}/>
-         <Route path='/Login' element={<Login/>}/>
-         <Route path='/Register' element={<Register/>}/>
-       </Routes>
+        <Routes>
+          <Route path='' element={<Navigate to="/Landing"/>}></Route>
+          <Route path='/Landing' element={<Landing/>}/>
+          <Route path='/Login' element={<Login/>}/>
+          <Route path='/Register' element={<Register/>}/>
+          <Route path='/ForgetPassword' element={<ForgetPassword/>}/>
+          <Route path='/ChangePassword' element={<ChangePassword/>}/>
+          <Route path='/Main/*' element={<Main/>}/>
+        </Routes>
      </React.Fragment>
      
   );
