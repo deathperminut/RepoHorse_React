@@ -26,3 +26,44 @@
 #Menu{
     margin-right: 20px !important;
 }
+
+.ButtonOffCanvas{
+    background-color:transparent !important ;
+    height: 70%;
+    margin-top: 8px;
+}
+.EspaceMenu{
+    width: 90%;
+}
+
+
+
+/* OFFCANVAS */
+.ListOffcanvas{
+    border:0px !important;
+}
+
+.list-group-item-secondary{
+    background-color: transparent !important;
+}
+.list-group-item-secondary:hover{
+    background-color: rgb(212, 211, 211) !important;
+}
+
+.list-group{
+    border-color: transparent !important;
+}
+
+.list-group-item:first-child{
+    border-top-left-radius:0px !important;
+    border-top-right-radius:0px !important;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.list-group-item:last-child{
+    border-top-left-radius:0px !important;
+    border-top-right-radius:0px !important;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
