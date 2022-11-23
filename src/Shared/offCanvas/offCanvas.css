@@ -1,0 +1,48 @@
+
+.offCanvasContainer{
+    width: 21vw;
+    padding-left: 10pt;
+    padding-top: 10pt;
+    background-color: #11342F;
+    border-right: 1pt solid #FF9300;;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+.ulOffcanvas{
+    list-style-type: none;
+}
+
+.textOffcanvas{
+    color:#FFFFFF;
+    font-size: 10pt;
+    width: 100pt !important;
+}
+
+.sectionOffcanvas{
+   margin-top: 15pt;
+   margin-bottom: 15pt;
+   display: flex;
+   position: relative;
+   right: 20pt;
+}
+.iconOffCanvas{
+    color:#FF9300;
+    margin-right: 2pt;
+}
+
+.active{
+
+    background-color: #FF9300;
+    border-radius: 20pt;
+    padding-top: 6pt;
+    padding-bottom: 6pt;
+    padding-left: 6pt;
+    padding-right: 10pt;
+}
+
+
+.active .iconOffCanvas{
+    color:white;
+}

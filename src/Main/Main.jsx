@@ -1,6 +1,6 @@
 import React from 'react'
 import {Navigate,Routes, Route} from 'react-router-dom';
-import Inicio from './Inicio/Inicio';
+import Inicio from '../Landing/Inicio/Inicio';
 import HorseApp from './HorseApp/HorseApp';
 import Profile from './Profile/Profile';
 

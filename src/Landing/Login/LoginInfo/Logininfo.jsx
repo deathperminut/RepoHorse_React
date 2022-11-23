@@ -3,6 +3,10 @@ import "./LoginInfo.css";
 import {useNavigate} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import {Link} from  'react-router-dom';
+/* ICONS */
+import * as Icon from 'react-bootstrap-icons';
+import { FaHorseHead } from 'react-icons/fa';
+import ToggleSwitch from '../../../Shared/buttonToggle/buttonToggle';
 // import Button from 'react-bootstrap/Button';
 
 
@@ -55,7 +59,7 @@ function LoginInfo() {
           Dict=JSON.stringify(Dict);
           localStorage.setItem("User",Dict);
         }
-        navigate('/Main');
+        navigate('/Main/HorseApp');
 
 
 
@@ -76,49 +80,50 @@ function LoginInfo() {
     return (
       <div className="LoginInfoContainer">
         <div class="card-body">
-        <h4 class="mb-7 RegisterTitle" >Bienvenido</h4>
-        <form onSubmit={onSubmit}  action="" class="">
-          <div class="row mb-3">
+        <FaHorseHead className='IconLogin mt-10'/>
+        <h5 class="mb-7 " ></h5>
+        <h4 class="c-orange " >Hola!</h4>
+        <h4 class="mb-7 mb-6 c-orange" >Bienvenido a Mr Horse</h4>
+        <h20 class="mb-7 xss mb-20 c-white textForm" >Ingrese sus credenciales para continuar</h20>
+        <form onSubmit={onSubmit}  action="" class="FormContainer">
+          <div class="mb-3">
             <div class="col-12">
               <div class="form-floating inner-addon left-addon">
-                <input onChange={onChangeEmail}  type="email" class="form-control" value={Email} id="correo" placeholder="Correo"/>
-                <label class="font-notosans-regular">Correo electrónico</label>
+                <input onChange={onChangeEmail}  type="email" class="form-control INPUT_DATA" value={Email} id="correo" placeholder="Correo"/>
+                <label class="c-orange op-1 textForm">Usuario</label>
               </div>
             </div>
           </div>
-          <div class="row">
+          <div >
             <div class="col-12">
               <div class="form-floating inner-addon right-addon">
-                <input onChange={onChangePassword} type="password"  class="form-control"  value={Password} id="floatingPassword" placeholder="Password"
+                <input onChange={onChangePassword} type="password"  class="form-control INPUT_DATA c-orange op-1"  value={Password} id="floatingPassword" placeholder="Password"
                   />
-                <label class="font-notosans-regular">Contraseña</label>
+                <label class="c-orange op-1 textForm">Contraseña</label>
               </div>
             </div>
           </div>
-          <div class="row mt-4">
+          <div class="mt-4">
             <div class="col-12">
-              <div class="">
-                <input  onChange={onChangeCheckboxRememberPassword} class="form-check-input" type="checkbox"  id="flexCheckDefault"/>
-                <label class="form-check-label ps-2" for="flexCheckDefault">
-                  <span class="">Recordar contraseña</span>
-                </label>
-              </div>
+            <ToggleSwitch label="Recordarme" />
             </div>
           </div>
-          <div class="d-grid gap-2 col-12 mx-auto mt-4">
-            <button class="ButtonLogin" type="submit">
-              <span >Ingresar</span>
+          <div class="">
+            <button className="ButtonLogin" type="submit">
+              <span className="textForm">Ingresar</span>
             </button>
           </div>
         </form>
 
       </div>
       <div className="LinkedContainer">
-        <Link id="LinkRegister" to='/ForgetPassword'><span className="Linked"  size="sm">Olvide mi Contraseña</span></Link>
-        <Link id="LinkRegister" to='/Landing'><span className="Linked"  size="sm">Volver al inicio</span></Link>
+        <Link id="LinkedLabel" to='/ForgetPassword'><span className="LinkedText textForm"  size="sm">Olvide mi Contraseña</span></Link>
       </div>
-      
-        
+          <div class="">
+            <button className="ButtonCount" type="button">
+              <span className="textForm">Solicitar una cuenta</span>
+            </button>
+          </div>
       </div>
     );
   }

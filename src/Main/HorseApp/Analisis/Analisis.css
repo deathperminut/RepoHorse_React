@@ -1,4 +1,133 @@
-.BodyContainer{
-    width: 100vw;
-    height: 93vh;
+.AnalisisContainer{
+    width: 80vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
 }
+/*DATA CONTAINER*/
+.DataContainer{
+   width: 72%;
+   height: 100%;
+   background-color: #11342F;
+   display: flex;
+   flex-direction: row;
+   padding: 2rem;
+}
+
+.videoContainer{
+ width: 95%;
+ height: 63%;
+ background-color: #134D44;
+ border-radius: 10pt;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+.dragContainer{
+    width:55%;
+    height: 55%;
+    border: 1pt dashed #EBEBEB;
+    border-radius: 10pt;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.iconFilm{
+    width: 50pt;
+    height: 50pt;
+    color: rgb(161, 123, 51);
+}
+.textdragContainer{
+    color:white;
+    font-size: 10pt;
+    font-weight: 400;
+}
+.buttonAnalisis{
+  background-color: white;
+  color: #11342F;
+  border: none;
+  border-radius: 10pt;
+  padding-top: 4pt;
+  padding-bottom: 4pt;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 6px;
+}
+
+
+.optionsContainer{
+  width: 8%;
+  height: 63%;
+  display: flex;
+  flex-direction: column;
+}
+.option{
+  margin-left: 0.4rem;
+  margin-bottom: 0.4rem;
+  width: 82%;
+  border-radius: 10pt;
+  background-color: #134D44;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/*SELECT CONTAINET*/
+.SelectContainer{
+    padding: 10pt;
+    padding-top: 30pt;
+    width: 28%;
+    height: 100%;
+    background-color: #11342F;
+    border-left:0.5pt solid rgb(90, 68, 38);
+}
+
+.iconVideo{
+    color:orange;
+    margin-right: 5pt ;
+}
+.textButtonVideo{
+    font-size: 10pt;
+    font-weight: 700;
+}
+
+
+.buttonEvent{
+  background-color: white;
+  color: #11342F;
+  border: none;
+  border-radius: 10pt;
+  padding-top: 2pt;
+  padding-bottom: 2pt;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.selectAnalisis{
+    width: 75%;
+    background-color: #134D44 !important;
+}
+.Select{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.analisisfilterbutton{
+    width: 20pt;
+    height: 20pt;
+    margin-left: 10pt;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border:none
+}
+.filterIcon{
+    color:white
+}
+
+

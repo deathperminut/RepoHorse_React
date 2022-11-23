@@ -1,11 +1,11 @@
 .LoginInfoContainer{
-    width:30%;
-    height:70%;
-    border-radius: 1rem;
-    border:0.1rem solid rgb(33, 35, 59);
-    background: linear-gradient(270deg,#41464b, #638192);
+    max-width:400px;
+    height:490px;
+    border: 1pt solid #707070;
+    border-radius: 46pt;
+    opacity: 1;
     position: absolute;
-    top:16%;
+    top:5%;
     left:35%; 
     padding: 1%;
 }
@@ -16,22 +16,103 @@
     margin-bottom: 4rem !important;
     
 }
+.IconLogin{
+  width: 5rem !important;
+  height: 5rem !important;
+  justify-items: center;
+  color: orange
+}
 .ButtonLogin{
     border: 0.1rem solid rgb(33, 35, 59);
-    border-radius:0.5rem;
-    height: 7vh;
+    border-radius: 45pt;
+    padding:6pt;
+    width: 15rem;
+    background-color: #FF9300;
+    color:white;
+}
+.ButtonLogin:hover{
+    background-color: #9c5e06;
+}
+.ButtonCount{
+    border: 0.1rem solid #FF9300;
+    border-radius: 45pt;
+    padding:6pt;
+    width: 15rem;
+    background-color: transparent;
+    color:#FF9300;
+    position: relative;
+    left:4rem
+}
+.ButtonCount:hover{
+    border: 0.1rem solid #9c5e06;
+    color:#9c5e06;
 }
 
-.LinkedContainer{
+.LinkedText{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin:0.7rem;
+    color:#FF9300;
+    border:none !important;
+    font-size: 0.8rem;
 }
-.Linked{
-   
-    font-size:0.8rem;
+.LinkedText:hover{
+
+    color:#9c5e06;
 }
-.Linked:hover{
-    color:cornsilk;
+.LinkedLabel{
+    border: none;
 }
+.xss{
+    font-size: 0.8rem;
+}
+.mb-6{
+    margin-bottom: 6px;
+}
+.mb-20{
+    margin-bottom: 20px;
+}
+.c-white{
+    color:white;
+}
+.mt-10{
+    margin-top:10px;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
+    align-items: center;
+}
+
+/*FORM*/
+.FormContainer{
+    width: 400px;
+    display:flex !important; 
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+/*INPUTS*/
+.form-control{
+    width:260px !important;
+    background-color: transparent !important;
+    border:none !important;
+    border-bottom: 1px solid rgb(160, 160, 160) !important;
+    border-radius: 0px !important;
+    color:white !important;
+}
+
+
+.op-1{
+    opacity: 1 !important;
+}
+.c-orange{
+    color:orange !important;
+}
+.textForm{
+    font-size: 0.75rem;
+}
+

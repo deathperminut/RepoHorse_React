@@ -1,0 +1,179 @@
+
+
+.InitContainer{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(8, 8, 39);
+
+}
+
+/*HEADER*/
+.HeaderContainer{
+    height: 21vh;
+    width: 100%;
+    background-color:transparent;
+    position: sticky;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+}
+.InputText{
+    height: 40%;
+    width: 26vw;
+    border-radius: 0.4rem;
+    border: none;
+    margin: 0;
+    padding:20px
+    
+}
+.InputText:focus{
+    border:none !important;
+}
+
+.input-container {
+	padding-bottom: 1em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 13%;
+    margin-right: 20px;
+}
+.left-inner-addon {
+    position: relative;
+}
+
+
+
+input {
+    padding-left: 2rem !important;
+    margin: 0em !important;
+    box-sizing: border-box;
+}
+/*ICONS*/
+.IconInput{
+    display: flex;
+    position: relative;
+    left: 7%;
+    color: gray;
+    size: 1rem;
+}
+.FilterIcon{
+    color:white;
+    position:relative;
+    bottom: 0.15rem;
+}
+/*BUTTONS*/
+
+.FilterButton{
+    border-radius: 50%;
+    position: relative;
+    bottom: 5%;
+    background-color: #FF9300;
+}
+.TransparentButton{
+    background-color: transparent;
+    color: white;
+    border-color: white;
+}
+.col-Button{
+    border: 0.1px solid rgb(122, 119, 119)  !important;
+    width: 50%;
+    border-bottom-left-radius: 50% !important;
+    border-top-left-radius: 50% !important;
+    border-bottom-right-radius: 50% !important;
+    border-top-right-radius: 50% !important;
+    color:rgb(228, 228, 228) !important;
+    font-size: 0.7rem !important;
+    height: 20%;
+}
+
+/* CSS */
+.button_18{
+  align-items: center;
+  background-color: transparent !important;
+  border: 1pt solid #707070 !important;
+  border-radius: 22pt !important;
+  box-sizing: border-box !important;
+  color: #ffffff !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  font-size: 0.8rem !important;
+  width: 35% !important;
+  font-weight: 600 !important;
+  justify-content: center !important;
+  line-height: 20px !important;
+  max-width: 480px !important;
+  min-height: 40px !important;
+  min-width: 0px !important;
+  overflow: hidden !important;
+  padding: 0px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  text-align: center !important;
+}
+.button_18:hover{
+    border: 0.1px solid #FF9300  !important;
+    color: #FF9300 !important;
+}
+
+
+
+
+
+
+/*CONTENT*/
+.ServicesContainer{
+   height: 100vh;
+   width: 100%;
+   margin:0;
+}
+
+.ContainerRows{
+    padding-top: 2%;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: center;
+    width: 100% !important;
+}
+.row{
+   display: flex;
+   justify-items: center;
+   width: 840pt;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 237px !important; 
+    max-width: 490px !important;
+
+    border: 1px solid #707070;
+    border-radius: 46px;
+    margin:1rem;
+    align-items: center;
+    background-color: rgb(33, 33, 66);
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+}
+.col-element{
+   margin-bottom: 20px;
+}
+.col-Icon{
+
+    height: 30%;
+    width: 50%;
+    margin-bottom: 10%;
+    color:#FF9300
+}
+.col:hover{
+    border: 0.1px solid rgb(228, 228, 228) ;
+}
+
+.HorseAppTitle{
+    color:#FF9300
+}

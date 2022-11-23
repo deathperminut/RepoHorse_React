@@ -14,11 +14,7 @@ function App() {
      <React.Fragment>
         <Routes>
           <Route path='' element={<Navigate to="/Landing"/>}></Route>
-          <Route path='/Landing' element={<Landing/>}/>
-          <Route path='/Login' element={<Login/>}/>
-          <Route path='/Register' element={<Register/>}/>
-          <Route path='/ForgetPassword' element={<ForgetPassword/>}/>
-          <Route path='/ChangePassword' element={<ChangePassword/>}/>
+          <Route path='/Landing/*' element={<Landing/>}/>
           <Route path='/Main/*' element={<Main/>}/>
         </Routes>
      </React.Fragment>
