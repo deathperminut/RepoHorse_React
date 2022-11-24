@@ -89,7 +89,7 @@ function LoginInfo() {
           <div class="mb-3">
             <div class="col-12">
               <div class="form-floating inner-addon left-addon">
-                <input onChange={onChangeEmail}  type="email" class="form-control INPUT_DATA" value={Email} id="correo" placeholder="Correo"/>
+                <input onChange={onChangeEmail}  type="email" autocomplete="off" class="form-control INPUT_DATA" value={Email} id="correo" placeholder="Correo"/>
                 <label class="c-orange op-1 textForm">Usuario</label>
               </div>
             </div>
