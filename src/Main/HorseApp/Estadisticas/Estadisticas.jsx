@@ -4,6 +4,15 @@ import './Estadisticas.css';
 
 export default function Estadisticas() {
   return (
-    <div>Estadisticas</div>
+    <div className='AnalisisContainer'>
+          <div className='EstadisticContainer'>
+              <div className='CompetidoresContainer'></div>
+              <div className='EventContainer'></div>
+              <div className='TableContainer'></div>
+          </div>
+          <div className='SelectEventContainer'>
+                 
+          </div>
+    </div>
   )
 }

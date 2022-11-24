@@ -12,17 +12,18 @@
 /*HEADER*/
 .HeaderContainer{
     height: 21vh;
-    width: 100%;
+    width: 50%;
     background-color:transparent;
     position: sticky;
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-top: 10px;
+    margin-left: 5%
 }
 .InputText{
     height: 40%;
-    width: 26vw;
+    width: 20rem;
     border-radius: 0.4rem;
     border: none;
     margin: 0;
@@ -56,7 +57,7 @@ input {
 .IconInput{
     display: flex;
     position: relative;
-    left: 7%;
+    left: 1.5rem;
     color: gray;
     size: 1rem;
 }
@@ -133,27 +134,34 @@ input {
 
 .ContainerRows{
     padding-top: 2%;
-    display: flex !important;
-    flex-direction: column !important;
+    display: flex ;
+    flex-direction: column ;
     align-items: center;
     justify-content: center;
-    width: 100% !important;
+    width: 100% ;
 }
 .row{
+   max-width: 840pt;
+   width: 100%;
    display: flex;
+   flex-direction: row;
    justify-items: center;
-   width: 840pt;
 }
 .col{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 237px !important; 
-    max-width: 490px !important;
-
+    height: 237px; 
+    max-height:237px;
+    min-height: 237px;
+    max-width: 350px;
+    width: 300px;
+    min-width: 300px;
     border: 1px solid #707070;
     border-radius: 46px;
-    margin:1rem;
+    margin-bottom:1rem;
+    margin-right:1rem;
+    margin-left: 0.5rem;
     align-items: center;
     background-color: rgb(33, 33, 66);
     letter-spacing: 0px;
@@ -177,3 +185,17 @@ input {
 .HorseAppTitle{
     color:#FF9300
 }
+
+
+
+
+/* RESPONSIVE*/
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+    .row {
+      flex-direction: column;
+      width: 60%;
+    }
+
+
+  }

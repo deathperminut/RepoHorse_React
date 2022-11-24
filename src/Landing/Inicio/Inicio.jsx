@@ -38,22 +38,22 @@ export default function Inicio() {
               <button className="FilterButton"><Icon.FilterCircle className="FilterIcon"/></button>
         </div>
         <div className='ServicesContainer'>
-            <Container className='ContainerRows'>
-              <Row className="row">
-                <Col  className="col HorseApp" xs>
+            <div className='ContainerRows'>
+              <div className="row">
+                <div  className="col HorseApp" xs>
                      <FaHorseHead className='col-Icon'/>
                      <h4 className="HorseAppTitle col-element">Mr horse</h4>
                      <Button variant="outline" onClick={RedirectLogin} className="button_18">Ingresar</Button>
-                </Col>
-                <Col className="col" xs={{ order: 12 }}>Desarrollos futuros</Col>
-                <Col className="col" xs={{ order: 1 }}>Desarrollos futuros</Col>
-              </Row>
-              <Row className="row">
-                <Col className="col" xs>Desarrollos futuros</Col>
-                <Col className="col" xs={{ order: 12 }}>Desarrollos futuros</Col>
-                <Col className="col" xs={{ order: 1 }}>Desarrollos futuros</Col>
-              </Row>
-           </Container>
+                </div>
+                <div className="col">Desarrollos futuros</div>
+                <div className="col" >Desarrollos futuros</div>
+              </div>
+              <div className="row">
+                <div className="col" >Desarrollos futuros</div>
+                <div className="col" >Desarrollos futuros</div>
+                <div className="col" >Desarrollos futuros</div>
+              </div>
+           </div>
         </div>
       </div>
     </React.Fragment>

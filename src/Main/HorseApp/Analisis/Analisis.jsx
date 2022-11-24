@@ -37,11 +37,19 @@ export default function Analisis() {
              <div className='optionsContainer'>
               <div className='option'></div>
               <div className='option'></div>
+              <div className='option'></div>
+              <div className='option'></div>
              </div>
           </div>
           <div className='SelectContainer'>
             <div className='Select'>
-                <Select options = {options}  className="selectAnalisis"/>
+                <Select
+                options = {options}  
+                className="selectAnalisis" 
+                placeholder="Seleccione un evento"
+                
+                
+                />
                 <button className="FilterButton analisisfilterbutton"><BsFilter className="filterIcon"></BsFilter></button>
             </div>
             <div className='buttonEventContainer'>
