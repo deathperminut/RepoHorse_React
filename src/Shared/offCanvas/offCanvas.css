@@ -46,3 +46,29 @@
 .active .iconOffCanvas{
     color:white;
 }
+.iconCanva{
+    width: 5rem ;
+    height: 5rem ;
+    justify-items: center;
+    color: orange
+}
+
+@media (max-width: 1180px) {
+   .textOffcanvas{
+    display: none;
+   }
+   .offCanvasContainer{
+    width: 5rem;
+   }
+   .iconOffCanvas{
+    width: 2rem;
+    height: 2rem;
+   }
+   .iconCanva{
+      width: 3rem;
+      height: 3rem;
+   }
+   .sectionOffcanvas{
+    right: 30px;
+   }
+}

@@ -16,7 +16,7 @@ function OffCanvas() {
     <>
 
         <nav className='offCanvasContainer'>
-            <GiHorseHead className='IconLogin mt-10'/>
+            <GiHorseHead className='iconCanva mt-10'/>
             <ul className="ulOffcanvas">
                 <li className="sectionOffcanvas">
                 <NavLink
