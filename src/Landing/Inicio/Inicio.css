@@ -14,11 +14,9 @@
     height: 21vh;
     width: 50%;
     background-color:transparent;
-    position: sticky;
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 10px;
     margin-left: 5%
 }
 .InputText{
@@ -139,24 +137,26 @@ input {
     align-items: center;
     justify-content: center;
     width: 100% ;
+    height: 100%;
 }
 .row{
-   max-width: 840pt;
+   max-width: 750pt;
    width: 100%;
    display: flex;
    flex-direction: row;
    justify-items: center;
+   align-items: center;
 }
 .col{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 237px; 
-    max-height:237px;
-    min-height: 237px;
-    max-width: 350px;
-    width: 300px;
-    min-width: 300px;
+    height: 220px; 
+    max-height:220px;
+    min-height: 220px;
+    max-width: 300px !important;
+    width: 240px ;
+    min-width: 100px;
     border: 1px solid #707070;
     border-radius: 46px;
     margin-bottom:1rem;
@@ -173,7 +173,7 @@ input {
 }
 .col-Icon{
 
-    height: 30%;
+    height: 25%;
     width: 50%;
     margin-bottom: 10%;
     color:#FF9300
@@ -195,6 +195,15 @@ input {
     .row {
       flex-direction: column;
       width: 60%;
+    }
+    .ContainerRows{
+        padding-top: 2%;
+        display: flex ;
+        flex-direction: column ;
+        align-items: center;
+        justify-content: center;
+        width: 100% ;
+        margin-top: 500px;
     }
 
 
