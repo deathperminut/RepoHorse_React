@@ -1,10 +1,10 @@
 
 .offCanvasContainer{
-    width: 19vw;
+    width: 19rem;
     padding-left: 10pt;
     padding-top: 10pt;
     background-color: #11342F;
-    border-right: 1pt solid #FF9300;;
+    border-right: 1pt solid #FF9300;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -71,4 +71,71 @@
    .sectionOffcanvas{
     right: 30px;
    }
+   .active{
+    
+    background-color: transparent;
+    border-radius: 0pt;
+    padding-top: 0pt;
+    padding-bottom: 0pt;
+    padding-left: 0pt;
+    padding-right: 0pt;
+}
+
+}
+
+@media (max-width: 680px) {
+
+    .offCanvasContainer{
+        height: 10vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: row;
+        padding-top: 5pt;
+        justify-content: center;
+        border-right: none;
+        border-bottom: 1pt solid #FF9300;
+
+    } 
+    .ulOffcanvas{
+        display: flex;
+        flex-direction: row;
+        margin-left: 30px;
+        margin-top: 0px;
+    }
+    .sectionOffcanvas{
+        display: flex;
+        position: relative;
+        margin-right: 2.5rem;
+
+    }
+    .iconOffCanvas{
+        color:#FF9300;
+        margin-right: 2pt;
+        position: relative;
+        bottom: 0.7rem;
+    }
+    
+    .active{
+    
+        background-color: transparent;
+        border-radius: 0pt;
+        padding-top: 0pt;
+        padding-bottom: 0pt;
+        padding-left: 0pt;
+        padding-right: 0pt;
+    }
+    
+    
+    .active .iconOffCanvas{
+        color:white;
+    }
+    .iconCanva{
+        width: 2.5rem ;
+        height: 2.5rem ;
+        justify-items: center;
+        color: orange;
+        position: relative;
+        bottom: 0.5rem;
+    }
+
 }

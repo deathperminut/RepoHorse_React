@@ -1,18 +1,1 @@
 
-.EstadisticContainer{
-   width: 72%;
-   height: 100%;
-   background-color: #11342F;
-   display: flex;
-   flex-direction: column;
-   padding: 2rem;
-}
-
-.SelectEventContainer{
-    padding: 10pt;
-    padding-top: 30pt;
-    width: 28%;
-    height: 100%;
-    background-color: #11342F;
-    border-left:0.5pt solid rgb(90, 68, 38);
-}

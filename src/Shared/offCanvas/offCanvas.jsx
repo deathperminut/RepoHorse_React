@@ -4,6 +4,7 @@ import './offCanvas.css';
 /* ICONS */
 import { GiHorseshoe,GiHorseHead } from 'react-icons/gi';
 import {MdVideoSettings} from 'react-icons/md';
+import { FaHorseHead } from 'react-icons/fa';
 import {GoGraph} from 'react-icons/go';
 import {BsFolderCheck} from 'react-icons/bs';
 function OffCanvas() {
@@ -16,7 +17,7 @@ function OffCanvas() {
     <>
 
         <nav className='offCanvasContainer'>
-            <GiHorseHead className='iconCanva mt-10'/>
+            <FaHorseHead className='iconCanva mt-10'/>
             <ul className="ulOffcanvas">
                 <li className="sectionOffcanvas">
                 <NavLink

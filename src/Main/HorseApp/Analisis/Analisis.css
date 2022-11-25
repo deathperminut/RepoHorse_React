@@ -183,6 +183,15 @@
 }
 
 
+@media (min-width: 1350px) {
+    .AnalisisContainer{
+        width: 90vw;
+    }
+    .DataContainer{
+        width: 98%;
+    }
+}
+
 /* Responsive layout - makes a one column layout instead of a two-column layout */
 @media (max-width: 1250px) {
     
@@ -243,4 +252,46 @@
     }
 }
 
+@media (max-width: 680px) {
+    .AnalisisContainer{
+        width: 100vw; 
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .SelectContainer{
+        width: 100vw; 
+    }
+    .videoContainer{
+        width: 25rem;
+        min-width: 25rem;
+        height: 27rem;
+    }
+    .DataContainer{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .optionsContainer{
+        flex-direction: row;
+    }
+    .optionsContainer{
+        max-width: 20rem;
+        width: 10rem; 
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+
+    }
+    .option{
+        margin-left: 0.4rem;
+        margin-bottom: 0.4rem;
+        width: 50%;
+        height: 2rem;
+        border-radius: 10pt;
+        background-color: #134D44;
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+}
 
