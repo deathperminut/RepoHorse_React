@@ -123,3 +123,32 @@ ul li {
 }
 
 
+.p-row{
+  display: flex;
+  flex-direction: row;
+}
+#p-row{
+  display: flex !important;
+  flex-direction: row !important;
+}
+.p-column{
+  display: flex;
+  flex-direction: column;
+}
+.t-white{
+  color:white; 
+}
+.t-b{
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.t-xs{
+  font-size: 0.6rem;
+}
+
+.mt-{
+  margin-top: 30px;
+  margin-left: 2.8rem;
+}
+
