@@ -215,7 +215,7 @@ export default function Estadisticas() {
                   <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                   <span className='t-white t-xs'>Grado: A</span>
                 </div>
-             </div>
+            </div>
         </div>
     </div>
   )
