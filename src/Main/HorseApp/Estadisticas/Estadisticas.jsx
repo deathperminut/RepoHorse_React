@@ -206,16 +206,6 @@ export default function Estadisticas() {
         </div>
         <div className='SelectEventContainer LabelDisappear'>
             <button className='buttonEvent center'><span className="tw-500 font-size-15pt  c-orange mr-3px">+</span><span className="c-orange font-size-10pt">Añadir otro</span></button>
-            <div className='label-event-Estadistics-Container mt- '>
-                <figure className='img-container'>
-                  <img src={Logo} className='img-event'></img>
-                </figure>
-                <div className='p-column'>
-                  <span className='t-white t-b'>65° Feria Equina</span>
-                  <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                  <span className='t-white t-xs'>Grado: A</span>
-                </div>
-            </div>
         </div>
     </div>
   )

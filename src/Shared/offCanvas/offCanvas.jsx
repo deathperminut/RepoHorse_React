@@ -45,14 +45,6 @@ function OffCanvas() {
                     <GiHorseshoe className="iconOffCanvas"/><span className="textOffcanvas">Competencias y caballos</span>
                 </NavLink>
                 </li>
-                <li className="sectionOffcanvas">
-                <NavLink
-                    to="/Main/HorseApp/Visualización"
-                    className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-                >
-                    <BsFolderCheck className="iconOffCanvas"/><span className="textOffcanvas">Visualización de resultados</span>
-                </NavLink>
-                </li>
             </ul>
         </nav>
     
