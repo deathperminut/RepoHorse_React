@@ -3,7 +3,8 @@
     width: calc( 100vw - 14rem );
     height: 100vh;
     display: flex;
-    flex-direction: row;;
+    flex-direction: row;
+    overflow-x: auto;
 }
 /*INFO CONTAINER*/
 .InfoContainer{
@@ -279,7 +280,7 @@
    
   .EstadisticasContainer{
     flex-direction: column;
-    overflow-x: auto;
+    
   }
   .InfoContainer{
     order: 2;

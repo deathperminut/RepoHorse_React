@@ -73,9 +73,9 @@ export default function Analisis() {
                 />
                 <button className="FilterButton analisisfilterbutton"><BsFilter className="filterIcon"></BsFilter></button>
               </div>
-              <div className='buttonEventContainer'>
+              {/* <div className='buttonEventContainer'>
                 <button className='buttonEvent'><span className="tw-500 font-size-15pt  c-orange mr-3px">+</span><span className="c-orange font-size-10pt">Nuevo Evento</span></button>
-              </div>
+              </div> */}
               </>
             :<>
             <div className='label-event-Analitic-Container'>

@@ -103,7 +103,7 @@
 
 
 .ListEventsContainer{
-    width: 95%;
+    width: 90%;
     overflow-x:inherit;
     display: flex;
     flex-direction: row;
@@ -124,10 +124,12 @@
 
 .RegisterEventContainer{
     width: 100%;
-    padding: 40px;
+    padding: 20px;
+    padding-top: 20px;
     padding-left: 45px;
     display: flex;
     flex-direction: row;
+    margin-top: 20px;
      
 }
 .buttonregisterEvent{
@@ -179,7 +181,7 @@
 }
 .RegisterEvent{
     width: 27rem;
-    height:39rem; 
+    height:36rem; 
     background-color:#134D44 ;
     box-shadow: 4px 22px 54px #695F971A;
     border-radius: 30px;
@@ -266,7 +268,7 @@
     width: 16rem !important;
     border:1px solid #EBEBEB !important;
     border-radius: 19px;
-    height: 6.4rem;
+    height: 4.4rem;
     padding-left:1rem;
     padding-right:1rem;
     font-size: 0.8rem;
@@ -287,7 +289,9 @@
 .containersubmitButton{
     display: flex;
     justify-content: end;
-    padding: 2rem;
+    padding-right: 1rem;
+    position: relative;
+    bottom: 10px;
 }
 
 /*CALENDAR*/
@@ -315,6 +319,112 @@
 .ant-picker:focus{
     border:1px solid #FF9300
 }
+
+.EventInfoContainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 7px;
+    margin-left: 1rem;
+}
+.mb-{
+    margin-bottom: 3px;
+}
+.w-{
+    width: 150px;
+}
+
+.HorseFilter{
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0px !important;
+    display: flex;
+    flex-direction: row;
+    margin-top: 4rem;
+    margin-left: 1.4rem;
+}
+
+.HorseDataContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+/*REGISTER HORSE*/
+.RegisterEventHorse{
+    width: 22rem;
+    height:30rem; 
+    background-color:#134D44 ;
+    box-shadow: 4px 22px 54px #695F971A;
+    border-radius: 30px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/*CloseContainer*/
+.CloseContainerHorse{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1.2rem;
+    
+}
+.textFormHorse{
+    color:white;
+    width: 110px;
+    font-weight: 700;
+    font-size: 0.9rem; 
+}
+
+.containrowHorse{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 60px;
+    padding: 20px;
+    padding-left: 1.5rem;
+    align-items: center;
+
+}
+.containrowHorse .inputEventForm{
+    padding-left: 0px !important;
+    width: 12rem !important;
+    padding-top: 0.5rem;
+    padding-left: 1rem !important;
+    padding-bottom: 0.5rem;
+    border-radius: 19px;
+    border:1px solid #EBEBEB !important;
+    color:#7A86A1 !important;
+    font-size: 0.8rem;
+}
+.containrowHorse .inputEventForm:focus{
+    border: 2px solid #FF9300 !important;
+}
+.ButtonContainer{
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+.tableContainerHorse{
+    width: 100%;
+    min-width: 29rem;
+    max-width: 44rem;
+    height:30rem;
+    background-color: #134D44;
+    border-radius: 18px;
+    margin-top: 1.2rem ;
+    margin-left: 2rem;
+    padding: 1rem; 
+}
+
+
+
 
 
 
