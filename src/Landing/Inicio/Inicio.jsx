@@ -14,6 +14,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
+/* IMAGE */
+import Backgroundcolumn from '../../Sources/Images/Landing/Landing1.png'
+
 export default function Inicio() {
   /* NAVIGATE  */
   const navigate=useNavigate();
@@ -45,13 +48,13 @@ export default function Inicio() {
                      <h4 className="HorseAppTitle col-element">Mr horse</h4>
                      <Button variant="outline" onClick={RedirectLogin} className="button_18">Ingresar</Button>
                 </div>
-                <div className="col">Desarrollos futuros</div>
-                <div className="col" >Desarrollos futuros</div>
+                <div className="col" style={{backgroundImage:Backgroundcolumn}}>Desarrollos futuros</div>
+                <div className="col" style={{backgroundImage:Backgroundcolumn}}>Desarrollos futuros</div>
               </div>
               <div className="row">
-                <div className="col" >Desarrollos futuros</div>
-                <div className="col" >Desarrollos futuros</div>
-                <div className="col" >Desarrollos futuros</div>
+                <div className="col" style={{backgroundImage:Backgroundcolumn}}>Desarrollos futuros</div>
+                <div className="col" style={{backgroundImage:Backgroundcolumn}} >Desarrollos futuros</div>
+                <div className="col" style={{backgroundImage:Backgroundcolumn}}>Desarrollos futuros</div>
               </div>
            </div>
         </div>

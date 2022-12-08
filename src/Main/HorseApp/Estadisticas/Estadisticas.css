@@ -112,13 +112,14 @@
   padding-bottom: 1.2rem;
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 4.5rem;
   
 }
 
 /* INPUT */
 .filter-Horse-Estadistics-Container .input-group{
-  width: 20rem !important;
+  width: 12rem !important;
   background-color: transparent;
   flex-wrap:nowrap !important;
   position:relative;
@@ -126,8 +127,8 @@
   border-radius: 20px;
   background-color: white;
   margin-right: 10px;
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
   
 }
 .filter-Horse-Estadistics-Container .input-group-text{
@@ -278,6 +279,7 @@
    
   .EstadisticasContainer{
     flex-direction: column;
+    overflow-x: auto;
   }
   .InfoContainer{
     order: 2;
