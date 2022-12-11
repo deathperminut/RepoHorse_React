@@ -111,7 +111,7 @@ export default function Estadisticas() {
                 <div className='Est-Container-3' >
                   <div className='tableContainer'>
                     <div className='table'>
-                      <Tablehorse/>
+                      <Tablehorse />
                     </div>
                   
 

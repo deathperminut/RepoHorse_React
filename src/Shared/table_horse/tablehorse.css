@@ -1,0 +1,26 @@
+.date-20221211{
+    background-color: transparent !important;
+
+}
+.VideoPlayer{
+    /* position: relative;
+    left: 12%; */
+    position:absolute
+}
+.buttonVideo{
+   position: fixed;
+   z-index: 2; 
+
+   background-color: #FF9300;
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   border:none ;
+   color: white;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   
+}

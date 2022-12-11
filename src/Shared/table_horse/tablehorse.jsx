@@ -2,6 +2,8 @@ import React from 'react';
 import {BsFillPlayFill} from 'react-icons/bs';
 import Table from 'react-bootstrap/Table';
 import HorsePhoto from '../../Sources/Images//Estadisticas/HorsePhoto.jpg';
+import ReactPlayer from 'react-player';
+import './tablehorse.css';
 
 export default function Tablehorse() {
   
@@ -99,43 +101,65 @@ export default function Tablehorse() {
       },
     ];
 
+    /*USE STATE */
+    let [ShowVideo,setShowVideo]=React.useState(false);
+
   return (
-    <>
-       <Table>
-                  <thead>
-                    <tr>
-                      <th className='titletext'>Nombre</th>
-                      <th className='titletext'>Edad</th>
-                      <th className='titletext'>Andar</th>
-                      <th className='titletext'>Tipo</th>
-                      <th className='titletext'>BPM</th>
-                      <th className='titletext'>Puntos</th>
-                      <th className='titletext'>Videos</th>
-                    </tr>
-                  </thead>
-                  <tbody className='tablebody'>
-                    {ListHorse.map(Horse=>{
-                       return(
-                        <tr key={Horse.id}>
-                            <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>{Horse.name}</span></td>
-                            <td className='b-none text-table'>{Horse.Edad}</td>
-                            <td className='b-none text-table'>{Horse.Andar}</td>
-                            <td className='b-none text-table'>{Horse.Tipo}</td>
-                            <td className='b-none'><span className='BPMData'>{Horse.BPM}</span></td>
-                            <td className='b-none'><span className='PointData'>{Horse.Puntos}</span></td>
-                            <td className='b-none'>
-                                <div className='iconVideoPlayContainer'>
-                                <BsFillPlayFill className='iconVideoPlay'/>
-                                </div>
-                            </td>
-                        </tr>
-                       );
-                        
-                    })}
-                    
-                    
-                  </tbody>
+             <>
+             {ShowVideo===false ?
+            
+            <>
+                <Table>
+                            <thead>
+                                <tr>
+                                <th className='titletext'>Nombre</th>
+                                <th className='titletext'>Edad</th>
+                                <th className='titletext'>Andar</th>
+                                <th className='titletext'>Tipo</th>
+                                <th className='titletext'>BPM</th>
+                                <th className='titletext'>Puntos</th>
+                                <th className='titletext'>Videos</th>
+                                </tr>
+                            </thead>
+                            <tbody className='tablebody'>
+                                {ListHorse.map(Horse=>{
+                                return(
+                                    
+                                    <tr key={Horse.id}>
+                                        <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>{Horse.name}</span></td>
+                                        <td className='b-none text-table'>{Horse.Edad}</td>
+                                        <td className='b-none text-table'>{Horse.Andar}</td>
+                                        <td className='b-none text-table'>{Horse.Tipo}</td>
+                                        <td className='b-none'><span className='BPMData'>{Horse.BPM}</span></td>
+                                        <td className='b-none'><span className='PointData'>{Horse.Puntos}</span></td>
+                                        <td className='b-none' onClick={()=>setShowVideo(true)}>
+                                            <div className='iconVideoPlayContainer'>
+                                            <BsFillPlayFill className='iconVideoPlay'/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                                    
+                                })}
+                                
+                                
+                            </tbody>
                 </Table> 
-    </>
-  )
+            </>
+            :
+            <>
+               
+            <ReactPlayer className="VideoPlayer"   controls={true} url='https://www.youtube.com/watch?v=xtoHuHgS9_o' playing={true} width={'100%'} height={'100%'} youtubeConfig={{ playerVars: { showinfo: 1 } }}/>
+            <button className='buttonVideo' onClick={()=>setShowVideo(false)}>X</button>
+
+            </>
+          }
+
+
+             </>  
+              
+
+
+                    
+  );
 }
