@@ -7,10 +7,12 @@ import * as Icon from 'react-bootstrap-icons';
 import Logo from '../../../Sources/Images/Estadisticas/logo_equipon.jpg';
 import HorsePhoto from '../../../Sources/Images/Estadisticas/HorsePhoto.jpg';
 import {AiOutlinePlusCircle , AiFillPlusCircle,AiFillCloseCircle} from 'react-icons/ai';
+import {RiEdit2Fill} from 'react-icons/ri';
 import {BiImageAdd} from 'react-icons/bi';
 import $ from 'jquery';
 import Table from 'react-bootstrap/Table';
 import {BsFillPlayFill} from 'react-icons/bs';
+import Select from 'react-select'
 
 /* CALENDAR */
 import { DatePicker } from 'antd';
@@ -49,6 +51,14 @@ export default function Competiciones() {
     let A_element=$("input")[1];
     A_element.click();
   }
+
+  /*SELECT*/
+  let options_andar=[
+    { value: 'P1', label: 'P1' },
+    { value: 'P2', label: 'P2' },
+    { value: 'P3', label: 'P3' },
+    { value: 'P4', label: 'P4' }
+  ]
 
   return (
     <div className='CompetenciasContainer'>
@@ -236,20 +246,21 @@ export default function Competiciones() {
                   />
                 </InputGroup>
                 <button className='buttonComp'>Buscar</button>
+                <Select className='SelectComp' options={options_andar} placeholder="Seleccione Categoria"></Select>
         </div>
          <div className='HorseDataContainer'>
-                <form className='RegisterEventHorse'>
+                <form className='RegisterHorseForm'>
                       <div className='CloseContainerHorse'>
                             <span className='TextTitle2'>Agregar participante</span>
                       </div>
                       <div className='imageContainer'>
                           {file===null ?
-                          <div className="imageInputContainer">
+                          <div className="imageInputContainerHorse">
                               <BiImageAdd className='iconImageFile' onClick={clickImageInput}/>
                               <input style={{visibility:"hidden"}} type="file" onChange={handleChange} />
                           </div>
                           :
-                          <img className='imageEvent'   src={file} onClick={()=>setFile(null)}/> 
+                          <img className='imageEventHorse'   src={file} onClick={()=>setFile(null)}/> 
                           } 
                       </div>
                       <div className='nameContainer containrowHorse'>
@@ -260,11 +271,23 @@ export default function Competiciones() {
                         <span className="textFormEvent"># Competidor</span>
                         <input className='inputEventForm' type="text" placeholder='# del competidor'/>
                       </div>
+                      <div className='competidoresContainer containrowHorse'>
+                        <span className="textFormEvent">Caballista</span>
+                        <input className='inputEventForm' type="text" placeholder='# del competidor'/>
+                      </div>
+                      <div className='competidoresContainer containrowHorse'>
+                        <span className="textFormEvent">Edad</span>
+                        <input className='inputEventForm' type="text" placeholder='Edad'/>
+                      </div>
+                      <div className='competidoresContainer containrowHorse'>
+                        <span className="textFormEvent">Andar</span>
+                        <input className='inputEventForm' type="text" placeholder='Ingrese la categoria'/>
+                      </div>
                       <div className='ButtonContainer'>
                            <button className='buttonComp_2'>Añadir</button>
                       </div>
                 </form>
-                <div className='tableContainerHorse'>
+              <div className='tableContainerHorse'>
               <div className='table'>
                 <Table>
                   <thead>
@@ -273,10 +296,8 @@ export default function Competiciones() {
                       <th className='titletext'>Edad</th>
                       <th className='titletext'>Andar</th>
                       <th className='titletext'>Tipo</th>
-                      <th className='titletext'>Raza</th>
-                      <th className='titletext'>BPM</th>
-                      <th className='titletext'>Puntos</th>
-                      <th className='titletext'>Videos</th>
+                      <th className='titletext'>Caballista</th>
+                      <th className='titletext'></th>
                     </tr>
                   </thead>
                   <tbody className='tablebody'>
@@ -285,12 +306,10 @@ export default function Competiciones() {
                       <td className='b-none text-table'>38 meses</td>
                       <td className='b-none text-table'>P4</td>
                       <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
+                      <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
+                          <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
                     </tr>
@@ -299,12 +318,10 @@ export default function Competiciones() {
                       <td className='b-none text-table'>38 meses</td>
                       <td className='b-none text-table'>P4</td>
                       <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
+                      <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
+                          <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
                     </tr>
@@ -313,12 +330,10 @@ export default function Competiciones() {
                       <td className='b-none text-table'>38 meses</td>
                       <td className='b-none text-table'>P4</td>
                       <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
+                      <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
+                          <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
                     </tr>
@@ -327,12 +342,10 @@ export default function Competiciones() {
                       <td className='b-none text-table'>38 meses</td>
                       <td className='b-none text-table'>P4</td>
                       <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
+                      <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
+                          <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
                     </tr>
@@ -341,12 +354,10 @@ export default function Competiciones() {
                       <td className='b-none text-table'>38 meses</td>
                       <td className='b-none text-table'>P4</td>
                       <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
+                      <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
+                          <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
                     </tr>
@@ -355,12 +366,10 @@ export default function Competiciones() {
                       <td className='b-none text-table'>38 meses</td>
                       <td className='b-none text-table'>P4</td>
                       <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
+                      <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
+                          <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
                     </tr>
@@ -369,12 +378,10 @@ export default function Competiciones() {
                       <td className='b-none text-table'>38 meses</td>
                       <td className='b-none text-table'>P4</td>
                       <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
+                      <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
+                          <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
                     </tr>
@@ -383,12 +390,10 @@ export default function Competiciones() {
                       <td className='b-none text-table'>38 meses</td>
                       <td className='b-none text-table'>P4</td>
                       <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
+                      <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
+                          <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
                     </tr>
@@ -397,12 +402,10 @@ export default function Competiciones() {
                       <td className='b-none text-table'>38 meses</td>
                       <td className='b-none text-table'>P4</td>
                       <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
+                      <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
+                          <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
                     </tr>

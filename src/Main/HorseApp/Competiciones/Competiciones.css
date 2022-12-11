@@ -130,8 +130,8 @@
     display: flex;
     flex-direction: row;
     margin-top: 20px;
-     
 }
+
 .buttonregisterEvent{
     background-color: #134D44;
     border-radius: 20px;
@@ -222,6 +222,17 @@
     justify-content: center;
     box-shadow: 40px 22px 54px #695F971A;
 }
+.imageInputContainerHorse{
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50px;
+    border:1px solid #C0BDCC;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 40px 22px 54px #695F971A;
+}
 .iconImageFile{
    width: 50px;
    height: 50px;
@@ -232,6 +243,11 @@
     width: 6rem;
     height: 6rem;
     border-radius: 15px;
+}
+.imageEventHorse{
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50px;
 }
 .containrow{
     display: flex;
@@ -333,6 +349,10 @@
 .w-{
     width: 150px;
 }
+.SelectComp{
+    width: 20rem;
+    margin-left: 12.5rem;
+}
 
 .HorseFilter{
     background-color: transparent !important;
@@ -340,8 +360,11 @@
     border-radius: 0px !important;
     display: flex;
     flex-direction: row;
-    margin-top: 4rem;
+    margin-top: 2rem;
     margin-left: 1.4rem;
+    padding-top: 1rem;
+    position: relative;
+    top:7px
 }
 
 .HorseDataContainer{
@@ -362,6 +385,17 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.RegisterHorseForm{
+    width: 22rem;
+    height:33.5rem; 
+    background-color:#134D44 ;
+    box-shadow: 4px 22px 54px #695F971A;
+    border-radius: 30px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 
 /*CloseContainer*/
 .CloseContainerHorse{
@@ -404,7 +438,7 @@
 }
 .ButtonContainer{
     width: 100%;
-    height: 10rem;
+    height: 3rem;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
@@ -415,7 +449,7 @@
     width: 100%;
     min-width: 29rem;
     max-width: 44rem;
-    height:30rem;
+    height:33.5rem;
     background-color: #134D44;
     border-radius: 18px;
     margin-top: 1.2rem ;
