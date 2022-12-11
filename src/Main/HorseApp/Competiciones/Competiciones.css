@@ -92,13 +92,15 @@
     border-radius: 19px;
     color: white;
     height: 2rem;
-    padding: 0.6rem;
+    padding: 1rem;
     padding-top: 1.2rem;
     padding-bottom: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 5rem; 
+    position: relative;
+    right: 7px;
 } 
 
 
@@ -201,6 +203,18 @@
     height: 34px;
     width: 34px;
     margin-left: 55%;
+}
+.CloseAddIcon{
+    color:white;
+    height: 30px;
+    width: 30px;
+    margin-left: 44%; 
+}
+.CloseAddIcon_2{
+    color:white;
+    height: 30px;
+    width: 30px;
+    margin-left: 49%;  
 }
 .imageContainer{
     width: 100%;
@@ -352,6 +366,11 @@
 .SelectComp{
     width: 20rem;
     margin-left: 12.5rem;
+}
+.buttonAddHorse{
+    margin: 1.4rem;
+    margin-right: 6rem ;
+    margin-bottom: 28rem;
 }
 
 .HorseFilter{

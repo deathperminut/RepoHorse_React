@@ -31,6 +31,8 @@ export default function Competiciones() {
   const [file, setFile] = React.useState(null);
   let [EditEvent,setEditEvent]=React.useState(false);
   let [EventSelected,setEventSelected]=React.useState(null);
+  let [AddHorseButton,setAddHorseButton]=React.useState(false);
+  let [EditHorseButton,setEditHorseButton]=React.useState(false);
 
   /*EDIT EVENT FUNCTION */
   const EditEventFunction=()=>{
@@ -59,6 +61,16 @@ export default function Competiciones() {
     { value: 'P3', label: 'P3' },
     { value: 'P4', label: 'P4' }
   ]
+
+
+  const ResetAddHorse=()=>{
+    setAddHorseButton(false);
+    setEditHorseButton(false);
+  }
+  const EditHorse=()=>{
+    setAddHorseButton(true);
+    setEditHorseButton(true);
+  }
 
   return (
     <div className='CompetenciasContainer'>
@@ -249,9 +261,35 @@ export default function Competiciones() {
                 <Select className='SelectComp' options={options_andar} placeholder="Seleccione Categoria"></Select>
         </div>
          <div className='HorseDataContainer'>
-                <form className='RegisterHorseForm'>
+               {AddHorseButton===false ?
+               <>
+               <div className='buttonregisterEvent buttonAddHorse' onClick={()=> setAddHorseButton(true)}>
+                    <AiFillPlusCircle className='IconEventButton' />
+                    <div className='textButtonregisterEvent'>
+                        <span className='TextTitle'>Añadir</span>
+                        <span className='TextTitle'>Ejemplar</span>
+                    </div>
+                </div>
+               </>
+               :
+               <>
+               <form className='RegisterHorseForm'>
                       <div className='CloseContainerHorse'>
-                            <span className='TextTitle2'>Agregar participante</span>
+                            {EditHorseButton===true  ?
+                              <>
+                               <span className='TextTitle2'>Editar  participante</span>
+                               <AiFillCloseCircle className='CloseAddIcon_2' onClick={ResetAddHorse}/>
+                              </>
+                              
+                            :
+                            <>
+                              <span className='TextTitle2'>Agregar participante</span>
+                              <AiFillCloseCircle className='CloseAddIcon' onClick={ResetAddHorse}/>
+                            </>
+                              
+                            }
+                            
+                            
                       </div>
                       <div className='imageContainer'>
                           {file===null ?
@@ -284,9 +322,17 @@ export default function Competiciones() {
                         <input className='inputEventForm' type="text" placeholder='Ingrese la categoria'/>
                       </div>
                       <div className='ButtonContainer'>
-                           <button className='buttonComp_2'>Añadir</button>
+                           {EditHorseButton===true  ?
+                            <button className='buttonComp_2'>Editar</button>
+                            :
+                            <button className='buttonComp_2'>Añadir</button>
+                            }
                       </div>
                 </form>
+               </>
+
+               }
+
               <div className='tableContainerHorse'>
               <div className='table'>
                 <Table>
@@ -308,7 +354,7 @@ export default function Competiciones() {
                       <td className='b-none text-table'>C caballar</td>
                       <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
+                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
@@ -320,7 +366,7 @@ export default function Competiciones() {
                       <td className='b-none text-table'>C caballar</td>
                       <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
+                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
@@ -332,7 +378,7 @@ export default function Competiciones() {
                       <td className='b-none text-table'>C caballar</td>
                       <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
+                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
@@ -344,7 +390,19 @@ export default function Competiciones() {
                       <td className='b-none text-table'>C caballar</td>
                       <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
+                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
+                          <RiEdit2Fill className='iconVideoPlay'/>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
+                      <td className='b-none text-table'>38 meses</td>
+                      <td className='b-none text-table'>P4</td>
+                      <td className='b-none text-table'>C caballar</td>
+                      <td className='b-none text-table'>Alejandro Soto</td>
+                      <td className='b-none'> 
+                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
@@ -356,7 +414,7 @@ export default function Competiciones() {
                       <td className='b-none text-table'>C caballar</td>
                       <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
+                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
@@ -368,7 +426,7 @@ export default function Competiciones() {
                       <td className='b-none text-table'>C caballar</td>
                       <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
+                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
@@ -380,7 +438,7 @@ export default function Competiciones() {
                       <td className='b-none text-table'>C caballar</td>
                       <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
+                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
@@ -392,19 +450,7 @@ export default function Competiciones() {
                       <td className='b-none text-table'>C caballar</td>
                       <td className='b-none text-table'>Alejandro Soto</td>
                       <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <RiEdit2Fill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none text-table'>Alejandro Soto</td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
+                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
