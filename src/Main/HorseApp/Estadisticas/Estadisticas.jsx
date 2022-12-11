@@ -8,587 +8,133 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import * as Icon from 'react-bootstrap-icons';
 import Table from 'react-bootstrap/Table';
 import {BsFillPlayFill} from 'react-icons/bs';
+import ReactPlayer from 'react-player';
+import Tablehorse from '../../../Shared/table_horse/tablehorse';
+import {AiFillCloseCircle} from 'react-icons/ai';
+/* MODAL TO ADD EVENT*/
+import Modal from 'react-bootstrap/Modal';
+
+
 
 
 export default function Estadisticas() {
+
+  /*USE STATE */
+  
+  let [ListEvents,setListEvents]=React.useState([]);//LIST EVENTS
+
+  /*EVENT INFO */
+  let event={
+    name:"65° Feria Equina",
+    Place:"Manizales-6 de enero de 2022",
+    Grade:"A",
+    img:"URL",
+    TotalCp:568,
+    ListCp:[],
+    id:0
+  };
+  /* EVENTS FUNCTIONS */
+  const AddEvent=()=>{
+
+  }
+
+
+
+  /*APPEND EVENT TO LIST */
+  const AppendEvent=()=>{
+    console.log("Hola");
+    let List_Events=[...ListEvents];
+    let Event={...event};
+    Event['id']=List_Events.length;
+    List_Events.push(Event);
+    setListEvents(List_Events);
+  }
+  /*DELETE EVENT */
+  const DeleteEvent=()=>{
+    let List_Events=[...ListEvents];
+    List_Events.pop();
+    setListEvents(List_Events);
+  }
+  
+
   return (
     <div className='EstadisticasContainer'>
-        <div className='InfoContainer'>
-          <div className='Est-Container-1'>
-                <h1 className='Est-Container-1-text display-none'>Total competidores</h1>
-                <div className='Est-Container-1-container-count display-none'>
-                    <h1 className='Est-Container-1-container-count-text display-none'>568</h1>
-                 </div>
+        {ListEvents.map(Event=>{
+          return (
+              <div className='InfoContainer' key={Event.id}>
+                <div className='Est-Container-1' >
+                      <h1 className='Est-Container-1-text display-none'  >Total competidores</h1>
+                      <div className='Est-Container-1-container-count display-none'  >
+                          <h1 className='Est-Container-1-container-count-text display-none'>{Event.TotalCp}</h1>
+                      </div>
 
-             <div className='Est-Container-1-1'>
-                <h1 className='Est-Container-1-text'>Total competidores</h1>
-                <div className='Est-Container-1-container-count'>
-                    <h1 className='Est-Container-1-container-count-text'>568</h1>
+                  <div className='Est-Container-1-1' >
+                      <h1 className='Est-Container-1-text' >Total competidores</h1>
+                      <div className='Est-Container-1-container-count' >
+                          <h1 className='Est-Container-1-container-count-text'>{Event.TotalCp}</h1>
+                      </div>
+                  </div>
+                  <button className='buttonEvent center buttonEventEst' ><span className="tw-500 font-size-15pt  c-orange mr-3px" >+</span><span className="c-orange font-size-10pt" >Añadir otro</span></button>
+                  
                 </div>
-             </div>
-             <button className='buttonEvent center buttonEventEst'><span className="tw-500 font-size-15pt  c-orange mr-3px">+</span><span className="c-orange font-size-10pt">Añadir otro</span></button>
-             
-          </div>
-          <div className='Est-Container-2'>
-             <div className='label-event-Estadistics-Container'>
-                <figure className='img-container'>
-                  <img src={Logo} className='img-event'></img>
-                </figure>
-                <div className='p-column'>
-                  <span className='t-white t-b'>65° Feria Equina</span>
-                  <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                  <span className='t-white t-xs'>Grado: A</span>
+                <div className='Est-Container-2'  >
+                  <div className='label-event-Estadistics-Container' >
+                      <AiFillCloseCircle className='IconCloseEvent' onClick={DeleteEvent}  />
+                      <figure className='img-container'  >
+                        <img src={Logo} className='img-event'></img>
+                      </figure>
+                      
+                      <div className='p-column'>
+                        <span className='t-white t-b'  >{Event.name}</span>
+                        <span className='t-white t-xs' >{Event.Place}</span>
+                        <span className='t-white t-xs' >{"Grado: "+Event.Grade}</span>
+                      </div>
+                  </div>
+                  <div className='filter-Horse-Estadistics-Container'  >
+                      <InputGroup className="mb-3" id="p-row">
+                        <InputGroup.Text id="basic-addon1"><Icon.Search /></InputGroup.Text>
+                        <Form.Control
+                          placeholder="Ingrese el ejemplar"
+                          aria-label="Ingrese el ejemplar"
+                          aria-describedby="basic-addon1"
+                        />
+                      </InputGroup>
+                      <button className='buttonEstadistic'>Buscar</button>
+                  </div>
+                  
                 </div>
-             </div>
-             <div className='filter-Horse-Estadistics-Container'>
-                <InputGroup className="mb-3" id="p-row">
-                  <InputGroup.Text id="basic-addon1"><Icon.Search/></InputGroup.Text>
-                  <Form.Control
-                    placeholder="Ingrese el ejemplar"
-                    aria-label="Ingrese el ejemplar"
-                    aria-describedby="basic-addon1"
-                  />
-                </InputGroup>
-                 <button className='buttonEstadistic'>Buscar</button>
-             </div>
-             
-          </div>
-          <div className='Est-Container-3'>
-            <div className='tableContainer'>
-              <div className='table'>
-                <Table>
-                  <thead>
-                    <tr>
-                      <th className='titletext'>Nombre</th>
-                      <th className='titletext'>Edad</th>
-                      <th className='titletext'>Andar</th>
-                      <th className='titletext'>Tipo</th>
-                      <th className='titletext'>Raza</th>
-                      <th className='titletext'>BPM</th>
-                      <th className='titletext'>Puntos</th>
-                      <th className='titletext'>Videos</th>
-                    </tr>
-                  </thead>
-                  <tbody className='tablebody'>
-                    <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </Table>
+                <div className='Est-Container-3' >
+                  <div className='tableContainer'>
+                    <div className='table'>
+                      <Tablehorse/>
+                    </div>
+                  
+
+                  </div>
+                </div>
               </div>
-             
-
-            </div>
-          </div>
-        </div>
-        <div className='InfoContainer'>
-          <div className='Est-Container-1'>
-                <h1 className='Est-Container-1-text display-none'>Total competidores</h1>
-                <div className='Est-Container-1-container-count display-none'>
-                    <h1 className='Est-Container-1-container-count-text display-none'>568</h1>
-                 </div>
-
-             <div className='Est-Container-1-1'>
-                <h1 className='Est-Container-1-text'>Total competidores</h1>
-                <div className='Est-Container-1-container-count'>
-                    <h1 className='Est-Container-1-container-count-text'>568</h1>
-                </div>
-             </div>
-             <button className='buttonEvent center buttonEventEst'><span className="tw-500 font-size-15pt  c-orange mr-3px">+</span><span className="c-orange font-size-10pt">Añadir otro</span></button>
-             
-          </div>
-          <div className='Est-Container-2'>
-             <div className='label-event-Estadistics-Container'>
-                <figure className='img-container'>
-                  <img src={Logo} className='img-event'></img>
-                </figure>
-                <div className='p-column'>
-                  <span className='t-white t-b'>65° Feria Equina</span>
-                  <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                  <span className='t-white t-xs'>Grado: A</span>
-                </div>
-             </div>
-             <div className='filter-Horse-Estadistics-Container'>
-             <InputGroup className="mb-3" id="p-row">
-              <InputGroup.Text id="basic-addon1"><Icon.Search/></InputGroup.Text>
-              <Form.Control
-                placeholder="Ingrese el ejemplar"
-                aria-label="Ingrese el ejemplar"
-                aria-describedby="basic-addon1"
-              />
-            </InputGroup>
-                 <button className='buttonEstadistic'>Buscar</button>
-             </div>
-             
-          </div>
-          <div className='Est-Container-3'>
-            <div className='tableContainer'>
-              <div className='table'>
-                <Table>
-                  <thead>
-                    <tr>
-                      <th className='titletext'>Nombre</th>
-                      <th className='titletext'>Edad</th>
-                      <th className='titletext'>Andar</th>
-                      <th className='titletext'>Tipo</th>
-                      <th className='titletext'>Raza</th>
-                      <th className='titletext'>BPM</th>
-                      <th className='titletext'>Puntos</th>
-                      <th className='titletext'>Videos</th>
-                    </tr>
-                  </thead>
-                  <tbody className='tablebody'>
-                    <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </Table>
+          );
+        })}
+        {ListEvents.length===0 ?
+        <>
+          <div className='InfoContainer'>
+              <div className='Est-Container-1'></div>
+              <div className='Est-Container-2'></div>
+              <div className='Est-Container-3'>
+                <h1 className='textNeedEvent'>No hay eventos seleccionados</h1>
               </div>
-             
-
-            </div>
           </div>
-        </div>
-        <div className='InfoContainer'>
-          <div className='Est-Container-1'>
-                <h1 className='Est-Container-1-text display-none'>Total competidores</h1>
-                <div className='Est-Container-1-container-count display-none'>
-                    <h1 className='Est-Container-1-container-count-text display-none'>568</h1>
-                 </div>
-
-             <div className='Est-Container-1-1'>
-                <h1 className='Est-Container-1-text'>Total competidores</h1>
-                <div className='Est-Container-1-container-count'>
-                    <h1 className='Est-Container-1-container-count-text'>568</h1>
-                </div>
-             </div>
-             <button className='buttonEvent center buttonEventEst'><span className="tw-500 font-size-15pt  c-orange mr-3px">+</span><span className="c-orange font-size-10pt">Añadir otro</span></button>
-             
+          <div className='SelectEventContainer LabelDisappear'>
+              <button className='buttonEvent center' onClick={AppendEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px" >+</span><span className="c-orange font-size-10pt">Añadir Evento</span></button>
           </div>
-          <div className='Est-Container-2'>
-             <div className='label-event-Estadistics-Container'>
-                <figure className='img-container'>
-                  <img src={Logo} className='img-event'></img>
-                </figure>
-                <div className='p-column'>
-                  <span className='t-white t-b'>65° Feria Equina</span>
-                  <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                  <span className='t-white t-xs'>Grado: A</span>
-                </div>
-             </div>
-             <div className='filter-Horse-Estadistics-Container'>
-             <InputGroup className="mb-3" id="p-row">
-              <InputGroup.Text id="basic-addon1"><Icon.Search/></InputGroup.Text>
-              <Form.Control
-                placeholder="Ingrese el ejemplar"
-                aria-label="Ingrese el ejemplar"
-                aria-describedby="basic-addon1"
-              />
-            </InputGroup>
-                 <button className='buttonEstadistic'>Buscar</button>
-             </div>
-             
+        </>
+        :
+        <>
+          <div className='SelectEventContainer LabelDisappear'>
+              <button className='buttonEvent center' onClick={AppendEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px" >+</span><span className="c-orange font-size-10pt">Añadir otro</span></button>
           </div>
-          <div className='Est-Container-3'>
-            <div className='tableContainer'>
-              <div className='table'>
-                <Table>
-                  <thead>
-                    <tr>
-                      <th className='titletext'>Nombre</th>
-                      <th className='titletext'>Edad</th>
-                      <th className='titletext'>Andar</th>
-                      <th className='titletext'>Tipo</th>
-                      <th className='titletext'>Raza</th>
-                      <th className='titletext'>BPM</th>
-                      <th className='titletext'>Puntos</th>
-                      <th className='titletext'>Videos</th>
-                    </tr>
-                  </thead>
-                  <tbody className='tablebody'>
-                    <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none '><a className='text-table'>ver</a></td>
-                      <td className='b-none'><span className='BPMData'>500</span></td>
-                      <td className='b-none'><span className='PointData'>55555</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer'>
-                          <BsFillPlayFill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </Table>
-              </div>
-             
-
-            </div>
-          </div>
-        </div>
-        <div className='SelectEventContainer LabelDisappear'>
-            <button className='buttonEvent center'><span className="tw-500 font-size-15pt  c-orange mr-3px">+</span><span className="c-orange font-size-10pt">Añadir otro</span></button>
-        </div>
+        </>}
+        
     </div>
   )
 }

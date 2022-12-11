@@ -144,6 +144,7 @@
     flex-direction: row;
     align-items: center;
     padding: 20px;
+    cursor:pointer;
 }
 .buttonregisterEvent:hover{
     border: 1px solid #FF9300;
@@ -162,6 +163,7 @@
 }
 .buttonregisterEvent_2{
     background-color: #F7B500;
+    cursor:pointer;
     border-radius: 20px;
     width: 16rem;
     min-width: 16rem;
@@ -194,27 +196,32 @@
     flex-direction: row;
     align-items: center;
     padding: 1.2rem;
+    cursor: pointer;
 }
 .TextTitle2{
-    color:#C0BDCC
+    color:#C0BDCC;
+    width: 170px;
 }
 .CloseIcon{
     color:white;
     height: 34px;
     width: 34px;
     margin-left: 55%;
+    cursor: pointer;
 }
 .CloseAddIcon{
     color:white;
     height: 30px;
     width: 30px;
     margin-left: 44%; 
+    cursor: pointer; 
 }
 .CloseAddIcon_2{
     color:white;
     height: 30px;
     width: 30px;
-    margin-left: 49%;  
+    margin-left: 49%; 
+    cursor: pointer; 
 }
 .imageContainer{
     width: 100%;

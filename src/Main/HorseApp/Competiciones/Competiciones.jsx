@@ -71,6 +71,9 @@ export default function Competiciones() {
     setAddHorseButton(true);
     setEditHorseButton(true);
   }
+  
+  /* LISTA EVENTOS */
+  
 
   return (
     <div className='CompetenciasContainer'>

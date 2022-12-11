@@ -176,7 +176,25 @@
   overflow-y: auto !important;
   overflow-x: auto !important;
   width: 100%;
-  height: 100%;
+  height: 97%;
+  position: relative;
+  top:6px
+}
+.IconCloseEvent{
+  position:relative;
+  z-index: 2;
+  color:#FF9300;
+  right:1rem;
+  bottom: 2.5rem;
+  cursor: pointer;
+}
+.textNeedEvent{
+  color:white;
+  opacity: 0.5;
+  font-size: 2rem;
+  position: relative;
+  bottom: 2.2rem;
+
 }
 .table>:not(caption)>*>* {
   border: none !important;
@@ -223,6 +241,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .iconVideoPlay{
   color:#FF9300 !important
