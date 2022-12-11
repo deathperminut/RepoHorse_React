@@ -12,7 +12,7 @@ import ReactPlayer from 'react-player';
 import Tablehorse from '../../../Shared/table_horse/tablehorse';
 import {AiFillCloseCircle} from 'react-icons/ai';
 /* MODAL TO ADD EVENT*/
-import Modal from 'react-bootstrap/Modal';
+import MyVerticallyCenteredModal from '../../../Shared/Modal/modal';
 
 
 
@@ -22,6 +22,8 @@ export default function Estadisticas() {
   /*USE STATE */
   
   let [ListEvents,setListEvents]=React.useState([]);//LIST EVENTS
+  /*USE STATE MODAL*/
+  const [modalShow, setModalShow] = React.useState(false);
 
   /*EVENT INFO */
   let event={
@@ -38,16 +40,19 @@ export default function Estadisticas() {
 
   }
 
-
-
-  /*APPEND EVENT TO LIST */
-  const AppendEvent=()=>{
-    console.log("Hola");
+  
+  const AppendEvent_2=()=>{
     let List_Events=[...ListEvents];
     let Event={...event};
     Event['id']=List_Events.length;
     List_Events.push(Event);
     setListEvents(List_Events);
+  }
+
+  /*APPEND EVENT TO LIST */
+  const AppendEvent=()=>{
+    setModalShow(true)
+   
   }
   /*DELETE EVENT */
   const DeleteEvent=()=>{
@@ -125,15 +130,20 @@ export default function Estadisticas() {
               </div>
           </div>
           <div className='SelectEventContainer LabelDisappear'>
-              <button className='buttonEvent center' onClick={AppendEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px" >+</span><span className="c-orange font-size-10pt">Añadir Evento</span></button>
+              <button  variant="primary"  className='buttonEvent center' onClick={AppendEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px" >+</span><span className="c-orange font-size-10pt">Añadir Evento</span></button>
           </div>
         </>
         :
         <>
           <div className='SelectEventContainer LabelDisappear'>
-              <button className='buttonEvent center' onClick={AppendEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px" >+</span><span className="c-orange font-size-10pt">Añadir otro</span></button>
+              <button  variant="primary" className='buttonEvent center' onClick={AppendEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px" >+</span><span className="c-orange font-size-10pt">Añadir otro</span></button>
           </div>
         </>}
+        <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        selectEvent={AppendEvent_2}
+      />
         
     </div>
   )
