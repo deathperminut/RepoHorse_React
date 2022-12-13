@@ -8,7 +8,7 @@
     position:absolute
 }
 .buttonVideo{
-   position: fixed;
+   position: absolute;
    z-index: 2; 
 
    background-color: #FF9300;

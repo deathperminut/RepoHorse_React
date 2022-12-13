@@ -149,7 +149,7 @@ export default function Tablehorse() {
             :
             <>
                
-            <ReactPlayer className="VideoPlayer"   controls={true} url='https://www.youtube.com/watch?v=xtoHuHgS9_o' playing={true} width={'100%'} height={'100%'} youtubeConfig={{ playerVars: { showinfo: 1 } }}/>
+            <ReactPlayer className="VideoPlayer"   controls={true} url='https://www.youtube.com/watch?v=OyuL5biOQ94' playing={true} width={'100%'} height={'100%'} youtubeConfig={{ playerVars: { showinfo: 1 } }}/>
             <button className='buttonVideo' onClick={()=>setShowVideo(false)}>X</button>
 
             </>
