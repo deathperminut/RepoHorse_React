@@ -1,5 +1,5 @@
 .CompetenciasContainer{
-    width: 86vw;
+    width: calc(100vw - 14rem);
     height: 100vh;
     background-color: #11342F;
     overflow-x: auto;

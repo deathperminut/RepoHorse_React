@@ -21,6 +21,7 @@
  min-width: 37rem;
  max-width: 39rem;
  height: 70%;
+ max-height: 500px;
  background-color: #134D44;
  border-radius: 10pt;
  display: flex;
@@ -205,30 +206,30 @@
     padding-left: 1rem;
   }
   /*DROPDOWN*/
-.input-group>.form-control{
+.display-row .input-group>.form-control{
     width: 30px !important;
 }
-.input-group{
+.display-row .input-group{
     width: 200px !important;
     background-color: white;
     border-radius: 20px;
     border: none !important;
 }
-.input-group .btn{
+.display-row .input-group .btn{
     width: 80px !important;
     
 }
-.form-control{
+.display-row .form-control{
     border:0px !important;
 }
-.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback){
+.display-row .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback){
     border: none !important;
 }
-#input-group-dropdown-2:hover{
+.display-row #input-group-dropdown-2:hover{
     background: none !important;
     color:#000000!important;
 }
-#input-group-dropdown-2{
+.display-row #input-group-dropdown-2{
     color:#000000 !important;
 }
 .btn.show{

@@ -7,6 +7,7 @@ import {Link} from  'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
 import { FaHorseHead } from 'react-icons/fa';
 import ToggleSwitch from '../../../Shared/buttonToggle/buttonToggle';
+import Logo from '../../../Sources/Images/Landing/Logo.png'
 // import Button from 'react-bootstrap/Button';
 
 
@@ -79,11 +80,7 @@ function LoginInfo() {
     return (
       <div className="LoginInfoContainer">
         <div class="card-body">
-        <FaHorseHead className='IconLogin mt-10'/>
-        <h5 class="mb-7 " ></h5>
-        <h4 class="c-orange " >Hola!</h4>
-        <h4 class="mb-7 mb-6 c-orange" >Bienvenido a Mr Horse</h4>
-        <h20 class="mb-7 xss mb-20 c-white textForm" >Ingrese sus credenciales para continuar</h20>
+        <img  className='Logo Login_Logo' src={Logo} alt=""></img>
         <form onSubmit={onSubmit}  action="" class="FormContainer">
           <div class="mb-3">
             <div class="col-12">

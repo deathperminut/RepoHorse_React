@@ -1,12 +1,12 @@
 .LoginInfoContainer{
     max-width:400px;
     height:490px;
-    border: 1pt solid #707070;
-    border-radius: 46pt;
+    border: 0px;
     opacity: 1;
-    position: absolute;
-    top:2%;
     padding: 1%;
+    position: relative;
+    bottom: 80px;
+    margin-right: 50px;
 }
 
 .RegisterTitle{
@@ -14,6 +14,12 @@
     color: white;
     margin-bottom: 4rem !important;
     
+}
+.Login_Logo{
+    width: 70%;
+    position: relative;
+    right: 50px;
+    margin-top: 110px;
 }
 .IconLogin{
   width: 5rem !important;
