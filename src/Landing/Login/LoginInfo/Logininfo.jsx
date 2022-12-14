@@ -66,8 +66,7 @@ function LoginInfo() {
       }else{
         Swal.fire({
           icon: 'error',
-          title: 'Oops...',
-          text: 'Incorrect Credentials!',
+          title: 'Credenciales incorrectas.',
         })
 
       }
