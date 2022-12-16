@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import './offCanvas.css';
+import Logo from '../../Sources/Images/Landing/Logo.png'
 /* ICONS */
 import { GiHorseshoe,GiHorseHead } from 'react-icons/gi';
 import {MdVideoSettings} from 'react-icons/md';
@@ -17,7 +18,7 @@ function OffCanvas() {
     <>
 
         <nav className='offCanvasContainer'>
-            <FaHorseHead className='iconCanva mt-10'/>
+            <img  className='LogoOffcanvas' src={Logo} alt=""></img>
             <ul className="ulOffcanvas">
                 <li className="sectionOffcanvas">
                 <NavLink

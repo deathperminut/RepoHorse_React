@@ -28,7 +28,7 @@ import {AiFillCloseCircle} from 'react-icons/ai';
 export default function Analisis() {
   
   /* REACT UseStates */
-  let [SelectEvent,setSelectEvent]=React.useState(true);
+  let [SelectEvent,setSelectEvent]=React.useState(false);
   /* VIDEO */
   let [file,setFile]=React.useState(null);
 

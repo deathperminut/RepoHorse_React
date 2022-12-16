@@ -126,7 +126,7 @@ export default function Estadisticas() {
               <div className='Est-Container-1'></div>
               <div className='Est-Container-2'></div>
               <div className='Est-Container-3'>
-                <h1 className='textNeedEvent'>No hay eventos seleccionados</h1>
+                <h1 className='textNeedEvent'>Selecciona un evento</h1>
               </div>
           </div>
           <div className='SelectEventContainer LabelDisappear'>
