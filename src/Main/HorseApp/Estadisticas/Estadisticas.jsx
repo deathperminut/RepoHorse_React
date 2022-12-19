@@ -13,11 +13,17 @@ import Tablehorse from '../../../Shared/table_horse/tablehorse';
 import {AiFillCloseCircle} from 'react-icons/ai';
 /* MODAL TO ADD EVENT*/
 import MyVerticallyCenteredModal from '../../../Shared/Modal/modal';
-
+/* IMPORT APP CONTEXT */
+import { AppContext } from '../../../Context';
 
 
 
 export default function Estadisticas() {
+
+
+  /* APP CONTEXT */
+
+  let {StadisticVideo,setStatisticVideo}=React.useContext(AppContext);
 
   /*USE STATE */
   
@@ -113,8 +119,6 @@ export default function Estadisticas() {
                     <div className='table'>
                       <Tablehorse />
                     </div>
-                  
-
                   </div>
                 </div>
               </div>

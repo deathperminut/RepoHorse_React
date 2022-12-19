@@ -23,20 +23,39 @@ import InputGroup from 'react-bootstrap/InputGroup';
 //import HorsePhoto from '../..//../Sources/Images//Estadisticas/HorsePhoto.jpg';
 import HorsePhoto from '../../../Sources/Images/Estadisticas/HorsePhoto.jpg';
 import {AiFillCloseCircle} from 'react-icons/ai';
+import {FaTrash} from 'react-icons/fa';
+import {MdVideoSettings} from 'react-icons/md';
+
+
+/* VIDEO EDITOR */
+import {RdxVideo, Overlay, Controls} from 'react-html5-video-editor';
+
+
+
 
 
 export default function Analisis() {
+
+//   RdxVideo.Props = {
+//   autoPlay: false,
+//   loop: false,
+//   controls: true,
+//   volume:	1.0,
+//   preload: "auto",
+//   cropEnabled: true
+// }
   
   /* REACT UseStates */
   let [SelectEvent,setSelectEvent]=React.useState(false);
+  let [SelectHorse,setSelectHorse]=React.useState(false);
   /* VIDEO */
   let [file,setFile]=React.useState(null);
 
   const fileInputChange=(event)=>{
-     if(!SelectEvent){
+     if(!SelectHorse){
       Swal.fire({
         icon: 'error',
-        title: 'Primero selecciona un evento.',
+        title: 'Primero selecciona un evento y un ejemplar.',
       })
      }
      console.log("props");
@@ -52,8 +71,15 @@ export default function Analisis() {
      if(select){
       Value=event.value;
      }
-     setSelectEvent(!SelectEvent);
+     console.log(!SelectEvent);
+     setSelectEvent(!SelectEvent)
+     
   }
+
+  const getSelectHorse=(event)=>{
+    setSelectHorse(true); 
+  }
+
   
   /*OPTIONS SELECT */
   const options = [
@@ -66,34 +92,84 @@ export default function Analisis() {
     <>
         <div className='AnalisisContainer'>
           <div className='DataContainer'>
-             
-             <div className='videoContainer'>
-                <Dropzone onDrop={acceptedFiles => fileInputChange(acceptedFiles)}  className='shadow'>
-                    {({getRootProps, getInputProps}) => (
-                    <section className='dragContainer'>
-                        <div {...getRootProps()} className="center_2">
-                          <input {...getInputProps()} accept=".csv"/>
-                            <BsPlayBtn className='iconFilm'/>
-                            <span className='textdragContainer'>Arraste o ponga el video aquí</span>
-                            <span className='textdragContainer'>o</span>
-                            <button className='buttonAnalisis'><MdOutlineDriveFolderUpload className='iconVideo'/><span className='textButtonVideo'>Subir archivos</span></button>
-                          
-                          
-                          
-                        </div>
-                  </section>
 
-                      
-                    )}
-                </Dropzone>
-                
+             <div className='Container_Video'>
+                <div className='videoContainer'>
+                    <Dropzone onDrop={acceptedFiles => fileInputChange(acceptedFiles)}  className='shadow'>
+                        {({getRootProps, getInputProps}) => (
+                        <section className='dragContainer'>
+                            <div {...getRootProps()} className="center_2">
+                              <input {...getInputProps()} accept=".csv"/>
+                                <BsPlayBtn className='iconFilm'/>
+                                <span className='textdragContainer'>Arraste o ponga el video aquí</span>
+                                <span className='textdragContainer'>o</span>
+                                <button className='buttonAnalisis'><MdOutlineDriveFolderUpload className='iconVideo'/><span className='textButtonVideo'>Subir archivos</span></button>
+                              
+                              
+                              
+                            </div>
+                      </section>
+
+                          
+                        )}
+                    </Dropzone> 
+                    {/* <RdxVideo autoPlay loop muted >
+                      <Overlay />
+                      <Controls />
+                      <source src="https://www.youtube.com/watch?v=SRm2Ch4oFWs&list=RDN2nxDoJ-e20&index=4"  />
+                    </RdxVideo>
+                     */}
+                </div>
+                <div className='optionsContainer'>
+                  <div className='option'>
+                    <MdVideoSettings className='option-icon'></MdVideoSettings>
+                  </div>
+                  <div className='option'>
+                      <FaTrash className='option-icon'></FaTrash>
+                  </div>
+                </div>
              </div>
-             <div className='optionsContainer'>
-              <div className='option'></div>
-              <div className='option'></div>
-              <div className='option'></div>
-              <div className='option'></div>
+
+             {SelectHorse===true ? 
+              <div className='Container_Details_Video'>
+                <div className='Container_Details_Video_1'>
+                        <figure className='img-container Analitic-imag-2'>
+                                    <img src={HorsePhoto} className='img-event Analitic-imag-2'></img>
+                        </figure>
+                        <div className='Details-horse-selected'>
+                             <span className='white fz-big'>Conde del viento</span>
+                             <span className='gray fz-small'>Andar: <span className='orange fw'>P4 </span><span className='white'>Paso fino Colombiano</span></span>
+                             <span className='gray fz-small'>Categoría: <span className='white'>Potros en proceso con primera enfrenada</span></span>
+                             <span className='gray fz-small'>Edad: <span className='white'>38 meses</span></span>
+                             <span className='gray fz-small'>Tipo: <span className='orange fw'>C </span><span className='white'>Caballar</span></span>
+                             <span className='gray fz-small'>Registro del equino: <span className='white'>ver</span></span>
+                             <span className='white fz-small'>Montador: <span className='orange fw'>Alejandro Soto</span></span>
+                        </div>
+                        <div className='Container-horse-selected-buttons'>
+                                <button className='Button-horse-selected bg-green'>Analizar video</button>
+                                <button className='Button-horse-selected bg-orange'>Guardar</button>
+                        </div>
+                </div>
+                <div className='Container_Details_Video_2'>
+                   <span className='white fz-big-2'>BPM</span>
+                   <div className='Container-result-bpm'>
+                       <span className='bpm-result-text'>500</span>
+                   </div>
+                   <div className='Container-video-result-bpm'>
+                      <span className='white mb-small'>video esqueleto:</span>
+                      <div className='Container-video-result'>
+
+                      </div>
+                   </div>
+                </div>
+
+
              </div>
+             :
+             <></>
+             }   
+             
+            
           </div>
           <div className='SelectContainer'>
 
@@ -117,7 +193,10 @@ export default function Analisis() {
             <>
 
             <div className='label-event-Analitic-Container'>
-                <AiFillCloseCircle className='IconCloseEvent' onClick={()=>setSelectEvent(false)}/>
+                <AiFillCloseCircle className='IconCloseEvent' onClick={()=>{
+                   setSelectEvent(false);
+                   setSelectHorse(false);
+                }}/>
                 <figure className='img-container'>
                   <img src={Logo} className='img-event'></img>
                 </figure>
@@ -161,7 +240,7 @@ export default function Analisis() {
                     </div>
                 </div>
                 <div className='ListHorseContainer'>
-                     <div className='ElementHorseContainer'>
+                     <div className='ElementHorseContainer' onClick={getSelectHorse}>
                         <figure className='img-container Analitic-imag'>
                             <img src={HorsePhoto} className='img-event Analitic-imag'></img>
                         </figure>
@@ -170,7 +249,7 @@ export default function Analisis() {
                           <span className='orange t-xs'>Alejandro soto</span>
                         </div>
                      </div>
-                     <div className='ElementHorseContainer'>
+                     <div className='ElementHorseContainer' onClick={getSelectHorse}>
                         <figure className='img-container Analitic-imag'>
                             <img src={HorsePhoto} className='img-event Analitic-imag'></img>
                         </figure>
@@ -179,7 +258,7 @@ export default function Analisis() {
                           <span className='orange t-xs'>Alejandro soto</span>
                         </div>
                      </div>
-                     <div className='ElementHorseContainer'>
+                     <div className='ElementHorseContainer' onClick={getSelectHorse}>
                         <figure className='img-container Analitic-imag'>
                             <img src={HorsePhoto} className='img-event Analitic-imag'></img>
                         </figure>
@@ -187,8 +266,8 @@ export default function Analisis() {
                           <span className='t-white t-b' style={{fontSize:"1rem"}}>Conde del viento</span>
                           <span className='orange t-xs'>Alejandro soto</span>
                         </div>
-                     </div>
-                     <div className='ElementHorseContainer'>
+                     </div> 
+                     <div className='ElementHorseContainer' onClick={getSelectHorse}>
                         <figure className='img-container Analitic-imag'>
                             <img src={HorsePhoto} className='img-event Analitic-imag'></img>
                         </figure>
@@ -199,13 +278,13 @@ export default function Analisis() {
                      </div>
                 </div>
 
-                <div className='ListInCompetitionContainer'>
+                <div className='ListInCompetitionContainer' onClick={getSelectHorse}>
                     <div className='ListInCompetitionTitleContainer'>
                         <span className='TitleInCompetition'>Procesados</span><span className='NumberInCompetition'>15</span>
                     </div>
                 </div>
                 <div className='ListHorseContainer'>
-                     <div className='ElementHorseContainer'>
+                     <div className='ElementHorseContainer' onClick={getSelectHorse}>
                         <figure className='img-container Analitic-imag'>
                             <img src={HorsePhoto} className='img-event Analitic-imag'></img>
                         </figure>
@@ -214,7 +293,7 @@ export default function Analisis() {
                           <span className='orange t-xs'>Alejandro soto</span>
                         </div>
                      </div>
-                     <div className='ElementHorseContainer'>
+                     <div className='ElementHorseContainer' onClick={getSelectHorse}>
                         <figure className='img-container Analitic-imag'>
                             <img src={HorsePhoto} className='img-event Analitic-imag'></img>
                         </figure>
@@ -223,7 +302,7 @@ export default function Analisis() {
                           <span className='orange t-xs'>Alejandro soto</span>
                         </div>
                      </div>
-                     <div className='ElementHorseContainer'>
+                     <div className='ElementHorseContainer' onClick={getSelectHorse}>
                         <figure className='img-container Analitic-imag'>
                             <img src={HorsePhoto} className='img-event Analitic-imag'></img>
                         </figure>
@@ -232,7 +311,7 @@ export default function Analisis() {
                           <span className='orange t-xs'>Alejandro soto</span>
                         </div>
                      </div>
-                     <div className='ElementHorseContainer'>
+                     <div className='ElementHorseContainer' onClick={getSelectHorse}>
                         <figure className='img-container Analitic-imag'>
                             <img src={HorsePhoto} className='img-event Analitic-imag'></img>
                         </figure>

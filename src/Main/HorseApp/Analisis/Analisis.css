@@ -11,16 +11,47 @@
    height: 100%;
    background-color: #11342F;
    display: flex;
-   justify-content: center;
-   flex-direction: row;
+   justify-content: start;
+   flex-direction: column;
    padding: 2rem;
+   overflow-y: auto;
+}
+.Container_Video{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 400px;
+    min-height: 400px;
+    align-items: flex-start;
+    justify-content:center;
+}
+.Container_Details_Video{
+    width: 100%;
+    min-height: 300px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+}
+.Container_Details_Video_1{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 200px;
+    padding: 30px;
+}
+.Container_Details_Video_2{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 250px;
+    padding: 30px;
 }
 
 .videoContainer{
  width: 39rem;
  min-width: 37rem;
  max-width: 39rem;
- height: 70%;
+ height: 100%;
  max-height: 500px;
  background-color: #134D44;
  border-radius: 10pt;
@@ -79,11 +110,17 @@
 .option{
   margin-left: 0.4rem;
   margin-bottom: 0.4rem;
-  width: 82%;
+  width: 40px;
   border-radius: 10pt;
   background-color: #134D44;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.option-icon{
+    color:#11342F
 }
 /*SELECT CONTAINET*/
 .SelectContainer{
@@ -312,11 +349,82 @@
 .ElementHorseContainer{
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 }
 .Analitic-imag{
     height: 40px !important;
     width: 40px !important;
 }
+.Analitic-imag-2{
+    height: 50px !important;
+    width: 50px !important;
+}
+.Details-horse-selected{
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+}
+.fz-big{
+    font-size: large;
+    font-weight: 700;
+}
+.Container-horse-selected-buttons{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.Button-horse-selected{
+    border-radius: 20px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 13rem;
+    border: 0px;
+    margin-bottom: 13px;
+    color:white
+}
+.bg-orange{
+  background-color: #FF9300;
+}
+.bg-green{
+    background-color: #6DD400;
+
+}
+.Container-result-bpm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 80px;
+    background-color: #FF9300;
+    border-radius: 17px;
+}
+.bpm-result-text{
+    font-size: 4rem;
+    font-weight: 700;
+    color:white
+}
+.fz-big-2{
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-right: 20px;
+}
+.Container-video-result-bpm{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+}
+.Container-video-result{
+    width: 250px;
+    height: 160px;
+    background-color: #134D44;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px #00000029;
+}
+.mb-small{
+    margin-bottom: 10px;
+}
+
 
 
 
