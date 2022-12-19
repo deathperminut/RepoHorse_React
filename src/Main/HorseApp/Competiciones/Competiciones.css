@@ -70,6 +70,37 @@
     padding-bottom: 0.1rem;
     
 }
+/*EVENTS FILTER*/
+.EventsContainer-2{
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0px !important;
+    display: flex;
+    flex-direction: row;
+    margin-top: 45px;
+    margin-left: 40px;
+}
+.EventsContainer-2 .input-group-text{
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0px !important;
+}
+.EventsContainer-2 .input-group .form-control{
+    border:none !important ;
+    color:#73819A !important;
+    padding-left: 0px !important;
+  }
+.EventsContainer-2 .input-group{
+    width: 18.5rem !important;
+    background-color: transparent;
+    flex-wrap:nowrap !important;
+    border-radius: 20px;
+    background-color: white;
+    margin-right: 10px;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    
+}
 .buttonComp{
     background-color: #FF9300;
     border: none;

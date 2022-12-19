@@ -93,7 +93,7 @@ export default function Competiciones() {
                  </div>
               </div>
           </div>
-        <div className='ListEventsContainer ml-1 '>
+        {/* <div className='ListEventsContainer ml-1 '>
              <div className='label-event-Estadistics-Container mr-3' onClick={EditEventFunction}>
                 <figure className='img-container'>
                   <img src={Logo} className='img-event'></img>
@@ -134,8 +134,8 @@ export default function Competiciones() {
                   <span className='t-white t-xs'>Grado: A</span>
                 </div>
              </div>
-        </div>
-        <div className='EventsContainer'>
+        </div> */}
+        <div className='EventsContainer-2'>
                 <InputGroup className='inputComp'>
                   <InputGroup.Text id="basic-addon1"><Icon.Search/></InputGroup.Text>
                   <Form.Control
