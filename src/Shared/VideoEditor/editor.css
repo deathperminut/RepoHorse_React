@@ -34,6 +34,9 @@ body{
 .hidden{
     display: none;
 }
+.toggle{
+  display: none !important;
+}
 
 .toolBar{
     padding: 1em;

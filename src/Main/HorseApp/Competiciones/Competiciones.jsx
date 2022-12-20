@@ -16,10 +16,18 @@ import Select from 'react-select'
 
 /* CALENDAR */
 import { DatePicker } from 'antd';
+/* APP CONTEXT */
+
+import { AppContext } from '../../../Context';
 
 
 
 export default function Competiciones() {
+
+  /* APPCONTEXT */
+  let {StadisticVideo,setStatisticVideo}=React.useContext(AppContext);
+  
+
   /* CALENDAR */
   const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 
@@ -73,6 +81,11 @@ export default function Competiciones() {
   }
   
   /* LISTA EVENTOS */
+
+  /* useEffect */
+  React.useEffect(()=>{
+    setStatisticVideo(false);
+  },[])
   
 
   return (

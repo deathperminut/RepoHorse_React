@@ -43,7 +43,7 @@ export default function Estadisticas() {
   };
   /* EVENTS FUNCTIONS */
   const AddEvent=()=>{
-
+    
   }
 
   
@@ -66,6 +66,11 @@ export default function Estadisticas() {
     List_Events.pop();
     setListEvents(List_Events);
   }
+
+  /* USE EFFECT */
+  React.useEffect(()=>{
+    setStatisticVideo(false);
+  },[])
   
 
   return (
