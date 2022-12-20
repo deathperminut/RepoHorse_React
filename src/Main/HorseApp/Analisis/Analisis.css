@@ -35,6 +35,7 @@
 .Container_Details_Video_1{
     width: 100%;
     display: flex;
+    margin-top: 40px;
     flex-direction: row;
     height: 200px;
     padding: 40px;

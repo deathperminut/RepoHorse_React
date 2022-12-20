@@ -137,22 +137,26 @@ body{
     justify-content: center;
   }
   .playback .grabber.start {
-    background: #a8d736;
+    background: #6DD400;
   }
   .playback .grabber.end {
-    background: #fc4242;
+    background: #6DD400;
   }
   .playback .grabber:hover {
     transform: scaleY(1.4);
   }
   .playback .grabber svg {
+    fill: white !important;
+    /* color:white */
     /* user-drag: none;
     -moz-user-select: none;
     -webkit-user-drag: none; */
   }
   .playback .progress {
-    background: #0072cf;
+    
+    background: #1c6d60;
     position: absolute;
+    height: 10px;
     left: 0;
     top: 0;
     bottom: 0;
@@ -170,7 +174,7 @@ body{
     margin: 0 0.125rem;
   }
   .controls .player-controls .play-control {
-    background: #2f3b44;
+    background: #134D44;
     border: 0;
     color: #a5b0b5;
     padding: 0.5rem;
@@ -204,7 +208,7 @@ body{
     color: #ffffff;
   }
   .controls .player-controls .seek-end {
-    background: #2f3b44;
+    background: #134D44;
     border: 0;
     color: #a5b0b5;
     padding: 0.5rem;
@@ -221,7 +225,7 @@ body{
     color: #ffffff;
   }
   .controls .settings-control {
-    background: #2f3b44;
+    background: #134D44;
     border: 0;
     color: #a5b0b5;
     padding: 0.5rem;

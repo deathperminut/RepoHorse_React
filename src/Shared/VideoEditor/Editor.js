@@ -463,7 +463,7 @@ function Editor({videoUrl, timings, setTimings}) {
 										}
 									}}
 								>
-									<svg version='1.1' xmlns='http://www.w3.org/2000/svg' x='0' y='0' width='10' height='14' viewBox='0 0 10 14' xmlSpace='preserve'>
+									<svg  style={{color:'white !important'}} version='1.1' xmlns='http://www.w3.org/2000/svg' x='0' y='0' width='10' height='14' viewBox='0 0 10 14' xmlSpace='preserve'>
 										<path className='st0' d='M1 14L1 14c-0.6 0-1-0.4-1-1V1c0-0.6 0.4-1 1-1h0c0.6 0 1 0.4 1 1v12C2 13.6 1.6 14 1 14zM5 14L5 14c-0.6 0-1-0.4-1-1V1c0-0.6 0.4-1 1-1h0c0.6 0 1 0.4 1 1v12C6 13.6 5.6 14 5 14zM9 14L9 14c-0.6 0-1-0.4-1-1V1c0-0.6 0.4-1 1-1h0c0.6 0 1 0.4 1 1v12C10 13.6 9.6 14 9 14z'/>
 									</svg>
 								</div>
@@ -507,25 +507,26 @@ function Editor({videoUrl, timings, setTimings}) {
 
 			<div className='controls'>
 				<div className='player-controls'>
-					<button className='settings-control' title='Reset Video' onClick={reset}><FontAwesomeIcon icon={faSync} /></button>
-					<button className='settings-control' title='Mute/Unmute Video' onClick={() => setIsMuted({isMuted: !isMuted})}>{isMuted ? <FontAwesomeIcon icon={faVolumeMute} /> : <FontAwesomeIcon icon={faVolumeUp} />}</button>
-					<button className='settings-control' title='Capture Thumbnail' onClick={captureSnapshot}><FontAwesomeIcon icon={faCamera} /></button>
+					{/* <button className='settings-control' title='Reset Video' onClick={reset}><FontAwesomeIcon icon={faSync} /></button>
+					<button className='settings-control' title='Mute/Unmute Video' onClick={() => setIsMuted({isMuted: !isMuted})}>{isMuted ? <FontAwesomeIcon icon={faVolumeMute} /> : <FontAwesomeIcon icon={faVolumeUp} />}</button> */}
 				</div>
 				<div className='player-controls'>
-					<button className='seek-start' title='Skip to previous clip' onClick={skipPrevious}><FontAwesomeIcon icon={faStepBackward} /></button>
+					{/* <button className='seek-start' title='Skip to previous clip' onClick={skipPrevious}><FontAwesomeIcon icon={faStepBackward} /></button> */}
+					<button className='settings-control' title='Reset Video' onClick={reset}><FontAwesomeIcon icon={faSync} /></button>
 					<button className='play-control' title='Play/Pause' onClick={playPause} >{playing ? <FontAwesomeIcon icon={faPause} /> : <FontAwesomeIcon icon={faPlay} /> }</button>
-					<button className='seek-end' title='Skip to next clip' onClick={skipNext}><FontAwesomeIcon icon={faStepForward} /></button>
+					<button className='settings-control' title='Mute/Unmute Video' onClick={() => setIsMuted({isMuted: !isMuted})}>{isMuted ? <FontAwesomeIcon icon={faVolumeMute} /> : <FontAwesomeIcon icon={faVolumeUp} />}</button>
 				</div>
 				<div>
-					<button title='Add grabber' className='trim-control margined' onClick={addGrabber}>Add <FontAwesomeIcon icon={faGripLinesVertical} /></button>
+					{/* <button title='Add grabber' className='trim-control margined' onClick={addGrabber}>Add <FontAwesomeIcon icon={faGripLinesVertical} /></button>
 					<button title='Delete grabber' className='trim-control margined' onClick={preDeleteGrabber}>Delete <FontAwesomeIcon icon={faGripLinesVertical} /></button>
-					<button title='Save changes' className='trim-control' onClick={saveVideo}>Save</button>
+					<button title='Save changes' className='trim-control' onClick={saveVideo}>Save</button> */}
 				</div>
 			</div>
 			{ready ?
 				<div></div>
 				:
-				<div>Loading...</div>
+				<></>
+				
 			}
 			{currentWarning != null ? <div className={'warning'}>{warnings[currentWarning]}</div> : ''}
 			{(imageUrl !== '') ?
