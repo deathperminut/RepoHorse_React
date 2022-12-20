@@ -28,22 +28,19 @@ import {MdVideoSettings} from 'react-icons/md';
 
 
 /* VIDEO EDITOR */
-import {RdxVideo, Overlay, Controls} from 'react-html5-video-editor';
+import VideoEditor from '../../../Shared/VideoEditor/VideoEditor';
 
-
+/* CONTEXT */
+import { AppContext } from '../../../Context';
 
 
 
 export default function Analisis() {
 
-//   RdxVideo.Props = {
-//   autoPlay: false,
-//   loop: false,
-//   controls: true,
-//   volume:	1.0,
-//   preload: "auto",
-//   cropEnabled: true
-// }
+  /* CONTEXT */
+  let {StadisticVideo,setStatisticVideo}=React.useContext(AppContext);
+
+
   
   /* REACT UseStates */
   let [SelectEvent,setSelectEvent]=React.useState(false);
@@ -94,31 +91,8 @@ export default function Analisis() {
           <div className='DataContainer'>
 
              <div className='Container_Video'>
-                <div className='videoContainer'>
-                    <Dropzone onDrop={acceptedFiles => fileInputChange(acceptedFiles)}  className='shadow'>
-                        {({getRootProps, getInputProps}) => (
-                        <section className='dragContainer'>
-                            <div {...getRootProps()} className="center_2">
-                              <input {...getInputProps()} accept=".csv"/>
-                                <BsPlayBtn className='iconFilm'/>
-                                <span className='textdragContainer'>Arraste o ponga el video aquí</span>
-                                <span className='textdragContainer'>o</span>
-                                <button className='buttonAnalisis'><MdOutlineDriveFolderUpload className='iconVideo'/><span className='textButtonVideo'>Subir archivos</span></button>
-                              
-                              
-                              
-                            </div>
-                      </section>
-
-                          
-                        )}
-                    </Dropzone> 
-                    {/* <RdxVideo autoPlay loop muted >
-                      <Overlay />
-                      <Controls />
-                      <source src="https://www.youtube.com/watch?v=SRm2Ch4oFWs&list=RDN2nxDoJ-e20&index=4"  />
-                    </RdxVideo>
-                     */}
+                <div className={`videoContainer ${StadisticVideo ? "bg-p" : "bg-s"}`}>
+                   <VideoEditor></VideoEditor>
                 </div>
                 <div className='optionsContainer'>
                   <div className='option'>
