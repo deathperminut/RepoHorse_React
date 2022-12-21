@@ -32,14 +32,6 @@ function OffCanvas() {
                 </li>
                 <li className="sectionOffcanvas">
                 <NavLink
-                    to="/Main/HorseApp/Estadisticas"
-                    className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-                >
-                    <GoGraph className="iconOffCanvas"/><span className="textOffcanvas">Estadisticas</span>
-                </NavLink>
-                </li>
-                <li className="sectionOffcanvas">
-                <NavLink
                     to="/Main/HorseApp/Competiciones"
                    
                     className={({ isActive }) => (isActive ? 'active' : 'inactive')}
@@ -48,6 +40,15 @@ function OffCanvas() {
                     <GiHorseshoe className="iconOffCanvas"/><span className="textOffcanvas">Competencias y caballos</span>
                 </NavLink>
                 </li>
+                <li className="sectionOffcanvas">
+                <NavLink
+                    to="/Main/HorseApp/Estadisticas"
+                    className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+                >
+                    <GoGraph className="iconOffCanvas"/><span className="textOffcanvas">Estadisticas</span>
+                </NavLink>
+                </li>
+                
             </ul>
         </nav>
     
