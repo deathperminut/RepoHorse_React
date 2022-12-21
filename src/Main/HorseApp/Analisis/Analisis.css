@@ -1,7 +1,7 @@
 .AnalisisContainer{
     width: 86vw;
     height: 100vh;
-    min-height: 450px;
+    min-height: 617px;
     display: flex;
     flex-direction: row;
     overflow-y: auto;
@@ -10,7 +10,7 @@
 .DataContainer{
    width:  calc( 100vw - 33rem );
    height: 100%;
-   min-height: 450px;
+   min-height: 617px;
    background-color: #11342F;
    display: flex;
    justify-content: start;
@@ -512,12 +512,12 @@
 @media (max-width: 1071px) {
     .AnalisisContainer{
         width: 100%; 
-        height: 90vh;
+        height: calc( 100vh - 68.8px );;
         display: flex;
         flex-direction: row;
     }
     .DataContainer{
-        height: 90vh !important;
+        height: 100% !important;
         width: calc( 100% - 19rem );
     }
     /* .SelectContainer{

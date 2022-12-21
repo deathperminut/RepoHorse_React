@@ -1,7 +1,7 @@
 .HorseAppContainer{
     width: 100vw;
     height: 100vh;
-    min-height: 450px;
+    min-height: 617px;
     display: flex;
     flex-direction: row;
 }

@@ -1,28 +1,53 @@
 
 .EstadisticasContainer{
-    width: calc( 100vw - 14rem );
-    height: 100vh;
+    width: calc( 100% - 14rem );
+    height: 100%;
     display: flex;
     flex-direction: row;
     overflow-x: auto;
 }
 /*INFO CONTAINER*/
 .InfoContainer{
-   width: calc( 100vw - 34rem );
-   height: 100%;
-   background-color: #11342F;
-   display: flex;
-   justify-content: center;
-   flex-direction: column;
-   justify-content: center;align-items: center;   padding: 2rem;
-   min-width: 822px;
+  width: calc( 100% - 19rem );
+  height: 100%;
+  background-color: #11342F;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  min-width: calc( 100vw - 31rem );
+  overflow-x: auto;
+}
+.InfoContainer-3{
+    height: 100%;
+    width: 100%;
+    /* border-right: 1pt solid #FF9300; */
+    padding: 1rem;
+    background-color: #11342F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.InfoContainer-2{
+  height: 100%;
+  background-color: #11342F;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-width: calc( 100vw - 32rem );
 }
 
 .Est-Container-1{
-  width: 100%;
-  height: 16vh;
+  height: 12%;
+  width: 230px;
   position: relative;
   bottom: 0.5rem;
+  right: 225px;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -38,8 +63,7 @@
 .Est-Container-1-container-count{
   min-width: 11rem;
   width: 11rem;
-  height: 2.8rem;
-  height: 2.8rem;
+  height: 2.3rem;
   border: 1px solid #FF9300;
   background-color: #134D44;
   border-radius: 7px;
@@ -57,13 +81,15 @@
 }
 
 .Est-Container-2{
-  width: 100%;
-  height: 16vh;
-  padding: 5px;
-  display: flex;
-  flex-direction: row;
-  border-right:1pt solid #FF9300;
-  align-items: flex-start;
+  height: 16%;
+    padding: 5px;
+    display: flex;
+    position: relative;
+    top:30px;
+    margin-bottom: 30px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .label-event-Estadistics-Container{
@@ -147,10 +173,11 @@
 
 
 .Est-Container-3{
-    height: 68vh;
+    height: 68%;
     width: 100%;
-    border-right:1pt solid #FF9300;
+    /* border-right:1pt solid #FF9300; */
     padding: 1rem;
+    margin-top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -159,12 +186,12 @@
 }
 
 .tableContainer{
-  width: 100%;
+  width: 91%;
   min-width: 29rem;
   max-width: 50rem;
   height: 100%;
   max-height: 500px;
-  min-height: 390px;
+  min-height: 387px;
   background-color: #134D44;
   border-radius: 18px;
   position: relative;
@@ -197,8 +224,6 @@
   color:white;
   opacity: 0.5;
   font-size: 1.3rem;
-  position: relative;
-  bottom: 2.2rem;
 
 }
 .table>:not(caption)>*>* {
@@ -277,9 +302,10 @@
 .SelectEventContainer{
     padding: 10pt;
     padding-top: 30pt;
-    width: 20rem;
-    min-width: 20rem;
-    max-width: 20rem;
+    border-left:1pt solid #FF9300;
+    width: 17rem;
+    min-width: 17rem;
+    max-width: 17rem;
     height: 100%;
     background-color: #11342F;
     padding-top: 10rem;
@@ -300,9 +326,9 @@
 
 /*MEDIA QUERIES*/
 
-@media (max-width:  1310px){
+@media (max-width:   1219px){
    
-  .EstadisticasContainer{
+  /* .EstadisticasContainer{
     flex-direction: column;
     
   }
@@ -342,20 +368,20 @@
   }
   .LabelDisappear{
     display: none;
-  }
+  } */
 
 
 }
-@media (max-width: 1180px){
-  .InfoContainer{
+@media (max-width: 1071px){
+  /* .InfoContainer{
     order: 2;
     width: calc( 100vw - 5rem );
     height: 100%;
-  }
+  } */
 }
 
 @media (max-width: 950px){
-  .Est-Container-2{
+  /* .Est-Container-2{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -401,15 +427,15 @@
     position: relative;
     right: 14.5rem;
     top: 3.5rem;
-  }
+  } */
 
 }
 @media (max-width: 680px){
-  .InfoContainer{
+  /* .InfoContainer{
     order: 2;
     width: 100vw;
     height: 100%;
-  }
+  } */
 }
 
 
