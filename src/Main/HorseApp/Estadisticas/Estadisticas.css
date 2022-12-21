@@ -187,7 +187,7 @@
 
 .tableContainer{
   width: 91%;
-  min-width: 29rem;
+  min-width: 660px;
   max-width: 50rem;
   height: 100%;
   max-height: 500px;
@@ -327,14 +327,45 @@
 /*MEDIA QUERIES*/
 
 @media (max-width:   1219px){
+
+  .EstadisticasContainer {
+    width: calc( 100% - 5rem );
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+}
+.InfoContainer {
+  width: calc( 100% - 14rem );
+  height: 100%;
+  background-color: #11342F;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  min-width: calc( 100vw - 31rem );
+  overflow-x: auto;
+}
+.InfoContainer-2 {
+  height: 100%;
+  background-color: #11342F;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-width: calc( 100vw - 23rem );
+}
    
   /* .EstadisticasContainer{
     flex-direction: column;
     
   }
+  
   .InfoContainer{
     order: 2;
-    width: calc( 100vw - 14rem );
+    width: calc( 100% - 5rem );
     height: 100%;
   }
   .SelectEventContainer{
@@ -373,6 +404,45 @@
 
 }
 @media (max-width: 1071px){
+  .EstadisticasContainer{
+    width: 100%;
+  }
+  .InfoContainer-2 {
+    height: 100%;
+    background-color: #11342F;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-width: calc( 100vw - 19rem );
+}
+.tableContainer {
+  width: 91%;
+  min-width: 660px;
+  max-width: 50rem;
+  height: 100%;
+  max-height: 500px;
+  min-height: 330px;
+  background-color: #134D44;
+  border-radius: 18px;
+  position: relative;
+  right: 0.5rem;
+  padding: 1rem;
+}
+.InfoContainer-2 {
+  height: 100%;
+  background-color: #11342F;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-width: 700px;
+}
+
   /* .InfoContainer{
     order: 2;
     width: calc( 100vw - 5rem );
