@@ -1,15 +1,17 @@
 .HorseAppContainer{
     width: 100vw;
     height: 100vh;
+    min-height: 450px;
     display: flex;
     flex-direction: row;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 1071px) {
     .HorseAppContainer{
         width: 100vw;
         height: 100vh;
         display: flex;
         flex-direction: column;
+        min-width: 990px;
     }
 }

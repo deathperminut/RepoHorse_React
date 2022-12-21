@@ -157,7 +157,7 @@ export default function Analisis() {
                 placeholder="Seleccione un evento"
                 
                 />
-                <button className="FilterButton analisisfilterbutton"><BsFilter className="filterIcon"></BsFilter></button>
+                {/* <button className="FilterButton analisisfilterbutton"><BsFilter className="filterIcon"></BsFilter></button> */}
               </div>
               {/* <div className='buttonEventContainer'>
                 <button className='buttonEvent'><span className="tw-500 font-size-15pt  c-orange mr-3px">+</span><span className="c-orange font-size-10pt">Nuevo Evento</span></button>

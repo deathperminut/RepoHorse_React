@@ -8,6 +8,7 @@ import {MdVideoSettings} from 'react-icons/md';
 import { FaHorseHead } from 'react-icons/fa';
 import {GoGraph} from 'react-icons/go';
 import {BsFolderCheck} from 'react-icons/bs';
+import Logo_only from '../../Sources/Images/Landing/logo_only.png'
 function OffCanvas() {
     let activeStyle = {
         textDecoration: "underline",
@@ -18,6 +19,7 @@ function OffCanvas() {
     <>
 
         <nav className='offCanvasContainer'>
+            <img  className='LogoOffcanvas_only' src={Logo_only} alt="hola"></img>
             <img  className='LogoOffcanvas' src={Logo} alt=""></img>
             <ul className="ulOffcanvas">
                 <li className="sectionOffcanvas">
