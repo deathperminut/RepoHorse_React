@@ -153,7 +153,6 @@ input {
     max-width: 300px !important;
     width: 240px ;
     min-width: 100px;
-    border: 1px solid #707070;
     border-radius: 46px;
     margin-bottom:1rem;
     margin-right:1rem;
@@ -183,9 +182,9 @@ input {
     margin-bottom: 10%;
     color:#FF9300
 }
-.col:hover{
+/* .col:hover{
     border: 0.1px solid rgb(228, 228, 228) ;
-}
+} */
 
 .HorseAppTitle{
     color:#FF9300

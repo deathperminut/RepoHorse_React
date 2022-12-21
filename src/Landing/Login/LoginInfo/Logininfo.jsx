@@ -7,7 +7,8 @@ import {Link} from  'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
 import { FaHorseHead } from 'react-icons/fa';
 import ToggleSwitch from '../../../Shared/buttonToggle/buttonToggle';
-import Logo from '../../../Sources/Images/Landing/Logo.png'
+import Logo from '../../../Sources/Images/Landing/Logo.png';
+import {AiOutlineEye,AiOutlineEyeInvisible} from 'react-icons/ai'
 // import Button from 'react-bootstrap/Button';
 
 
@@ -75,6 +76,11 @@ function LoginInfo() {
       //OBTENEMOS LA INFORMACIÓN
     }
 
+    /* GO TO REGISTER*/
+    const GotoRegister=()=>{
+      navigate('/Landing/Register');
+    }
+
    
 
     return (
@@ -96,6 +102,7 @@ function LoginInfo() {
                 <input onChange={onChangePassword} type="password"  class="form-control INPUT_DATA c-orange op-1"  value={Password} id="floatingPassword" placeholder="Password"
                   />
                 <label class="c-orange op-1 textForm">Contraseña</label>
+                <AiOutlineEye className='eye-password'></AiOutlineEye>
               </div>
             </div>
           </div>
@@ -113,10 +120,10 @@ function LoginInfo() {
 
       </div>
       <div className="LinkedContainer">
-        <Link id="LinkedLabel" to='/ForgetPassword'><span className="LinkedText textForm"  size="sm">Olvide mi Contraseña</span></Link>
+        <Link id="LinkedLabel" to='/Landing/ForgetPassword'><span className="LinkedText textForm"  size="sm">Olvide mi Contraseña</span></Link>
       </div>
           <div class="">
-            <button className="ButtonCount" type="button">
+            <button className="ButtonCount" type="button" onClick={GotoRegister}>
               <span className="textForm">Solicitar una cuenta</span>
             </button>
           </div>

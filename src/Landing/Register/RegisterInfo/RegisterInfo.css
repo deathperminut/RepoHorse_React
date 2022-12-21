@@ -9,12 +9,20 @@
     left:35%; 
     padding: 1%;
 }
+.display-flex-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 
 .RegisterTitle{
     text-align: center;
     color: white;
     margin-bottom: 4rem !important;
     
+}
+.mt-big{
+    margin-top: 20px;
 }
 .ButtonRegister{
     border: 0.1rem solid rgb(33, 35, 59);

@@ -38,6 +38,15 @@
 .ButtonLogin:hover{
     background-color: #9c5e06;
 }
+.eye-password{
+    color:#FF9300;
+    display: flex;
+    align-self: flex-end;
+    cursor: pointer;
+    position:absolute;
+    left: 250px;
+    bottom: 10px;
+}
 .ButtonCount{
     border: 0.1rem solid #FF9300;
     border-radius: 45pt;

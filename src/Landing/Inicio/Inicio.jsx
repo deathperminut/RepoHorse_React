@@ -41,7 +41,7 @@ export default function Inicio() {
                         class="InputText" 
                         placeholder="Buscar Aplicaciones" />
               </div>
-              <button className="FilterButton"><Icon.FilterCircle className="FilterIcon"/></button>
+              {/* <button className="FilterButton"><Icon.FilterCircle className="FilterIcon"/></button> */}
         </div>
         <div className='ServicesContainer'>
             <div className='ContainerRows'>
