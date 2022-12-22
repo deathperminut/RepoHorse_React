@@ -446,6 +446,26 @@
 .mb-{
     margin-bottom: 3px;
 }
+.BackToCreateEventContainer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+.BackContainer{
+    border-radius: 50px;
+    border: 2px solid white;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.BackContainer:hover{
+    border: 2px solid #FF9300;
+}
 .w-{
     width: 150px;
 }

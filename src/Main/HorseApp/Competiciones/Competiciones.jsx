@@ -17,8 +17,9 @@ import Select from 'react-select';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import {AiFillEdit} from 'react-icons/ai';
+import {AiFillEdit,AiOutlineLeft} from 'react-icons/ai';
 import {FaTrash} from 'react-icons/fa';
+
 
 
 /* CALENDAR */
@@ -589,8 +590,13 @@ export default function Competiciones() {
          
         :
         <>
+         <div className='BackToCreateEventContainer'>
+             <div className='BackContainer'  onClick={EditEventFunction_2}>
+               <AiOutlineLeft className='orange'/>
+             </div>
+         </div>
          <div className='EventInfoContainer mt-3'>
-            <div className='label-event-Estadistics-Container mr-3 ' onClick={EditEventFunction_2}>
+            <div className='label-event-Estadistics-Container  '>
                 <figure className='img-container'>
                   <img src={Logo} className='img-event'></img>
                 </figure>
