@@ -15,6 +15,8 @@ import {AiFillCloseCircle} from 'react-icons/ai';
 import MyVerticallyCenteredModal from '../../../Shared/Modal/modal';
 /* IMPORT APP CONTEXT */
 import { AppContext } from '../../../Context';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 
 
@@ -78,6 +80,17 @@ export default function Estadisticas() {
        {ListEvents.length!=0 ?
         <div className='InfoContainer'>
               {ListEvents.map(Event=>{
+
+                /* Horse Details Component */
+
+                
+                {/* let [VideoInfoHorse,setVideoInfoHorse]=React.useState(false);
+                const OpenVideoHorse=()=>{
+                  setVideoInfoHorse(true);
+                }
+                const CloseVideoHorse=()=>{
+                  setVideoInfoHorse(false);
+                } */}
                 return (
                     <div  className='InfoContainer-2' key={Event.id}>
                       <div className='Est-Container-1' >

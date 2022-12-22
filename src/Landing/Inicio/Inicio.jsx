@@ -35,12 +35,12 @@ export default function Inicio() {
     <React.Fragment>
       <div className='InitContainer' style={{ backgroundImage: `url(${BackgroundImage})` ,backgroundSize:'cover'}}>
         <div className='HeaderContainer'>
-              <div class="input-container">
+              {/* <div class="input-container">
                   <Icon.Search className='IconInput'/>
                   <input type="text"
                         class="InputText" 
                         placeholder="Buscar Aplicaciones" />
-              </div>
+              </div> */}
               {/* <button className="FilterButton"><Icon.FilterCircle className="FilterIcon"/></button> */}
         </div>
         <div className='ServicesContainer'>

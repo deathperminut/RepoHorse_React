@@ -10,9 +10,11 @@ const AppContext=React.createContext();
 
 function ProviderContext(props){
 
-    /* ESTADISTIC STATE */
+    /* STATISDIC VIDEO (ANALIZAR) */
 
     let [StadisticVideo,setStatisticVideo]=React.useState(false);
+
+    
 
 
 

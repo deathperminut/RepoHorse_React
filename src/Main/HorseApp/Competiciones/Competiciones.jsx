@@ -12,7 +12,14 @@ import {BiImageAdd} from 'react-icons/bi';
 import $ from 'jquery';
 import Table from 'react-bootstrap/Table';
 import {BsFillPlayFill} from 'react-icons/bs';
-import Select from 'react-select'
+import Select from 'react-select';
+// import { Col, Row, Container } from "react-bootstrap-grid";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import {AiFillEdit} from 'react-icons/ai';
+import {FaTrash} from 'react-icons/fa';
+
 
 /* CALENDAR */
 import { DatePicker } from 'antd';
@@ -149,6 +156,7 @@ export default function Competiciones() {
              </div>
         </div> */}
         <div className='EventsContainer-2'>
+                
                 <InputGroup className='inputComp'>
                   <InputGroup.Text id="basic-addon1"><Icon.Search/></InputGroup.Text>
                   <Form.Control
@@ -162,13 +170,365 @@ export default function Competiciones() {
         <div className='RegisterEventContainer'>
            {CreateButton===false 
            ? 
-           <div className='buttonregisterEvent' onClick={()=> setCreateButton(true)}>
+           <>
+           <Container className='containerRowEvents'>
+                <Row className='RowEvents'>
+                  <Col className='EventComponent'>
+                      <div className='buttonregisterEvent' onClick={()=> setCreateButton(true)}>
+                        <AiFillPlusCircle className='IconEventButton' />
+                        <div className='textButtonregisterEvent'>
+                            <span className='TextTitle'>Crear</span>
+                            <span className='TextTitle'>nuevo evento</span>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                      <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={()=>setEditEvent(true)} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row'>
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                  <Col className='EventComponent'>
+                  <div className='Event display-row' >
+                        <figure className='img-container CompetitionsImag_2'>
+                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                        </figure>
+                        <div className='p-column'>
+                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
+                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
+                          <span className='t-white t-xs'>Grado: A</span>
+                          <div className='d-row flex-end'>
+                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                          </div>
+                        </div>
+                      </div>
+                  </Col>
+                </Row>
+          </Container>
+           {/* <div className='buttonregisterEvent' onClick={()=> setCreateButton(true)}>
                <AiFillPlusCircle className='IconEventButton' />
                <div className='textButtonregisterEvent'>
                   <span className='TextTitle'>Crear</span>
                   <span className='TextTitle'>nuevo evento</span>
                </div>
-           </div>
+           </div> */}
+           </>
+           
            :
            <>
            <div className='buttonregisterEvent_2' onClick={()=> setCreateButton(false)}>
