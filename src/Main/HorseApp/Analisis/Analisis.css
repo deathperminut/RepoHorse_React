@@ -406,6 +406,13 @@
     background-color: #6DD400;
 
 }
+.bg-green:hover{
+    background-color:#549f03 ;
+}
+.bg-orange:hover{
+    background-color: rgb(196, 145, 7);
+  }
+
 .Container-result-bpm{
     display: flex;
     flex-direction: column;

@@ -90,7 +90,7 @@ input {
 .button_18{
   align-items: center;
   background-color: transparent !important;
-  border: 1pt solid #FF9300 !important;
+  border: 2pt solid #FF9300 !important;
   border-radius: 22pt !important;
   box-sizing: border-box !important;
   color: #ffffff !important;
@@ -111,7 +111,7 @@ input {
   text-align: center !important;
 }
 .button_18:hover{
-    border: 0.1px solid #FF9300  !important;
+    border: 2px solid #FF9300  !important;
     color: #FF9300 !important;
 }
 
