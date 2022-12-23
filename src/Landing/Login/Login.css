@@ -4,4 +4,11 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+.positionAbsolute{
+    position: absolute;
+    right: 93%;
+    bottom: 90%;
+    z-index: 2;
 }

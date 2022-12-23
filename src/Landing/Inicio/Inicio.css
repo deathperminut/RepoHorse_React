@@ -144,6 +144,7 @@ input {
    align-items: center;
 }
 .col{
+    font-family: 'Fira Sans Condensed', sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;

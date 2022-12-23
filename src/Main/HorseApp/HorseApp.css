@@ -4,6 +4,8 @@
     min-height: 617px;
     display: flex;
     flex-direction: row;
+    font-family: 'Fira Sans Condensed', sans-serif;
+
 }
 
 @media (max-width: 1071px) {

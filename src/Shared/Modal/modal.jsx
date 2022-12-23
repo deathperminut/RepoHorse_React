@@ -76,12 +76,12 @@ export default function MyVerticallyCenteredModal(props) {
 
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
+          <Modal.Title id="contained-modal-title-vcenter font-familly">
             Selecciona el evento
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className='EventsContainer ml-0'>
+          <div className='EventsContainer ml-0 font-familly'>
                 <InputGroup className='inputComp'>
                         <InputGroup.Text id="basic-addon1"><Icon.Search/></InputGroup.Text>
                         <Form.Control
@@ -91,7 +91,7 @@ export default function MyVerticallyCenteredModal(props) {
                         />
                 </InputGroup>
           </div>
-          <div className="EventSelectContainer_2">
+          <div className="EventSelectContainer_2 font-familly">
                 {Events_Array.map(event=>{
                     return(
                         <div key={event.id} className='label-event-Estadistics-Container mr-3 ' onClick={EmitEvent}>

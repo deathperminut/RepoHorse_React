@@ -18,7 +18,8 @@ import Button from 'react-bootstrap/Button';
 import Backgroundcolumn from '../../Sources/Images/Landing/Landing1.png';
 import BackgroundImage from '../../Sources/Images/Landing/fondo.png';
 import HorseAppBackGround from '../../Sources/Images/Landing/HorseAppBack.png';
-import Logo from '../../Sources/Images/Landing/Logo.png'
+import Logo from '../../Sources/Images/Landing/Logo.png';
+import {AiFillEdit,AiOutlineLeft} from 'react-icons/ai';
 
 export default function Inicio() {
   /* NAVIGATE  */
@@ -33,6 +34,8 @@ export default function Inicio() {
   
   return (
     <React.Fragment>
+     
+      
       <div className='InitContainer' style={{ backgroundImage: `url(${BackgroundImage})` ,backgroundSize:'cover'}}>
         <div className='HeaderContainer'>
               {/* <div class="input-container">
