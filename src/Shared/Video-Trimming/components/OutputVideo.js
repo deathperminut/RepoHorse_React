@@ -5,7 +5,7 @@ import React from "react";
 const OutputVideo = ({ handleDownload, videoSrc }) => {
   return videoSrc ? (
       <>
-      <video src={videoSrc} autoPlay controls muted width="450"></video>
+      <video src={videoSrc}   width="450" className="videoStyles"></video>
       <button onClick={handleDownload} className="btn btn_g">
         {" "}
         download

@@ -19,9 +19,10 @@ export default function RangeInput({
 
   if (loading) {
     return (
-      <center>
-        <h2> processing thumbnails.....</h2>
-      </center>
+      <></>
+      // <center>
+      //   <h2> processing thumbnails.....</h2>
+      // </center>
     );
   }
 

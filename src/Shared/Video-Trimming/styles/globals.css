@@ -29,10 +29,11 @@ input[type="file"] {
 
 .range_pack {
   position: relative;
-  margin-top: 4rem;
+  /* margin-top: 4rem; */
   margin-bottom: 1.5rem;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .image_box > input {
@@ -46,6 +47,11 @@ input[type="file"] {
   top: 50%;
   background-color: transparent;
 }
+.videoStyles{
+  position: relative;
+  left: 0;
+  top: 0;
+}
 
 .image_box {
   display: flex;
@@ -53,14 +59,15 @@ input[type="file"] {
   position: relative;
   border: 2px solid red;
   position: relative;
-  height: 6rem;
+  height: 4.3rem;
   /* overflow: hidden; */
   border-radius: 10px;
 }
 .image_box > img {
   height: 100%;
-  width: 100px;
+  width: 40px;
   object-fit: cover;
+  opacity: 0.8;
 }
 
 .clip_box {

@@ -66,6 +66,8 @@
  flex-direction: column;
  justify-content: center;
  align-items: center;
+ overflow: hidden;
+ position: relative;
 }
 .bg-p{
     background-color:#11342F;

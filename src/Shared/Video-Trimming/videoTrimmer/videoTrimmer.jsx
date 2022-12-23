@@ -8,7 +8,7 @@ import RangeInput from "../components/RangeInput";
 import './videoTrimmer.css';
 import '../styles/globals.css';
 import { AppContext } from '../../../Context';
-import {BsPlayBtn} from 'react-icons/bs'
+
 
 
 const FF = createFFmpeg({
