@@ -29,7 +29,7 @@ import {MdVideoSettings} from 'react-icons/md';
 
 /* VIDEO EDITOR */
 import VideoEditor from '../../../Shared/VideoEditor/VideoEditor';
-
+import VideoTrimmer from '../../../Shared/Video-Trimming/videoTrimmer/videoTrimmer';
 /* CONTEXT */
 import { AppContext } from '../../../Context';
 
@@ -92,7 +92,7 @@ export default function Analisis() {
 
              <div className='Container_Video'>
                 <div className={`videoContainer ${StadisticVideo ? "bg-p" : "bg-s"}`}>
-                   <VideoEditor></VideoEditor>
+                   <VideoTrimmer/>
                 </div>
                 <div className='optionsContainer'>
                   <div className='option'>

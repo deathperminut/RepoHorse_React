@@ -63,6 +63,7 @@
  max-height: 500px;
  border-radius: 10pt;
  display: flex;
+ flex-direction: column;
  justify-content: center;
  align-items: center;
 }
@@ -103,16 +104,18 @@
     font-weight: 400;
 }
 .buttonAnalisis{
-  background-color: white;
-  color: #11342F;
-  border: none;
-  border-radius: 10pt;
-  padding-top: 4pt;
-  padding-bottom: 4pt;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 6px;
+    background-color: white;
+    color: #11342F;
+    border: none;
+    border-radius: 10pt;
+    padding-top: 4pt;
+    padding-bottom: 4pt;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 6px;
+    width: 120px;
+    justify-content: center;
 }
 
 
