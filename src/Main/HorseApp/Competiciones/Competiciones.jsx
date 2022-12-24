@@ -19,6 +19,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {AiFillEdit,AiOutlineLeft} from 'react-icons/ai';
 import {FaTrash} from 'react-icons/fa';
+/*ListGroup*/
+import ListGroup from 'react-bootstrap/ListGroup'; 
 
 
 
@@ -193,14 +195,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={()=>setEditEvent(true)} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row'>
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -209,14 +213,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -225,14 +231,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -241,14 +249,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -257,14 +267,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -273,14 +285,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -289,14 +303,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -305,14 +321,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -321,14 +339,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -337,14 +357,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -353,14 +375,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -369,14 +393,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -385,14 +411,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -401,14 +429,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -417,14 +447,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -433,14 +465,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -449,14 +483,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -465,14 +501,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -481,14 +519,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -497,14 +537,16 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
                   <Col className='EventComponent'>
-                  <div className='Event display-row' >
+                      <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
                         </figure>
@@ -513,7 +555,9 @@ export default function Competiciones() {
                           <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                           <span className='t-white t-xs'>Grado: A</span>
                           <div className='d-row flex-end'>
-                               <AiFillEdit className='orange pr- IconPointer' onClick={EditEventFunction} ></AiFillEdit>
+                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                                <RiEdit2Fill className='iconVideoPlay'/>
+                               </div>
                                <FaTrash className='option-icon IconPointer'></FaTrash>
                           </div>
                         </div>
@@ -640,7 +684,12 @@ export default function Competiciones() {
                   />
                 </InputGroup>
                 <button className='buttonComp'>Buscar</button>
-                <Select className='SelectComp' options={options_andar} placeholder="Seleccione Categoria"></Select>
+                <ListGroup horizontal defaultActiveKey="#link1" className='ListAndar'>
+                          <ListGroup.Item action eventKey="#link1">Andar P1</ListGroup.Item>
+                          <ListGroup.Item action eventKey="#link2">Andar P2</ListGroup.Item>
+                          <ListGroup.Item action eventKey="#link3">Andar P3</ListGroup.Item>
+                          <ListGroup.Item action eventKey="#link4">Andar P4</ListGroup.Item>
+                </ListGroup>
         </div>
          <div className='HorseDataContainer'>
                {AddHorseButton===false ?
@@ -726,115 +775,143 @@ export default function Competiciones() {
                       <th className='titletext'>Tipo</th>
                       <th className='titletext'>Caballista</th>
                       <th className='titletext'></th>
+                      <th className='titletext'></th>
                     </tr>
                   </thead>
                   <tbody className='tablebody'>
                     <tr>
                       <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none text-table'>Alejandro Soto</td>
+                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item'>P4</span></td>
+                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
+                      <td className='b-none'>
+                          <FaTrash className='GarbageHorse item'/>
+                      </td>
                     </tr>
                     <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none text-table'>Alejandro Soto</td>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item'>P4</span></td>
+                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
+                      <td className='b-none'>
+                          <FaTrash className='GarbageHorse item'/>
+                      </td>
                     </tr>
                     <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none text-table'>Alejandro Soto</td>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item'>P4</span></td>
+                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
+                      <td className='b-none'>
+                          <FaTrash className='GarbageHorse item'/>
+                      </td>
                     </tr>
                     <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none text-table'>Alejandro Soto</td>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item'>P4</span></td>
+                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
-                    </tr>
-                    <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none text-table'>Alejandro Soto</td>
-                      <td className='b-none'> 
-                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
-                          <RiEdit2Fill className='iconVideoPlay'/>
-                        </div>
+                      <td className='b-none'>
+                          <FaTrash className='GarbageHorse item'/>
                       </td>
                     </tr>
                     <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none text-table'>Alejandro Soto</td>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item'>P4</span></td>
+                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
+                      <td className='b-none'>
+                          <FaTrash className='GarbageHorse item'/>
+                      </td>
                     </tr>
                     <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none text-table'>Alejandro Soto</td>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item'>P4</span></td>
+                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
+                      <td className='b-none'>
+                          <FaTrash className='GarbageHorse item'/>
+                      </td>
                     </tr>
                     <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none text-table'>Alejandro Soto</td>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item'>P4</span></td>
+                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
                       </td>
+                      <td className='b-none'>
+                          <FaTrash className='GarbageHorse item'/>
+                      </td>
                     </tr>
                     <tr>
-                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'>38 meses</td>
-                      <td className='b-none text-table'>P4</td>
-                      <td className='b-none text-table'>C caballar</td>
-                      <td className='b-none text-table'>Alejandro Soto</td>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item'>P4</span></td>
+                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
                         </div>
+                      </td>
+                      <td className='b-none'>
+                          <FaTrash className='GarbageHorse item'/>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item'>P4</span></td>
+                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
+                      <td className='b-none'>
+                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
+                          <RiEdit2Fill className='iconVideoPlay'/>
+                        </div>
+                      </td>
+                      <td className='b-none'>
+                          <FaTrash className='GarbageHorse item'/>
                       </td>
                     </tr>
                   </tbody>

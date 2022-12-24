@@ -17,6 +17,9 @@ import MyVerticallyCenteredModal from '../../../Shared/Modal/modal';
 import { AppContext } from '../../../Context';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import {IoIosArrowDropdownCircle} from 'react-icons/io';
+/*ListGroup*/
+import ListGroup from 'react-bootstrap/ListGroup'; 
 
 
 
@@ -81,16 +84,7 @@ export default function Estadisticas() {
         <div className='InfoContainer'>
               {ListEvents.map(Event=>{
 
-                /* Horse Details Component */
-
                 
-                {/* let [VideoInfoHorse,setVideoInfoHorse]=React.useState(false);
-                const OpenVideoHorse=()=>{
-                  setVideoInfoHorse(true);
-                }
-                const CloseVideoHorse=()=>{
-                  setVideoInfoHorse(false);
-                } */}
                 return (
                     <div  className='InfoContainer-2' key={Event.id}>
                       <div className='Est-Container-1' >
@@ -110,7 +104,6 @@ export default function Estadisticas() {
                       </div>
                       <div className='Est-Container-2'  >
                         <div className='label-event-Estadistics-Container' >
-                            <AiFillCloseCircle className='IconCloseEvent' onClick={DeleteEvent}  />
                             <figure className='img-container'  >
                               <img src={Logo} className='img-event'></img>
                             </figure>
@@ -119,6 +112,10 @@ export default function Estadisticas() {
                               <span className='t-white t-b'  >{Event.name}</span>
                               <span className='t-white t-xs' >{Event.Place}</span>
                               <span className='t-white t-xs' >{"Grado: "+Event.Grade}</span>
+                              <div  className='changeContainer'>
+                                      <span className='TextChange mr--3' onClick={()=>{DeleteEvent()}}>Eliminar</span>
+                                      <AiFillCloseCircle className='IconBack'onClick={()=>{ DeleteEvent()}}/>
+                              </div>
                             </div>
                         </div>
                         <div className='filter-Horse-Estadistics-Container'  >
@@ -135,6 +132,12 @@ export default function Estadisticas() {
                         
                       </div>
                       <div className='Est-Container-3' >
+                        <ListGroup horizontal defaultActiveKey="#link1">
+                          <ListGroup.Item action eventKey="#link1">Andar P1</ListGroup.Item>
+                          <ListGroup.Item action eventKey="#link2">Andar P2</ListGroup.Item>
+                          <ListGroup.Item action eventKey="#link3">Andar P3</ListGroup.Item>
+                          <ListGroup.Item action eventKey="#link4">Andar P4</ListGroup.Item>
+                        </ListGroup>
                         <div className='tableContainer'>
                           <div className='table'>
                             <Tablehorse />

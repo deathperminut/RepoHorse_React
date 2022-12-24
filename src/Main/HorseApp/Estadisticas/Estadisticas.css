@@ -60,6 +60,9 @@
   font-size: 1.3rem;
 
 }
+.mr--3{
+  margin-right: 4px !important;
+}
 .Est-Container-1-container-count{
   min-width: 11rem;
   width: 11rem;
@@ -147,7 +150,7 @@
 
 /* INPUT */
 .filter-Horse-Estadistics-Container .input-group{
-  width: 12rem !important;
+  width: 16rem !important;
   background-color: transparent;
   flex-wrap:nowrap !important;
   position:relative;
@@ -170,7 +173,21 @@
   padding-left: 0px !important;
 }
 
-
+.list-group-item{
+  position: relative !important;
+  display: block !important;
+  color: white !important;
+  width: 100px !important;
+  background-color: transparent !important;
+  cursor: pointer;
+  font-size: 0.8rem !important;
+  border: 0px !important;
+}
+.list-group-item.active{
+  border: 0px;
+  color:#FF9300 !important;
+  font-size: 0.8rem !important;
+}
 
 .Est-Container-3{
     height: 68%;

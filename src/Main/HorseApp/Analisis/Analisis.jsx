@@ -32,6 +32,7 @@ import VideoEditor from '../../../Shared/VideoEditor/VideoEditor';
 import VideoTrimmer from '../../../Shared/Video-Trimming/videoTrimmer/videoTrimmer';
 /* CONTEXT */
 import { AppContext } from '../../../Context';
+import {IoIosArrowDropdownCircle} from 'react-icons/io';
 
 
 
@@ -149,12 +150,13 @@ export default function Analisis() {
 
             {SelectEvent===false ? 
               <>
-              <div className='Select'>
+              <div className='Select' style={{cursor:"pointer"}}>
                 <Select
                 onChange={(event)=>ChangeSelectEvent(event,true)}
                 options = {options}  
                 className="selectAnalisis" 
                 placeholder="Seleccione un evento"
+                
                 
                 />
                 {/* <button className="FilterButton analisisfilterbutton"><BsFilter className="filterIcon"></BsFilter></button> */}
@@ -167,10 +169,6 @@ export default function Analisis() {
             <>
 
             <div className='label-event-Analitic-Container'>
-                <AiFillCloseCircle className='IconCloseEvent' onClick={()=>{
-                   setSelectEvent(false);
-                   setSelectHorse(false);
-                }}/>
                 <figure className='img-container'>
                   <img src={Logo} className='img-event'></img>
                 </figure>
@@ -178,6 +176,17 @@ export default function Analisis() {
                   <span className='t-white t-b'>65° Feria Equina</span>
                   <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
                   <span className='t-white t-xs'>Grado: A</span>
+                  <div  className='changeContainer'>
+                      <span className='TextChange' onClick={()=>{
+                   setSelectEvent(false);
+                   setSelectHorse(false);
+                }}>cambiar</span>
+                      <IoIosArrowDropdownCircle className='IconBack'onClick={()=>{
+                   setSelectEvent(false);
+                   setSelectHorse(false);
+                }}/>
+                  </div>
+                  
                 </div>
             </div>
 
@@ -186,13 +195,13 @@ export default function Analisis() {
                 <InputGroup className="mt-3">
                   <Form.Control aria-label="TextInput" placeholder="ejemplar"/>
 
-                  <DropdownButton
-                    variant="outline-secondary"
-                    title="Andar"
-                    id="input-group-dropdown-2"
-                    align="end"
-                    placeholder='Ingrese ejemplar'
-                  >
+                    <DropdownButton
+                      variant="outline-secondary"
+                      title="Andar"
+                      id="input-group-dropdown-2"
+                      align="end"
+                      placeholder='Ingrese ejemplar'
+                    >
                     <Dropdown.Item href="#">P1</Dropdown.Item>
                     <Dropdown.Item href="#">P2</Dropdown.Item>
                     <Dropdown.Item href="#">P3</Dropdown.Item>

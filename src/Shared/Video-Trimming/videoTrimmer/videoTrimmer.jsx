@@ -162,8 +162,8 @@ export default function     VideoTrimmer() {
               videoSrc={trimmedVideoFile}
             >
                 <video
+                  className="videoStyles"
                   src={inputVideoFile ? URL : null}
-                  autoPlay
                   controls
                   muted
                   onLoadedMetadata={handleLoadedData}

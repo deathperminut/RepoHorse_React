@@ -51,8 +51,15 @@
     flex-direction: row;
     height: 250px;
     padding: 40px;
-    justify-content: center;
-    
+    justify-content: center;   
+}
+.changeContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    position: relative;
+    top: 6px;
 }
 
 .videoContainer{
@@ -427,6 +434,34 @@
     height: 80px;
     background-color: #FF9300;
     border-radius: 17px;
+}
+.css-6j8wv5-Input{
+    font-size: 0.7rem !important;
+    cursor:pointer
+}
+.css-1pahdxg-control{
+    font-size: 0.8rem !important;
+    cursor:pointer
+}
+.css-1s2u09g-control{
+    cursor:pointer
+}
+.css-tlfecz-indicatorContainer{
+    cursor: pointer;
+}
+.TextChange{
+   color:#7A86A1;
+   font-size: 0.7rem;
+   cursor: pointer;
+}
+
+.IconBack{
+    color:#FF9300;
+    opacity: 0.36;
+    cursor: pointer;
+}
+.css-1s2u09g-control{
+    font-size: 0.8rem !important;
 }
 .bpm-result-text{
     font-size: 4rem;
