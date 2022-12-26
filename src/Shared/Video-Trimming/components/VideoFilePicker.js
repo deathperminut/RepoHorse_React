@@ -1,8 +1,15 @@
 import React from "react";
 import {BsPlayBtn} from 'react-icons/bs';
 import {MdOutlineDriveFolderUpload} from 'react-icons/md';
+import { AppContext } from "../../../Context";
 
-function VideoFilePicker({ showVideo, handleChange,videoSrc, children }) {
+function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,videoSrc, children }) {
+
+  let {StadisticVideo}=React.useContext(AppContext);
+
+   React.useEffect(()=>{
+     console.log("StadisticVideo",StadisticVideo)
+  },[StadisticVideo])
   const FileInput = () => (
     <label
       htmlFor="x"
@@ -17,8 +24,24 @@ function VideoFilePicker({ showVideo, handleChange,videoSrc, children }) {
       <input onChange={handleChange} type="file" id="x" accept="video/mp4" />
     </label>
   );
+
+  if(showVideo){
+          return(
+            <>
+            {children}
+            </>
+          )
+  }else{
+    return( <FileInput />)
+  }
  
-  return(showVideo ? (<> {children} </>)  : <FileInput />)
+  // return(thumbNails ? 
+  //   (<>
+  //   {children}
+  //    </>)  
+  //   : 
+    
+  //   <FileInput />)
 }
 
 export default VideoFilePicker;

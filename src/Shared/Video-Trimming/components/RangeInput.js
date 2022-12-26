@@ -25,6 +25,7 @@ export default function RangeInput({
       // </center>
     );
   }
+ 
 
   return (
     <>

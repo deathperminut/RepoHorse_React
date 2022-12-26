@@ -4,3 +4,9 @@
     height: 20px !important;
     background-color: red;
 }
+.display-none{
+    display: none;
+}
+.display-flex{
+    display: flex;
+}

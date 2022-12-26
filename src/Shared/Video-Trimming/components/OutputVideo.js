@@ -2,7 +2,7 @@
 import React from "react";
 
 
-const OutputVideo = ({ handleDownload, videoSrc }) => {
+const OutputVideo = ({ handleDownload, videoSrc ,loading}) => {
   return videoSrc ? (
       <>
       <video src={videoSrc}   width="450" className="videoStyles"></video>

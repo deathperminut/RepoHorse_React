@@ -42,7 +42,7 @@ export default function     VideoTrimmer() {
     const handleChange = async (e) => {
       let file = e.target.files[0];
       setInputVideoFile(file);
-      setStatisticVideo(true);
+      // setStatisticVideo(true);
   
       setURL(await helpers.readFileAsBase64(file));
     };
@@ -63,6 +63,8 @@ export default function     VideoTrimmer() {
       const thumbNails = await getThumbnails(meta);
       setThumbNails(thumbNails);
     };
+
+    
   
     const getThumbnails = async ({ duration }) => {
       if (!FF.isLoaded()) await FF.load();
@@ -101,6 +103,7 @@ export default function     VideoTrimmer() {
         }
       }
       setThumbnailIsProcessing(false);
+      setStatisticVideo(true);
   
       return arrayOfImageURIs;
     };
@@ -159,10 +162,12 @@ export default function     VideoTrimmer() {
             <VideoFilePicker
               handleChange={handleChange}
               showVideo={!!inputVideoFile}
+              thumbNails={thumbNails}
               videoSrc={trimmedVideoFile}
             >
-                <video
-                  className="videoStyles"
+               <video
+                  
+                  className={`videoStyles ${StadisticVideo ? "display-flex" : "display-none"}`}
                   src={inputVideoFile ? URL : null}
                   controls
                   muted
@@ -170,11 +175,13 @@ export default function     VideoTrimmer() {
                   width="620"
                   height="400"
                 ></video>
+                
 
             </VideoFilePicker>
           <OutputVideo
             videoSrc={trimmedVideoFile}
             handleDownload={() => helpers.download(trimmedVideoFile)}
+            loading={thumbnailIsProcessing}
           />
         {
           <>
