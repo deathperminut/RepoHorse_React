@@ -490,6 +490,11 @@
 }
 
 
+.SelectContainer  .display-row .input-group .form-control{
+    color:#7A86A1 !important;
+} 
+
+
 
 
 @media (min-width: 1350px) {

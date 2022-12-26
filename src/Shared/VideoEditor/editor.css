@@ -21,7 +21,7 @@ body{
     padding: 8em 0em;
     cursor: pointer;
 }
-.controls > *{
+.controls {
   width: 50% !important;
   height: 8.0971659919028340080971659919028%; /* of figure's height */
   position: relative;
