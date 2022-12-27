@@ -35,7 +35,7 @@ export default function     VideoTrimmer() {
     const [trimIsProcessing, setTrimIsProcessing] = useState(false);
   
     const [rStart, setRstart] = useState(0);
-    const [rEnd, setRend] = useState(10);
+    const [rEnd, setRend] = useState(100);
     const [thumbNails, setThumbNails] = useState([]);
     const [thumbnailIsProcessing, setThumbnailIsProcessing] = useState(false);
   
