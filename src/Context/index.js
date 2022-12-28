@@ -22,9 +22,14 @@ function ProviderContext(props){
     const [rEnd, setRend] = React.useState(100);
     const [thumbNails, setThumbNails] = React.useState([]);
     const [thumbnailIsProcessing, setThumbnailIsProcessing] = React.useState(false);
+    const [originalVideo,setOriginalVideo]=React.useState(null);
+    const [cutVideo,setCutVideo]=React.useState(false);
+    const [dowload,setDowload]=React.useState(false);
 
     /* LOADING */
     const [loading,setLoading]=React.useState(false);
+
+   
 
     
 
@@ -37,7 +42,8 @@ function ProviderContext(props){
         <AppContext.Provider value={{
             StadisticVideo,setStatisticVideo,inputVideoFile, setInputVideoFile
             ,videoMeta, setVideoMeta , trimmedVideoFile, setTrimmedVideoFile,URL, setURL, trimIsProcessing, setTrimIsProcessing,rStart, setRstart,rEnd, setRend
-            ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,loading,setLoading
+            ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,loading,setLoading,originalVideo,setOriginalVideo,cutVideo,setCutVideo,
+            dowload,setDowload
         }}>
             {props.children}
         </AppContext.Provider>

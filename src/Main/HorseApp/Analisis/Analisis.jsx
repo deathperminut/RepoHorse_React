@@ -27,6 +27,9 @@ import {AiFillCloseCircle} from 'react-icons/ai';
 import {FaTrash} from 'react-icons/fa';
 import {MdVideoSettings} from 'react-icons/md';
 import {RiScissorsCutFill} from 'react-icons/ri';
+import {GrPowerReset} from 'react-icons/gr';
+import {BsDownload} from 'react-icons/bs';
+import {BiReset} from 'react-icons/bi';
 
 
 /* VIDEO EDITOR */
@@ -46,6 +49,7 @@ import Preloader from '../../../Shared/preloader/preloader';
 
 
 
+
 export default function Analisis() {
 
   const styleLoading = { position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" ,zIndex:"3"};
@@ -54,7 +58,7 @@ export default function Analisis() {
   let {
     StadisticVideo,setStatisticVideo, setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
-      , setThumbNails, setThumbnailIsProcessing,loading
+      , setThumbNails, setThumbnailIsProcessing,loading,originalVideo,setOriginalVideo,setCutVideo,setDowload
   }=React.useContext(AppContext); 
 
 
@@ -129,7 +133,11 @@ export default function Analisis() {
                       {StadisticVideo===false ?
                         <></>
                         :
-                        <RiScissorsCutFill className='option-icon'></RiScissorsCutFill>
+                        <RiScissorsCutFill className='option-icon-video' onClick={()=>
+                        {
+                          setCutVideo(true);
+                        }                          
+                        }></RiScissorsCutFill>
                         }
                     
                   </div>
@@ -137,7 +145,7 @@ export default function Analisis() {
                     {StadisticVideo===false ?
                     <></>
                     :
-                    <FaTrash className='option-icon' onClick={()=>{
+                    <FaTrash className='option-icon-video' onClick={()=>{
                     setStatisticVideo(false);
                     setInputVideoFile(null);
                     setVideoMeta(null);
@@ -148,8 +156,39 @@ export default function Analisis() {
                     setRend(100);
                     setThumbNails([]);
                     setThumbnailIsProcessing(false);
+                    setOriginalVideo(null);
                   }}/>
                     }
+                  </div>
+                  <div className='option'>
+                      {StadisticVideo===false ?
+                        <></>
+                        :
+                        <BiReset className='option-icon-video' onClick={()=>{
+                            
+                           if(originalVideo!=null){
+                            setURL(originalVideo);
+                            setRstart(0);
+                             setRend(100);
+                           } 
+                        }
+                         
+                        }></BiReset>
+                        }
+                    
+                  </div>
+                  <div className='option'>
+                      {StadisticVideo===false ?
+                        <></>
+                        :
+                        <BsDownload className='option-icon-video' onClick={()=>{
+                            
+                            setDowload(true);
+                        }
+                         
+                        }></BsDownload>
+                        }
+                    
                   </div>
                 </div>
              </div>

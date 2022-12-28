@@ -38,7 +38,7 @@ export default function Competiciones() {
   let {
     StadisticVideo,setStatisticVideo, setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
-      , setThumbNails, setThumbnailIsProcessing,loading
+      , setThumbNails, setThumbnailIsProcessing,loading,setOriginalVideo
   }=React.useContext(AppContext); 
   
 
@@ -108,6 +108,7 @@ export default function Competiciones() {
     setRend(100);
     setThumbNails([]);
     setThumbnailIsProcessing(false);
+    setOriginalVideo(null);
   },[])
   
 

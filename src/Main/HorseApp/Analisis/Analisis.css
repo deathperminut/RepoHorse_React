@@ -55,6 +55,7 @@
     padding: 40px;
     justify-content: center;   
 }
+
 .changeContainer{
     width: 100%;
     display: flex;
@@ -150,9 +151,20 @@
   justify-content: center;
 }
 .option-icon{
-    color:#11342F;
+    color:#11342F !important;
     cursor: pointer;
 }
+.option-icon-video{
+    color:#11342F !important;
+    stroke:#11342F!important;
+    cursor: pointer;
+}
+.option-icon-video:hover{
+    color:#0e1514 !important;
+    stroke:#11342F!important;
+    cursor: pointer;
+}
+
 /*SELECT CONTAINET*/
 .SelectContainer{
     padding: 10pt;

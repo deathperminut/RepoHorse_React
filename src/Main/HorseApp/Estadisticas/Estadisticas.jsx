@@ -30,7 +30,7 @@ export default function Estadisticas() {
   let {
     StadisticVideo,setStatisticVideo, setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
-      , setThumbNails, setThumbnailIsProcessing,loading
+      , setThumbNails, setThumbnailIsProcessing,loading,setOriginalVideo
   }=React.useContext(AppContext); 
 
   /*USE STATE */
@@ -87,6 +87,7 @@ export default function Estadisticas() {
     setRend(100);
     setThumbNails([]);
     setThumbnailIsProcessing(false);
+    setOriginalVideo(null);
   },[])
   
 

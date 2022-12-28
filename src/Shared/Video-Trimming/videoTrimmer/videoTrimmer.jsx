@@ -26,22 +26,32 @@ export default function     VideoTrimmer() {
     /*USAMOS EL CONTEXT*/
     let { StadisticVideo,setStatisticVideo,inputVideoFile, setInputVideoFile
       ,videoMeta, setVideoMeta , trimmedVideoFile, setTrimmedVideoFile,URL, setURL, trimIsProcessing, setTrimIsProcessing,rStart, setRstart,rEnd, setRend
-      ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,setLoading}=React.useContext(AppContext); 
+      ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,setLoading,originalVideo,setOriginalVideo,
+      cutVideo,setCutVideo,dowload,setDowload}=React.useContext(AppContext); 
+
+
+      /*USE STATE */
 
 
 
     
   
     const handleChange = async (e) => {
+      
       let file = e.target.files[0];
       setInputVideoFile(file);
       setLoading(true);
       // setStatisticVideo(true);
   
       setURL(await helpers.readFileAsBase64(file));
+      setTrimmedVideoFile(await helpers.readFileAsBase64(file));
     };
   
     const handleLoadedData = async (e) => {
+      
+      if(originalVideo!=null){
+        return;
+      }
       // console.dir(ref.current);
   
       const el = e.target;
@@ -57,6 +67,7 @@ export default function     VideoTrimmer() {
       const thumbNails = await getThumbnails(meta);
       setThumbNails(thumbNails);
       setLoading(false);
+      
     };
 
     
@@ -104,8 +115,12 @@ export default function     VideoTrimmer() {
     };
   
     const handleTrim = async () => {
+      setLoading(true);
       setTrimIsProcessing(true);
-  
+      setCutVideo(false);
+      
+
+     
       let startTime = ((rStart / 100) * videoMeta.duration).toFixed(2);
       let offset = ((rEnd / 100) * videoMeta.duration - startTime).toFixed(2);
       console.log(
@@ -138,12 +153,19 @@ export default function     VideoTrimmer() {
         console.log("dataURL",data);
   
         setTrimmedVideoFile(dataURL);
-        setInputVideoFile(dataURL);
+        //setInputVideoFile(dataURL);
+        
+        if(originalVideo===null){
+          setOriginalVideo(URL);
+        }
+        setURL(dataURL);
       } catch (error) {
         console.log(error);
       } finally {
         setTrimIsProcessing(false);
+        setLoading(false);
       }
+
     };
   
     const handleUpdateRange = (func) => {
@@ -151,6 +173,18 @@ export default function     VideoTrimmer() {
         func(value);
       };
     };
+
+    React.useEffect(()=>{
+     if(cutVideo){
+      handleTrim();
+     }
+    },[cutVideo])
+    React.useEffect(()=>{
+      if(dowload){
+        helpers.download(trimmedVideoFile);
+        setDowload(false);
+      }
+     },[dowload])
   
     return (
       <>
@@ -175,11 +209,11 @@ export default function     VideoTrimmer() {
                 
 
             </VideoFilePicker>
-          <OutputVideo
+          {/* <OutputVideo
             videoSrc={trimmedVideoFile}
             handleDownload={() => helpers.download(trimmedVideoFile)}
             loading={thumbnailIsProcessing}
-          />
+          /> */}
         {
           <>
             <RangeInput
@@ -190,15 +224,18 @@ export default function     VideoTrimmer() {
               loading={thumbnailIsProcessing}
               videoMeta={videoMeta}
               control={
-                <div className="u-center">
-                  <button
-                    onClick={handleTrim}
-                    className="btn btn_b"
-                    disabled={trimIsProcessing}
-                  >
-                    {trimIsProcessing ? "trimming..." : "trim selected"}
-                  </button>
-                </div>
+                <>
+
+                </>
+                // <div className="u-center">
+                //   <button
+                //     onClick={handleTrim}
+                //     className="btn btn_b"
+                //     disabled={trimIsProcessing}
+                //   >
+                //     {trimIsProcessing ? "trimming..." : "trim selected"}
+                //   </button>
+                // </div>
               }
               thumbNails={thumbNails}
             />
