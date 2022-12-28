@@ -27,8 +27,11 @@ export default function Estadisticas() {
 
 
   /* APP CONTEXT */
-
-  let {StadisticVideo,setStatisticVideo}=React.useContext(AppContext);
+  let {
+    StadisticVideo,setStatisticVideo, setInputVideoFile
+      ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
+      , setThumbNails, setThumbnailIsProcessing,loading
+  }=React.useContext(AppContext); 
 
   /*USE STATE */
   
@@ -75,6 +78,15 @@ export default function Estadisticas() {
   /* USE EFFECT */
   React.useEffect(()=>{
     setStatisticVideo(false);
+    setInputVideoFile(null);
+    setVideoMeta(null);
+    setTrimmedVideoFile(null);
+    setURL([]);
+    setTrimIsProcessing(false);
+    setRstart(0);
+    setRend(100);
+    setThumbNails([]);
+    setThumbnailIsProcessing(false);
   },[])
   
 
@@ -88,9 +100,9 @@ export default function Estadisticas() {
                 return (
                     <div  className='InfoContainer-2' key={Event.id}>
                       <div className='Est-Container-1' >
-                            <h1 className='Est-Container-1-text display-none'  >Total competidores</h1>
+                            <h1 className='Est-Container-1-text'  >Total competidores</h1>
                             <div className='Est-Container-1-container-count display-none'  >
-                                <h1 className='Est-Container-1-container-count-text display-none'>{Event.TotalCp}</h1>
+                                <h1 className='Est-Container-1-container-count-text'>{Event.TotalCp}</h1>
                             </div>
 
                         <div className='Est-Container-1-1' >

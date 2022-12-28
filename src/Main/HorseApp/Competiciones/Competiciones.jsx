@@ -35,7 +35,11 @@ import { AppContext } from '../../../Context';
 export default function Competiciones() {
 
   /* APPCONTEXT */
-  let {StadisticVideo,setStatisticVideo}=React.useContext(AppContext);
+  let {
+    StadisticVideo,setStatisticVideo, setInputVideoFile
+      ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
+      , setThumbNails, setThumbnailIsProcessing,loading
+  }=React.useContext(AppContext); 
   
 
   /* CALENDAR */
@@ -95,6 +99,15 @@ export default function Competiciones() {
   /* useEffect */
   React.useEffect(()=>{
     setStatisticVideo(false);
+    setInputVideoFile(null);
+    setVideoMeta(null);
+    setTrimmedVideoFile(null);
+    setURL([]);
+    setTrimIsProcessing(false);
+    setRstart(0);
+    setRend(100);
+    setThumbNails([]);
+    setThumbnailIsProcessing(false);
   },[])
   
 

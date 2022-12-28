@@ -150,7 +150,8 @@
   justify-content: center;
 }
 .option-icon{
-    color:#11342F
+    color:#11342F;
+    cursor: pointer;
 }
 /*SELECT CONTAINET*/
 .SelectContainer{

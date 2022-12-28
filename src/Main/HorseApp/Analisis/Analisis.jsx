@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+
 import {Navigate,Routes, Route} from 'react-router-dom';
 import './Analisis.css';
 import Logo from '../../../Sources/Images/Estadisticas/logo_equipon.jpg';
@@ -25,6 +26,7 @@ import HorsePhoto from '../../../Sources/Images/Estadisticas/HorsePhoto.jpg';
 import {AiFillCloseCircle} from 'react-icons/ai';
 import {FaTrash} from 'react-icons/fa';
 import {MdVideoSettings} from 'react-icons/md';
+import {RiScissorsCutFill} from 'react-icons/ri';
 
 
 /* VIDEO EDITOR */
@@ -34,12 +36,26 @@ import VideoTrimmer from '../../../Shared/Video-Trimming/videoTrimmer/videoTrimm
 import { AppContext } from '../../../Context';
 import {IoIosArrowDropdownCircle} from 'react-icons/io';
 
+/* LOADING */
+import BounceLoader from "react-spinners/BounceLoader";
+import zIndex from '@material-ui/core/styles/zIndex';
+import Preloader from '../../../Shared/preloader/preloader';
+
+
+
+
 
 
 export default function Analisis() {
 
+  const styleLoading = { position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" ,zIndex:"3"};
+ 
   /* CONTEXT */
-  let {StadisticVideo,setStatisticVideo}=React.useContext(AppContext);
+  let {
+    StadisticVideo,setStatisticVideo, setInputVideoFile
+      ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
+      , setThumbNails, setThumbnailIsProcessing,loading
+  }=React.useContext(AppContext); 
 
 
   
@@ -78,6 +94,7 @@ export default function Analisis() {
     setSelectHorse(true); 
   }
 
+
   
   /*OPTIONS SELECT */
   const options = [
@@ -86,8 +103,20 @@ export default function Analisis() {
     { value: 'Evento 3', label: 'Evento 3' },
     { value: 'Evento 4' ,label: 'Evento 4' } 
   ];
+
+  /* */
   return (
+     
     <>
+        {
+          loading ?
+          <>
+          <Preloader/>
+          </>
+          :
+
+          <></>
+        }
         <div className='AnalisisContainer'>
           <div className='DataContainer'>
 
@@ -97,10 +126,30 @@ export default function Analisis() {
                 </div>
                 <div className='optionsContainer'>
                   <div className='option'>
-                    <MdVideoSettings className='option-icon'></MdVideoSettings>
+                      {StadisticVideo===false ?
+                        <></>
+                        :
+                        <RiScissorsCutFill className='option-icon'></RiScissorsCutFill>
+                        }
+                    
                   </div>
-                  <div className='option'>
-                      <FaTrash className='option-icon'></FaTrash>
+                  <div className='option' >
+                    {StadisticVideo===false ?
+                    <></>
+                    :
+                    <FaTrash className='option-icon' onClick={()=>{
+                    setStatisticVideo(false);
+                    setInputVideoFile(null);
+                    setVideoMeta(null);
+                    setTrimmedVideoFile(null);
+                    setURL([]);
+                    setTrimIsProcessing(false);
+                    setRstart(0);
+                    setRend(100);
+                    setThumbNails([]);
+                    setThumbnailIsProcessing(false);
+                  }}/>
+                    }
                   </div>
                 </div>
              </div>

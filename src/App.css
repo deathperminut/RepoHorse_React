@@ -6,6 +6,21 @@
   height: 40vmin;
   pointer-events: none;
 }
+.loading{
+  display: "block";
+  margin: "0 auto";
+  z-index: 2;
+}
+.VideoPlayer video{
+  border-radius: 20px !important;
+  width: 100% !important;
+  height: 120% !important;
+}
+.VideoPlayer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -441,4 +456,6 @@ ul li {
   -webkit-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
 }
+
+
 

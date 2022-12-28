@@ -24,24 +24,18 @@ const FF = createFFmpeg({
 export default function     VideoTrimmer() {
 
     /*USAMOS EL CONTEXT*/
-    let {StadisticVideo,setStatisticVideo}=React.useContext(AppContext); 
+    let { StadisticVideo,setStatisticVideo,inputVideoFile, setInputVideoFile
+      ,videoMeta, setVideoMeta , trimmedVideoFile, setTrimmedVideoFile,URL, setURL, trimIsProcessing, setTrimIsProcessing,rStart, setRstart,rEnd, setRend
+      ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,setLoading}=React.useContext(AppContext); 
 
 
-    const [inputVideoFile, setInputVideoFile] = useState(null);
-    const [trimmedVideoFile, setTrimmedVideoFile] = useState(null);
-    // const ref = useRef();
-    const [videoMeta, setVideoMeta] = useState(null);
-    const [URL, setURL] = useState([]);
-    const [trimIsProcessing, setTrimIsProcessing] = useState(false);
-  
-    const [rStart, setRstart] = useState(0);
-    const [rEnd, setRend] = useState(100);
-    const [thumbNails, setThumbNails] = useState([]);
-    const [thumbnailIsProcessing, setThumbnailIsProcessing] = useState(false);
+
+    
   
     const handleChange = async (e) => {
       let file = e.target.files[0];
       setInputVideoFile(file);
+      setLoading(true);
       // setStatisticVideo(true);
   
       setURL(await helpers.readFileAsBase64(file));
@@ -58,10 +52,11 @@ export default function     VideoTrimmer() {
         videoWidth: el.videoWidth,
         videoHeight: el.videoHeight
       };
-      console.log("sera=:",{ meta });
+      console.log("sera=:",{ meta },inputVideoFile);
       setVideoMeta(meta);
       const thumbNails = await getThumbnails(meta);
       setThumbNails(thumbNails);
+      setLoading(false);
     };
 
     
@@ -136,12 +131,14 @@ export default function     VideoTrimmer() {
         );
   
         const data = FF.FS("readFile", "ping.mp4");
-        console.log(data);
+        console.log("data: ",data);
         const dataURL = await helpers.readFileAsBase64(
           new Blob([data.buffer], { type: "video/mp4" })
         );
+        console.log("dataURL",data);
   
         setTrimmedVideoFile(dataURL);
+        setInputVideoFile(dataURL);
       } catch (error) {
         console.log(error);
       } finally {
