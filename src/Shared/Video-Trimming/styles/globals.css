@@ -54,10 +54,11 @@ input[type="file"] {
   border-radius: 20px;
   max-width: 100%;
   max-height: 87%;
-  min-height: 87%;
+  /* min-height: 500px; */
   margin-top: 60px;
-  
 }
+  
+
 
 .image_box {
   display: flex;

@@ -39,12 +39,13 @@ export default function     VideoTrimmer() {
     const handleChange = async (e) => {
       
       let file = e.target.files[0];
-      setInputVideoFile(file);
+      let fileCopy=new File([file], 'project.mp4',{type: "video/mp4"});
+      setInputVideoFile(fileCopy);
       setLoading(true);
       // setStatisticVideo(true);
   
-      setURL(await helpers.readFileAsBase64(file));
-      setTrimmedVideoFile(await helpers.readFileAsBase64(file));
+      setURL(await helpers.readFileAsBase64(fileCopy));
+      setTrimmedVideoFile(await helpers.readFileAsBase64(fileCopy));
     };
   
     const handleLoadedData = async (e) => {
@@ -57,7 +58,7 @@ export default function     VideoTrimmer() {
       const el = e.target;
   
       const meta = {
-        name: inputVideoFile.name,
+        name: 'project.mp4',
         duration: el.duration,
         videoWidth: el.videoWidth,
         videoHeight: el.videoHeight
