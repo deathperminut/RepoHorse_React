@@ -160,7 +160,7 @@ export default function Analisis() {
                   }}/>
                     }
                   </div>
-                  <div className='option'>
+                  {/* <div className='option'>
                       {StadisticVideo===false ?
                         <></>
                         :
@@ -176,7 +176,7 @@ export default function Analisis() {
                         }></BiReset>
                         }
                     
-                  </div>
+                  </div> */}
                   <div className='option'>
                       {StadisticVideo===false ?
                         <></>
