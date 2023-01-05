@@ -186,7 +186,12 @@
     font-size: 10pt;
     font-weight: 700;
 }
-
+.display-none-{
+    display: none;
+}
+.display-flex-{
+    display:flex;
+}
 
 .buttonEvent{
   background-color: white;

@@ -126,7 +126,7 @@ export default function Analisis() {
 
              <div className='Container_Video'>
                 <div className={`videoContainer ${StadisticVideo ? "bg-p" : "bg-s"}`}>
-                   <VideoTrimmer/>
+                   <VideoTrimmer className={`videoContainer ${StadisticVideo ? "display-none-" : "display-flex-"}`}/>
                 </div>
                 <div className='optionsContainer'>
                   <div className='option'>

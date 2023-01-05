@@ -43,16 +43,17 @@ export default function     VideoTrimmer() {
       setInputVideoFile(fileCopy);
       setLoading(true);
       // setStatisticVideo(true);
-  
-      setURL(await helpers.readFileAsBase64(fileCopy));
-      setTrimmedVideoFile(await helpers.readFileAsBase64(fileCopy));
+      let Filedowload=await helpers.readFileAsBase64(fileCopy);
+      setURL(Filedowload);
+      setTrimmedVideoFile(Filedowload);
     };
   
     const handleLoadedData = async (e) => {
+      console.log("entramos aqui",originalVideo);
       
-      if(originalVideo!=null){
-        return;
-      }
+      // if(originalVideo!=null){
+      //   return;
+      // }
       // console.dir(ref.current);
   
       const el = e.target;
@@ -67,7 +68,7 @@ export default function     VideoTrimmer() {
       setVideoMeta(meta);
       const thumbNails = await getThumbnails(meta);
       setThumbNails(thumbNails);
-      setLoading(false);
+      
       
     };
 
@@ -75,7 +76,9 @@ export default function     VideoTrimmer() {
   
     const getThumbnails = async ({ duration }) => {
       if (!FF.isLoaded()) await FF.load();
-      setThumbnailIsProcessing(true);
+      //setThumbnailIsProcessing(true);
+      setRstart(0);
+      setRend(100);
       let MAX_NUMBER_OF_IMAGES = 15;
       let NUMBER_OF_IMAGES = duration < MAX_NUMBER_OF_IMAGES ? duration : 15;
       let offset =
@@ -83,6 +86,7 @@ export default function     VideoTrimmer() {
   
       const arrayOfImageURIs = [];
       FF.FS("writeFile", inputVideoFile.name, await fetchFile(inputVideoFile));
+      
   
       for (let i = 0; i < NUMBER_OF_IMAGES; i++) {
         let startTimeInSecs = helpers.toTimeString(Math.round(i * offset));
@@ -103,14 +107,18 @@ export default function     VideoTrimmer() {
   
           let blob = new Blob([data.buffer], { type: "image/png" });
           let dataURI = await helpers.readFileAsBase64(blob);
+          
           FF.FS("unlink", `img${i}.png`);
           arrayOfImageURIs.push(dataURI);
         } catch (error) {
           console.log({ message: error });
         }
       }
+      setLoading(false);
       setThumbnailIsProcessing(false);
       setStatisticVideo(true);
+      
+      console.log("intento de finalizar?");
   
       return arrayOfImageURIs;
     };
@@ -134,6 +142,7 @@ export default function     VideoTrimmer() {
       try {
         FF.FS("writeFile", inputVideoFile.name, await fetchFile(inputVideoFile));
         // await FF.run('-ss', '00:00:13.000', '-i', inputVideoFile.name, '-t', '00:00:5.000', 'ping.mp4');
+
         await FF.run(
           "-ss",
           helpers.toTimeString(startTime),
@@ -151,7 +160,8 @@ export default function     VideoTrimmer() {
         const dataURL = await helpers.readFileAsBase64(
           new Blob([data.buffer], { type: "video/mp4" })
         );
-        console.log("dataURL",data);
+        console.log("data",data);
+        console.log("dataURL",dataURL);
   
         setTrimmedVideoFile(dataURL);
         //setInputVideoFile(dataURL);
@@ -164,7 +174,6 @@ export default function     VideoTrimmer() {
         console.log(error);
       } finally {
         setTrimIsProcessing(false);
-        setLoading(false);
       }
 
     };
@@ -210,11 +219,7 @@ export default function     VideoTrimmer() {
                 
 
             </VideoFilePicker>
-          {/* <OutputVideo
-            videoSrc={trimmedVideoFile}
-            handleDownload={() => helpers.download(trimmedVideoFile)}
-            loading={thumbnailIsProcessing}
-          /> */}
+
         {
           <>
             <RangeInput
@@ -228,15 +233,7 @@ export default function     VideoTrimmer() {
                 <>
 
                 </>
-                // <div className="u-center">
-                //   <button
-                //     onClick={handleTrim}
-                //     className="btn btn_b"
-                //     disabled={trimIsProcessing}
-                //   >
-                //     {trimIsProcessing ? "trimming..." : "trim selected"}
-                //   </button>
-                // </div>
+
               }
               thumbNails={thumbNails}
             />
