@@ -2,7 +2,8 @@
 
 .InitContainer{
     width: 100vw;
-    min-height: 100vh;
+    height: 100vh;
+    min-height: 607px;
     display: flex;
     flex-direction: column;
 }
@@ -122,9 +123,10 @@ input {
 
 /*CONTENT*/
 .ServicesContainer{
-   height: 79vh;
-   width: 100%;
-   margin:0;
+    height: 79vh;
+    min-height: 607px;
+    width: 100%;
+    margin: 0;
 }
 
 .ContainerRows{

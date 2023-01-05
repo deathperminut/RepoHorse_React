@@ -1,6 +1,7 @@
 .LoginContainer{
     width: 100vw;
-    min-height: 100vh;
+    height: 100vh;
+    min-height: 607px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
