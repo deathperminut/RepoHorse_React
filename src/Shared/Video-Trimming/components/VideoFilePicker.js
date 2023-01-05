@@ -32,7 +32,7 @@ function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,vid
           <span className='textdragContainer'>o</span>
           <span className='buttonAnalisis'><MdOutlineDriveFolderUpload className='iconVideo'/><span className='textButtonVideo'>Subir archivos</span></span>
 
-          <input onChange={handleChange} type="file" id="x" accept="video/mp4" /> 
+          {/* <input onChange={handleChange} type="file" id="x" accept="video/mp4" />  */}
 
       </label>
     )}
