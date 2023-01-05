@@ -37,7 +37,7 @@ export default function     VideoTrimmer() {
     
   
     const handleChange = async (e) => {
-      
+      console.log("entra");
       let file = e.target.files[0];
       let fileCopy=new File([file], 'project.mp4',{type: "video/mp4"});
       setInputVideoFile(fileCopy);

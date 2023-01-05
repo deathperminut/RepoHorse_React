@@ -1,9 +1,18 @@
 import React from "react";
+import Dropzone from "react-dropzone";
 import {BsPlayBtn} from 'react-icons/bs';
 import {MdOutlineDriveFolderUpload} from 'react-icons/md';
 import { AppContext } from "../../../Context";
 
+
 function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,videoSrc, children }) {
+
+  const fileInputChange=(event)=>{
+    console.log("dropzone",event);
+    let Object={target:{files:event}}
+    handleChange(Object);
+
+  }
 
   let {StadisticVideo}=React.useContext(AppContext);
 
@@ -11,18 +20,27 @@ function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,vid
      console.log("StadisticVideo",StadisticVideo)
   },[StadisticVideo])
   const FileInput = () => (
-    <label
-      htmlFor="x"
-      id={`${showVideo ? "file_picker_small" : ""}`}
-      className={`file_picker `}
-    >
-      <BsPlayBtn className='iconFilm'/>
-      <span className='textdragContainer'>Arraste o ponga el video aquí</span>
-      <span className='textdragContainer'>o</span>
-      <span className='buttonAnalisis'><MdOutlineDriveFolderUpload className='iconVideo'/><span className='textButtonVideo'>Subir archivos</span></span>
+    <>
 
-      <input onChange={handleChange} type="file" id="x" accept="video/mp4" />
-    </label>
+    <Dropzone onDrop={acceptedFiles => fileInputChange(acceptedFiles)} >
+    {({getRootProps, getInputProps}) => (
+      <label htmlFor="x"
+      id={`${showVideo ? "file_picker_small" : ""}`}
+      className={`file_picker `} {...getRootProps()}>
+          <BsPlayBtn className='iconFilm'/>
+          <span className='textdragContainer'>Arraste o ponga el video aquí</span>
+          <span className='textdragContainer'>o</span>
+          <span className='buttonAnalisis'><MdOutlineDriveFolderUpload className='iconVideo'/><span className='textButtonVideo'>Subir archivos</span></span>
+
+          <input onChange={handleChange} type="file" id="x" accept="video/mp4" /> 
+
+      </label>
+    )}
+    </Dropzone>
+     
+
+    </>
+    
   );
 
   if(showVideo){
