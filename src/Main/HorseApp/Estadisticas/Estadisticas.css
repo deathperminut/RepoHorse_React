@@ -433,7 +433,7 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    min-width: calc( 100vw - 19rem );
+    min-width: 750px;
 }
 .tableContainer {
   width: 91%;
