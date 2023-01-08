@@ -17,6 +17,7 @@
    flex-direction: column;
    padding: 2rem;
    overflow-y: auto;
+   overflow-x: hidden;
 }
 .Container_Video{
     width: 100%;
@@ -583,7 +584,7 @@
 @media (max-width: 1071px) {
     .AnalisisContainer{
         width: 100%; 
-        height: calc( 100vh - 68.8px );;
+        height: calc( 100vh - 63.8px );;
         display: flex;
         flex-direction: row;
     }

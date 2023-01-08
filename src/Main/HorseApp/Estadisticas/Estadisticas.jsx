@@ -94,74 +94,79 @@ export default function Estadisticas() {
   return (
     <div className='EstadisticasContainer'>
        {ListEvents.length!=0 ?
-        <div className='InfoContainer'>
-              {ListEvents.map(Event=>{
+             <>
+             {ListEvents.map(Event=>{
 
                 
-                return (
-                    <div  className='InfoContainer-2' key={Event.id}>
-                      <div className='Est-Container-1' >
-                            <h1 className='Est-Container-1-text'  >Total competidores</h1>
-                            <div className='Est-Container-1-container-count display-none'  >
-                                <h1 className='Est-Container-1-container-count-text'>{Event.TotalCp}</h1>
-                            </div>
-
-                        <div className='Est-Container-1-1' >
-                            <h1 className='Est-Container-1-text' >Total competidores</h1>
-                            <div className='Est-Container-1-container-count' >
-                                <h1 className='Est-Container-1-container-count-text'>{Event.TotalCp}</h1>
-                            </div>
-                        </div>
-                        <button className='buttonEvent center buttonEventEst' ><span className="tw-500 font-size-15pt  c-orange mr-3px" >+</span><span className="c-orange font-size-10pt" >Añadir otro</span></button>
-                        
-                      </div>
-                      <div className='Est-Container-2'  >
-                        <div className='label-event-Estadistics-Container' >
-                            <figure className='img-container'  >
-                              <img src={Logo} className='img-event'></img>
-                            </figure>
-                            
-                            <div className='p-column'>
-                              <span className='t-white t-b'  >{Event.name}</span>
-                              <span className='t-white t-xs' >{Event.Place}</span>
-                              <span className='t-white t-xs' >{"Grado: "+Event.Grade}</span>
-                              <div  className='changeContainer'>
-                                      <span className='TextChange mr--3' onClick={()=>{DeleteEvent()}}>Eliminar</span>
-                                      <AiFillCloseCircle className='IconBack'onClick={()=>{ DeleteEvent()}}/>
+                  return (
+                      <div className='InfoContainer'>
+                      <div  className='InfoContainer-2' key={Event.id}>
+                        <div className='Est-Container-1' >
+                              <h1 className='Est-Container-1-text'  >Total competidores</h1>
+                              <div className='Est-Container-1-container-count display-none'  >
+                                  <h1 className='Est-Container-1-container-count-text'>{Event.TotalCp}</h1>
                               </div>
+
+                          <div className='Est-Container-1-1' >
+                              <h1 className='Est-Container-1-text' >Total competidores</h1>
+                              <div className='Est-Container-1-container-count' >
+                                  <h1 className='Est-Container-1-container-count-text'>{Event.TotalCp}</h1>
+                              </div>
+                          </div>
+                          <button className='buttonEvent center buttonEventEst' ><span className="tw-500 font-size-15pt  c-orange mr-3px" >+</span><span className="c-orange font-size-10pt" >Añadir otro</span></button>
+                          
+                        </div>
+                        <div className='Est-Container-2'  >
+                          <div className='label-event-Estadistics-Container' >
+                              <figure className='img-container'  >
+                                <img src={Logo} className='img-event'></img>
+                              </figure>
+                              
+                              <div className='p-column'>
+                                <span className='t-white t-b'  >{Event.name}</span>
+                                <span className='t-white t-xs' >{Event.Place}</span>
+                                <span className='t-white t-xs' >{"Grado: "+Event.Grade}</span>
+                                <div  className='changeContainer'>
+                                        <span className='TextChange mr--3' onClick={()=>{DeleteEvent()}}>Eliminar</span>
+                                        <AiFillCloseCircle className='IconBack'onClick={()=>{ DeleteEvent()}}/>
+                                </div>
+                              </div>
+                          </div>
+                          <div className='filter-Horse-Estadistics-Container'  >
+                              <InputGroup className="mb-3" id="p-row">
+                                <InputGroup.Text id="basic-addon1"><Icon.Search /></InputGroup.Text>
+                                <Form.Control
+                                  placeholder="Ingrese el ejemplar"
+                                  aria-label="Ingrese el ejemplar"
+                                  aria-describedby="basic-addon1"
+                                />
+                              </InputGroup>
+                              <button className='buttonEstadistic'>Buscar</button>
+                          </div>
+                          
+                        </div>
+                        <div className='Est-Container-3' >
+                          <ListGroup horizontal defaultActiveKey="#link1">
+                            <ListGroup.Item action eventKey="#link1">Andar P1</ListGroup.Item>
+                            <ListGroup.Item action eventKey="#link2">Andar P2</ListGroup.Item>
+                            <ListGroup.Item action eventKey="#link3">Andar P3</ListGroup.Item>
+                            <ListGroup.Item action eventKey="#link4">Andar P4</ListGroup.Item>
+                          </ListGroup>
+                          <div className='tableContainer'>
+                            <div className='table'>
+                              <Tablehorse />
                             </div>
-                        </div>
-                        <div className='filter-Horse-Estadistics-Container'  >
-                            <InputGroup className="mb-3" id="p-row">
-                              <InputGroup.Text id="basic-addon1"><Icon.Search /></InputGroup.Text>
-                              <Form.Control
-                                placeholder="Ingrese el ejemplar"
-                                aria-label="Ingrese el ejemplar"
-                                aria-describedby="basic-addon1"
-                              />
-                            </InputGroup>
-                            <button className='buttonEstadistic'>Buscar</button>
-                        </div>
-                        
-                      </div>
-                      <div className='Est-Container-3' >
-                        <ListGroup horizontal defaultActiveKey="#link1">
-                          <ListGroup.Item action eventKey="#link1">Andar P1</ListGroup.Item>
-                          <ListGroup.Item action eventKey="#link2">Andar P2</ListGroup.Item>
-                          <ListGroup.Item action eventKey="#link3">Andar P3</ListGroup.Item>
-                          <ListGroup.Item action eventKey="#link4">Andar P4</ListGroup.Item>
-                        </ListGroup>
-                        <div className='tableContainer'>
-                          <div className='table'>
-                            <Tablehorse />
                           </div>
                         </div>
                       </div>
-                    </div>
-                );
-              })}
+                      </div>
+                  );
+                  })}
+
+             </>
+              
           
-        </div>
+        
         :
         <></>
 

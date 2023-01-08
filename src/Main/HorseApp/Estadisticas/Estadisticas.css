@@ -8,15 +8,18 @@
 }
 /*INFO CONTAINER*/
 .InfoContainer{
-  width: calc( 100% - 19rem );
+  width: calc( 100% - 10rem );
   height: 100%;
   background-color: #11342F;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 1rem;
-  min-width: calc( 100vw - 31rem );
-  overflow-x: auto;
+  /* min-width: calc( 100vw - 31rem ); */
+  /* max-width: 1rem !important; */
+  max-width: calc;
+  /* overflow-x: auto; */
+  max-width: 100%;
 }
 .InfoContainer-3{
     height: 100%;
@@ -32,14 +35,15 @@
 }
 .InfoContainer-2{
   height: 100%;
-  background-color: #11342F;
-  width: 100%;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  min-width: calc( 100vw - 32rem );
+    background-color: #11342F;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* min-width: calc( 100vw - 32rem ); */
+    /* max-width: 1000px!important;*/
 }
 
 .Est-Container-1{
@@ -321,8 +325,8 @@
     padding-top: 30pt;
     border-left:1pt solid #FF9300;
     width: 17rem;
-    min-width: 17rem;
-    max-width: 17rem;
+    min-width: 10rem;
+    max-width: 10rem;
     height: 100%;
     background-color: #11342F;
     padding-top: 10rem;
@@ -353,15 +357,18 @@
     overflow-x: auto;
 }
 .InfoContainer {
-  width: calc( 100% - 14rem );
+  width: calc( 100% - 10rem );
   height: 100%;
   background-color: #11342F;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 1rem;
-  min-width: calc( 100vw - 31rem );
-  overflow-x: auto;
+  /* min-width: calc( 100vw - 31rem ); */
+  /* max-width: 1rem !important; */
+  max-width: calc;
+  /* overflow-x: auto; */
+  max-width: 100%;
 }
 .InfoContainer-2 {
   height: 100%;
@@ -372,7 +379,6 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  min-width: calc( 100vw - 23rem );
 }
    
   /* .EstadisticasContainer{
@@ -434,6 +440,9 @@
     flex-direction: column;
     align-items: center;
     min-width: 750px;
+}
+.InfoContainer {
+  min-width: calc( 100% - 10rem );;
 }
 .tableContainer {
   width: 91%;
