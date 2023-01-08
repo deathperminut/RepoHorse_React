@@ -12,9 +12,9 @@
   z-index: 2;
 }
 .VideoPlayer video{
-  border-radius: 20px !important;
+  /* border-radius: 20px !important; */
   width: 100% !important;
-  height: 120% !important;
+  height: 100% !important;
 }
 .VideoPlayer{
   display: flex;
