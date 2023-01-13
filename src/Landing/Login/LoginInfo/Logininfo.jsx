@@ -9,12 +9,20 @@ import { FaHorseHead } from 'react-icons/fa';
 import ToggleSwitch from '../../../Shared/buttonToggle/buttonToggle';
 import Logo from '../../../Sources/Images/Landing/Logo.png';
 import {AiOutlineEye,AiOutlineEyeInvisible} from 'react-icons/ai'
+import { delay } from 'lodash';
+import { AppContext } from '../../../Context';
+import Preloader from '../../../Shared/preloader/preloader';
 // import Button from 'react-bootstrap/Button';
 
 
 
 
 function LoginInfo() {
+
+
+  /* APP CONTEXT */
+
+  let {loading,setLoading,sleep}=React.useContext(AppContext);
 
     
     
@@ -51,8 +59,15 @@ function LoginInfo() {
     }
 
     //METODO EVALUAR FORMULARIO
-    const onSubmit=(event)=>{
+    const onSubmit=async(event)=>{
       event.preventDefault();
+
+      setLoading(true);
+      
+      await sleep(3000);
+
+      setLoading(false);
+
       
       if(Email==="mendezsebas8@gmail.com" && Password==="Carrito_1"){
 
@@ -84,6 +99,16 @@ function LoginInfo() {
    
 
     return (
+      <>
+      {
+        loading ?
+        <>
+        <Preloader></Preloader>
+        </>
+        :
+
+        <></>
+      }
       <div className="LoginInfoContainer">
         <div class="card-body">
         <img  className='Logo Login_Logo' src={Logo} alt=""></img>
@@ -128,6 +153,9 @@ function LoginInfo() {
             </button>
           </div>
       </div>
+
+      </>
+      
     );
   }
 

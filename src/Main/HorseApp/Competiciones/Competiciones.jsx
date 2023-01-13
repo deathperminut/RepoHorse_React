@@ -29,6 +29,9 @@ import { DatePicker } from 'antd';
 /* APP CONTEXT */
 
 import { AppContext } from '../../../Context';
+import Preloader from '../../../Shared/preloader/preloader';
+import { toNumber } from 'lodash';
+import Swal from 'sweetalert2';
 
 
 
@@ -38,16 +41,24 @@ export default function Competiciones() {
   let {
     StadisticVideo,setStatisticVideo, setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
-      , setThumbNails, setThumbnailIsProcessing,loading,setOriginalVideo
+      , setThumbNails, setThumbnailIsProcessing,loading,setOriginalVideo,events,setEvents,sleep,setLoading
   }=React.useContext(AppContext); 
   
 
   /* CALENDAR */
   const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 
-  function onChange(date, dateString) {
-    console.log(date, dateString);
+  function onChange_start(date, dateString) {
+    setEvent({...event,['date_start']:dateString})
+    console.log({...event,['date_start']:dateString});
+
   }
+  function onChange_end(date, dateString) {
+    setEvent({...event,['date_end']:dateString})
+    console.log({...event,['date_end']:dateString});
+
+  }
+  
   /*USE STATES */
   let [CreateButton,setCreateButton]=React.useState(false);
   const [file, setFile] = React.useState(null);
@@ -55,6 +66,55 @@ export default function Competiciones() {
   let [EventSelected,setEventSelected]=React.useState(null);
   let [AddHorseButton,setAddHorseButton]=React.useState(false);
   let [EditHorseButton,setEditHorseButton]=React.useState(false);
+  let [event,setEvent]=React.useState({
+    img:'',
+    name:'',
+    number:'',
+    date_start:'',
+    date_end:'',
+    place:'',
+    description:'',
+    horses:[],
+  })
+
+   /* INPUTS */
+   const CheckInput=(Event,type)=>{
+    console.log(Event.target.value,type);
+    setEvent({
+      ... event,
+      [type]: Event.target.value
+    })
+  }
+
+    /* SELECTS */
+
+    const CheckSelect=(event,type)=>{
+    
+      console.log(event);
+      if(event===null){
+        setEvent({...event,
+          [type]: ""} );
+      }else{
+        setEvent({...event,
+          [type]: event.value} );
+      }
+    }
+  /*FUNCTION IMAGE */
+  function handleChange(e) {
+    setFile(URL.createObjectURL(e.target.files[0]));
+    setEvent({...event,['img']:URL.createObjectURL(e.target.files[0])})
+  }
+  const clickImageInput=()=>{
+    let A_element=$("input")[1];
+    A_element.click();
+  }
+
+    
+  
+
+
+
+
 
   /*EDIT EVENT FUNCTION */
   const EditEventFunction=()=>{
@@ -66,15 +126,7 @@ export default function Competiciones() {
     setEditEvent(false);
   }
 
-  /*FUNCTION IMAGE */
-  function handleChange(e) {
-    console.log(e.target.files);
-    setFile(URL.createObjectURL(e.target.files[0]));
-  }
-  const clickImageInput=()=>{
-    let A_element=$("input")[1];
-    A_element.click();
-  }
+
 
   /*SELECT*/
   let options_andar=[
@@ -110,9 +162,89 @@ export default function Competiciones() {
     setThumbnailIsProcessing(false);
     setOriginalVideo(null);
   },[])
+
+  const AppendEvent=async(EVENT)=>{
+     EVENT.preventDefault();
+
+     let Events=[...events];
+     Events.push({...event,['id']:Events.length});
+     setEvents(Events);
+     setLoading(true);
+     await sleep(1500);
+     setLoading(false);
+     setCreateButton(false);
+     setFile(null);
+     setEvent({
+      img:'',
+      name:'',
+      number:'',
+      date_start:'',
+      date_end:'',
+      place:'',
+      description:'',
+      horses:[],
+     })
+     
+
+  }
+
+  const checkTotalCompetidores=()=>{
+      let count=0;
+      for (var i=0;i<events.length;i++){
+           count=toNumber(count)+toNumber(events[i].number); 
+        }
+      return count
+  }
+
+  const DeleteEvent=(id)=>{
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        )
+      }
+    })
+  }
   
 
   return (
+    <>
+    {
+          loading ?
+          <>
+          <Preloader/>
+          </>
+          :
+
+          <></>
+        }
     <div className='CompetenciasContainer'>
         {EditEvent===false ?
           <>
@@ -120,58 +252,17 @@ export default function Competiciones() {
               <div className='CountContainer'>
                  <span className='TextTitle'>Total competencias</span>
                  <div className='CountsBox'>
-                    <span className='TextCount'>0</span>
+                    <span className='TextCount'>{events.length}</span>
                  </div>
               </div>
               <div className='CountContainer'>
                  <span className='TextTitle'>Total competidores</span>
                  <div className='CountsBox'>
-                    <span className='TextCount'>0.k</span>
+                    <span className='TextCount'>{checkTotalCompetidores()}</span>
                  </div>
               </div>
           </div>
-        {/* <div className='ListEventsContainer ml-1 '>
-             <div className='label-event-Estadistics-Container mr-3' onClick={EditEventFunction}>
-                <figure className='img-container'>
-                  <img src={Logo} className='img-event'></img>
-                </figure>
-                <div className='p-column'>
-                  <span className='t-white t-b'>65° Feria Equina</span>
-                  <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                  <span className='t-white t-xs'>Grado: A</span>
-                </div>
-             </div>
-             <div className='label-event-Estadistics-Container mr-3' onClick={EditEventFunction}>
-                <figure className='img-container'>
-                  <img src={Logo} className='img-event'></img>
-                </figure>
-                <div className='p-column'>
-                  <span className='t-white t-b'>65° Feria Equina</span>
-                  <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                  <span className='t-white t-xs'>Grado: A</span>
-                </div>
-             </div>
-             <div className='label-event-Estadistics-Container mr-3' onClick={EditEventFunction}>
-                <figure className='img-container'>
-                  <img src={Logo} className='img-event'></img>
-                </figure>
-                <div className='p-column'>
-                  <span className='t-white t-b'>65° Feria Equina</span>
-                  <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                  <span className='t-white t-xs'>Grado: A</span>
-                </div>
-             </div>
-             <div className='label-event-Estadistics-Container mr-3' onClick={EditEventFunction}>
-                <figure className='img-container'>
-                  <img src={Logo} className='img-event'></img>
-                </figure>
-                <div className='p-column'>
-                  <span className='t-white t-b'>65° Feria Equina</span>
-                  <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                  <span className='t-white t-xs'>Grado: A</span>
-                </div>
-             </div>
-        </div> */}
+        
         <div className='EventsContainer-2'>
                 
                 <InputGroup className='inputComp'>
@@ -199,384 +290,32 @@ export default function Competiciones() {
                         </div>
                       </div>
                   </Col>
-                  <Col className='EventComponent'>
+                  {events.map(Event=>(
+
+                     console.log(Event),
+
+                    <Col key={Event.id} className='EventComponent'>
                       <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
+                            <img src={Event.img} className='img-event CompetitionsImag'></img>
                         </figure>
                         <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
+                          <span className='t-white t-b t-b2 '>{Event.name}</span>
+                          <span className='t-white t-xs'>{Event.place+' '+Event.date_start}</span>
+                          <span className='t-white t-xs'>{'Competidores: '+Event.number}</span>
                           <div className='d-row flex-end'>
                                <div className='iconEditEvent' onClick={EditEventFunction}>
                                 <RiEdit2Fill className='iconVideoPlay'/>
                                </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
+                               <FaTrash className='option-icon IconPointer' onClick={()=>DeleteEvent(Event.id)}></FaTrash>
                           </div>
                         </div>
                       </div>
                   </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
-                  <Col className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={HorsePhoto} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>Nombre de la feria</span>
-                          <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                          <span className='t-white t-xs'>Grado: A</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer'></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
+
+                  ))}
+                  
+                  
                 </Row>
           </Container>
            {/* <div className='buttonregisterEvent' onClick={()=> setCreateButton(true)}>
@@ -605,36 +344,40 @@ export default function Competiciones() {
                <div className='imageContainer'>
                    {file===null ?
                    <div className="imageInputContainer">
-                      <BiImageAdd className='iconImageFile' onClick={clickImageInput}/>
+                      <BiImageAdd style={{cursor:'pointer'}} className='iconImageFile' onClick={clickImageInput}/>
                       <input style={{visibility:"hidden"}} type="file" onChange={handleChange} />
                    </div>
                    :
-                   <img className='imageEvent'   src={file} onClick={()=>setFile(null)}/> 
+                   <img style={{cursor:'pointer'}} className='imageEvent'   src={file} onClick={()=>{
+                      setFile(null);
+                      setEvent({...event,['img']:''})
+
+                   }}/> 
                    } 
                </div>
                <div className='nameContainer containrow'>
                  <span className="textFormEvent">Nombre</span>
-                 <input className='inputEventForm' type="text" placeholder='ingrese el nombre del evento'/>
+                 <input onChange={(event)=>CheckInput(event,'name')} className='inputEventForm' type="text" placeholder='ingrese el nombre del evento'/>
                </div>
                <div className='competidoresContainer containrow'>
                  <span className="textFormEvent">Competidores</span>
-                 <input className='inputEventForm' type="text" placeholder='# de competidores'/>
+                 <input onChange={(event)=>CheckInput(event,'number')} className='inputEventForm' type="text" placeholder='# de competidores'/>
                </div>
                <div className='dateContainer containrow'>
                  <span className="textFormEvent">fechas</span>
-                 <DatePicker onChange={onChange}  placeholder='Inicio' />
-                 <DatePicker onChange={onChange}  placeholder='Fin'/>
+                 <DatePicker onChange={onChange_start}  placeholder='Inicio' />
+                 <DatePicker onChange={onChange_end}  placeholder='Fin'/>
                </div>
                <div className='placeContainer containrow'>
                  <span className="textFormEvent">Lugar</span>
-                 <input className='inputEventForm' type="text" placeholder='Ingrese el lugar'/>
+                 <input  onChange={(event)=>CheckInput(event,'place')}  className='inputEventForm' type="text" placeholder='Ingrese el lugar'/>
                </div>
                <div className='DescriptionContainer containrow'>
                  <span className="textFormEvent">Description</span>
-                 <textarea className='textareaFormEvent' placeholder='Descripción opcional'/>
+                 <textarea onChange={(event)=>CheckInput(event,'description')}  className='textareaFormEvent' placeholder='Descripción opcional'/>
                </div>
                <div className='containersubmitButton'>
-                  <button className='buttonComp_2'>Crear</button>
+                  <button onClick={AppendEvent} className='buttonComp_2'>Crear</button>
                </div>
            </form>
            </>
@@ -940,9 +683,12 @@ export default function Competiciones() {
           
         </>
         }
+        </div>     
         
         
-        
-    </div>
+
+    </>
+    
+   
   )
 }

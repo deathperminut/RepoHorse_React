@@ -29,6 +29,18 @@ function ProviderContext(props){
     /* LOADING */
     const [loading,setLoading]=React.useState(false);
 
+
+    /* FUNCTIONS */
+    const sleep = async (milliseconds) => {
+        await new Promise(resolve => {
+            return setTimeout(resolve, milliseconds)
+        });
+    };
+
+
+    /* ArratEvents */
+
+    let [events,setEvents]=React.useState([]);
    
 
     
@@ -43,7 +55,7 @@ function ProviderContext(props){
             StadisticVideo,setStatisticVideo,inputVideoFile, setInputVideoFile
             ,videoMeta, setVideoMeta , trimmedVideoFile, setTrimmedVideoFile,URL, setURL, trimIsProcessing, setTrimIsProcessing,rStart, setRstart,rEnd, setRend
             ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,loading,setLoading,originalVideo,setOriginalVideo,cutVideo,setCutVideo,
-            dowload,setDowload
+            dowload,setDowload,sleep,events,setEvents
         }}>
             {props.children}
         </AppContext.Provider>
