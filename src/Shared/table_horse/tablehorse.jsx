@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table';
 import HorsePhoto from '../../Sources/Images//Estadisticas/HorsePhoto.jpg';
 import ReactPlayer from 'react-player';
 import './tablehorse.css';
-import  Video from  '../../Sources/Video/MessiCampeon.mp4';
+// import  Video from  '../../Sources/Video/MessiCampeon.mp4';
 
 export default function Tablehorse() {
   
@@ -150,8 +150,8 @@ export default function Tablehorse() {
             :
             <>
                
-            <ReactPlayer className="VideoPlayer"   controls={true} url={Video} playing={true} width={'100%'} height={'100%'} youtubeConfig={{ playerVars: { showinfo: 1 } }}/>
-            <button className='buttonVideo' onClick={()=>setShowVideo(false)}>X</button>
+            {/* <ReactPlayer className="VideoPlayer"   controls={true} url={Video} playing={true} width={'100%'} height={'100%'} youtubeConfig={{ playerVars: { showinfo: 1 } }}/>
+            <button className='buttonVideo' onClick={()=>setShowVideo(false)}>X</button> */}
 
             </>
           }
