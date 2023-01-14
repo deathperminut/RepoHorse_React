@@ -11,7 +11,7 @@
 .CountsContainer{
     display: flex;
     flex-direction: row;
-    width: 90%;
+    min-width: 1200px !important;
     margin-top: 7px;
     margin-left: 1rem;
 }
@@ -273,8 +273,8 @@
     background-color: #F7B500;
 }
 .RegisterEvent{
-    width: 27rem;
-    height:36rem; 
+    min-width: 450px;
+    min-height: 600px;
     background-color:#134D44 ;
     box-shadow: 4px 22px 54px #695F971A;
     border-radius: 30px;

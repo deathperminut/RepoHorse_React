@@ -113,7 +113,7 @@ export default function Estadisticas() {
                                   <h1 className='Est-Container-1-container-count-text'>{Event.TotalCp}</h1>
                               </div>
                           </div>
-                          <button className='buttonEvent center buttonEventEst' ><span className="tw-500 font-size-15pt  c-orange mr-3px" >+</span><span className="c-orange font-size-10pt" >Añadir otro</span></button>
+                          <button className='buttonEvent center buttonEventEst' ><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px" >+</span><span className="c-orange font-size-10pt" >Añadir otro</span></button>
                           
                         </div>
                         <div className='Est-Container-2'  >
@@ -179,13 +179,13 @@ export default function Estadisticas() {
                 <h1 className='textNeedEvent'>Selecciona un evento</h1>
           </div>
           <div className='SelectEventContainer LabelDisappear'>
-              <button  variant="primary"  className='buttonEvent center' onClick={AppendEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px" >+</span><span className="c-orange font-size-10pt">Añadir Evento</span></button>
+              <button  variant="primary"  className='buttonEvent center' onClick={AppendEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px" >+</span><span className="c-orange font-size-10pt">Añadir Evento</span></button>
           </div>
         </>
         :
         <>
           <div className='SelectEventContainer LabelDisappear'>
-              <button  variant="primary" className='buttonEvent center' onClick={AppendEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px" >+</span><span className="c-orange font-size-10pt">Añadir otro</span></button>
+              <button  variant="primary" className='buttonEvent center' onClick={AppendEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px" >+</span><span className="c-orange font-size-10pt">Añadir otro</span></button>
           </div>
         </>}
         <MyVerticallyCenteredModal

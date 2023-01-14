@@ -78,12 +78,7 @@
   #preloader-wrapper .txt-loading .letters-loading:nth-child(8):before {
     animation-delay: 1.4s;
   }
-  #preloader-wrapper .txt-loading .letters-loading:nth-child(9):before {
-    animation-delay: 1.6s;
-  }
-  #preloader-wrapper .txt-loading .letters-loading:nth-child(10):before {
-    animation-delay: 1.8s;
-  }
+
   
   #preloader-wrapper .preloader .txt-loading .letters-loading {
     color: rgba(250, 250, 250, 0.4);

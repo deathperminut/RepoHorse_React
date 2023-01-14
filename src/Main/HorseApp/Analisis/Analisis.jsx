@@ -161,23 +161,7 @@ export default function Analisis() {
                   }}/>
                     }
                   </div>
-                  {/* <div className='option'>
-                      {StadisticVideo===false ?
-                        <></>
-                        :
-                        <BiReset className='option-icon-video' onClick={()=>{
-                            
-                           if(originalVideo!=null){
-                            setURL(originalVideo);
-                            setRstart(0);
-                             setRend(100);
-                           } 
-                        }
-                         
-                        }></BiReset>
-                        }
-                    
-                  </div> */}
+                  
                   <div className='option'>
                       {StadisticVideo===false ?
                         <></>
@@ -248,10 +232,9 @@ export default function Analisis() {
                 
                 
                 />
-                {/* <button className="FilterButton analisisfilterbutton"><BsFilter className="filterIcon"></BsFilter></button> */}
               </div>
               <div className='buttonEventContainer'>
-                <button className='buttonEvent pl-5'><span className="tw-500 font-size-15pt  c-orange mr-3px">+</span><span className="c-orange font-size-10pt">Nuevo Evento</span></button>
+                <button className='buttonEvent pl-5 btnHoverWhite'><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px ">+</span><span className="c-orange font-size-10pt">Nuevo Evento</span></button>
               </div>
               </>
             :

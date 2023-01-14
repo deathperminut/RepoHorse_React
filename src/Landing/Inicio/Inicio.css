@@ -94,7 +94,7 @@ input {
   border: 2pt solid #FF9300 !important;
   border-radius: 22pt !important;
   box-sizing: border-box !important;
-  color: #ffffff !important;
+  color: #FF9300 !important;
   cursor: pointer !important;
   display: inline-flex !important;
   font-size: 0.8rem !important;
@@ -112,8 +112,8 @@ input {
   text-align: center !important;
 }
 .button_18:hover{
-    border: 2px solid #FF9300  !important;
-    color: #FF9300 !important;
+    border: 2px solid #d99d4c  !important;
+    color: #d99d4c !important;
 }
 
 

@@ -37,7 +37,14 @@
 .active{
 
     background-color: #FF9300;
-    border-radius: 20pt;
+    border-radius: 10pt;
+    padding-top: 6pt;
+    padding-bottom: 6pt;
+    padding-left: 6pt;
+    padding-right: 10pt;
+}
+.inactive{
+    border-radius: 10pt;
     padding-top: 6pt;
     padding-bottom: 6pt;
     padding-left: 6pt;
@@ -98,6 +105,14 @@
    .active{
     
     background-color: transparent;
+    border-radius: 0pt;
+    padding-top: 0pt;
+    padding-bottom: 0pt;
+    padding-left: 0pt;
+    padding-right: 0pt;
+}
+.inactive{
+    
     border-radius: 0pt;
     padding-top: 0pt;
     padding-bottom: 0pt;

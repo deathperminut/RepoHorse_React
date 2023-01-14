@@ -321,6 +321,7 @@ export default function Competiciones() {
            
            :
            <>
+           
            <div className='buttonregisterEvent_2' onClick={()=> setCreateButton(false)}>
                <AiFillPlusCircle className='IconEventButton_2' />
                <div className='textButtonregisterEvent'>
