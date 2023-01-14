@@ -618,8 +618,14 @@
     min-width: 900px !important;
     flex-direction: row !important;
 }
+.overflox-x-hidden{
+    overflow-x: hidden;
+}
 
-
+.check-name{
+    font-size: 1rem;
+    font-weight: 800;
+}
 .tableContainerHorse{
     width: 100%; 
     width: 600px;

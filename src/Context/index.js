@@ -41,6 +41,18 @@ function ProviderContext(props){
     /* ArratEvents */
 
     let [events,setEvents]=React.useState([]);
+    let [eventChoosed,setEventChoosed]=React.useState({
+        img:'',
+        name:'',
+        number:'',
+        date_start:'',
+        date_end:'',
+        place:'',
+        description:'',
+        horses:[],
+       });
+    
+    let [selectEvents,setSelectEvents]=React.useState([]);
    
 
     
@@ -55,7 +67,7 @@ function ProviderContext(props){
             StadisticVideo,setStatisticVideo,inputVideoFile, setInputVideoFile
             ,videoMeta, setVideoMeta , trimmedVideoFile, setTrimmedVideoFile,URL, setURL, trimIsProcessing, setTrimIsProcessing,rStart, setRstart,rEnd, setRend
             ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,loading,setLoading,originalVideo,setOriginalVideo,cutVideo,setCutVideo,
-            dowload,setDowload,sleep,events,setEvents
+            dowload,setDowload,sleep,events,setEvents,eventChoosed,setEventChoosed,selectEvents,setSelectEvents
         }}>
             {props.children}
         </AppContext.Provider>

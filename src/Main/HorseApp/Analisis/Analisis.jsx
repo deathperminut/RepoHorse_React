@@ -58,7 +58,7 @@ export default function Analisis() {
   let {
     StadisticVideo,setStatisticVideo, setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
-      , setThumbNails, setThumbnailIsProcessing,loading,originalVideo,setOriginalVideo,setCutVideo,setDowload
+      , setThumbNails, setThumbnailIsProcessing,loading,originalVideo,setOriginalVideo,setCutVideo,setDowload,selectEvents,setSelectEvents
   }=React.useContext(AppContext); 
 
 
@@ -107,6 +107,7 @@ export default function Analisis() {
     { value: 'Evento 3', label: 'Evento 3' },
     { value: 'Evento 4' ,label: 'Evento 4' } 
   ];
+
 
   /* */
   return (
@@ -249,9 +250,9 @@ export default function Analisis() {
                 />
                 {/* <button className="FilterButton analisisfilterbutton"><BsFilter className="filterIcon"></BsFilter></button> */}
               </div>
-              {/* <div className='buttonEventContainer'>
-                <button className='buttonEvent'><span className="tw-500 font-size-15pt  c-orange mr-3px">+</span><span className="c-orange font-size-10pt">Nuevo Evento</span></button>
-              </div> */}
+              <div className='buttonEventContainer'>
+                <button className='buttonEvent pl-5'><span className="tw-500 font-size-15pt  c-orange mr-3px">+</span><span className="c-orange font-size-10pt">Nuevo Evento</span></button>
+              </div>
               </>
             :
             <>

@@ -1,6 +1,11 @@
 .App {
   text-align: center;
 }
+button:disabled{
+  background-color:rgb(196, 145, 7)  !important;
+  color:white !important;
+  cursor:auto;
+}
 
 .App-logo {
   height: 40vmin;
@@ -149,6 +154,13 @@ ul li {
 .p-column{
   display: flex;
   flex-direction: column;
+}
+.p-column-event{
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+  max-width: 160px;
+
 }
 .t-white{
   color:white; 

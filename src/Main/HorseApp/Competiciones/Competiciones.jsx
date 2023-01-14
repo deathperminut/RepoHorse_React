@@ -41,7 +41,7 @@ export default function Competiciones() {
   let {
     StadisticVideo,setStatisticVideo, setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
-      , setThumbNails, setThumbnailIsProcessing,loading,setOriginalVideo,events,setEvents,sleep,setLoading
+      , setThumbNails, setThumbnailIsProcessing,loading,setOriginalVideo,events,setEvents,sleep,setLoading,eventChoosed,setEventChoosed
   }=React.useContext(AppContext); 
   
 
@@ -76,6 +76,7 @@ export default function Competiciones() {
     description:'',
     horses:[],
   })
+  let [buttonEvent,setButtonEvent]=React.useState(true);
 
    /* INPUTS */
    const CheckInput=(Event,type)=>{
@@ -84,6 +85,11 @@ export default function Competiciones() {
       ... event,
       [type]: Event.target.value
     })
+    checkEvent({
+      ... event,
+      [type]: Event.target.value
+    });
+
   }
 
     /* SELECTS */
@@ -103,6 +109,7 @@ export default function Competiciones() {
   function handleChange(e) {
     setFile(URL.createObjectURL(e.target.files[0]));
     setEvent({...event,['img']:URL.createObjectURL(e.target.files[0])})
+    checkEvent({...event,['img']:URL.createObjectURL(e.target.files[0])});
   }
   const clickImageInput=()=>{
     let A_element=$("input")[1];
@@ -117,7 +124,8 @@ export default function Competiciones() {
 
 
   /*EDIT EVENT FUNCTION */
-  const EditEventFunction=()=>{
+  const EditEventFunction=(Event)=>{
+    setEventChoosed(Event);
     setEditEvent(true);
     setCreateButton(false);
     //setEventSelected(event);
@@ -184,6 +192,7 @@ export default function Competiciones() {
       description:'',
       horses:[],
      })
+     setButtonEvent(true);
      
 
   }
@@ -197,40 +206,30 @@ export default function Competiciones() {
   }
 
   const DeleteEvent=(id)=>{
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-      },
-      buttonsStyling: false
-    })
-    
-    swalWithBootstrapButtons.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
-      reverseButtons: true
-    }).then((result) => {
+    Swal.fire({
+      title: '¿Seguro que desea eliminar el evento?',
+      showDenyButton: true,
+      confirmButtonText: 'Si',
+      denyButtonText: 'No',
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        swalWithBootstrapButtons.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
-      } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Your imaginary file is safe :)',
-          'error'
-        )
+         let ListEvents=[]
+         for (var i=0;i<events.length;i++){
+          if(events[i].id !==id){
+            ListEvents.push(events[i]);
+          }
+         }
+         setEvents(ListEvents);
       }
-    })
+   })
+   }
+
+  const checkEvent=(event)=>{
+    if(event.name !=="" && event.img!=="" && event.number !=="" && event.date_start!=="" && event.date_end!=="" && event.place!==""){
+      setButtonEvent(false);
+    }else{
+      setButtonEvent(true);
+    }
   }
   
 
@@ -299,12 +298,12 @@ export default function Competiciones() {
                         <figure className='img-container CompetitionsImag_2'>
                             <img src={Event.img} className='img-event CompetitionsImag'></img>
                         </figure>
-                        <div className='p-column'>
-                          <span className='t-white t-b t-b2 '>{Event.name}</span>
-                          <span className='t-white t-xs'>{Event.place+' '+Event.date_start}</span>
-                          <span className='t-white t-xs'>{'Competidores: '+Event.number}</span>
+                        <div className='p-column-event'>
+                          <span className='t-white t-b t-b2  overflox-x-hidden'>{Event.name}</span>
+                          <span className='t-white t-xs'>{Event.place+' '}</span>
+                          <span className='t-white t-xs'>{Event.date_start+  ' / ' +Event.date_end}</span>
                           <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={EditEventFunction}>
+                               <div className='iconEditEvent' onClick={()=>EditEventFunction(Event)}>
                                 <RiEdit2Fill className='iconVideoPlay'/>
                                </div>
                                <FaTrash className='option-icon IconPointer' onClick={()=>DeleteEvent(Event.id)}></FaTrash>
@@ -318,13 +317,6 @@ export default function Competiciones() {
                   
                 </Row>
           </Container>
-           {/* <div className='buttonregisterEvent' onClick={()=> setCreateButton(true)}>
-               <AiFillPlusCircle className='IconEventButton' />
-               <div className='textButtonregisterEvent'>
-                  <span className='TextTitle'>Crear</span>
-                  <span className='TextTitle'>nuevo evento</span>
-               </div>
-           </div> */}
            </>
            
            :
@@ -351,13 +343,14 @@ export default function Competiciones() {
                    <img style={{cursor:'pointer'}} className='imageEvent'   src={file} onClick={()=>{
                       setFile(null);
                       setEvent({...event,['img']:''})
+                      setButtonEvent(true);
 
                    }}/> 
                    } 
                </div>
                <div className='nameContainer containrow'>
                  <span className="textFormEvent">Nombre</span>
-                 <input onChange={(event)=>CheckInput(event,'name')} className='inputEventForm' type="text" placeholder='ingrese el nombre del evento'/>
+                 <input onChange={(event)=>CheckInput(event,'name')} maxLength={22} className='inputEventForm' type="text" placeholder='ingrese el nombre del evento'/>
                </div>
                <div className='competidoresContainer containrow'>
                  <span className="textFormEvent">Competidores</span>
@@ -370,14 +363,14 @@ export default function Competiciones() {
                </div>
                <div className='placeContainer containrow'>
                  <span className="textFormEvent">Lugar</span>
-                 <input  onChange={(event)=>CheckInput(event,'place')}  className='inputEventForm' type="text" placeholder='Ingrese el lugar'/>
+                 <input  onChange={(event)=>CheckInput(event,'place')}  maxLength={30} className='inputEventForm' type="text" placeholder='Ingrese el lugar'/>
                </div>
                <div className='DescriptionContainer containrow'>
                  <span className="textFormEvent">Description</span>
                  <textarea onChange={(event)=>CheckInput(event,'description')}  className='textareaFormEvent' placeholder='Descripción opcional'/>
                </div>
                <div className='containersubmitButton'>
-                  <button onClick={AppendEvent} className='buttonComp_2'>Crear</button>
+                  <button disabled={buttonEvent} onClick={AppendEvent} className='buttonComp_2'>Crear</button>
                </div>
            </form>
            </>
@@ -399,12 +392,12 @@ export default function Competiciones() {
          <div className='EventInfoContainer mt-3'>
             <div className='label-event-Estadistics-Container  '>
                 <figure className='img-container'>
-                  <img src={Logo} className='img-event'></img>
+                  <img src={eventChoosed.img} className='img-event'></img>
                 </figure>
-                <div className='p-column'>
-                  <span className='t-white t-b'>65° Feria Equina</span>
-                  <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                  <span className='t-white t-xs'>Grado: A</span>
+                <div className='p-column-event'>
+                  <span className='t-white t-b t-b2  overflox-x-hidden'>{eventChoosed.name}</span>
+                  <span className='t-white t-xs'>{eventChoosed.place}</span>
+                  <span className='t-white t-xs'>{eventChoosed.date_start+  ' / ' +eventChoosed.date_end}</span>
                 </div>
             </div>
             <div className='containerCountsEvent'>
@@ -412,7 +405,7 @@ export default function Competiciones() {
                     <div className='CountContainer'>
                       <span className='TextTitle mb-'>Total competidores</span>
                       <div className='CountsBox w-'>
-                          <span className='TextCount'>200</span>
+                          <span className='TextCount'>{eventChoosed.number}</span>
                       </div>
                     </div>
                     <div className='CountContainer'>
