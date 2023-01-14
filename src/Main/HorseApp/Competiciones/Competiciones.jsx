@@ -283,7 +283,7 @@ export default function Competiciones() {
                   <Col className='EventComponent'>
                       <div className='buttonregisterEvent' onClick={()=> setCreateButton(true)}>
                         <AiFillPlusCircle className='IconEventButton' />
-                        <div className='textButtonregisterEvent'>
+                        <div className='textButtonregisterEvent font-size-1rem'>
                             <span className='TextTitle'>Crear</span>
                             <span className='TextTitle'>nuevo evento</span>
                         </div>
@@ -322,14 +322,14 @@ export default function Competiciones() {
            :
            <>
            
-           <div className='buttonregisterEvent_2' onClick={()=> setCreateButton(false)}>
+           <div className='buttonregisterEvent_2 mt-14px' onClick={()=> setCreateButton(false)}>
                <AiFillPlusCircle className='IconEventButton_2' />
-               <div className='textButtonregisterEvent'>
+               <div className='textButtonregisterEvent font-size-1rem'>
                   <span className='TextTitle'>Crear</span>
                   <span className='TextTitle'>nuevo evento</span>
                </div>
            </div>
-           <form className='RegisterEvent'>
+           <form className='RegisterEvent mt-14px'>
                <div className='CloseContainer'>
                     <span className='TextTitle2'> Crear nuevo evento</span>
                     <AiFillCloseCircle className='CloseIcon' onClick={()=> setCreateButton(false)}/>

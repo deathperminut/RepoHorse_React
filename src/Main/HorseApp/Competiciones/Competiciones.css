@@ -254,7 +254,7 @@
     background-color: #F7B500;
     cursor:pointer;
     border-radius: 20px;
-    width: 16rem;
+    width: 17rem;
     min-width: 16rem;
     height: 5.3rem;
     display: flex;
@@ -278,7 +278,10 @@
     background-color:#134D44 ;
     box-shadow: 4px 22px 54px #695F971A;
     border-radius: 30px;
-    margin-left: 50px;
+    margin-left: 90px;
+}
+.mt-14px{
+    margin-top: 14px;
 }
 .CloseContainer{
     display: flex;
@@ -373,7 +376,7 @@
     color:white;
     width: 110px;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.83rem;
 }
 .containrow .inputEventForm{
     padding-left: 0px !important;
@@ -382,25 +385,29 @@
     padding-left: 1rem !important;
     padding-bottom: 0.5rem;
     border-radius: 19px;
-    border:1px solid #EBEBEB !important;
+    border:none !important;
     color:#7A86A1 !important;
     font-size: 0.8rem;
 }
 .containrow .inputEventForm:focus{
-    border: 2px solid #FF9300 !important;
+    border: none !important;
+}
+.font-size-1rem{
+    font-size: 1rem;
 }
 .textareaFormEvent{
     width: 16rem !important;
-    border:1px solid #EBEBEB !important;
+    border:none !important;
     border-radius: 19px;
     height: 4.4rem;
     padding-left:1rem;
     padding-right:1rem;
+    padding-top: 0.4rem;
     font-size: 0.8rem;
     resize: none;
 }
 .textareaFormEvent:focus{
-    border: 2px solid #FF9300 !important;
+    border: none  !important;
 }
 
 .containrow ::-webkit-scrollbar{
@@ -432,17 +439,17 @@
     padding-left: 0px !important;
 }
 .ant-picker:hover{
-  border: 1px solid #FF9300 !important;
+  border: none !important;
 }
 .ant-picker:focus{
-    border: 1px solid #FF9300 !important;
+    border: none !important;
   }
 
 .ant-picker input::placeholder{
     color:#7A86A1 !important;
 }
 .ant-picker:focus{
-    border:1px solid #FF9300
+    border:none !important;
 }
 
 .EventInfoContainer{
