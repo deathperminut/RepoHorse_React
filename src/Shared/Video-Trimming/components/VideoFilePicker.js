@@ -23,11 +23,15 @@ function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,vid
         Swal.fire({
           icon: 'error',
           title: 'Tipo de archivo invalido',
+          text:'formato valido: mp4'
         })
       }
       
     }else{
-      
+      Swal.fire({
+        icon: 'error',
+        title: 'Asegurate de seleccionar un ejemplar asociado a un evento',
+      })
     }
     
 

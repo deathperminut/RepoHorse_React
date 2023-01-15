@@ -39,6 +39,8 @@ export default function Competiciones() {
 
   /* APPCONTEXT */
   let {
+    SelectEvent,setSelectEvent,
+    SelectHorse,setSelectHorse,
     StadisticVideo,setStatisticVideo, setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
       , setThumbNails, setThumbnailIsProcessing,loading,setOriginalVideo,events,setEvents,sleep,setLoading,eventChoosed,setEventChoosed
@@ -173,6 +175,8 @@ export default function Competiciones() {
     setThumbNails([]);
     setThumbnailIsProcessing(false);
     setOriginalVideo(null);
+    setSelectEvent(false);
+    setSelectHorse(false);
   },[])
 
   const AppendEvent=async(EVENT)=>{
@@ -366,7 +370,7 @@ export default function Competiciones() {
                    {file===null ?
                    <div className="imageInputContainer">
                       <BiImageAdd style={{cursor:'pointer'}} className='iconImageFile' onClick={clickImageInput}/>
-                      <input style={{visibility:"hidden"}} type="file" onChange={handleChange} />
+                      <input style={{visibility:"hidden"}} type="file" onChange={handleChange} accept="image/png, image/gif, image/jpeg" />
                    </div>
                    :
                    <img style={{cursor:'pointer'}} className='imageEvent'   src={file} onClick={()=>{
@@ -505,7 +509,7 @@ export default function Competiciones() {
                           {file===null ?
                           <div className="imageInputContainerHorse">
                               <BiImageAdd className='iconImageFile' onClick={clickImageInput}/>
-                              <input style={{visibility:"hidden"}} type="file" onChange={handleChange} />
+                              <input style={{visibility:"hidden"}} type="file" onChange={handleChange}  accept="image/png, image/gif, image/jpeg"/>
                           </div>
                           :
                           <img className='imageEventHorse'   src={file} onClick={()=>setFile(null)}/> 
