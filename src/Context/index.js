@@ -36,6 +36,10 @@ function ProviderContext(props){
             return setTimeout(resolve, milliseconds)
         });
     };
+    
+    /* FOR VIDEO EDITOR INFO */
+    let [SelectEvent,setSelectEvent]=React.useState(false);
+    let [SelectHorse,setSelectHorse]=React.useState(false);
 
 
     /* ArratEvents */
@@ -91,7 +95,8 @@ function ProviderContext(props){
             StadisticVideo,setStatisticVideo,inputVideoFile, setInputVideoFile
             ,videoMeta, setVideoMeta , trimmedVideoFile, setTrimmedVideoFile,URL, setURL, trimIsProcessing, setTrimIsProcessing,rStart, setRstart,rEnd, setRend
             ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,loading,setLoading,originalVideo,setOriginalVideo,cutVideo,setCutVideo,
-            dowload,loadEventsForSelect,setDowload,sleep,events,setEvents,eventChoosed,setEventChoosed,selectEvents,setSelectEvents,FindEventId
+            dowload,loadEventsForSelect,setDowload,sleep,events,setEvents,eventChoosed,setEventChoosed,selectEvents,setSelectEvents,FindEventId,SelectEvent,setSelectEvent
+            ,SelectHorse,setSelectHorse
         }}>
             {props.children}
         </AppContext.Provider>

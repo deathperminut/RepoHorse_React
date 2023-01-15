@@ -42,18 +42,18 @@ function ForgetPassword() {
     <>
          <div  className="LoginContainer" style={{backgroundImage: `url(${logo})`,backgroundSize:'cover'}}>
                 <div className="ForgetContainer bottom-0">
-                    <div class="card-body">
+                    <div className="card-body">
                     <img  className='Logo Login_Logo' src={Logo} alt=""></img>
-                    <form   action="" class="FormContainer">
-                      <div class="mb-3">
-                        <div class="col-12">
-                          <div class="form-floating inner-addon left-addon">
-                            <input   type="text" autocomplete="off" class="form-control INPUT_DATA"  id="correo" placeholder="Correo"/>
-                            <label class="c-orange op-1 textForm">Correo de recuperación</label>
+                    <form   action="" className="FormContainer">
+                      <div className="mb-3">
+                        <div className="col-12">
+                          <div className="form-floating inner-addon left-addon">
+                            <input   type="text" autocomplete="off" className="form-control INPUT_DATA"  id="correo" placeholder="Correo"/>
+                            <label className="c-orange op-1 textForm">Correo de recuperación</label>
                           </div>
                         </div>
                       </div>
-                      <div class="">
+                      <div>
                         <button className="ButtonLogin mt-big" type="submit">
                           <span className="textForm ">Recuperar Contraseña</span>
                         </button>

@@ -49,28 +49,28 @@ export default function ChangePassword() {
     <>
      <div  className="LoginContainer" style={{backgroundImage: `url(${logo})`,backgroundSize:'cover'}}>
                 <div className="ForgetContainer bottom-0">
-                    <div class="card-body">
+                    <div className="card-body">
                     <img  className='Logo Login_Logo' src={Logo} alt=""></img>
-                    <form   action="" class="FormContainer">
-                      <div class="mb-3">
-                        <div class="col-12">
-                          <div class="form-floating inner-addon left-addon">
-                            <input   type="password" autocomplete="off" class="form-control INPUT_DATA"  id="correo" placeholder="Correo"/>
-                            <label class="c-orange op-1 textForm">Nueva contraseña</label>
+                    <form   action="" className="FormContainer">
+                      <div className="mb-3">
+                        <div className="col-12">
+                          <div className="form-floating inner-addon left-addon">
+                            <input   type="password" autocomplete="off" className="form-control INPUT_DATA"  id="correo" placeholder="Correo"/>
+                            <label className="c-orange op-1 textForm">Nueva contraseña</label>
                             <AiOutlineEye className='eye-password'></AiOutlineEye>
                           </div>
                         </div>
                       </div>
-                      <div class="mb-3">
-                        <div class="col-12">
-                          <div class="form-floating inner-addon left-addon">
-                            <input   type="password" autocomplete="off" class="form-control INPUT_DATA"  id="correo" placeholder="Correo"/>
-                            <label class="c-orange op-1 textForm">Repetir contraseña</label>
+                      <div className="mb-3">
+                        <div className="col-12">
+                          <div className="form-floating inner-addon left-addon">
+                            <input   type="password" autocomplete="off" className="form-control INPUT_DATA"  id="correo" placeholder="Correo"/>
+                            <label className="c-orange op-1 textForm">Repetir contraseña</label>
                             <AiOutlineEye className='eye-password'></AiOutlineEye>
                           </div>
                         </div>
                       </div>
-                      <div class="">
+                      <div className="">
                         <button className="ButtonLogin mt-big" type="submit">
                           <span className="textForm ">Cambiar Contraseña</span>
                         </button>

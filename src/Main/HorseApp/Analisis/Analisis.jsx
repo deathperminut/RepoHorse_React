@@ -64,16 +64,15 @@ export default function Analisis() {
  
   /* CONTEXT */
   let {
+    SelectEvent,setSelectEvent,
+    SelectHorse,setSelectHorse,
     StadisticVideo,setStatisticVideo, setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
       , setThumbNails, setThumbnailIsProcessing,loading,loadEventsForSelect,originalVideo,setOriginalVideo,setCutVideo,setDowload,selectEvents,events,FindEventId
   }=React.useContext(AppContext); 
 
-
   
   /* REACT UseStates */
-  let [SelectEvent,setSelectEvent]=React.useState(false);
-  let [SelectHorse,setSelectHorse]=React.useState(false);
   let [Category,setCategory]=React.useState('P1');
   let [Choose,setChoose]=React.useState(null);
 
@@ -302,7 +301,7 @@ export default function Analisis() {
 
                 <div className='ListInCompetitionContainer'>
                     <div className='ListInCompetitionTitleContainer'>
-                        <span className='TitleInCompetition'>En competencia</span><span className='NumberInCompetition'>5</span>
+                        <span className='TitleInCompetition'>Sin procesar</span><span className='NumberInCompetition'>5</span>
                     </div>
                 </div>
                 <div className='ListHorseContainer'>

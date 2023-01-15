@@ -29,7 +29,6 @@ export async function getServerSideProps(context) {
 
   context.res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
   context.res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
-  console.log("Se hace justicia",{ isSecureContext: context });
   return {
     props: {}
   };

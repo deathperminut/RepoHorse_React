@@ -29,6 +29,8 @@ export default function Estadisticas() {
 
   /* APP CONTEXT */
   let {
+    setSelectEvent,
+    setSelectHorse,
     StadisticVideo,setStatisticVideo, setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
       , setThumbNails, setThumbnailIsProcessing,loading,setOriginalVideo,FindEventId
@@ -109,6 +111,8 @@ export default function Estadisticas() {
     setThumbNails([]);
     setThumbnailIsProcessing(false);
     setOriginalVideo(null);
+    setSelectEvent(false);
+    setSelectHorse(false);
   },[])
   
 

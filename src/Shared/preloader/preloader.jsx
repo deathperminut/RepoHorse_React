@@ -7,8 +7,8 @@ import './preloader.css';
 export default function Preloader() {
   return (
     <div id="preloader-wrapper">
-    <div class="w-auto d-flex flex-column justify-content-center align-items-center align-self-center">
-      <div id="preloader" class="preloader"></div>
+    <div className="w-auto d-flex flex-column justify-content-center align-items-center align-self-center">
+      <div id="preloader" className="preloader"></div>
       <DotLoader
             color={"#FF9300"}
             loading={true}
@@ -16,29 +16,29 @@ export default function Preloader() {
             aria-label="Loading Spinner"
             data-testid="loader"
           />
-      <div class="txt-loading">
-        <span data-text-preloader="C" class="letters-loading">
+      <div className="txt-loading">
+        <span data-text-preloader="C" className="letters-loading">
           C
         </span>
-        <span data-text-preloader="A" class="letters-loading">
+        <span data-text-preloader="A" className="letters-loading">
           A
         </span>
-        <span data-text-preloader="R" class="letters-loading">
+        <span data-text-preloader="R" className="letters-loading">
           R
         </span>
-        <span data-text-preloader="G" class="letters-loading">
+        <span data-text-preloader="G" className="letters-loading">
           G
         </span>
-        <span data-text-preloader="A" class="letters-loading">
+        <span data-text-preloader="A" className="letters-loading">
           A
         </span>
-        <span data-text-preloader="N" class="letters-loading">
+        <span data-text-preloader="N" className="letters-loading">
           N
         </span>
-        <span data-text-preloader="D" class="letters-loading">
+        <span data-text-preloader="D" className="letters-loading">
           D
         </span>
-        <span data-text-preloader="O" class="letters-loading">
+        <span data-text-preloader="O" className="letters-loading">
           O
         </span>
 

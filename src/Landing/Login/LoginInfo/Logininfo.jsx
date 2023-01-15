@@ -110,33 +110,33 @@ function LoginInfo() {
         <></>
       }
       <div className="LoginInfoContainer">
-        <div class="card-body">
+        <div className="card-body">
         <img  className='Logo Login_Logo' src={Logo} alt=""></img>
-        <form onSubmit={onSubmit}  action="" class="FormContainer">
-          <div class="mb-3">
-            <div class="col-12">
-              <div class="form-floating inner-addon left-addon">
-                <input onChange={onChangeEmail}  type="email" autocomplete="off" class="form-control INPUT_DATA" value={Email} id="correo" placeholder="Correo"/>
-                <label class="c-orange op-1 textForm">Usuario</label>
+        <form onSubmit={onSubmit}  action="" className="FormContainer">
+          <div className="mb-3">
+            <div className="col-12">
+              <div className="form-floating inner-addon left-addon">
+                <input onChange={onChangeEmail}  type="email" autocomplete="off" className="form-control INPUT_DATA" value={Email} id="correo" placeholder="Correo"/>
+                <label className="c-orange op-1 textForm">Usuario</label>
               </div>
             </div>
           </div>
           <div >
-            <div class="col-12">
-              <div class="form-floating inner-addon right-addon">
-                <input onChange={onChangePassword} type="password"  class="form-control INPUT_DATA c-orange op-1"  value={Password} id="floatingPassword" placeholder="Password"
+            <div className="col-12">
+              <div className="form-floating inner-addon right-addon">
+                <input onChange={onChangePassword} type="password"  className="form-control INPUT_DATA c-orange op-1"  value={Password} id="floatingPassword" placeholder="Password"
                   />
-                <label class="c-orange op-1 textForm">Contraseña</label>
+                <label className="c-orange op-1 textForm">Contraseña</label>
                 <AiOutlineEye className='eye-password'></AiOutlineEye>
               </div>
             </div>
           </div>
-          <div class="mt-4">
-            <div class="col-12">
+          <div className="mt-4">
+            <div className="col-12">
             <ToggleSwitch label="Recordarme" />
             </div>
           </div>
-          <div class="">
+          <div className="">
             <button className="ButtonLogin" type="submit">
               <span className="textForm">Ingresar</span>
             </button>
@@ -147,7 +147,7 @@ function LoginInfo() {
       <div className="LinkedContainer">
         <Link id="LinkedLabel" to='/Landing/ForgetPassword'><span className="LinkedText textForm"  size="sm">Olvide mi Contraseña</span></Link>
       </div>
-          <div class="">
+          <div className="">
             <button className="ButtonCount" type="button" onClick={GotoRegister}>
               <span className="textForm">Solicitar una cuenta</span>
             </button>

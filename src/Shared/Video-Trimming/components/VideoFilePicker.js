@@ -2,15 +2,34 @@ import React from "react";
 import Dropzone from "react-dropzone";
 import {BsPlayBtn} from 'react-icons/bs';
 import {MdOutlineDriveFolderUpload} from 'react-icons/md';
+import Swal from "sweetalert2";
 import { AppContext } from "../../../Context";
 
 
 function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,videoSrc, children }) {
 
+
+  /* USE CONTEXT */
+  let {SelectEvent,setSelectEvent,
+    SelectHorse,setSelectHorse}=React.useContext(AppContext);
+
   const fileInputChange=(event)=>{
-    console.log("dropzone",event);
-    let Object={target:{files:event}}
-    handleChange(Object);
+     
+    if(SelectEvent && SelectHorse){
+      if(event[0].type==="video/mp4"){
+        let Object={target:{files:event}}
+        handleChange(Object);
+      }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Tipo de archivo invalido',
+        })
+      }
+      
+    }else{
+      
+    }
+    
 
   }
 
