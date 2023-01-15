@@ -74,6 +74,7 @@ export default function Analisis() {
   /* REACT UseStates */
   let [SelectEvent,setSelectEvent]=React.useState(false);
   let [SelectHorse,setSelectHorse]=React.useState(false);
+  let [Category,setCategory]=React.useState('Andar');
   /* VIDEO */
   let [file,setFile]=React.useState(null);
 
@@ -115,6 +116,11 @@ export default function Analisis() {
     { value: 'Evento 3', label: 'Evento 3' },
     { value: 'Evento 4' ,label: 'Evento 4' } 
   ];
+
+  /* CHANGE DROP */
+  const changeDrop=(event)=>{
+    setCategory(event);
+  }
 
 
   /* */
@@ -253,9 +259,9 @@ export default function Analisis() {
                   <img src={HorsePhoto} className='img-event'></img>
                 </figure>
                 <div className='p-column'>
-                  <span className='t-white t-b font-size'>65° Feria Equina</span>
-                  <span className='t-white t-xs middle-size '>Manizales -6 de enero de 2022</span>
-                  <span className='t-white t-xs middle-size'>Grado: A</span>
+                  <span className='t-white t-b font-size bold-size'>65° Feria Equina</span>
+                  <span className='t-white t-xs middle-size middle-size'>Manizales -6 de enero de 2022</span>
+                  <span className='t-white t-xs middle-size middle-size'>Grado: A</span>
                   <div  className='changeContainer'>
                       <span className='TextChange' onClick={()=>{
                    setSelectEvent(false);
@@ -272,20 +278,21 @@ export default function Analisis() {
 
 
             <div className='display-row mt-3 middle-size'>
-                <InputGroup className="mt-3 ">
-                  <Form.Control aria-label="TextInput middle-size" placeholder="ejemplar"/>
+                <InputGroup onChange={changeDrop}  className="mt-3 ">
+                  <Form.Control  aria-label="TextInput middle-size" placeholder="ejemplar"/>
 
                     <DropdownButton
                       variant="outline-secondary"
-                      title="Andar"
                       id="input-group-dropdown-2"
                       align="end"
-                      placeholder='Ingrese ejemplar'
+                      title={Category}
+                      onChange={changeDrop}
                     >
-                    <Dropdown.Item href="#">P1</Dropdown.Item>
-                    <Dropdown.Item href="#">P2</Dropdown.Item>
-                    <Dropdown.Item href="#">P3</Dropdown.Item>
-                    <Dropdown.Item href="#">P4</Dropdown.Item>
+                    <Dropdown.Item href="#"  onClick={()=>changeDrop('P1')}>P1</Dropdown.Item>
+                    <Dropdown.Item href="#"  onClick={()=>changeDrop('P2')}>P2</Dropdown.Item>
+                    <Dropdown.Item href="#"  onClick={()=>changeDrop('P3')}>P3</Dropdown.Item>
+                    <Dropdown.Item href="#"  onClick={()=>changeDrop('P4')}>P4</Dropdown.Item>
+                    <Dropdown.Item href="#"  onClick={()=>changeDrop('Andar')}>Todos</Dropdown.Item>
                   </DropdownButton>
                 </InputGroup>
                 <button className='buttonComp btn-analizar'>Buscar</button>
