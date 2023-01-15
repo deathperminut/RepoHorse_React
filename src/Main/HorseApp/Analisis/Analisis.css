@@ -326,12 +326,14 @@
 .display-row #input-group-dropdown-2:hover{
     background: none !important;
     color:#000000!important;
+    font-size: 11px;
 }
 .pl-5{
     padding-left: 5px;
 }
 .display-row #input-group-dropdown-2{
     color:#000000 !important;
+    font-size: 11px;
 }
 .btn.show{
     background: none !important;
@@ -339,6 +341,7 @@
 }
 .dropdown-item{
     color:#000000!important;
+    font-size: 12px !important;
 }
 .display-row{
     display: flex;
@@ -527,6 +530,7 @@
 
 .SelectContainer  .display-row .input-group .form-control{
     color:#7A86A1 !important;
+    font-size: 11px;
 } 
 
 

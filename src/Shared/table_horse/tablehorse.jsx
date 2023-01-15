@@ -127,12 +127,12 @@ export default function Tablehorse() {
                                 return(
                                     
                                     <tr key={Horse.id}>
-                                        <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>{Horse.name}</span></td>
-                                        <td className='b-none text-table'>{Horse.Edad}</td>
-                                        <td className='b-none text-table'>{Horse.Andar}</td>
-                                        <td className='b-none text-table'>{Horse.Tipo}</td>
-                                        <td className='b-none'><span className='BPMData'>{Horse.BPM}</span></td>
-                                        <td className='b-none'><span className='PointData'>{Horse.Puntos}</span></td>
+                                        <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>{Horse.name}</span></td>
+                                        <td className='b-none text-table second-size'>{Horse.Edad}</td>
+                                        <td className='b-none text-table second-size '>{Horse.Andar}</td>
+                                        <td className='b-none text-table second-size '>{Horse.Tipo}</td>
+                                        <td className='b-none'><span className='BPMData middle-size'>{Horse.BPM}</span></td>
+                                        <td className='b-none'><span className='PointData middle-size'>{Horse.Puntos}</span></td>
                                         <td className='b-none' onClick={()=>setShowVideo(true)}>
                                             <div className='iconVideoPlayContainer'>
                                             <BsFillPlayFill className='iconVideoPlay'/>

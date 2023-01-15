@@ -102,18 +102,18 @@ export default function Estadisticas() {
                       <div className='InfoContainer'>
                       <div  className='InfoContainer-2' key={Event.id}>
                         <div className='Est-Container-1' >
-                              <h1 className='Est-Container-1-text'  >Total competidores</h1>
+                              <h1 className='Est-Container-1-text bold-size margin-left-15px'  >Total competidores</h1>
                               <div className='Est-Container-1-container-count display-none'  >
-                                  <h1 className='Est-Container-1-container-count-text'>{Event.TotalCp}</h1>
+                                  <h1 className='Est-Container-1-container-count-text big-size'>{Event.TotalCp}</h1>
                               </div>
 
                           <div className='Est-Container-1-1' >
-                              <h1 className='Est-Container-1-text' >Total competidores</h1>
+                              <h1 className='Est-Container-1-text bold-size margin-left-15px bold-size' >Total competidores</h1>
                               <div className='Est-Container-1-container-count' >
-                                  <h1 className='Est-Container-1-container-count-text'>{Event.TotalCp}</h1>
+                                  <h1 className='Est-Container-1-container-count-text big-size'>{Event.TotalCp}</h1>
                               </div>
                           </div>
-                          <button className='buttonEvent center buttonEventEst' ><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px" >+</span><span className="c-orange font-size-10pt" >Añadir otro</span></button>
+                          <button className='buttonEvent center buttonEventEst' ><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px" >+</span><span className="c-orange font-size-10pt middle-size" >Añadir otro</span></button>
                           
                         </div>
                         <div className='Est-Container-2'  >
@@ -141,7 +141,7 @@ export default function Estadisticas() {
                                   aria-describedby="basic-addon1"
                                 />
                               </InputGroup>
-                              <button className='buttonEstadistic'>Buscar</button>
+                              <button className='buttonEstadistic middle-size '>Buscar</button>
                           </div>
                           
                         </div>
@@ -176,16 +176,16 @@ export default function Estadisticas() {
         {ListEvents.length===0 ?
         <>
           <div className='InfoContainer-3'>
-                <h1 className='textNeedEvent'>Selecciona un evento</h1>
+                <h1 className='textNeedEvent bold-size'>Selecciona un evento</h1>
           </div>
           <div className='SelectEventContainer LabelDisappear'>
-              <button  variant="primary"  className='buttonEvent center btnHoverWhite' onClick={AppendEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px" >+</span><span className="c-orange font-size-10pt">Añadir Evento</span></button>
+              <button  variant="primary"  className='buttonEvent center btnHoverWhite' onClick={AppendEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px" >+</span><span className="c-orange font-size-10pt middle-size">Añadir Evento</span></button>
           </div>
         </>
         :
         <>
           <div className='SelectEventContainer LabelDisappear'>
-              <button  variant="primary" className='buttonEvent center btnHoverWhite' onClick={AppendEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px" >+</span><span className="c-orange font-size-10pt">Añadir otro</span></button>
+              <button  variant="primary" className='buttonEvent center btnHoverWhite' onClick={AppendEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px" >+</span><span className="c-orange font-size-10pt middle-size">Añadir otro</span></button>
           </div>
         </>}
         <MyVerticallyCenteredModal

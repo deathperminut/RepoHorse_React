@@ -22,30 +22,30 @@ function OffCanvas() {
             <img  className='LogoOffcanvas_only' src={Logo_only} alt="hola"></img>
             <img  className='LogoOffcanvas' src={Logo} alt=""></img>
             <ul className="ulOffcanvas">
-                <li className="sectionOffcanvas">
+                <li className="sectionOffcanvas ">
                 <NavLink
                     to="/Main/HorseApp/Analisis"
                     className={({ isActive }) => (isActive ? 'active' : 'inactive')}
                 >
-                    <MdVideoSettings className="iconOffCanvas"/><span className="textOffcanvas">Analizar</span>
+                    <MdVideoSettings className="iconOffCanvas"/><span className="textOffcanvas middle-size">Analizar</span>
                 </NavLink>
                 </li>
-                <li className="sectionOffcanvas">
+                <li className="sectionOffcanvas ">
                 <NavLink
                     to="/Main/HorseApp/Competiciones"
                    
                     className={({ isActive }) => (isActive ? 'active' : 'inactive')}
                     
                 >
-                    <GiHorseshoe className="iconOffCanvas"/><span className="textOffcanvas">Competencias y caballos</span>
+                    <GiHorseshoe className="iconOffCanvas"/><span className="textOffcanvas middle-size">Competencias y caballos</span>
                 </NavLink>
                 </li>
-                <li className="sectionOffcanvas">
+                <li className="sectionOffcanvas ">
                 <NavLink
                     to="/Main/HorseApp/Estadisticas"
                     className={({ isActive }) => (isActive ? 'active' : 'inactive')}
                 >
-                    <GoGraph className="iconOffCanvas"/><span className="textOffcanvas">Estadisticas</span>
+                    <GoGraph className="iconOffCanvas"/><span className="textOffcanvas middle-size">Estadisticas</span>
                 </NavLink>
                 </li>
                 

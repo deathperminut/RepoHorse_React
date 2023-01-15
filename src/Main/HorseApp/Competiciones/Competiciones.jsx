@@ -249,13 +249,13 @@ export default function Competiciones() {
           <>
           <div className='CountsContainer'>
               <div className='CountContainer'>
-                 <span className='TextTitle'>Total competencias</span>
+                 <span className='TextTitle bold-size '>Total competencias</span>
                  <div className='CountsBox'>
-                    <span className='TextCount'>{events.length}</span>
+                    <span className='TextCount '>{events.length}</span>
                  </div>
               </div>
               <div className='CountContainer'>
-                 <span className='TextTitle'>Total competidores</span>
+                 <span className='TextTitle bold-size'>Total competidores</span>
                  <div className='CountsBox'>
                     <span className='TextCount'>{checkTotalCompetidores()}</span>
                  </div>
@@ -264,7 +264,7 @@ export default function Competiciones() {
         
         <div className='EventsContainer-2'>
                 
-                <InputGroup className='inputComp'>
+                <InputGroup className='inputComp middle-size'>
                   <InputGroup.Text id="basic-addon1"><Icon.Search/></InputGroup.Text>
                   <Form.Control
                     placeholder="Buscar competición"
@@ -272,7 +272,7 @@ export default function Competiciones() {
                     aria-describedby="basic-addon1"
                   />
                 </InputGroup>
-                <button className='buttonComp'>Buscar</button>
+                <button className='buttonComp middle-size'>Buscar</button>
         </div>
         <div className='RegisterEventContainer'>
            {CreateButton===false 
@@ -284,8 +284,8 @@ export default function Competiciones() {
                       <div className='buttonregisterEvent' onClick={()=> setCreateButton(true)}>
                         <AiFillPlusCircle className='IconEventButton' />
                         <div className='textButtonregisterEvent font-size-1rem'>
-                            <span className='TextTitle'>Crear</span>
-                            <span className='TextTitle'>nuevo evento</span>
+                            <span className='TextTitle bold-size'>Crear</span>
+                            <span className='TextTitle bold-size'>nuevo evento</span>
                         </div>
                       </div>
                   </Col>
@@ -350,25 +350,25 @@ export default function Competiciones() {
                    } 
                </div>
                <div className='nameContainer containrow'>
-                 <span className="textFormEvent">Nombre</span>
-                 <input onChange={(event)=>CheckInput(event,'name')} maxLength={22} className='inputEventForm' type="text" placeholder='ingrese el nombre del evento'/>
+                 <span className="textFormEvent second-size">Nombre</span>
+                 <input onChange={(event)=>CheckInput(event,'name')} maxLength={22} className='inputEventForm second-size' type="text" placeholder='ingrese el nombre del evento'/>
                </div>
                <div className='competidoresContainer containrow'>
-                 <span className="textFormEvent">Competidores</span>
-                 <input onChange={(event)=>CheckInput(event,'number')} className='inputEventForm' type="text" placeholder='# de competidores'/>
+                 <span className="textFormEvent second-size">Competidores</span>
+                 <input onChange={(event)=>CheckInput(event,'number')} className='inputEventForm second-size' type="text" placeholder='# de competidores'/>
                </div>
-               <div className='dateContainer containrow'>
-                 <span className="textFormEvent">fechas</span>
+               <div className='dateContainer containrow second-size'>
+                 <span className="textFormEvent second-size ">fechas</span>
                  <DatePicker onChange={onChange_start}  placeholder='Inicio' />
                  <DatePicker onChange={onChange_end}  placeholder='Fin'/>
                </div>
                <div className='placeContainer containrow'>
-                 <span className="textFormEvent">Lugar</span>
-                 <input  onChange={(event)=>CheckInput(event,'place')}  maxLength={30} className='inputEventForm' type="text" placeholder='Ingrese el lugar'/>
+                 <span className="textFormEvent second-size">Lugar</span>
+                 <input  onChange={(event)=>CheckInput(event,'place')}  maxLength={30} className='inputEventForm second-size' type="text" placeholder='Ingrese el lugar'/>
                </div>
                <div className='DescriptionContainer containrow'>
-                 <span className="textFormEvent">Description</span>
-                 <textarea onChange={(event)=>CheckInput(event,'description')}  className='textareaFormEvent' placeholder='Descripción opcional'/>
+                 <span className="textFormEvent second-size">Descripción</span>
+                 <textarea onChange={(event)=>CheckInput(event,'description')}  className='textareaFormEvent second-size' placeholder='Descripción opcional'/>
                </div>
                <div className='containersubmitButton'>
                   <button disabled={buttonEvent} onClick={AppendEvent} className='buttonComp_2'>Crear</button>
@@ -402,20 +402,20 @@ export default function Competiciones() {
                 </div>
             </div>
             <div className='containerCountsEvent'>
-                  <div className='CountsContainer'>
-                    <div className='CountContainer'>
+                  <div className='CountsContainer '>
+                    <div className='CountContainer align-center margin-left-90px'>
                       <span className='TextTitle mb-'>Total competidores</span>
                       <div className='CountsBox w-'>
                           <span className='TextCount'>{eventChoosed.number}</span>
                       </div>
                     </div>
-                    <div className='CountContainer'>
+                    <div className='CountContainer align-center'>
                       <span className='TextTitle mb-'>Agregados</span>
                       <div className='CountsBox w-'>
                           <span className='TextCount'>1</span>
                       </div>
                     </div>
-                    <div className='CountContainer'>
+                    <div className='CountContainer align-center'>
                       <span className='TextTitle mb-'>Sin registrar</span>
                       <div className='CountsBox w-'>
                           <span className='TextCount'>199</span>
@@ -426,7 +426,7 @@ export default function Competiciones() {
 
          </div>
          <div className='EventsContainer HorseFilter '>
-                <InputGroup className='inputComp'>
+                <InputGroup className='inputComp middle-size'>
                   <InputGroup.Text id="basic-addon1"><Icon.Search/></InputGroup.Text>
                   <Form.Control
                     placeholder="Buscar ejemplar "
@@ -434,7 +434,7 @@ export default function Competiciones() {
                     aria-describedby="basic-addon1"
                   />
                 </InputGroup>
-                <button className='buttonComp'>Buscar</button>
+                <button className='buttonComp middle-size'>Buscar</button>
                 <ListGroup horizontal defaultActiveKey="#link1" className='ListAndar'>
                           <ListGroup.Item action eventKey="#link1">Andar P1</ListGroup.Item>
                           <ListGroup.Item action eventKey="#link2">Andar P2</ListGroup.Item>
@@ -448,24 +448,24 @@ export default function Competiciones() {
                <div className='buttonregisterEvent buttonAddHorse' onClick={()=> setAddHorseButton(true)}>
                     <AiFillPlusCircle className='IconEventButton' />
                     <div className='textButtonregisterEvent'>
-                        <span className='TextTitle'>Añadir</span>
-                        <span className='TextTitle'>Ejemplar</span>
+                        <span className='TextTitle bold-size'>Añadir</span>
+                        <span className='TextTitle bold-size'>Ejemplar</span>
                     </div>
                 </div>
                </>
                :
                <>
-               <form className='RegisterHorseForm'>
+               <form className='RegisterHorseForm mr-18px'>
                       <div className='CloseContainerHorse'>
                             {EditHorseButton===true  ?
                               <>
-                               <span className='TextTitle2'>Editar  participante</span>
+                               <span className='TextTitle2 bold-size'>Editar  participante</span>
                                <AiFillCloseCircle className='CloseAddIcon_2' onClick={ResetAddHorse}/>
                               </>
                               
                             :
                             <>
-                              <span className='TextTitle2'>Agregar participante</span>
+                              <span className='TextTitle2 bold-size'>Agregar participante</span>
                               <AiFillCloseCircle className='CloseAddIcon' onClick={ResetAddHorse}/>
                             </>
                               
@@ -484,30 +484,30 @@ export default function Competiciones() {
                           } 
                       </div>
                       <div className='nameContainer containrowHorse'>
-                        <span className="textFormEvent">Nombre</span>
-                        <input className='inputEventForm' type="text" placeholder='Nombre del ejemplar'/>
+                        <span className="textFormEvent second-size">Nombre</span>
+                        <input className='inputEventForm second-size' type="text" placeholder='Nombre del ejemplar'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
-                        <span className="textFormEvent"># Competidor</span>
-                        <input className='inputEventForm' type="text" placeholder='# del competidor'/>
+                        <span className="textFormEvent second-size"># Competidor</span>
+                        <input className='inputEventForm second-size' type="text" placeholder='# del competidor'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
-                        <span className="textFormEvent">Caballista</span>
-                        <input className='inputEventForm' type="text" placeholder='# del competidor'/>
+                        <span className="textFormEvent second-size">Caballista</span>
+                        <input className='inputEventForm second-size' type="text" placeholder='# del competidor'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
-                        <span className="textFormEvent">Edad</span>
-                        <input className='inputEventForm' type="text" placeholder='Edad'/>
+                        <span className="textFormEvent second-size">Edad</span>
+                        <input className='inputEventForm second-size' type="text" placeholder='Edad'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
-                        <span className="textFormEvent">Andar</span>
-                        <input className='inputEventForm' type="text" placeholder='Ingrese la categoria'/>
+                        <span className="textFormEvent second-size">Andar</span>
+                        <input className='inputEventForm second-size' type="text" placeholder='Ingrese la categoria'/>
                       </div>
                       <div className='ButtonContainer'>
                            {EditHorseButton===true  ?
-                            <button className='buttonComp_2'>Editar</button>
+                            <button className='buttonComp_2 middle-size'>Editar</button>
                             :
-                            <button className='buttonComp_2'>Añadir</button>
+                            <button className='buttonComp_2 middle-size'>Añadir</button>
                             }
                       </div>
                 </form>
@@ -531,11 +531,11 @@ export default function Competiciones() {
                   </thead>
                   <tbody className='tablebody'>
                     <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item'>P4</span></td>
-                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>P4</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>Alejandro Soto</span></td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
@@ -546,11 +546,11 @@ export default function Competiciones() {
                       </td>
                     </tr>
                     <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item'>P4</span></td>
-                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>P4</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>Alejandro Soto</span></td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
@@ -561,11 +561,11 @@ export default function Competiciones() {
                       </td>
                     </tr>
                     <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item'>P4</span></td>
-                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size' >Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>P4</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>Alejandro Soto</span></td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
@@ -576,11 +576,11 @@ export default function Competiciones() {
                       </td>
                     </tr>
                     <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item'>P4</span></td>
-                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>P4</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>Alejandro Soto</span></td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
@@ -591,11 +591,11 @@ export default function Competiciones() {
                       </td>
                     </tr>
                     <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item'>P4</span></td>
-                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>P4</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>Alejandro Soto</span></td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
@@ -606,11 +606,11 @@ export default function Competiciones() {
                       </td>
                     </tr>
                     <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item'>P4</span></td>
-                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>P4</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>Alejandro Soto</span></td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
@@ -621,11 +621,11 @@ export default function Competiciones() {
                       </td>
                     </tr>
                     <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item'>P4</span></td>
-                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>P4</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>Alejandro Soto</span></td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
@@ -636,11 +636,11 @@ export default function Competiciones() {
                       </td>
                     </tr>
                     <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item'>P4</span></td>
-                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>P4</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>C caballar</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>Alejandro Soto</span></td>
                       <td className='b-none'>
                         <div className='iconVideoPlayContainer' onClick={EditHorse}>
                           <RiEdit2Fill className='iconVideoPlay'/>
@@ -651,8 +651,8 @@ export default function Competiciones() {
                       </td>
                     </tr>
                     <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText'>Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item'>38 meses</span></td>
+                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size' >Conde del viento</span></td>
+                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
                       <td className='b-none text-table'><span className='item'>P4</span></td>
                       <td className='b-none text-table'><span className='item'>C caballar</span></td>
                       <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>

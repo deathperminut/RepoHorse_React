@@ -76,12 +76,12 @@ export default function MyVerticallyCenteredModal(props) {
 
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter font-familly">
-            Selecciona el evento
+          <Modal.Title id="contained-modal-title-vcenter bold-size">
+            <span className="bold-size ml-30px">Selecciona el evento</span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className='EventsContainer ml-0 font-familly'>
+          <div className='EventsContainer ml-30px ml-0 font-familly'>
                 <InputGroup className='inputComp'>
                         <InputGroup.Text id="basic-addon1"><Icon.Search/></InputGroup.Text>
                         <Form.Control

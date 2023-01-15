@@ -134,6 +134,12 @@
   height: 100%;
   margin-left: 3rem;
 }
+.align-center{
+  align-items: center;
+}
+.margin-left-15px{
+  margin-left: 15px !important;
+}
 
 .buttonEstadistic{
   background-color: #FF9300;
@@ -148,9 +154,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 4.5rem;
+  min-width: 70px;
   
 }
+.buttonEstadistic:hover{
+  background-color: #F7B500;
+}
+
 
 /* INPUT */
 .filter-Horse-Estadistics-Container .input-group{
@@ -175,6 +185,7 @@
   border:none !important ;
   color:#73819A !important;
   padding-left: 0px !important;
+  font-size: 12px !important;
 }
 
 .list-group-item{

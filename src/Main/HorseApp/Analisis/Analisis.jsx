@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {useNavigate} from 'react-router-dom';
 import {Navigate,Routes, Route} from 'react-router-dom';
 import './Analisis.css';
 import Logo from '../../../Sources/Images/Estadisticas/logo_equipon.jpg';
@@ -51,6 +51,14 @@ import Preloader from '../../../Shared/preloader/preloader';
 
 
 export default function Analisis() {
+
+  /* NAVIGATE  */
+  const navigate=useNavigate();
+  /* FUNCTIONS */
+  const RedirectCreateEvent=(event)=>{
+    navigate('/Main/HorseApp/Competiciones')
+  }
+
 
   const styleLoading = { position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" ,zIndex:"3"};
  
@@ -227,14 +235,14 @@ export default function Analisis() {
                 <Select
                 onChange={(event)=>ChangeSelectEvent(event,true)}
                 options = {options}  
-                className="selectAnalisis" 
+                className="selectAnalisis middle-size" 
                 placeholder="Seleccione un evento"
                 
                 
                 />
               </div>
               <div className='buttonEventContainer'>
-                <button className='buttonEvent pl-5 btnHoverWhite'><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px ">+</span><span className="c-orange font-size-10pt">Nuevo Evento</span></button>
+                <button className='buttonEvent pl-5 btnHoverWhite ' onClick={RedirectCreateEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px font-size ">+</span><span className="c-orange middle-size">Nuevo Evento</span></button>
               </div>
               </>
             :
@@ -242,12 +250,12 @@ export default function Analisis() {
 
             <div className='label-event-Analitic-Container'>
                 <figure className='img-container'>
-                  <img src={Logo} className='img-event'></img>
+                  <img src={HorsePhoto} className='img-event'></img>
                 </figure>
                 <div className='p-column'>
-                  <span className='t-white t-b'>65° Feria Equina</span>
-                  <span className='t-white t-xs'>Manizales -6 de enero de 2022</span>
-                  <span className='t-white t-xs'>Grado: A</span>
+                  <span className='t-white t-b font-size'>65° Feria Equina</span>
+                  <span className='t-white t-xs middle-size '>Manizales -6 de enero de 2022</span>
+                  <span className='t-white t-xs middle-size'>Grado: A</span>
                   <div  className='changeContainer'>
                       <span className='TextChange' onClick={()=>{
                    setSelectEvent(false);
@@ -263,9 +271,9 @@ export default function Analisis() {
             </div>
 
 
-            <div className='display-row mt-3'>
-                <InputGroup className="mt-3">
-                  <Form.Control aria-label="TextInput" placeholder="ejemplar"/>
+            <div className='display-row mt-3 middle-size'>
+                <InputGroup className="mt-3 ">
+                  <Form.Control aria-label="TextInput middle-size" placeholder="ejemplar"/>
 
                     <DropdownButton
                       variant="outline-secondary"
