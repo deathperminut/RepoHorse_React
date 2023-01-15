@@ -73,6 +73,25 @@
     height: 40px;
     width: 40px;
 }
+ul{
+    height: calc( 100% - 30px );
+}
+
+.gray{
+ color:gray !important;
+}
+.mt-c{
+    position: fixed;
+    top:90%;
+}
+@media (max-height:400px ){
+    .mt-c{
+        position: relative;
+        top:0%;
+    }
+}
+
+
 
 @media (max-width: 1219px) {
    .textOffcanvas{
@@ -181,5 +200,9 @@
         position: relative;
         bottom: 0.5rem;
     } 
+    .mt-c{
+        position: relative;
+        top:0%;
+    }
 
 }

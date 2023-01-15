@@ -8,8 +8,36 @@ import {MdVideoSettings} from 'react-icons/md';
 import { FaHorseHead } from 'react-icons/fa';
 import {GoGraph} from 'react-icons/go';
 import {BsFolderCheck} from 'react-icons/bs';
-import Logo_only from '../../Sources/Images/Landing/logo_only.png'
+import {ImExit} from 'react-icons/im';
+import Logo_only from '../../Sources/Images/Landing/logo_only.png';
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
+
+
+
+
 function OffCanvas() {
+    
+    const navigate=useNavigate();
+    const Exit=()=>{
+        Swal.fire({
+            title: '¿Seguro que desea cerrar sesión?',
+            showDenyButton: true,
+            confirmButtonText: 'Si',
+            denyButtonText: 'No',
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+               /* NAVIGATE  */
+               
+               navigate('/Landing/Inicio');
+            }
+         })
+    
+    }
+    
+
+
     let activeStyle = {
         textDecoration: "underline",
       };
@@ -46,6 +74,12 @@ function OffCanvas() {
                     className={({ isActive }) => (isActive ? 'active' : 'inactive')}
                 >
                     <GoGraph className="iconOffCanvas"/><span className="textOffcanvas middle-size">Estadisticas</span>
+                </NavLink>
+                </li>
+                <li className="sectionOffcanvas ">
+                <NavLink
+                className={({ isActive }) => (isActive ? 'inactive mt-c' : 'inactive mt-c')} onClick={Exit} >
+                    <ImExit className="iconOffCanvas gray"/><span className="textOffcanvas middle-size gray">Cerrar sesión</span>
                 </NavLink>
                 </li>
                 
