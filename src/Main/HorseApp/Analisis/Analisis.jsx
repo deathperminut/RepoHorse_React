@@ -201,7 +201,7 @@ export default function Analisis() {
                         <div className='Details-horse-selected'>
                              <span className='white fz-big'>Conde del viento</span>
                              <span className='gray fz-small'>Andar: <span className='orange fw'>P4 </span><span className='white'>Paso fino Colombiano</span></span>
-                             <span className='gray fz-small'>Categoría: <span className='white'>Potros en proceso con primera enfrenada</span></span>
+                             <span className='gray fz-small'>Categoría: <span className='white'>Potros en proceso </span></span>
                              <span className='gray fz-small'>Edad: <span className='white'>38 meses</span></span>
                              <span className='gray fz-small'>Tipo: <span className='orange fw'>C </span><span className='white'>Caballar</span></span>
                              <span className='gray fz-small'>Registro del equino: <span className='white'>ver</span></span>
