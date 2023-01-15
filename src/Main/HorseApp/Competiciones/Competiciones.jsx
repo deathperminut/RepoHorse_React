@@ -430,7 +430,7 @@ export default function Competiciones() {
                 <div className='p-column-event'>
                   <span className='t-white t-b t-b2  overflox-x-hidden bold-size'>{eventChoosed.name}</span>
                   <span className='t-white t-xs  small-size'>{eventChoosed.place}</span>
-                  <span className='t-white t-xs middle-size gray-dc' >{eventChoosed.date_start }<span className='small-size'>{' / '}</span> {eventChoosed.date_end}</span>
+                  <span className='t-white t-xs small-size gray-dc' >{eventChoosed.date_start }<span className='small-size'>{' / '}</span> {eventChoosed.date_end}</span>
                 </div>
             </div>
             <div className='containerCountsEvent'>

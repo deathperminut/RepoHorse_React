@@ -1,6 +1,6 @@
 import React from 'react';
 import { App } from 'react-bootstrap-icons';
-
+import  HorsePhoto from '../Sources/Images/Estadisticas/HorsePhoto.jpg'
 
 const AppContext=React.createContext();
 
@@ -44,7 +44,17 @@ function ProviderContext(props){
 
     /* ArratEvents */
 
-    let [events,setEvents]=React.useState([]);
+    let [events,setEvents]=React.useState([
+        {img:HorsePhoto,
+        name:'65° Feria Equina',
+        number:'21',
+        date_start:'2021-05-10',
+        date_end:'2021-05-16',
+        place:'Manizales',
+        description:'',
+        horses:[],
+    id:0}
+    ]);
     let [eventChoosed,setEventChoosed]=React.useState({
         img:'',
         name:'',

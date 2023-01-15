@@ -82,6 +82,12 @@
  align-items: center;
  position: relative;
 }
+.video-marcadores{
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 10px !important;
+
+}
 .bg-p{
     background-color:#11342F;
 }

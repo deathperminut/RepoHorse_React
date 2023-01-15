@@ -217,7 +217,7 @@ export default function Analisis() {
                    <div className='Container-video-result-bpm'>
                       <span className='white mb-small'>video esqueleto:</span>
                       <div className='Container-video-result'>
-
+                           <video src={Marcadores} className="video-marcadores" controls></video>
                       </div>
                    </div>
                 </div>
