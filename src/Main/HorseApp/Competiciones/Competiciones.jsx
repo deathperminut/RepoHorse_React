@@ -66,6 +66,10 @@ export default function Competiciones() {
   let [EventSelected,setEventSelected]=React.useState(null);
   let [AddHorseButton,setAddHorseButton]=React.useState(false);
   let [EditHorseButton,setEditHorseButton]=React.useState(false);
+  let [filter,setFilter]=React.useState(events);
+  let [valueFilter,setValueFilter]=React.useState("");
+
+
   let [event,setEvent]=React.useState({
     img:'',
     name:'',
@@ -177,6 +181,7 @@ export default function Competiciones() {
      let Events=[...events];
      Events.push({...event,['id']:Events.length});
      setEvents(Events);
+     setFilter(Events);
      setLoading(true);
      await sleep(1500);
      setLoading(false);
@@ -232,6 +237,28 @@ export default function Competiciones() {
     }
   }
   
+  const filterFunction=(event)=>{
+      setValueFilter(event.target.value);
+      if(event.target.value===""){
+        setFilter(events);
+      }
+  }
+
+  const find=()=>{
+    if(valueFilter===""){
+      setFilter(events);
+    }else{
+      const Array=events.filter((obj)=> obj.name.toLowerCase().includes(valueFilter.toLowerCase()))
+      setFilter(Array);
+    }
+  }
+
+  const getCount=(eventChoosed)=>{
+    if(eventChoosed.horses!=undefined && eventChoosed.horses!=null){
+      return toNumber(eventChoosed.number) - toNumber(eventChoosed.horses.length)
+    }
+  }
+  
 
   return (
     <>
@@ -264,15 +291,15 @@ export default function Competiciones() {
         
         <div className='EventsContainer-2'>
                 
-                <InputGroup className='inputComp middle-size'>
-                  <InputGroup.Text id="basic-addon1"><Icon.Search/></InputGroup.Text>
+                <InputGroup onChange={filterFunction} value={valueFilter} className='inputComp middle-size'>
+                  <InputGroup.Text  id="basic-addon1"><Icon.Search/></InputGroup.Text>
                   <Form.Control
                     placeholder="Buscar competición"
                     aria-label="Buscar competición"
                     aria-describedby="basic-addon1"
                   />
                 </InputGroup>
-                <button className='buttonComp middle-size'>Buscar</button>
+                <button onClick={find} className='buttonComp middle-size'>Buscar</button>
         </div>
         <div className='RegisterEventContainer'>
            {CreateButton===false 
@@ -289,7 +316,7 @@ export default function Competiciones() {
                         </div>
                       </div>
                   </Col>
-                  {events.map(Event=>(
+                  {filter.map(Event=>(
 
                      console.log(Event),
 
@@ -300,8 +327,8 @@ export default function Competiciones() {
                         </figure>
                         <div className='p-column-event'>
                           <span className='t-white t-b t-b2  overflox-x-hidden'>{Event.name}</span>
-                          <span className='t-white t-xs'>{Event.place+' '}</span>
-                          <span className='t-white t-xs'>{Event.date_start+  ' / ' +Event.date_end}</span>
+                          <span className='t-white t-xs orange'>{Event.place+' '}</span>
+                          <span className='t-white t-xs middle-size gray-dc'>{Event.date_start }<span className='middle-size green-ds'>{' / '}</span> {Event.date_end}</span>
                           <div className='d-row flex-end'>
                                <div className='iconEditEvent' onClick={()=>EditEventFunction(Event)}>
                                 <RiEdit2Fill className='iconVideoPlay'/>
@@ -351,7 +378,7 @@ export default function Competiciones() {
                </div>
                <div className='nameContainer containrow'>
                  <span className="textFormEvent second-size">Nombre</span>
-                 <input onChange={(event)=>CheckInput(event,'name')} maxLength={22} className='inputEventForm second-size' type="text" placeholder='ingrese el nombre del evento'/>
+                 <input onChange={(event)=>CheckInput(event,'name')} maxLength={21} className='inputEventForm second-size' type="text" placeholder='ingrese el nombre del evento'/>
                </div>
                <div className='competidoresContainer containrow'>
                  <span className="textFormEvent second-size">Competidores</span>
@@ -359,8 +386,8 @@ export default function Competiciones() {
                </div>
                <div className='dateContainer containrow second-size'>
                  <span className="textFormEvent second-size ">fechas</span>
-                 <DatePicker onChange={onChange_start}  placeholder='Inicio' />
-                 <DatePicker onChange={onChange_end}  placeholder='Fin'/>
+                 <DatePicker className='datepicker' onChange={onChange_start}  placeholder='Inicio' />
+                 <DatePicker  className='datepicker' onChange={onChange_end}  placeholder='Fin'/>
                </div>
                <div className='placeContainer containrow'>
                  <span className="textFormEvent second-size">Lugar</span>
@@ -396,9 +423,9 @@ export default function Competiciones() {
                   <img src={eventChoosed.img} className='img-event'></img>
                 </figure>
                 <div className='p-column-event'>
-                  <span className='t-white t-b t-b2  overflox-x-hidden'>{eventChoosed.name}</span>
-                  <span className='t-white t-xs'>{eventChoosed.place}</span>
-                  <span className='t-white t-xs'>{eventChoosed.date_start+  ' / ' +eventChoosed.date_end}</span>
+                  <span className='t-white t-b t-b2  overflox-x-hidden bold-size'>{eventChoosed.name}</span>
+                  <span className='t-white t-xs middle-size orange'>{eventChoosed.place}</span>
+                  <span className='t-white t-xs middle-size gray-dc' >{eventChoosed.date_start }<span className='middle-size green-ds'>{' / '}</span> {eventChoosed.date_end}</span>
                 </div>
             </div>
             <div className='containerCountsEvent'>
@@ -412,13 +439,13 @@ export default function Competiciones() {
                     <div className='CountContainer align-center'>
                       <span className='TextTitle mb-'>Agregados</span>
                       <div className='CountsBox w-'>
-                          <span className='TextCount'>1</span>
+                          <span className='TextCount'>{eventChoosed.horses.length}</span>
                       </div>
                     </div>
                     <div className='CountContainer align-center'>
                       <span className='TextTitle mb-'>Sin registrar</span>
                       <div className='CountsBox w-'>
-                          <span className='TextCount'>199</span>
+                          <span className='TextCount'>{getCount(eventChoosed)}</span>
                       </div>
                     </div>
                   </div>

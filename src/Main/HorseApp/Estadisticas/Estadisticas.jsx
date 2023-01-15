@@ -20,6 +20,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import {IoIosArrowDropdownCircle} from 'react-icons/io';
 /*ListGroup*/
 import ListGroup from 'react-bootstrap/ListGroup'; 
+import Swal from 'sweetalert2';
 
 
 
@@ -30,7 +31,7 @@ export default function Estadisticas() {
   let {
     StadisticVideo,setStatisticVideo, setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
-      , setThumbNails, setThumbnailIsProcessing,loading,setOriginalVideo
+      , setThumbNails, setThumbnailIsProcessing,loading,setOriginalVideo,FindEventId
   }=React.useContext(AppContext); 
 
   /*USE STATE */
@@ -55,12 +56,32 @@ export default function Estadisticas() {
   }
 
   
-  const AppendEvent_2=()=>{
+  const AppendEvent_2=(id)=>{
+    console.log(id);
     let List_Events=[...ListEvents];
-    let Event={...event};
-    Event['id']=List_Events.length;
-    List_Events.push(Event);
-    setListEvents(List_Events);
+    let result=checkId(id);
+    if(result){
+      Swal.fire({
+        icon: 'error',
+        title: 'Evento ya seleccionado',
+      })
+
+    }else{
+      let Event=FindEventId(id);
+      List_Events.push(Event);
+      setListEvents(List_Events);
+    }
+    
+  }
+
+  const checkId=(id)=>{
+    let result=false;
+    for (var i=0;i<ListEvents.length;i++){
+      if(ListEvents[i].id===id){
+        return true;
+      }
+    }
+    return result;
   }
 
   /*APPEND EVENT TO LIST */
@@ -104,13 +125,13 @@ export default function Estadisticas() {
                         <div className='Est-Container-1' >
                               <h1 className='Est-Container-1-text bold-size margin-left-15px'  >Total competidores</h1>
                               <div className='Est-Container-1-container-count display-none'  >
-                                  <h1 className='Est-Container-1-container-count-text big-size'>{Event.TotalCp}</h1>
+                                  <h1 className='Est-Container-1-container-count-text big-size'>{Event.number}</h1>
                               </div>
 
                           <div className='Est-Container-1-1' >
                               <h1 className='Est-Container-1-text bold-size margin-left-15px bold-size' >Total competidores</h1>
                               <div className='Est-Container-1-container-count' >
-                                  <h1 className='Est-Container-1-container-count-text big-size'>{Event.TotalCp}</h1>
+                                  <h1 className='Est-Container-1-container-count-text big-size'>{Event.number}</h1>
                               </div>
                           </div>
                           <button className='buttonEvent center buttonEventEst' ><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px" >+</span><span className="c-orange font-size-10pt middle-size" >Añadir otro</span></button>
@@ -119,14 +140,14 @@ export default function Estadisticas() {
                         <div className='Est-Container-2'  >
                           <div className='label-event-Estadistics-Container' >
                               <figure className='img-container'  >
-                                <img src={Logo} className='img-event'></img>
+                                <img src={Event.img} className='img-event'></img>
                               </figure>
                               
                               <div className='p-column'>
-                                <span className='t-white t-b'  >{Event.name}</span>
-                                <span className='t-white t-xs' >{Event.Place}</span>
-                                <span className='t-white t-xs' >{"Grado: "+Event.Grade}</span>
-                                <div  className='changeContainer'>
+                                <span className='t-white t-b bold-size'  >{Event.name}</span>
+                                <span className='t-white t-xs middle-size orange' >{Event.place}</span>
+                                <span className='t-white t-xs middle-size gray-dc' >{Event.date_start }<span className='middle-size green-ds'>{' / '}</span> {Event.date_end}</span>
+                                <div  className='changeContainer '>
                                         <span className='TextChange mr--3' onClick={()=>{DeleteEvent()}}>Eliminar</span>
                                         <AiFillCloseCircle className='IconBack'onClick={()=>{ DeleteEvent()}}/>
                                 </div>
@@ -191,7 +212,7 @@ export default function Estadisticas() {
         <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
-        selectEvent={AppendEvent_2}
+        selectEvent={(id)=>AppendEvent_2(id)}
       />
         
     </div>

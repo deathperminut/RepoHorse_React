@@ -394,6 +394,9 @@
 .containrow .inputEventForm:focus{
     border: none !important;
 }
+.containrow .inputEventForm::placeholder{
+    color:rgb(196, 196, 196) !important;
+}
 .font-size-1rem{
     font-size: 1rem;
 }
@@ -407,7 +410,15 @@
     padding-top: 0.4rem;
     font-size: 0.8rem;
     resize: none;
+    color:#7A86A1 !important;
 }
+.datepicker::placeholder{
+    color:rgb(196, 196, 196) !important; 
+}
+.textareaFormEvent::placeholder{
+    color:rgb(196, 196, 196) !important; 
+}
+
 .textareaFormEvent:focus{
     border: none  !important;
 }
@@ -446,6 +457,7 @@
     color:#7A86A1 !important;
     padding-left: 0px !important;
 }
+
 .ant-picker:hover{
   border: none !important;
 }
@@ -454,7 +466,7 @@
   }
 
 .ant-picker input::placeholder{
-    color:#7A86A1 !important;
+    color:rgb(196, 196, 196) !important;
 }
 .ant-picker:focus{
     border:none !important;
@@ -640,6 +652,12 @@
 .check-name{
     font-size: 1rem;
     font-weight: 800;
+}
+.green-ds{
+    color:#79975a !important
+}
+.right-10px{
+    right: 10px;
 }
 .tableContainerHorse{
     width: 100%; 

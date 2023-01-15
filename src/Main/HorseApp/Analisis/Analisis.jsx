@@ -66,7 +66,7 @@ export default function Analisis() {
   let {
     StadisticVideo,setStatisticVideo, setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
-      , setThumbNails, setThumbnailIsProcessing,loading,originalVideo,setOriginalVideo,setCutVideo,setDowload,selectEvents,setSelectEvents
+      , setThumbNails, setThumbnailIsProcessing,loading,loadEventsForSelect,originalVideo,setOriginalVideo,setCutVideo,setDowload,selectEvents,events,FindEventId
   }=React.useContext(AppContext); 
 
 
@@ -74,7 +74,9 @@ export default function Analisis() {
   /* REACT UseStates */
   let [SelectEvent,setSelectEvent]=React.useState(false);
   let [SelectHorse,setSelectHorse]=React.useState(false);
-  let [Category,setCategory]=React.useState('Andar');
+  let [Category,setCategory]=React.useState('P1');
+  let [Choose,setChoose]=React.useState(null);
+
   /* VIDEO */
   let [file,setFile]=React.useState(null);
 
@@ -96,6 +98,7 @@ export default function Analisis() {
     let Value=null;
      if(select){
       Value=event.value;
+      setChoose(FindEventId(event.value));
      }
      console.log(!SelectEvent);
      setSelectEvent(!SelectEvent)
@@ -109,20 +112,15 @@ export default function Analisis() {
 
   
   /*OPTIONS SELECT */
-  const options = [
-    { value: 'Evento 1', label: 'Evento 1' },
-    { value: 'Evento 2', label: 'Evento 2' },
-    { value: 'Evento 3', label: 'Evento 3' },
-    { value: 'Evento 4' ,label: 'Evento 4' } 
-  ];
+  React.useEffect(()=>{
+    loadEventsForSelect();
+  },[events])
 
   /* CHANGE DROP */
   const changeDrop=(event)=>{
     setCategory(event);
   }
 
-
-  /* */
   return (
      
     <>
@@ -239,7 +237,7 @@ export default function Analisis() {
               <div className='Select' style={{cursor:"pointer"}}>
                 <Select
                 onChange={(event)=>ChangeSelectEvent(event,true)}
-                options = {options}  
+                options = {selectEvents}  
                 className="selectAnalisis middle-size" 
                 placeholder="Seleccione un evento"
                 
@@ -258,10 +256,10 @@ export default function Analisis() {
                   <img src={HorsePhoto} className='img-event'></img>
                 </figure>
                 <div className='p-column'>
-                  <span className='t-white t-b font-size bold-size'>65° Feria Equina</span>
-                  <span className='t-white t-xs middle-size middle-size'>Manizales -6 de enero de 2022</span>
-                  <span className='t-white t-xs middle-size middle-size'>Grado: A</span>
-                  <div  className='changeContainer'>
+                  <span className='t-white t-b font-size bold-size'>{Choose.name}</span>
+                  <span className='t-white t-xs middle-size middle-size orange'>{Choose.place}</span>
+                  <span className='t-white t-xs middle-size gray-dc '>{Choose.date_start }<span className='middle-size green-ds'>{' / '}</span> {Choose.date_end}</span>
+                  <div  className='changeContainer right-10px'>
                       <span className='TextChange' onClick={()=>{
                    setSelectEvent(false);
                    setSelectHorse(false);
@@ -290,16 +288,16 @@ export default function Analisis() {
                     <Dropdown.Item href="#"  onClick={()=>changeDrop('P2')}>P2</Dropdown.Item>
                     <Dropdown.Item href="#"  onClick={()=>changeDrop('P3')}>P3</Dropdown.Item>
                     <Dropdown.Item href="#"  onClick={()=>changeDrop('P4')}>P4</Dropdown.Item>
-                    <Dropdown.Item href="#"  onClick={()=>changeDrop('Andar')}>Todos</Dropdown.Item>
                   </DropdownButton>
                 </InputGroup>
                 <button className='buttonComp btn-analizar'>Buscar</button>
             </div>
             <div className='ContainerOverflow-y'>
                 <div className='DetailsContainer_an'>
-                      <span className='white'>Participantes:  <span className='orange fw'>    20</span></span>   
-                      <span className='gray fz-small'>Andar:<span className='orange'> P4</span> <span>Paso fino Colombiano</span></span> 
-                      <span className='gray fz-small'>Categoria:<span className='white'> Potros en proceso con primera enfrenada</span></span> 
+                      <span className='white'>Participantes:  <span className='orange fw'>{Choose.number}</span></span>   
+                      <span className='gray fz-small'>Andar: <span className='orange'>{Category}</span> <span>Paso fino Colombiano</span></span> 
+                      <p className='fz-small width-100 white'>{Choose.description}</p>
+                      {/* <span className='gray fz-small'>Categoria:<span className='white'> Potros en proceso con primera enfrenada</span></span>  */}
                 </div>
 
                 <div className='ListInCompetitionContainer'>

@@ -55,7 +55,31 @@ function ProviderContext(props){
     let [selectEvents,setSelectEvents]=React.useState([]);
    
 
-    
+    /* FUNCTIONS EVENTS */
+
+    const loadEventsForSelect=()=>{
+        
+        let Array=[];
+
+        for (var i=0;i<events.length;i++){
+            let element={value:events[i].id,label:events[i].name}
+            Array.push(element);
+        }
+
+        setSelectEvents(Array);
+    }
+
+    const FindEventId=(id)=>{
+        let result=null;
+        for (var i=0;i<events.length;i++){
+            if(events[i].id===id){
+                result=events[i];
+                break;
+            }
+        } 
+        return result;
+    }
+
 
 
 
@@ -67,7 +91,7 @@ function ProviderContext(props){
             StadisticVideo,setStatisticVideo,inputVideoFile, setInputVideoFile
             ,videoMeta, setVideoMeta , trimmedVideoFile, setTrimmedVideoFile,URL, setURL, trimIsProcessing, setTrimIsProcessing,rStart, setRstart,rEnd, setRend
             ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,loading,setLoading,originalVideo,setOriginalVideo,cutVideo,setCutVideo,
-            dowload,setDowload,sleep,events,setEvents,eventChoosed,setEventChoosed,selectEvents,setSelectEvents
+            dowload,loadEventsForSelect,setDowload,sleep,events,setEvents,eventChoosed,setEventChoosed,selectEvents,setSelectEvents,FindEventId
         }}>
             {props.children}
         </AppContext.Provider>

@@ -6,64 +6,29 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import * as Icon from 'react-bootstrap-icons';
 // import Logo from '../../../Sources/Images/Estadisticas/logo_equipon.jpg';
-import Logo from '../../Sources/Images/Estadisticas/logo_equipon.jpg'
+import Logo from '../../Sources/Images/Estadisticas/logo_equipon.jpg';
+import { AppContext } from "../../Context";
+import { useNavigate } from "react-router-dom";
 
 export default function MyVerticallyCenteredModal(props) {
-    /*ARREGLO DE EVENTOS*/
-    let Events_Array=[
-        {
-            name:"65° Feria Equina",
-            Place:"Manizales-6 de enero de 2022",
-            Grade:"A",
-            img:"URL",
-            TotalCp:568,
-            ListCp:[],
-            id:5
-          },
-          {
-            name:"65° Feria Equina",
-            Place:"Manizales-6 de enero de 2022",
-            Grade:"A",
-            img:"URL",
-            TotalCp:568,
-            ListCp:[],
-            id:4
-          },
-          {
-            name:"65° Feria Equina",
-            Place:"Manizales-6 de enero de 2022",
-            Grade:"A",
-            img:"URL",
-            TotalCp:568,
-            ListCp:[],
-            id:3
-          },
-          {
-            name:"65° Feria Equina",
-            Place:"Manizales-6 de enero de 2022",
-            Grade:"A",
-            img:"URL",
-            TotalCp:568,
-            ListCp:[],
-            id:2
-          },
-          {
-            name:"65° Feria Equina",
-            Place:"Manizales-6 de enero de 2022",
-            Grade:"A",
-            img:"URL",
-            TotalCp:568,
-            ListCp:[],
-            id:1
-          }
-    ];
+
+    let {events}=React.useContext(AppContext);
+
+    
 
     /*SELECT EVENT*/
-    const EmitEvent=()=>{
-        props.selectEvent();
+    const EmitEvent=(id)=>{
+        props.selectEvent(id);
         props.onHide();
 
        
+    }
+
+    /* NAVIGATE  */
+    const navigate=useNavigate();
+    /* FUNCTIONS */
+    const RedirectCreateEvent=(event)=>{
+      navigate('/Main/HorseApp/Competiciones')
     }
 
 
@@ -81,8 +46,17 @@ export default function MyVerticallyCenteredModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className='EventsContainer ml-30px ml-0 font-familly'>
-                <InputGroup className='inputComp'>
+
+          
+
+             {events.length===0 ?
+             
+             <div className="center-white-boldsize">
+                 <button className='buttonEvent pl-5 btnHoverWhite buttoncustom' onClick={RedirectCreateEvent}><span className="c-orange middle-size">Nuevo Evento</span></button>
+             </div>
+             :
+             <div className='EventsContainer ml-30px ml-0 font-familly'>
+             <InputGroup className='inputComp'>
                         <InputGroup.Text id="basic-addon1"><Icon.Search/></InputGroup.Text>
                         <Form.Control
                             placeholder="Buscar competición"
@@ -90,18 +64,22 @@ export default function MyVerticallyCenteredModal(props) {
                             aria-describedby="basic-addon1"
                         />
                 </InputGroup>
-          </div>
+             </div>
+             }
+                
+
           <div className="EventSelectContainer_2 font-familly">
-                {Events_Array.map(event=>{
+              
+                {events.map(event=>{
                     return(
-                        <div key={event.id} className='label-event-Estadistics-Container mr-3 ' onClick={EmitEvent}>
+                        <div key={event.id} className='label-event-Estadistics-Container mr-3 ' onClick={()=>EmitEvent(event.id)}>
                                 <figure className='img-container'>
-                                <img src={Logo} className='img-event'></img>
+                                <img src={event.img} className='img-event'></img>
                                 </figure>
                                 <div className='p-column'>
-                                <span className='t-white t-b'>{event.name}</span>
-                                <span className='t-white t-xs'>{event.Place}</span>
-                                <span className='t-white t-xs'>{"Grado: "+event.Grade}</span>
+                                <span className='t-white t-b bold-size'>{event.name}</span>
+                                <span className='t-white t-xs middle-size orange'>{event.place}</span>
+                                <span className='t-white t-xs middle-size'>{event.date_start}</span>
                                 </div>
                         </div>
                     );
