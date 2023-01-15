@@ -85,7 +85,6 @@ export default function Analisis() {
         title: 'Primero selecciona un evento y un ejemplar.',
       })
      }
-     console.log("props");
   }
   
 
@@ -278,7 +277,7 @@ export default function Analisis() {
 
 
             <div className='display-row mt-3 middle-size'>
-                <InputGroup onChange={changeDrop}  className="mt-3 ">
+                <InputGroup   className="mt-3 ">
                   <Form.Control  aria-label="TextInput middle-size" placeholder="ejemplar"/>
 
                     <DropdownButton
@@ -286,7 +285,6 @@ export default function Analisis() {
                       id="input-group-dropdown-2"
                       align="end"
                       title={Category}
-                      onChange={changeDrop}
                     >
                     <Dropdown.Item href="#"  onClick={()=>changeDrop('P1')}>P1</Dropdown.Item>
                     <Dropdown.Item href="#"  onClick={()=>changeDrop('P2')}>P2</Dropdown.Item>
