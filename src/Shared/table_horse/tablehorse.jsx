@@ -3,7 +3,7 @@ import {BsFillPlayFill} from 'react-icons/bs';
 import Table from 'react-bootstrap/Table';
 import HorsePhoto from '../../Sources/Images//Estadisticas/HorsePhoto.jpg';
 import ReactPlayer from 'react-player';
-import Galope from '../../Sources/Video/Galope.mp4';
+import Marcadores from '../../Sources/Video/Marcadores.mp4';
 import './tablehorse.css';
 // import  Video from  '../../Sources/Video/MessiCampeon.mp4';
 
@@ -151,7 +151,7 @@ export default function Tablehorse() {
             :
             <>
                
-            <ReactPlayer className="VideoPlayer"   controls={true} url={Galope} playing={true} width={'100%'} height={'100%'} youtubeConfig={{ playerVars: { showinfo: 1 } }}/>
+            <ReactPlayer className="VideoPlayer"   controls={true} url={Marcadores} playing={true} width={'100%'} height={'100%'} youtubeConfig={{ playerVars: { showinfo: 1 } }}/>
             <button className='buttonVideo' onClick={()=>setShowVideo(false)}>X</button>
 
             </>

@@ -331,9 +331,9 @@ export default function Competiciones() {
                             <img src={Event.img} className='img-event CompetitionsImag'></img>
                         </figure>
                         <div className='p-column-event'>
-                          <span className='t-white t-b t-b2  overflox-x-hidden'>{Event.name}</span>
-                          <span className='t-white t-xs orange'>{Event.place+' '}</span>
-                          <span className='t-white t-xs middle-size gray-dc'>{Event.date_start }<span className='middle-size green-ds'>{' / '}</span> {Event.date_end}</span>
+                          <span className='t-white t-b t-b2  overflox-x-hidden '>{Event.name}</span>
+                          <span className='t-white t-xs small-size'>{Event.place+' '}</span>
+                          <span className='t-white t-xs small-size gray-dc'>{Event.date_start }<span className='small-size'>{' / '}</span> {Event.date_end}</span>
                           <div className='d-row flex-end'>
                                <div className='iconEditEvent' onClick={()=>EditEventFunction(Event)}>
                                 <RiEdit2Fill className='iconVideoPlay'/>
@@ -429,8 +429,8 @@ export default function Competiciones() {
                 </figure>
                 <div className='p-column-event'>
                   <span className='t-white t-b t-b2  overflox-x-hidden bold-size'>{eventChoosed.name}</span>
-                  <span className='t-white t-xs middle-size orange'>{eventChoosed.place}</span>
-                  <span className='t-white t-xs middle-size gray-dc' >{eventChoosed.date_start }<span className='middle-size green-ds'>{' / '}</span> {eventChoosed.date_end}</span>
+                  <span className='t-white t-xs  small-size'>{eventChoosed.place}</span>
+                  <span className='t-white t-xs middle-size gray-dc' >{eventChoosed.date_start }<span className='small-size'>{' / '}</span> {eventChoosed.date_end}</span>
                 </div>
             </div>
             <div className='containerCountsEvent'>

@@ -149,8 +149,8 @@ export default function Estadisticas() {
                               
                               <div className='p-column'>
                                 <span className='t-white t-b bold-size'  >{Event.name}</span>
-                                <span className='t-white t-xs middle-size orange' >{Event.place}</span>
-                                <span className='t-white t-xs middle-size gray-dc' >{Event.date_start }<span className='middle-size green-ds'>{' / '}</span> {Event.date_end}</span>
+                                <span className='t-white t-xs small-size' >{Event.place}</span>
+                                <span className='t-white t-xs small-size gray-dc' >{Event.date_start }<span className='small-size'>{' / '}</span> {Event.date_end}</span>
                                 <div  className='changeContainer '>
                                         <span className='TextChange mr--3' onClick={()=>{DeleteEvent()}}>Eliminar</span>
                                         <AiFillCloseCircle className='IconBack'onClick={()=>{ DeleteEvent()}}/>

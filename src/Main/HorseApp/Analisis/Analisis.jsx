@@ -30,6 +30,7 @@ import {RiScissorsCutFill} from 'react-icons/ri';
 import {GrPowerReset} from 'react-icons/gr';
 import {BsDownload} from 'react-icons/bs';
 import {BiReset} from 'react-icons/bi';
+import Marcadores from '../../../Sources/Video/Marcadores.mp4';
 
 
 /* VIDEO EDITOR */
@@ -256,8 +257,8 @@ export default function Analisis() {
                 </figure>
                 <div className='p-column'>
                   <span className='t-white t-b font-size bold-size'>{Choose.name}</span>
-                  <span className='t-white t-xs middle-size middle-size orange'>{Choose.place}</span>
-                  <span className='t-white t-xs middle-size gray-dc '>{Choose.date_start }<span className='middle-size green-ds'>{' / '}</span> {Choose.date_end}</span>
+                  <span className='t-white t-xs middle-size small-size'>{Choose.place}</span>
+                  <span className='t-white t-xs middle-size  small-size '>{Choose.date_start }<span className='small-size'>{' / '}</span> {Choose.date_end}</span>
                   <div  className='changeContainer right-10px'>
                       <span className='TextChange' onClick={()=>{
                    setSelectEvent(false);

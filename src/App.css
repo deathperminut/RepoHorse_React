@@ -20,11 +20,15 @@ button:disabled{
   /* border-radius: 20px !important; */
   width: 100% !important;
   height: 100% !important;
+  min-height: 330px !important;
 }
 .VideoPlayer{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.small-size{
+  font-size: 8px !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {
