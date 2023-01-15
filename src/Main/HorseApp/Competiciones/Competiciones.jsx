@@ -225,6 +225,7 @@ export default function Competiciones() {
           }
          }
          setEvents(ListEvents);
+         setFilter(ListEvents);
       }
    })
    }
@@ -391,7 +392,7 @@ export default function Competiciones() {
                </div>
                <div className='placeContainer containrow'>
                  <span className="textFormEvent second-size">Lugar</span>
-                 <input  onChange={(event)=>CheckInput(event,'place')}  maxLength={30} className='inputEventForm second-size' type="text" placeholder='Ingrese el lugar'/>
+                 <input  onChange={(event)=>CheckInput(event,'place')}  maxLength={16} className='inputEventForm second-size' type="text" placeholder='Ingrese el lugar'/>
                </div>
                <div className='DescriptionContainer containrow'>
                  <span className="textFormEvent second-size">Descripción</span>

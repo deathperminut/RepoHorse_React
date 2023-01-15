@@ -11,8 +11,13 @@ import { AppContext } from "../../Context";
 import { useNavigate } from "react-router-dom";
 
 export default function MyVerticallyCenteredModal(props) {
-
+    
+    /* APP CONTEXT */
     let {events}=React.useContext(AppContext);
+
+
+    /* USE STATE */
+    let [filter,setFilter]=React.useState(events);
 
     
 
@@ -29,6 +34,15 @@ export default function MyVerticallyCenteredModal(props) {
     /* FUNCTIONS */
     const RedirectCreateEvent=(event)=>{
       navigate('/Main/HorseApp/Competiciones')
+    }
+
+    const find=(event)=>{
+      if(event.target.value===""){
+        setFilter(events);
+      }else{
+        const Array=events.filter((obj)=> obj.name.toLowerCase().includes(event.target.value.toLowerCase()))
+        setFilter(Array);
+      }
     }
 
 
@@ -56,7 +70,7 @@ export default function MyVerticallyCenteredModal(props) {
              </div>
              :
              <div className='EventsContainer ml-30px ml-0 font-familly'>
-             <InputGroup className='inputComp'>
+             <InputGroup onChange={find} className='inputComp'>
                         <InputGroup.Text id="basic-addon1"><Icon.Search/></InputGroup.Text>
                         <Form.Control
                             placeholder="Buscar competición"
@@ -70,7 +84,7 @@ export default function MyVerticallyCenteredModal(props) {
 
           <div className="EventSelectContainer_2 font-familly">
               
-                {events.map(event=>{
+                {filter.map(event=>{
                     return(
                         <div key={event.id} className='label-event-Estadistics-Container mr-3 ' onClick={()=>EmitEvent(event.id)}>
                                 <figure className='img-container'>
