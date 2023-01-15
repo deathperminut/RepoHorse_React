@@ -53,25 +53,25 @@ export default function Inicio() {
                      <img  className='Logo' src={Logo} alt=""></img>
                      <Button variant="outline" onClick={RedirectLogin} className="button_18">Ingresar</Button>
                 </div>
-                <div className="col position-relative bold-size">
+                <div className="col position-relative bold-size text-center">
                     <img className='overlayCard position-absolute top-50 start-50 translate-middle' src={Backgroundcolumn} alt=""></img>
                     <p className="m-0 p-0 position-absolute top-50 start-50 translate-middle">Desarrollos futuros</p>
                 </div>
-                <div className="col bold-size">
+                <div className="col bold-size text-center">
                     <img className='overlayCard position-absolute top-50 start-50 translate-middle' src={Backgroundcolumn} alt=""></img>
                     <p className="m-0 p-0 position-absolute top-50 start-50 translate-middle">Desarrollos futuros</p>
                 </div>
               </div>
               <div className="row">
-                <div className="col bold-size">
+                <div className="col bold-size text-center">
                     <img className='overlayCard position-absolute top-50 start-50 translate-middle' src={Backgroundcolumn} alt=""></img>
                     <p className="m-0 p-0 position-absolute top-50 start-50 translate-middle">Desarrollos futuros</p>
                 </div>
-                <div className="col bold-size">
+                <div className="col bold-size text-center">
                     <img className='overlayCard position-absolute top-50 start-50 translate-middle' src={Backgroundcolumn} alt=""></img>
                     <p className="m-0 p-0 position-absolute top-50 start-50 translate-middle">Desarrollos futuros</p>
                 </div>
-                <div className="col bold-size">
+                <div className="col bold-size text-center">
                     <img className='overlayCard position-absolute top-50 start-50 translate-middle' src={Backgroundcolumn} alt=""></img>
                     <p className="m-0 p-0 position-absolute top-50 start-50 translate-middle">Desarrollos futuros</p>
                 </div>
