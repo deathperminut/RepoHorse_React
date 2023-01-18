@@ -58,9 +58,9 @@ function VideoEditor() {
 				>
 						<div className="center_2 ">
 						        <BsPlayBtn className='iconFilm'/>
-                                <span className='textdragContainer'>Arraste o ponga el video aquí</span>
+                                <span className='textdragContainer'>Arraste  el video aquí</span>
                                 <span className='textdragContainer'>o</span>
-                                <button className='buttonAnalisis'><MdOutlineDriveFolderUpload className='iconVideo'/><span className='textButtonVideo'>Subir archivos</span></button>
+                                <button className='buttonAnalisis'><MdOutlineDriveFolderUpload className='iconVideo'/><span className='textButtonVideo'>Subir video</span></button>
 						</div>
                     
 				</FileDrop>

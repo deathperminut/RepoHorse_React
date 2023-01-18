@@ -51,9 +51,9 @@ function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,vid
       id={`${showVideo ? "file_picker_small" : ""}`}
       className={`file_picker `} {...getRootProps()}>
           <BsPlayBtn className='iconFilm'/>
-          <span className='textdragContainer'>Arraste o ponga el video aquí</span>
-          <span className='textdragContainer'>o</span>
-          <span className='buttonAnalisis btnHoverWhite'><MdOutlineDriveFolderUpload className='iconVideo'/><span className='textButtonVideo'>Subir archivos</span></span>
+          <span className='textdragContainer'>Arraste el video aquí</span>
+          <span className='textdragContainer'>{""}</span>
+          <span className='buttonAnalisis btnHoverWhite'><MdOutlineDriveFolderUpload className='iconVideo'/><span className='textButtonVideo'>Subir video</span></span>
 
           {/* <input onChange={handleChange} type="file" id="x" accept="video/mp4" />  */}
 
