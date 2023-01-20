@@ -116,7 +116,7 @@ function LoginInfo() {
           <div className="mb-3">
             <div className="col-12">
               <div className="form-floating inner-addon left-addon">
-                <input onChange={onChangeEmail}  type="email" autocomplete="off" className="form-control INPUT_DATA" value={Email} id="correo" placeholder="Correo"/>
+                <input onChange={onChangeEmail}  type="email" autocomplete="off" className="form-control INPUT_DATA font-small" value={Email} id="correo" placeholder="Correo"/>
                 <label className="c-orange op-1 textForm">Usuario</label>
               </div>
             </div>
@@ -124,7 +124,7 @@ function LoginInfo() {
           <div >
             <div className="col-12">
               <div className="form-floating inner-addon right-addon">
-                <input onChange={onChangePassword} type="password"  className="form-control INPUT_DATA c-orange op-1"  value={Password} id="floatingPassword" placeholder="Password"
+                <input onChange={onChangePassword} type="password"  className="form-control INPUT_DATA c-orange op-1 font-small"  value={Password} id="floatingPassword" placeholder="Password"
                   />
                 <label className="c-orange op-1 textForm">Contraseña</label>
                 <AiOutlineEye className='eye-password'></AiOutlineEye>

@@ -1,6 +1,6 @@
 import React from 'react';
 /* LOADING */
-import DotLoader from "react-spinners/DotLoader";
+import MoonLoader from "react-spinners/MoonLoader";
 import './preloader.css';
 
 
@@ -9,14 +9,14 @@ export default function Preloader() {
     <div id="preloader-wrapper">
     <div className="w-auto d-flex flex-column justify-content-center align-items-center align-self-center">
       <div id="preloader" className="preloader"></div>
-      <DotLoader
+      <MoonLoader
             color={"#FF9300"}
             loading={true}
             size={100}
             aria-label="Loading Spinner"
             data-testid="loader"
           />
-      <div className="txt-loading">
+      {/* <div className="txt-loading">
         <span data-text-preloader="C" className="letters-loading">
           C
         </span>
@@ -42,7 +42,7 @@ export default function Preloader() {
           O
         </span>
 
-      </div>
+      </div> */}
     </div>
   </div>
 
