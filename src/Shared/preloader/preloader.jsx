@@ -12,7 +12,7 @@ export default function Preloader() {
       <MoonLoader
             color={"#FF9300"}
             loading={true}
-            size={100}
+            size={50}
             aria-label="Loading Spinner"
             data-testid="loader"
           />
