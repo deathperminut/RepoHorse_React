@@ -68,6 +68,9 @@
 .mt-3px{
     margin-top: 3px;
 }
+.ml-4px{
+    margin-left: 4px;
+}
 
 .videoContainer{
  width: 39rem;
@@ -117,7 +120,7 @@
 .iconFilm{
     width: 50pt;
     height: 50pt;
-    color: rgb(161, 123, 51);
+    color: #FF9300;
 }
 .textdragContainer{
     color:white;

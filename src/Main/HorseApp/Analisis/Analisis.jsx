@@ -245,7 +245,7 @@ export default function Analisis() {
                 />
               </div>
               <div className='buttonEventContainer'>
-                <button className='buttonEvent pl-5 btnHoverWhite ' onClick={RedirectCreateEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px font-size ">+</span><span className="c-orange middle-size">Nuevo Evento</span></button>
+                <button className='buttonEvent pl-5 btnHoverWhite ' onClick={RedirectCreateEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px font-size ml-4px ">+</span><span className="c-orange middle-size">Nuevo Evento</span></button>
               </div>
               </>
             :
@@ -253,7 +253,7 @@ export default function Analisis() {
 
             <div className='label-event-Analitic-Container'>
                 <figure className='img-container'>
-                  <img src={HorsePhoto} className='img-event'></img>
+                  <img src={Choose.img} className='img-event'></img>
                 </figure>
                 <div className='p-column'>
                   <span className='t-white t-b font-size bold-size'>{Choose.name}</span>

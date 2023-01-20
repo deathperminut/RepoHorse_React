@@ -18,8 +18,8 @@ input[type="file"] {
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  height: 80%;
-  width: 80%; 
+  height: 60%;
+  width: 60%; 
   border-radius: 20px; 
 }
 #file_picker_small {

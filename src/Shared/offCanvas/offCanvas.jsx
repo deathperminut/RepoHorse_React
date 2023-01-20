@@ -6,6 +6,7 @@ import Logo from '../../Sources/Images/Landing/Logo.png'
 import { GiHorseshoe,GiHorseHead } from 'react-icons/gi';
 import {MdVideoSettings} from 'react-icons/md';
 import { FaHorseHead } from 'react-icons/fa';
+import {IoMdExit} from 'react-icons/io';
 import {GoGraph} from 'react-icons/go';
 import {BsFolderCheck} from 'react-icons/bs';
 import {ImExit} from 'react-icons/im';
@@ -79,7 +80,7 @@ function OffCanvas() {
                 <li className="sectionOffcanvas ">
                 <NavLink
                 className={({ isActive }) => (isActive ? 'inactive mt-c' : 'inactive mt-c')} onClick={Exit} >
-                    <ImExit className="iconOffCanvas gray"/><span className="textOffcanvas middle-size gray">Cerrar sesión</span>
+                    <IoMdExit className="iconOffCanvas gray hover-white"/><span className="textOffcanvas middle-size gray">Cerrar sesión</span>
                 </NavLink>
                 </li>
                 
