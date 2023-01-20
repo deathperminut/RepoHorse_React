@@ -24,6 +24,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 
 
+
 /* CALENDAR */
 import { DatePicker } from 'antd';
 /* APP CONTEXT */
@@ -33,7 +34,13 @@ import Preloader from '../../../Shared/preloader/preloader';
 import { toNumber } from 'lodash';
 import Swal from 'sweetalert2';
 
+const options = [
+  { value: 'P1', label: 'P1' },
+  { value: 'P2', label: 'P2' },
+  { value: 'P3', label: 'P3' },
+  { value: 'P4', label: 'P4' },
 
+]
 
 export default function Competiciones() {
 
@@ -533,7 +540,13 @@ export default function Competiciones() {
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size">Andar</span>
-                        <input className='inputEventForm second-size' type="text" placeholder='Ingrese la categoria'/>
+                        <Form.Select className='inputEventForm second-size'>
+                          <option>P1</option>
+                          <option>P2</option>
+                          <option>P3</option>
+                          <option>P4</option>
+                        </Form.Select>
+                        {/* <input className='inputEventForm second-size' type="text" placeholder='Ingrese la categoria'/> */}
                       </div>
                       <div className='ButtonContainer'>
                            {EditHorseButton===true  ?
