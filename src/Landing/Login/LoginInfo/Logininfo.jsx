@@ -69,7 +69,7 @@ function LoginInfo() {
       setLoading(false);
 
       
-      if(Email==="mendezsebas8@gmail.com" && Password==="Carrito_1"){
+      if(Email!=="" && Password!==""){
 
         if(RememberPassword){
           let Dict={email:Email,password:Password};
