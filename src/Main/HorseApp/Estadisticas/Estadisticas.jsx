@@ -1,23 +1,15 @@
 import React from 'react';
 import {Navigate,Routes, Route} from 'react-router-dom';
 import './Estadisticas.css';
-import Logo from '../../../Sources/Images/Estadisticas/logo_equipon.jpg';
-import HorsePhoto from '../../../Sources/Images/Estadisticas/HorsePhoto.jpg';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import * as Icon from 'react-bootstrap-icons';
-import Table from 'react-bootstrap/Table';
-import {BsFillPlayFill} from 'react-icons/bs';
-import ReactPlayer from 'react-player';
 import Tablehorse from '../../../Shared/table_horse/tablehorse';
 import {AiFillCloseCircle} from 'react-icons/ai';
 /* MODAL TO ADD EVENT*/
 import MyVerticallyCenteredModal from '../../../Shared/Modal/modal';
 /* IMPORT APP CONTEXT */
 import { AppContext } from '../../../Context';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import {IoIosArrowDropdownCircle} from 'react-icons/io';
 /*ListGroup*/
 import ListGroup from 'react-bootstrap/ListGroup'; 
 import Swal from 'sweetalert2';

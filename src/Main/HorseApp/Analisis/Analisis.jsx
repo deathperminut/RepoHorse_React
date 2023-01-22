@@ -2,15 +2,7 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import {Navigate,Routes, Route} from 'react-router-dom';
 import './Analisis.css';
-import Logo from '../../../Sources/Images/Estadisticas/logo_equipon.jpg';
-/* COMPONENTS */
-import Footer from '../../../Shared/footer/Footer';
-import Header from '../../../Shared/Header/Header';
-import * as Icon from 'react-bootstrap-icons';
-import {BsPlayBtn} from 'react-icons/bs'
-import {MdOutlineDriveFolderUpload} from 'react-icons/md';
-import {BsFilter} from 'react-icons/bs';
-import Dropzone from 'react-dropzone';
+
 
 /* SELECT */
 import Select from 'react-select';
@@ -23,13 +15,9 @@ import InputGroup from 'react-bootstrap/InputGroup';
 /*IMAGE*/
 //import HorsePhoto from '../..//../Sources/Images//Estadisticas/HorsePhoto.jpg';
 import HorsePhoto from '../../../Sources/Images/Estadisticas/HorsePhoto.jpg';
-import {AiFillCloseCircle} from 'react-icons/ai';
 import {FaTrash} from 'react-icons/fa';
-import {MdVideoSettings} from 'react-icons/md';
 import {RiScissorsCutFill} from 'react-icons/ri';
-import {GrPowerReset} from 'react-icons/gr';
 import {BsDownload} from 'react-icons/bs';
-import {BiReset} from 'react-icons/bi';
 import Marcadores from '../../../Sources/Video/Marcadores.mp4';
 
 
@@ -40,8 +28,6 @@ import { AppContext } from '../../../Context';
 import {IoIosArrowDropdownCircle} from 'react-icons/io';
 
 /* LOADING */
-import BounceLoader from "react-spinners/BounceLoader";
-import zIndex from '@material-ui/core/styles/zIndex';
 import Preloader from '../../../Shared/preloader/preloader';
 
 

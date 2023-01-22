@@ -4,12 +4,10 @@ import {useNavigate} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import {Link} from  'react-router-dom';
 /* ICONS */
-import * as Icon from 'react-bootstrap-icons';
-import { FaHorseHead } from 'react-icons/fa';
+
 import ToggleSwitch from '../../../Shared/buttonToggle/buttonToggle';
 import Logo from '../../../Sources/Images/Landing/Logo.png';
-import {AiOutlineEye,AiOutlineEyeInvisible} from 'react-icons/ai'
-import { delay } from 'lodash';
+import {AiOutlineEye} from 'react-icons/ai'
 import { AppContext } from '../../../Context';
 import Preloader from '../../../Shared/preloader/preloader';
 // import Button from 'react-bootstrap/Button';

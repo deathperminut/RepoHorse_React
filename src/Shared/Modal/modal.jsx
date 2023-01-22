@@ -1,12 +1,10 @@
 import React from "react";
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 import './modal.css';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import * as Icon from 'react-bootstrap-icons';
 // import Logo from '../../../Sources/Images/Estadisticas/logo_equipon.jpg';
-import Logo from '../../Sources/Images/Estadisticas/logo_equipon.jpg';
 import { AppContext } from "../../Context";
 import { useNavigate } from "react-router-dom";
 
