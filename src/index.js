@@ -21,3 +21,12 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+export async function getServerSideProps(context) {
+  // set HTTP header
+
+  context.res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+  context.res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  return {
+    props: {}
+  };
+}

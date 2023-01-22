@@ -1,13 +1,7 @@
 import React from "react";
 import Dropzone from "react-dropzone";
-import {BsPlayBtn,BsPlay} from 'react-icons/bs';
+import {BsPlay} from 'react-icons/bs';
 import {MdOutlineDriveFolderUpload} from 'react-icons/md';
-import  {BsFillCollectionPlayFill,BsCollectionPlay} from 'react-icons/bs';
-import {FiPlayCircle} from 'react-icons/fi';
-import {HiOutlinePlay} from 'react-icons/hi';
-import {CiPlay1} from 'react-icons/ci'
-import {SiAirplayvideo} from 'react-icons/si';
-import {MdSmartDisplay} from 'react-icons/md';
 import Swal from "sweetalert2";
 import { AppContext } from "../../../Context";
 
@@ -61,7 +55,7 @@ function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,vid
           <span className='textdragContainer'>{""}</span>
           <span className='buttonAnalisis btnHoverWhite'><MdOutlineDriveFolderUpload className='iconVideo'/><span className='textButtonVideo'>Subir video</span></span>
 
-          {/* <input onChange={handleChange} type="file" id="x" accept="video/mp4" />  */}
+          {/* <input onChange={acceptedFiles => fileInputChange(acceptedFiles)} type="file" id="x" accept="video/mp4" /> */}
 
       </label>
     )}

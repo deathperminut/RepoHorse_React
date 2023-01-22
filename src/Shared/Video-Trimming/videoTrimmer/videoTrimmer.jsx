@@ -1,9 +1,7 @@
 import React from 'react'
-import { useState } from "react";
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 import * as helpers from "../utils/helpers";
 import VideoFilePicker from "../components/VideoFilePicker";
-import OutputVideo from "../components/OutputVideo";
 import RangeInput from "../components/RangeInput";
 import './videoTrimmer.css';
 import '../styles/globals.css';
