@@ -193,7 +193,29 @@ export default function     VideoTrimmer() {
         setDowload(false);
       }
      },[dowload])
-  
+
+     const updateTime=(event)=>{
+      let Video=document.getElementById('VideoPlayerHorseApp');
+      if(videoMeta!=null){
+        let end=((rEnd / 100) * videoMeta.duration).toFixed(2);
+        if (Video.currentTime >= end){
+          let Start=((rStart / 100) * videoMeta.duration).toFixed(2);
+          Video.currentTime=Start
+          //Video.stop();
+        }
+      }
+      
+     }
+
+
+    //  let Video=document.getElementById('VideoPlayerHorseApp');
+    //  Video.addEventListener("timeupdate", function(){
+
+    //    console.log("funciona?: ",this.currentTime);
+    //   // if(this.currentTime >= 5 * 60) {
+    //   //     this.pause();
+    //   // }
+    // });     
     return (
       <>
       
@@ -205,15 +227,16 @@ export default function     VideoTrimmer() {
               videoSrc={trimmedVideoFile}
             >
                <video
-                  
+                  onTimeUpdate={updateTime}
+                  id='VideoPlayerHorseApp'
                   className={`videoStyles ${StadisticVideo ? "display-flex" : "display-none"}`}
                   src={inputVideoFile ? URL : null}
                   controls
-                  muted
+                  autoplay
                   onLoadedMetadata={handleLoadedData}
                   width="620"
                   height="400"
-                ></video>
+                />
                 
 
             </VideoFilePicker>
@@ -223,7 +246,13 @@ export default function     VideoTrimmer() {
             <RangeInput
               rEnd={rEnd}
               rStart={rStart}
-              handleUpdaterStart={handleUpdateRange(setRstart)}
+              handleUpdaterStart={handleUpdateRange((event)=>{
+                setRstart(event);
+                let Video=document.getElementById('VideoPlayerHorseApp');
+                let startTime=((event / 100) * videoMeta.duration).toFixed(2);
+                Video.currentTime=startTime;
+                console.log(helpers.toTimeString(startTime));
+              })}
               handleUpdaterEnd={handleUpdateRange(setRend)}
               loading={thumbnailIsProcessing}
               videoMeta={videoMeta}

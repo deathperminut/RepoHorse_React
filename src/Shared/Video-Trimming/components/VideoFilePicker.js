@@ -14,6 +14,7 @@ function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,vid
     SelectHorse,setSelectHorse}=React.useContext(AppContext);
 
   const fileInputChange=(event)=>{
+    
      
     if(SelectEvent && SelectHorse){
       if(event[0].type==="video/mp4"){
@@ -76,13 +77,7 @@ function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,vid
     return( <FileInput />)
   }
  
-  // return(thumbNails ? 
-  //   (<>
-  //   {children}
-  //    </>)  
-  //   : 
-    
-  //   <FileInput />)
+
 }
 
 export default VideoFilePicker;

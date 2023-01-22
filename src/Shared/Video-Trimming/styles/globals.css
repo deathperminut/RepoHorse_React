@@ -97,7 +97,7 @@ input[type="file"] {
 }
 
 .clip_box {
-  border: 10px solid #0091FF;
+  border: 4px solid #0091FF;
   position: absolute;
   height: 110%;
   box-shadow: 2000 0 5px 10px #0091FF, -400px 0 5px -10px #0091FF;
@@ -128,7 +128,7 @@ input[type="file"] {
 }
 
 .clip_box_des {
-  width: 1.3rem;
+  width: 0.6rem;
   height: 100%;
   background-color: #0091FF;
   position: absolute;
