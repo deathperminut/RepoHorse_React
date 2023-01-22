@@ -166,7 +166,6 @@ export default function Estadisticas() {
                                   aria-describedby="basic-addon1"
                                 />
                               </InputGroup>
-                              <button className='buttonEstadistic middle-size '>Buscar</button>
                           </div>
                           
                         </div>

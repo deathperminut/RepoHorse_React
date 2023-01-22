@@ -311,7 +311,6 @@ export default function Competiciones() {
                     aria-describedby="basic-addon1"
                   />
                 </InputGroup>
-                <button onClick={find} className='buttonComp middle-size'>Buscar</button>
         </div>
         <div className='RegisterEventContainer'>
            {CreateButton===false 
@@ -397,7 +396,7 @@ export default function Competiciones() {
                  <input onChange={(event)=>CheckInput(event,'number')} className='inputEventForm second-size' type="text" placeholder='# de competidores'/>
                </div>
                <div className='dateContainer containrow second-size'>
-                 <span className="textFormEvent second-size ">fechas</span>
+                 <span className="textFormEvent second-size ">Fecha</span>
                  <DatePicker className='datepicker' onChange={onChange_start}  placeholder='Inicio' />
                  <DatePicker  className='datepicker' onChange={onChange_end}  placeholder='Fin'/>
                </div>
@@ -473,7 +472,6 @@ export default function Competiciones() {
                     aria-describedby="basic-addon1"
                   />
                 </InputGroup>
-                <button className='buttonComp middle-size'>Buscar</button>
                 <ListGroup horizontal defaultActiveKey="#link1" className='ListAndar'>
                           <ListGroup.Item action eventKey="#link1">Andar P1</ListGroup.Item>
                           <ListGroup.Item action eventKey="#link2">Andar P2</ListGroup.Item>

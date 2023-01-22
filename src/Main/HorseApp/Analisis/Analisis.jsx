@@ -34,7 +34,6 @@ import Marcadores from '../../../Sources/Video/Marcadores.mp4';
 
 
 /* VIDEO EDITOR */
-import VideoEditor from '../../../Shared/VideoEditor/VideoEditor';
 import VideoTrimmer from '../../../Shared/Video-Trimming/videoTrimmer/videoTrimmer';
 /* CONTEXT */
 import { AppContext } from '../../../Context';
@@ -290,7 +289,6 @@ export default function Analisis() {
                     <Dropdown.Item href="#"  onClick={()=>changeDrop('P4')}>P4</Dropdown.Item>
                   </DropdownButton>
                 </InputGroup>
-                <button className='buttonComp btn-analizar'>Buscar</button>
             </div>
             <div className='ContainerOverflow-y'>
                 <div className='DetailsContainer_an'>

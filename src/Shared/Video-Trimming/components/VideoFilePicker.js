@@ -53,7 +53,7 @@ function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,vid
 
     <Dropzone onDrop={acceptedFiles => fileInputChange(acceptedFiles)} >
     {({getRootProps, getInputProps}) => (
-      <label htmlFor="x"
+      <label 
       id={`${showVideo ? "file_picker_small" : ""}`}
       className={`file_picker `} {...getRootProps()}>
           <BsPlay className='iconFilm'/>
