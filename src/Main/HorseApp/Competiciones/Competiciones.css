@@ -162,9 +162,14 @@
     margin-right: 50px;
 }
 .mr-3:hover{
-    border-bottom: 1px solid #FF9300;
+    border: 1px solid #6d655a;
     cursor: pointer;
 }
+.pr-l-10{
+    position: relative;
+    left: 10px;
+}
+
 .ml-1 {
     margin-left: 30px;
 }

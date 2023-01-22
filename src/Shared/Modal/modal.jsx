@@ -84,7 +84,7 @@ export default function MyVerticallyCenteredModal(props) {
               
                 {filter.map(event=>{
                     return(
-                        <div key={event.id} className='label-event-Estadistics-Container mr-3 ' onClick={()=>EmitEvent(event.id)}>
+                        <div key={event.id} className='label-event-Estadistics-Container mr-3  pr-l-10' onClick={()=>EmitEvent(event.id)}>
                                 <figure className='img-container'>
                                 <img src={event.img} className='img-event'></img>
                                 </figure>

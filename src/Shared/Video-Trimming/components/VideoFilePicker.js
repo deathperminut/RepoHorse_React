@@ -14,7 +14,7 @@ function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,vid
     SelectHorse,setSelectHorse}=React.useContext(AppContext);
 
   const fileInputChange=(event)=>{
-    
+
      
     if(SelectEvent && SelectHorse){
       if(event[0].type==="video/mp4"){
@@ -51,9 +51,9 @@ function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,vid
       <label 
       id={`${showVideo ? "file_picker_small" : ""}`}
       className={`file_picker `} {...getRootProps()}>
-          <BsPlay className='iconFilm'/>
+          {/* <BsPlay className='iconFilm'/> */}
           <span className='textdragContainer'>Arraste el video aquí</span>
-          <span className='textdragContainer'>{""}</span>
+          <span className='textdragContainer'>{"o"}</span>
           <span className='buttonAnalisis btnHoverWhite'><MdOutlineDriveFolderUpload className='iconVideo'/><span className='textButtonVideo'>Subir video</span></span>
 
           {/* <input onChange={acceptedFiles => fileInputChange(acceptedFiles)} type="file" id="x" accept="video/mp4" /> */}
