@@ -83,6 +83,7 @@ export default function Analisis() {
     let Value=null;
      if(select){
       Value=event.value;
+      console.log("op",FindEventId(event.value));
       setChoose(FindEventId(event.value));
      }
      console.log(!SelectEvent);
@@ -238,12 +239,12 @@ export default function Analisis() {
 
             <div className='label-event-Analitic-Container'>
                 <figure className='img-container'>
-                  <img src={Choose.img} className='img-event'></img>
+                  <img src={Choose.imagen} className='img-event'></img>
                 </figure>
                 <div className='p-column'>
-                  <span className='t-white t-b font-size bold-size'>{Choose.name}</span>
-                  <span className='t-white t-xs middle-size small-size'>{Choose.place}</span>
-                  <span className='t-white t-xs middle-size  small-size '>{Choose.date_start }<span className='small-size'>{' / '}</span> {Choose.date_end}</span>
+                  <span className='t-white t-b font-size bold-size'>{Choose.nombre_evento}</span>
+                  <span className='t-white t-xs middle-size small-size'>{Choose.lugar}</span>
+                  <span className='t-white t-xs middle-size  small-size '>{Choose.fecha_inicio }<span className='small-size'>{' / '}</span> {Choose.fecha_fin}</span>
                   <div  className='changeContainer right-10px'>
                       <span className='TextChange' onClick={()=>{
                    setSelectEvent(false);

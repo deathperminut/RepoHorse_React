@@ -38,7 +38,7 @@ export default function MyVerticallyCenteredModal(props) {
       if(event.target.value===""){
         setFilter(events);
       }else{
-        const Array=events.filter((obj)=> obj.name.toLowerCase().includes(event.target.value.toLowerCase()))
+        const Array=events.filter((obj)=> obj.nombre_evento.toLowerCase().includes(event.target.value.toLowerCase()))
         setFilter(Array);
       }
     }
@@ -86,12 +86,12 @@ export default function MyVerticallyCenteredModal(props) {
                     return(
                         <div key={event.id} className='label-event-Estadistics-Container mr-3  pr-l-10' onClick={()=>EmitEvent(event.id)}>
                                 <figure className='img-container'>
-                                <img src={event.img} className='img-event'></img>
+                                <img src={event.imagen} className='img-event'></img>
                                 </figure>
                                 <div className='p-column'>
-                                <span className='t-white t-b bold-size'>{event.name}</span>
-                                <span className='t-white t-xs middle-size orange'>{event.place}</span>
-                                <span className='t-white t-xs middle-size'>{event.date_start}</span>
+                                <span className='t-white t-b bold-size'>{event.nombre_evento}</span>
+                                <span className='t-white t-xs middle-size orange'>{event.lugar}</span>
+                                <span className='t-white t-xs middle-size'>{event.fecha_inicio}</span>
                                 </div>
                         </div>
                     );

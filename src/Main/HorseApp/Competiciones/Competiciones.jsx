@@ -180,6 +180,10 @@ export default function Competiciones() {
     setSelectEvent(false);
     setSelectHorse(false);
   },[])
+  /* useEffect */
+  React.useEffect(()=>{
+    setFilter(events);
+  },[events])
 
   const AppendEvent=async(EVENT)=>{
      EVENT.preventDefault();
@@ -285,13 +289,13 @@ export default function Competiciones() {
               <div className='CountContainer'>
                  <span className='TextTitle bold-size '>Total competencias</span>
                  <div className='CountsBox'>
-                    <span className='TextCount '>{events.length}</span>
+                    {/* <span className='TextCount '>{events.length}</span> */}
                  </div>
               </div>
               <div className='CountContainer'>
                  <span className='TextTitle bold-size'>Total competidores</span>
                  <div className='CountsBox'>
-                    <span className='TextCount'>{checkTotalCompetidores()}</span>
+                    {/* <span className='TextCount'>{checkTotalCompetidores()}</span> */}
                  </div>
               </div>
           </div>
@@ -322,30 +326,39 @@ export default function Competiciones() {
                         </div>
                       </div>
                   </Col>
+                  {filter!==null ?
+                  <>
                   {filter.map(Event=>(
 
-                     console.log(Event),
+                            console.log(Event),
 
-                    <Col key={Event.id} className='EventComponent'>
-                      <div className='Event display-row' >
-                        <figure className='img-container CompetitionsImag_2'>
-                            <img src={Event.imagen} className='img-event CompetitionsImag'></img>
-                        </figure>
-                        <div className='p-column-event'>
-                          <span className='t-white t-b t-b2  overflox-x-hidden '>{Event.nombre_evento}</span>
-                          <span className='t-white t-xs small-size'>{Event.lugar+' '}</span>
-                          <span className='t-white t-xs small-size gray-dc'>{Event.fecha_inicio }<span className='small-size'>{' / '}</span> {Event.fecha_fin}</span>
-                          <div className='d-row flex-end'>
-                               <div className='iconEditEvent' onClick={()=>EditEventFunction(Event)}>
-                                <RiEdit2Fill className='iconVideoPlay'/>
-                               </div>
-                               <FaTrash className='option-icon IconPointer' onClick={()=>DeleteEvent(Event.id)}></FaTrash>
-                          </div>
-                        </div>
-                      </div>
-                  </Col>
+                            <Col key={Event.id} className='EventComponent'>
+                            <div className='Event display-row' >
+                              <figure className='img-container CompetitionsImag_2'>
+                                  <img src={Event.imagen} className='img-event CompetitionsImag'></img>
+                              </figure>
+                              <div className='p-column-event'>
+                                <span className='t-white t-b t-b2  overflox-x-hidden '>{Event.nombre_evento}</span>
+                                <span className='t-white t-xs small-size'>{Event.lugar+' '}</span>
+                                <span className='t-white t-xs small-size gray-dc'>{Event.fecha_inicio }<span className='small-size'>{' / '}</span> {Event.fecha_fin}</span>
+                                <div className='d-row flex-end'>
+                                      <div className='iconEditEvent' onClick={()=>EditEventFunction(Event)}>
+                                      <RiEdit2Fill className='iconVideoPlay'/>
+                                      </div>
+                                      <FaTrash className='option-icon IconPointer' onClick={()=>DeleteEvent(Event.id)}></FaTrash>
+                                </div>
+                              </div>
+                            </div>
+                            </Col>
 
-                  ))}
+                            ))}
+
+                  </>
+                  :
+                  <>
+
+                  </>}
+                  
                   
                   
                 </Row>
@@ -426,12 +439,12 @@ export default function Competiciones() {
          <div className='EventInfoContainer mt-3'>
             <div className='label-event-Estadistics-Container  '>
                 <figure className='img-container'>
-                  <img src={eventChoosed.img} className='img-event'></img>
+                  <img src={eventChoosed.imagen} className='img-event'></img>
                 </figure>
                 <div className='p-column-event'>
-                  <span className='t-white t-b t-b2  overflox-x-hidden bold-size'>{eventChoosed.name}</span>
-                  <span className='t-white t-xs  small-size'>{eventChoosed.place}</span>
-                  <span className='t-white t-xs small-size gray-dc' >{eventChoosed.date_start }<span className='small-size'>{' / '}</span> {eventChoosed.date_end}</span>
+                  <span className='t-white t-b t-b2  overflox-x-hidden bold-size'>{eventChoosed.nombre_evento}</span>
+                  <span className='t-white t-xs  small-size'>{eventChoosed.lugar}</span>
+                  <span className='t-white t-xs small-size gray-dc' >{eventChoosed.fecha_inicio }<span className='small-size'>{' / '}</span> {eventChoosed.fecha_fin}</span>
                 </div>
             </div>
             <div className='containerCountsEvent'>
@@ -439,19 +452,19 @@ export default function Competiciones() {
                     <div className='CountContainer align-center margin-left-90px'>
                       <span className='TextTitle mb-'>Total competidores</span>
                       <div className='CountsBox w-'>
-                          <span className='TextCount'>{eventChoosed.number}</span>
+                          <span className='TextCount'>{eventChoosed.competidores}</span>
                       </div>
                     </div>
                     <div className='CountContainer align-center'>
                       <span className='TextTitle mb-'>Agregados</span>
                       <div className='CountsBox w-'>
-                          <span className='TextCount'>{eventChoosed.horses.length}</span>
+                          {/* <span className='TextCount'>{eventChoosed.horses.length}</span> */}
                       </div>
                     </div>
                     <div className='CountContainer align-center'>
                       <span className='TextTitle mb-'>Sin registrar</span>
                       <div className='CountsBox w-'>
-                          <span className='TextCount'>{getCount(eventChoosed)}</span>
+                          {/* <span className='TextCount'>{getCount(eventChoosed)}</span> */}
                       </div>
                     </div>
                   </div>
