@@ -10,6 +10,12 @@ const AppContext=React.createContext();
 
 function ProviderContext(props){
 
+    /* USER INFO */
+
+    let [userData,setUserData]=React.useState(null);
+    let [token,setToken]=React.useState(null);
+
+
     /* STATISDIC VIDEO (ANALIZAR) */
 
     let [StadisticVideo,setStatisticVideo]=React.useState(false);
@@ -44,51 +50,10 @@ function ProviderContext(props){
 
     /* ArratEvents */
 
-    let [events,setEvents]=React.useState([
-        {img:HorsePhoto,
-        name:'65° Feria Equina',
-        number:'21',
-        date_start:'2021-05-10',
-        date_end:'2021-05-16',
-        place:'Manizales',
-        description:'',
-        horses:[],
-    id:0},
-    {img:HorsePhoto,
-        name:'65° Feria Equina',
-        number:'21',
-        date_start:'2021-05-10',
-        date_end:'2021-05-16',
-        place:'Manizales',
-        description:'',
-        horses:[],
-    id:4},{img:HorsePhoto,
-        name:'65° Feria Equina',
-        number:'21',
-        date_start:'2021-05-10',
-        date_end:'2021-05-16',
-        place:'Manizales',
-        description:'',
-        horses:[],
-    id:3},
-    {img:HorsePhoto,
-        name:'65° Feria Equina',
-        number:'21',
-        date_start:'2021-05-10',
-        date_end:'2021-05-16',
-        place:'Manizales',
-        description:'',
-        horses:[],
-    id:2},{img:HorsePhoto,
-        name:'65° Feria Equina',
-        number:'21',
-        date_start:'2021-05-10',
-        date_end:'2021-05-16',
-        place:'Manizales',
-        description:'',
-        horses:[],
-    id:1}
-    ]);
+    let [events,setEvents]=React.useState(null);
+    let [horses,setHorses]=React.useState(null);
+
+
     let [eventChoosed,setEventChoosed]=React.useState({
         img:'',
         name:'',
@@ -108,12 +73,16 @@ function ProviderContext(props){
     const loadEventsForSelect=()=>{
         
         let Array=[];
+        
+        if(events!==null){
 
-        for (var i=0;i<events.length;i++){
-            let element={value:events[i].id,label:events[i].name}
-            Array.push(element);
+            for (var i=0;i<events.length;i++){
+                let element={value:events[i].id,label:events[i].nombre_evento}
+                Array.push(element);
+            }
+    
         }
-
+        
         setSelectEvents(Array);
     }
 
@@ -136,6 +105,7 @@ function ProviderContext(props){
     return (
         
         <AppContext.Provider value={{
+            token,setToken,userData,setUserData,horses,setHorses,
             StadisticVideo,setStatisticVideo,inputVideoFile, setInputVideoFile
             ,videoMeta, setVideoMeta , trimmedVideoFile, setTrimmedVideoFile,URL, setURL, trimIsProcessing, setTrimIsProcessing,rStart, setRstart,rEnd, setRend
             ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,loading,setLoading,originalVideo,setOriginalVideo,cutVideo,setCutVideo,

@@ -21,7 +21,7 @@ function LoginInfo() {
 
   /* APP CONTEXT */
 
-  let {loading,setLoading,sleep}=React.useContext(AppContext);
+  let {loading,setLoading,setToken,setUserData}=React.useContext(AppContext);
 
     
     
@@ -103,6 +103,7 @@ function LoginInfo() {
         })
       })
       if(result!==undefined){
+        console.log(result);
         setLoading(false);
         if(RememberPassword){
           /* GUARDAMOS EN LOCAL STORAGE LA CUENTA. */
@@ -114,6 +115,16 @@ function LoginInfo() {
           Dict=JSON.stringify(Dict);
           localStorage.setItem("UserHorseApp",Dict);
         }
+        
+        /* SAVE ON SESSION STORAGE */
+        let user={email:Email,password:Password};
+        user=JSON.stringify(user);
+
+        sessionStorage.setItem("UserHorseAppSessionStorage",user);
+        sessionStorage.setItem('TokenUserHorseApp', JSON.stringify(result['data'].token));
+
+        setToken(result['data'].token);
+        setUserData({username:Email,password:Password});
         navigate('/Main/HorseApp');
 
       }

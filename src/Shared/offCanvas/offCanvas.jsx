@@ -3,22 +3,95 @@ import { NavLink } from "react-router-dom";
 import './offCanvas.css';
 import Logo from '../../Sources/Images/Landing/Logo.png'
 /* ICONS */
-import { GiHorseshoe,GiHorseHead } from 'react-icons/gi';
+import { GiHorseshoe} from 'react-icons/gi';
 import {MdVideoSettings} from 'react-icons/md';
-import { FaHorseHead } from 'react-icons/fa';
 import {IoMdExit} from 'react-icons/io';
 import {GoGraph} from 'react-icons/go';
-import {BsFolderCheck} from 'react-icons/bs';
-import {ImExit} from 'react-icons/im';
 import Logo_only from '../../Sources/Images/Landing/logo_only.png';
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../../Context";
+import { getAllEvents } from "../../Services/Events/events";
+import { getAllHorses } from "../../Services/Horses/horse";
+import Preloader from "../preloader/preloader";
 
 
 
 
 
 function OffCanvas() {
+
+    let {token,setToken,setUserData,horses,setHorses,events,setEvents,loading,setLoading}=React.useContext(AppContext);
+
+
+    React.useEffect(()=>{
+      
+     if(token===null){
+        //Get of session Storage
+        let UserData=JSON.parse(sessionStorage.getItem('UserHorseAppSessionStorage'));
+        let Token=JSON.parse(sessionStorage.getItem('TokenUserHorseApp'));
+        console.log(UserData,Token);
+        setUserData(UserData);
+        setToken(Token);
+
+        //getEvents And Horses.
+        getEvents(Token);
+     }else{
+        if(events===null){
+            getEvents(token);
+         }
+
+
+    }
+        
+
+
+
+    },[token])
+
+
+    /* GET EVENTS */
+
+    const getEvents=async(Token)=>{
+
+        setLoading(true);
+
+
+        let result=undefined;
+        
+        result=await getAllEvents(Token).catch((error)=>{
+            setLoading(false);
+            console.log("No hay eventos.",error); // NO HAY EVENTOS CREADOS.
+            setEvents([]);
+
+        })
+        if (result!==undefined){
+            console.log("eventos cargados con exito.",result['data']);
+            setEvents(result['data']);
+            getHorses(Token);
+        }
+    }
+    /* GET Horses */
+
+    const getHorses=async(Token)=>{
+
+           let result=undefined;
+        
+          result=await getAllHorses(Token).catch((error)=>{
+            setLoading(false);
+            console.log(error);
+            setHorses([]);
+          })
+          if (result!==undefined){
+            setLoading(false);
+            console.log("Caballos cargados con exito.",result['data']);
+            setHorses(result['data']);
+          }
+        }
+
+
+
+
     
     const navigate=useNavigate();
     const Exit=()=>{
@@ -37,15 +110,17 @@ function OffCanvas() {
     
     }
     
-
-
-    let activeStyle = {
-        textDecoration: "underline",
-      };
-    
-    let activeClassName = "underline";
   return (
     <>
+            {
+                loading ?
+                <>
+                <Preloader></Preloader>
+                </>
+                :
+
+                <></>
+            }
 
         <nav className='offCanvasContainer'>
             <img  className='LogoOffcanvas_only' src={Logo_only} alt="hola"></img>

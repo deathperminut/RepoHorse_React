@@ -15,6 +15,19 @@ export const environment={
   ResetPassword_2:'password_reset/confirm/',
   ChangePassword:'change-password/',
   LogoutAll:'logout/',
+
+  //EVENTS
+  setEvent:'create-event/',
+  getEvents:'list-event/',
+
+  //HORSES
+  setHorse:'create-caballo/',
+  getHorse:'listar-caballos/',
+
+  //MODEL
+  setVideoHorse:'agregar-video/',
+  processVideo:'procesar-video/',
+
   
 
 

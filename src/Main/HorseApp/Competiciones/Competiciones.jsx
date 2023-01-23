@@ -55,13 +55,11 @@ export default function Competiciones() {
   const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 
   function onChange_start(date, dateString) {
-    setEvent({...event,['date_start']:dateString})
-    console.log({...event,['date_start']:dateString});
+    setEvent({...event,['fecha_inicio']:dateString})
 
   }
   function onChange_end(date, dateString) {
-    setEvent({...event,['date_end']:dateString})
-    console.log({...event,['date_end']:dateString});
+    setEvent({...event,['fecha_fin']:dateString})
 
   }
   
@@ -77,13 +75,13 @@ export default function Competiciones() {
 
 
   let [event,setEvent]=React.useState({
-    img:'',
-    name:'',
-    number:'',
-    date_start:'',
-    date_end:'',
-    place:'',
-    description:'',
+    imagen:'',
+    nombre_evento:'',
+    lugar:'',
+    fecha_inicio:'',
+    fecha_fin:'',
+    competidores:'',
+    descripcion:'',
     horses:[],
   })
   let [buttonEvent,setButtonEvent]=React.useState(true);
@@ -118,8 +116,8 @@ export default function Competiciones() {
   /*FUNCTION IMAGE */
   function handleChange(e) {
     setFile(URL.createObjectURL(e.target.files[0]));
-    setEvent({...event,['img']:URL.createObjectURL(e.target.files[0])})
-    checkEvent({...event,['img']:URL.createObjectURL(e.target.files[0])});
+    setEvent({...event,['imagen']:URL.createObjectURL(e.target.files[0])})
+    checkEvent({...event,['imagen']:URL.createObjectURL(e.target.files[0])});
   }
   const clickImageInput=()=>{
     let A_element=$("input")[1];
@@ -239,7 +237,7 @@ export default function Competiciones() {
    }
 
   const checkEvent=(event)=>{
-    if(event.name !=="" && event.img!=="" && event.number !=="" && event.date_start!=="" && event.date_end!=="" && event.place!==""){
+    if(event.nombre_evento !=="" && event.imagen!=="" && event.competidores !=="" && event.fecha_inicio!=="" && event.fecha_fin!=="" && event.lugar!==""){
       setButtonEvent(false);
     }else{
       setButtonEvent(true);
@@ -331,12 +329,12 @@ export default function Competiciones() {
                     <Col key={Event.id} className='EventComponent'>
                       <div className='Event display-row' >
                         <figure className='img-container CompetitionsImag_2'>
-                            <img src={Event.img} className='img-event CompetitionsImag'></img>
+                            <img src={Event.imagen} className='img-event CompetitionsImag'></img>
                         </figure>
                         <div className='p-column-event'>
-                          <span className='t-white t-b t-b2  overflox-x-hidden '>{Event.name}</span>
-                          <span className='t-white t-xs small-size'>{Event.place+' '}</span>
-                          <span className='t-white t-xs small-size gray-dc'>{Event.date_start }<span className='small-size'>{' / '}</span> {Event.date_end}</span>
+                          <span className='t-white t-b t-b2  overflox-x-hidden '>{Event.nombre_evento}</span>
+                          <span className='t-white t-xs small-size'>{Event.lugar+' '}</span>
+                          <span className='t-white t-xs small-size gray-dc'>{Event.fecha_inicio }<span className='small-size'>{' / '}</span> {Event.fecha_fin}</span>
                           <div className='d-row flex-end'>
                                <div className='iconEditEvent' onClick={()=>EditEventFunction(Event)}>
                                 <RiEdit2Fill className='iconVideoPlay'/>
@@ -386,11 +384,11 @@ export default function Competiciones() {
                </div>
                <div className='nameContainer containrow'>
                  <span className="textFormEvent second-size">Nombre</span>
-                 <input onChange={(event)=>CheckInput(event,'name')} maxLength={21} className='inputEventForm second-size' type="text" placeholder='ingrese el nombre del evento'/>
+                 <input onChange={(event)=>CheckInput(event,'nombre_evento')} maxLength={21} className='inputEventForm second-size' type="text" placeholder='ingrese el nombre del evento'/>
                </div>
                <div className='competidoresContainer containrow'>
                  <span className="textFormEvent second-size">Competidores</span>
-                 <input onChange={(event)=>CheckInput(event,'number')} className='inputEventForm second-size' type="text" placeholder='# de competidores'/>
+                 <input onChange={(event)=>CheckInput(event,'competidores')} className='inputEventForm second-size' type="text" placeholder='# de competidores'/>
                </div>
                <div className='dateContainer containrow second-size'>
                  <span className="textFormEvent second-size ">Fecha</span>
