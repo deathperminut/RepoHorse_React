@@ -7,10 +7,11 @@ import {Link} from  'react-router-dom';
 
 import ToggleSwitch from '../../../Shared/buttonToggle/buttonToggle';
 import Logo from '../../../Sources/Images/Landing/Logo.png';
-import {AiOutlineEye} from 'react-icons/ai'
+import {AiOutlineEye,AiOutlineEyeInvisible} from 'react-icons/ai';
 import { AppContext } from '../../../Context';
 import Preloader from '../../../Shared/preloader/preloader';
-// import Button from 'react-bootstrap/Button';
+import { setLogin } from '../../../Services/Auth/login';
+
 
 
 
@@ -31,14 +32,36 @@ function LoginInfo() {
     const [Email,setEmail]=React.useState('');
     const [Password,setPassword]=React.useState('');
     const [RememberPassword,setRememberPassword]=React.useState(false);
+    const [eye,setEye]=React.useState(true);
+
+
+    const SeePassword=()=>{
+      console.log("dd")
+      setEye(false);
+      const input = document.querySelector("#password");
+      // When an input is checked, or whatever...
+      input.setAttribute("type", "text");
+      input.classList.add( "colorWhite" );
+    }
+    const HidePassword=()=>{
+      console.log("dad")
+      setEye(true);
+      const input = document.querySelector("#password");
+
+        input.setAttribute("type", "password");
+        input.classList.remove( "colorWhite" );
+    }
+
+
 
     //CARGAMOS INFORMACIÓN CON USE EFFECT
     React.useEffect(()=>{
-      let Data= localStorage.getItem('User');
+      let Data= localStorage.getItem('UserHorseApp');
       if(Data!==null && Data!==undefined){
         Data=JSON.parse(Data);
         setEmail(Data.email);
         setPassword(Data.password);
+        setRememberPassword(Data.RememberPassword);
       }
     },[]);
 
@@ -52,7 +75,7 @@ function LoginInfo() {
     const onChangePassword=(event)=>{
       setPassword(event.target.value);
     }
-    const onChangeCheckboxRememberPassword=(event)=>{
+    const handleChange=(event)=>{
       setRememberPassword(event.target.checked);
     }
 
@@ -60,33 +83,43 @@ function LoginInfo() {
     const onSubmit=async(event)=>{
       event.preventDefault();
 
-      setLoading(true);
-      
-      await sleep(3000);
 
-      setLoading(false);
-
-      
-      if(Email!=="" && Password!==""){
-
-        if(RememberPassword){
-          let Dict={email:Email,password:Password};
-          Dict=JSON.stringify(Dict);
-          localStorage.setItem("User",Dict);
-        }
-        navigate('/Main/HorseApp');
-
-
-
+      if(Email==="" || Password===""){
+        Swal.fire({
+          icon: 'error',
+          title: 'Completar todos los campos para iniciar sesión',
+        })
       }else{
+        setLoading(true);
+      
+      let result=undefined;
+
+      result=await setLogin({username:Email,password:Password}).catch((error)=>{
+
+        setLoading(false);
         Swal.fire({
           icon: 'error',
           title: 'Credenciales incorrectas.',
         })
+      })
+      if(result!==undefined){
+        setLoading(false);
+        if(RememberPassword){
+          /* GUARDAMOS EN LOCAL STORAGE LA CUENTA. */
+          let Dict={email:Email,password:Password,RememberPassword:true};
+          Dict=JSON.stringify(Dict);
+          localStorage.setItem("UserHorseApp",Dict);
+        }else{
+          let Dict={email:"",password:"",RememberPassword:false};
+          Dict=JSON.stringify(Dict);
+          localStorage.setItem("UserHorseApp",Dict);
+        }
+        navigate('/Main/HorseApp');
 
       }
 
-      //OBTENEMOS LA INFORMACIÓN
+      }
+
     }
 
     /* GO TO REGISTER*/
@@ -114,24 +147,33 @@ function LoginInfo() {
           <div className="mb-3">
             <div className="col-12">
               <div className="form-floating inner-addon left-addon">
-                <input onChange={onChangeEmail}  type="email" autocomplete="off" className="form-control INPUT_DATA font-small" value={Email} id="correo" placeholder="Correo"/>
-                <label className="c-orange op-1 textForm">Usuario</label>
+                <input onChange={onChangeEmail}  type="text" autocomplete="off" className="form-control INPUT_DATA font-small" value={Email} id="correo" placeholder="Usuario"/>
+                <label className="c-orange op-1 textForm">Nombre de usuario</label>
               </div>
             </div>
           </div>
           <div >
             <div className="col-12">
               <div className="form-floating inner-addon right-addon">
-                <input onChange={onChangePassword} type="password"  className="form-control INPUT_DATA c-orange op-1 font-small"  value={Password} id="floatingPassword" placeholder="Password"
+                <input   onChange={onChangePassword} type="password"  className="form-control INPUT_DATA c-orange op-1 font-small"  value={Password} id="password" placeholder="Password"
                   />
                 <label className="c-orange op-1 textForm">Contraseña</label>
-                <AiOutlineEye className='eye-password'></AiOutlineEye>
+                {eye===true  ? 
+                <>
+                <AiOutlineEye className='eye-password' onClick={SeePassword}></AiOutlineEye>
+                </>
+                :
+                <>
+                <AiOutlineEyeInvisible className='eye-password' onClick={HidePassword}></AiOutlineEyeInvisible>
+                </>
+                }
+                
               </div>
             </div>
           </div>
           <div className="mt-4">
             <div className="col-12">
-            <ToggleSwitch label="Recordarme" />
+            <ToggleSwitch   saveFunction={handleChange} RememberPassword={RememberPassword}/>
             </div>
           </div>
           <div className="">

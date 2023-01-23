@@ -206,16 +206,7 @@ export default function     VideoTrimmer() {
       }
       
      }
-
-
-    //  let Video=document.getElementById('VideoPlayerHorseApp');
-    //  Video.addEventListener("timeupdate", function(){
-
-    //    console.log("funciona?: ",this.currentTime);
-    //   // if(this.currentTime >= 5 * 60) {
-    //   //     this.pause();
-    //   // }
-    // });     
+   
     return (
       <>
       

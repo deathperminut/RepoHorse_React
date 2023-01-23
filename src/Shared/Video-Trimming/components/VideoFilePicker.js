@@ -52,7 +52,7 @@ function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,vid
       id={`${showVideo ? "file_picker_small" : ""}`}
       className={`file_picker `} {...getRootProps()}>
           {/* <BsPlay className='iconFilm'/> */}
-          <span className='textdragContainer'>Arraste el video aquí</span>
+          <span className='textdragContainer'>Arrastre el video aquí</span>
           <span className='textdragContainer'>{"o"}</span>
           <span className='buttonAnalisis btnHoverWhite'><MdOutlineDriveFolderUpload className='iconVideo'/><span className='textButtonVideo'>Subir video</span></span>
 
