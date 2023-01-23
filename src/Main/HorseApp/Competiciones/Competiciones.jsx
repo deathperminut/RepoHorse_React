@@ -47,7 +47,7 @@ export default function Competiciones() {
     SelectHorse,setSelectHorse,
     StadisticVideo,setStatisticVideo, setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
-      , setThumbNails, setThumbnailIsProcessing,loading,setOriginalVideo,events,setEvents,sleep,setLoading,eventChoosed,setEventChoosed
+      , setThumbNails, setThumbnailIsProcessing,loading,setOriginalVideo,events,setEvents,sleep,setLoading,eventChoosed,setEventChoosed,
   }=React.useContext(AppContext); 
   
 
@@ -215,7 +215,7 @@ export default function Competiciones() {
   const checkTotalCompetidores=()=>{
       let count=0;
       for (var i=0;i<events.length;i++){
-           count=toNumber(count)+toNumber(events[i].number); 
+           count=toNumber(count)+toNumber(events[i].Horses.length); 
         }
       return count
   }
@@ -289,13 +289,13 @@ export default function Competiciones() {
               <div className='CountContainer'>
                  <span className='TextTitle bold-size '>Total competencias</span>
                  <div className='CountsBox'>
-                    {/* <span className='TextCount '>{events.length}</span> */}
+                   <span className='TextCount '>{events.length}</span>
                  </div>
               </div>
               <div className='CountContainer'>
                  <span className='TextTitle bold-size'>Total competidores</span>
                  <div className='CountsBox'>
-                    {/* <span className='TextCount'>{checkTotalCompetidores()}</span> */}
+                     <span className='TextCount'>{checkTotalCompetidores()}</span>
                  </div>
               </div>
           </div>

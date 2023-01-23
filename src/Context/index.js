@@ -98,6 +98,28 @@ function ProviderContext(props){
     }
 
 
+    /* UBICATE HORSES */
+
+    const ubicateHorses=(eventsCopy,horsesCopy)=>{
+        console.log("que pasa: ",eventsCopy,horsesCopy)
+        if(eventsCopy.length!==0){
+            for (var i=0;i<eventsCopy.length;i++){
+                let ArrayHorses=[];
+                for (var h=0;h<horsesCopy.length;h++){
+                    if(horsesCopy[h].id_evento_id===eventsCopy[i].id){
+                        ArrayHorses.push(horsesCopy[h]);
+                    }
+                }
+                eventsCopy[i]['Horses']=ArrayHorses;
+                
+            }
+            console.log(eventsCopy);
+            setEvents(eventsCopy);
+        }
+        
+    }
+
+
 
 
 
@@ -105,7 +127,7 @@ function ProviderContext(props){
     return (
         
         <AppContext.Provider value={{
-            token,setToken,userData,setUserData,horses,setHorses,
+            token,setToken,userData,setUserData,horses,setHorses,ubicateHorses,
             StadisticVideo,setStatisticVideo,inputVideoFile, setInputVideoFile
             ,videoMeta, setVideoMeta , trimmedVideoFile, setTrimmedVideoFile,URL, setURL, trimIsProcessing, setTrimIsProcessing,rStart, setRstart,rEnd, setRend
             ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,loading,setLoading,originalVideo,setOriginalVideo,cutVideo,setCutVideo,

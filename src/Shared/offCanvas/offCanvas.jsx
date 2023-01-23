@@ -21,7 +21,7 @@ import Preloader from "../preloader/preloader";
 
 function OffCanvas() {
 
-    let {token,setToken,setUserData,horses,setHorses,events,setEvents,loading,setLoading}=React.useContext(AppContext);
+    let {token,setToken,setUserData,horses,setHorses,events,setEvents,loading,setLoading,ubicateHorses}=React.useContext(AppContext);
 
 
     React.useEffect(()=>{
@@ -67,26 +67,33 @@ function OffCanvas() {
         })
         if (result!==undefined){
             console.log("eventos cargados con exito.",result['data']);
-            setEvents(result['data']);
-            getHorses(Token);
+            //setEvents(result['data']);
+            getHorses(Token,result['data']);
         }
     }
     /* GET Horses */
 
-    const getHorses=async(Token)=>{
+    const getHorses=async(Token,events)=>{
 
            let result=undefined;
         
           result=await getAllHorses(Token).catch((error)=>{
             setLoading(false);
-            console.log(error);
-            setHorses([]);
+            console.log("no hay caballos",error);
+            //setHorses([]);
+            ubicateHorses(events,[]);
           })
           if (result!==undefined){
             setLoading(false);
             console.log("Caballos cargados con exito.",result['data']);
-            setHorses(result['data']);
+            //setHorses(result['data']);
+            ubicateHorses(events,result['data']);
           }
+
+          //ASOCIAMOS LOS CABALLOS A LOS EVENTOS DETERMINADOS.
+          
+          
+
         }
 
 

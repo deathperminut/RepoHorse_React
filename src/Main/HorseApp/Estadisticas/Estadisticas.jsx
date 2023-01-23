@@ -51,21 +51,10 @@ export default function Estadisticas() {
 
   
   const AppendEvent_2=(id)=>{
-    console.log(id);
     let List_Events=[...ListEvents];
-    let result=checkId(id);
-    if(result){
-      Swal.fire({
-        icon: 'error',
-        title: 'Evento ya seleccionado',
-      })
-
-    }else{
-      let Event=FindEventId(id);
-      List_Events.push(Event);
-      setListEvents(List_Events);
-    }
-    
+    let Event=FindEventId(id);
+    List_Events.push(Event);
+    setListEvents(List_Events);
   }
 
   const checkId=(id)=>{
@@ -121,13 +110,13 @@ export default function Estadisticas() {
                         <div className='Est-Container-1' >
                               <h1 className='Est-Container-1-text bold-size margin-left-15px'  >Total competidores</h1>
                               <div className='Est-Container-1-container-count display-none'  >
-                                  <h1 className='Est-Container-1-container-count-text big-size'>{Event.number}</h1>
+                                  <h1 className='Est-Container-1-container-count-text big-size'>{Event.Horses.length}</h1>
                               </div>
 
                           <div className='Est-Container-1-1' >
                               <h1 className='Est-Container-1-text bold-size margin-left-15px bold-size' >Total competidores</h1>
                               <div className='Est-Container-1-container-count' >
-                                  <h1 className='Est-Container-1-container-count-text big-size'>{Event.number}</h1>
+                                  <h1 className='Est-Container-1-container-count-text big-size'>{Event.Horses.length}</h1>
                               </div>
                           </div>
                           <button className='buttonEvent center buttonEventEst' ><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px" >+</span><span className="c-orange font-size-10pt middle-size" >Añadir otro</span></button>
@@ -136,13 +125,13 @@ export default function Estadisticas() {
                         <div className='Est-Container-2'  >
                           <div className='label-event-Estadistics-Container' >
                               <figure className='img-container'  >
-                                <img src={Event.img} className='img-event'></img>
+                                <img src={Event.imagen} className='img-event'></img>
                               </figure>
                               
                               <div className='p-column'>
-                                <span className='t-white t-b bold-size'  >{Event.name}</span>
-                                <span className='t-white t-xs small-size' >{Event.place}</span>
-                                <span className='t-white t-xs small-size gray-dc' >{Event.date_start }<span className='small-size'>{' / '}</span> {Event.date_end}</span>
+                                <span className='t-white t-b bold-size'  >{Event.nombre_evento}</span>
+                                <span className='t-white t-xs small-size' >{Event.lugar}</span>
+                                <span className='t-white t-xs small-size gray-dc' >{Event.fecha_inicio }<span className='small-size'>{' / '}</span> {Event.fecha_fin}</span>
                                 <div  className='changeContainer '>
                                         <span className='TextChange mr--3' onClick={()=>{DeleteEvent()}}>Eliminar</span>
                                         <AiFillCloseCircle className='IconBack'onClick={()=>{ DeleteEvent()}}/>
