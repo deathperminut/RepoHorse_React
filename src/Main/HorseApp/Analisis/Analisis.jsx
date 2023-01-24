@@ -32,6 +32,7 @@ import {IoIosArrowDropdownCircle} from 'react-icons/io';
 
 /* LOADING */
 import Preloader from '../../../Shared/preloader/preloader';
+import { ProcessVideo, setVideo } from '../../../Services/video/videoModel';
 
 
 
@@ -53,9 +54,10 @@ export default function Analisis() {
  
   /* CONTEXT */
   let {
+    token,setLoading,setEvents,
     SelectEvent,setSelectEvent,
     SelectHorse,setSelectHorse,
-    StadisticVideo,setStatisticVideo, setInputVideoFile
+    StadisticVideo,setStatisticVideo,inputVideoFile,setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
       , setThumbNails, setThumbnailIsProcessing,loading,loadEventsForSelect,originalVideo,setOriginalVideo,setCutVideo,setDowload,selectEvents,events,FindEventId
   }=React.useContext(AppContext); 
@@ -165,6 +167,110 @@ export default function Analisis() {
     }
   }
 
+  const checkVideo=async()=>{
+    if(inputVideoFile===null){
+      Swal.fire({
+        icon: 'error',
+        title: 'Sube un video para analizar',
+      })
+    }else{
+
+      let result=undefined;
+      setLoading(true);
+
+      result=await setVideo(SelectHorse,token,inputVideoFile).catch((error)=>{
+        console.log(error);
+        setLoading(false);
+        Swal.fire({
+          icon: 'error',
+          title: 'Problemas para ejecutar el modelo',
+        })
+      })
+      if(result!== undefined){
+        console.log(result['data']);
+        result=undefined;
+
+        result=await ProcessVideo(SelectHorse,token).catch((error)=>{
+         
+          console.log(error);
+          setLoading(false);
+          Swal.fire({
+            icon: 'error',
+            title: 'Problemas para ejecutar el modelo',
+          })
+
+        })
+
+        if (result!== undefined){
+          console.log(result['data']);
+          setLoading(false);
+          Swal.fire({
+            icon: 'success',
+            title: 'Modelo ejecutado con exito',
+          })
+
+
+
+          /* CAMBIAMOS EL CABALLO SELECCIONADO */
+          setSelectHorse(result['data'].caballo);
+          let Copy={...Choose};
+          for (var i=0;i<Choose.Horses.length;i++){
+            if(Choose.Horses[i].id===result['data'].caballo.id){
+              
+              Copy.Horses[i]=result['data'].caballo;
+              setChoose(Copy);
+              break;
+
+            }
+          }
+
+          /* CAMBIAMOS EL ARREGLO GLOBAL DE EVENTOS */
+          let Copy_events={...events};
+          for (var i=0;i<events.length;i++){
+            if(events[i].id===Copy.id){
+              Copy_events[i]=Copy;
+              setEvents(Copy_events);
+              break;
+
+            }
+          }
+
+          /* CAMBIAMOS EL ARREGLO  */
+
+          if(Category==='P1'){
+            setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+            setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+          }else if (Category==="P2"){
+            setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+            setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+      
+          }else if (Category==="P3"){
+      
+            setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+            setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+          }else{
+            setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+            setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+          }
+          
+          
+
+
+          
+
+
+
+        }
+        
+        
+
+      }
+  
+
+
+    }
+  }
+
   return (
      
     <>
@@ -237,7 +343,7 @@ export default function Analisis() {
               <div className='Container_Details_Video'>
                 <div className='Container_Details_Video_1'>
                         <figure className='img-container Analitic-imag-2'>
-                                    <img src={HorsePhoto} className='img-event Analitic-imag-2'></img>
+                                    <img crossorigin="anonymous" src={HorsePhoto} className='img-event Analitic-imag-2'></img>
                         </figure>
                         <div className='Details-horse-selected'>
                              <span className='white fz-big'>{SelectHorse.nombre}</span>
@@ -251,7 +357,7 @@ export default function Analisis() {
                              <span className='white fz-small'>Jinete: <span className='orange fw'>{SelectHorse.caballista}</span></span>
                         </div>
                         <div className='Container-horse-selected-buttons'>
-                                <button className='Button-horse-selected bg-green'>Analizar video</button>
+                                <button className='Button-horse-selected bg-green' onClick={checkVideo}>Analizar video</button>
                                 <button className='Button-horse-selected bg-orange'>Guardar</button>
                         </div>
                 </div>
@@ -300,7 +406,7 @@ export default function Analisis() {
 
             <div className='label-event-Analitic-Container'>
                 <figure className='img-container'>
-                  <img src={Choose.imagen} className='img-event'></img>
+                  <img crossorigin="anonymous" src={Choose.imagen} className='img-event'></img>
                 </figure>
                 <div className='p-column'>
                   <span className='t-white t-b font-size bold-size'>{Choose.nombre_evento}</span>
@@ -387,7 +493,7 @@ export default function Analisis() {
                               return(
                                 <div className='ElementHorseContainer' onClick={()=>getSelectHorse(Horse)}>
                                     <figure className='img-container Analitic-imag'>
-                                        <img src={HorsePhoto} className='img-event Analitic-imag'></img>
+                                        <img crossorigin="anonymous" src={HorsePhoto} className='img-event Analitic-imag'></img>
                                     </figure>
                                     <div className='p-column' style={{paddingTop:"5px"}}>
                                       <span className='t-white t-b' style={{fontSize:"1rem"}}>{Horse.nombre}</span>
@@ -420,7 +526,7 @@ export default function Analisis() {
                               return(
                                 <div className='ElementHorseContainer' onClick={()=>getSelectHorse(Horse)}>
                                     <figure className='img-container Analitic-imag'>
-                                        <img src={HorsePhoto} className='img-event Analitic-imag'></img>
+                                        <img crossorigin="anonymous" src={HorsePhoto} className='img-event Analitic-imag'></img>
                                     </figure>
                                     <div className='p-column' style={{paddingTop:"5px"}}>
                                       <span className='t-white t-b' style={{fontSize:"1rem"}}>{Horse.nombre}</span>

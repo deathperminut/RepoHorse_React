@@ -110,6 +110,7 @@ function ProviderContext(props){
                     }
                 }
                 eventsCopy[i]['Horses']=ArrayHorses;
+                eventsCopy[i]['imagen']='http://34.69.136.244:8000/'+eventsCopy[i]['imagen']
                 
             }
             console.log(eventsCopy);

@@ -48,7 +48,7 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
              <div className='Est-Container-2'  >
                           <div className='label-event-Estadistics-Container' >
                               <figure className='img-container'  >
-                                <img src={Event.imagen} className='img-event'></img>
+                                <img crossorigin="anonymous" src={Event.imagen} className='img-event'></img>
                               </figure>
                               
                               <div className='p-column'>
@@ -123,7 +123,7 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                         return(
                                             
                                             <tr key={Horse.id}>
-                                                <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>{Horse.nombre}</span></td>
+                                                <td className='NameTable b-none'><img  crossorigin="anonymous" src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>{Horse.nombre}</span></td>
                                                 <td className='b-none text-table second-size pt-15px'>{Horse.edad+' meses'}</td>
                                                 <td className='b-none text-table second-size pt-15px'>{'P'+Horse.andar}</td>
                                                 <td className='b-none text-table second-size pt-15px'>{Horse.tipo}</td>

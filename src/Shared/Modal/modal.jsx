@@ -86,7 +86,7 @@ export default function MyVerticallyCenteredModal(props) {
                     return(
                         <div key={event.id} className='label-event-Estadistics-Container mr-3  pr-l-10' onClick={()=>EmitEvent(event.id)}>
                                 <figure className='img-container'>
-                                <img src={event.imagen} className='img-event'></img>
+                                <img crossorigin="anonymous" src={event.imagen} className='img-event'></img>
                                 </figure>
                                 <div className='p-column'>
                                 <span className='t-white t-b bold-size'>{event.nombre_evento}</span>

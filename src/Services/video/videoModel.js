@@ -1,46 +1,46 @@
 import axios from 'axios';
 import { environment } from '../../environments/environment';
 
-const setVideo= async (Horse_video,token)=>{
+const setVideo= async (Horse,token,video)=>{
     const path= environment.api + environment.setVideoHorse;
 
     let config = {
         headers: {
-          Authorization: 'Bearer ' + token,
+          Authorization: 'Token ' + token,
         },
       };
 
-  
-    let body={
-        id_evento:Horse_video.id_evento,
-        nombre:Horse_video.nombre,
-        id:Horse_video.id,
-        video_original:Horse_video.video_original,
-    }
+    let body = new FormData();
+    
+    body.append('id_evento',Horse.id_evento_id);
+    body.append('nombre',Horse.nombre);
+    body.append('id',Horse.id);
+    body.append('video_original',video);
+    
   
   
    return await axios.post(path,body,config);
     
   }
 
-  const ProcessVideo= async (Horse_video,token)=>{
+  const ProcessVideo= async (Horse,token)=>{
     const path= environment.api + environment.processVideo;
 
     let config = {
         headers: {
-          Authorization: 'Bearer ' + token,
+          Authorization: 'Token ' + token,
         },
       };
     
     let body={
-        id_evento:Horse_video.id_evento,
-        nombre:Horse_video.nombre,
-        id:Horse_video.id,
+        id_evento:Horse.id_evento_id,
+        nombre:Horse.nombre,
+        id:Horse.id,
     } 
 
   
   
-   return await axios.get(path,body,config);
+   return await axios.post(path,body,config);
     
   }
 

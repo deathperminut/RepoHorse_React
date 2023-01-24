@@ -317,7 +317,7 @@ export default function Competiciones() {
         title: 'Evento creado correctamente',
       })
       let Events=[...events];
-      Events.push({...result['data'].evento,['Horses']:[]});
+      Events.push({...result['data'].evento,['Horses']:[],['image']:'http://34.69.136.244:8000/'+result['data'].imagen});
       setEvents(Events);
       setFilter(Events);
       setCreateButton(false);
@@ -464,7 +464,7 @@ export default function Competiciones() {
                             <Col key={Event.id} className='EventComponent'>
                             <div className='Event display-row' >
                               <figure className='img-container CompetitionsImag_2'>
-                                  <img src={Event.imagen} className='img-event CompetitionsImag'></img>
+                                  <img  crossorigin="anonymous"  className='img-event CompetitionsImag' src={Event.imagen} alt=""></img>
                               </figure>
                               <div className='p-column-event'>
                                 <span className='t-white t-b t-b2  overflox-x-hidden '>{Event.nombre_evento}</span>
@@ -516,7 +516,7 @@ export default function Competiciones() {
                       <input style={{visibility:"hidden"}} type="file" onChange={handleChange} accept="image/png, image/gif, image/jpeg" />
                    </div>
                    :
-                   <img style={{cursor:'pointer'}} className='imageEvent'   src={event.imagen} onClick={()=>{
+                   <img  crossorigin="anonymous" style={{cursor:'pointer'}} className='imageEvent'   src={event.imagen} onClick={()=>{
                       setFile(null);
                       setimgFormEvent(null);
                       setEvent({...event,['imagen']:''})
@@ -569,7 +569,7 @@ export default function Competiciones() {
          <div className='EventInfoContainer mt-3'>
             <div className='label-event-Estadistics-Container  '>
                 <figure className='img-container'>
-                  <img src={eventChoosed.imagen} className='img-event'></img>
+                  <img crossorigin="anonymous" src={eventChoosed.imagen} className='img-event'></img>
                 </figure>
                 <div className='p-column-event'>
                   <span className='t-white t-b t-b2  overflox-x-hidden bold-size'>{eventChoosed.nombre_evento}</span>
@@ -688,7 +688,7 @@ export default function Competiciones() {
                               <input style={{visibility:"hidden"}} type="file" onChange={handleChange}  accept="image/png, image/gif, image/jpeg"/>
                           </div>
                           :
-                          <img className='imageEventHorse'   src={file} onClick={()=>setFile(null)}/> 
+                          <img  crossorigin="anonymous" className='imageEventHorse'   src={file} onClick={()=>setFile(null)}/> 
                           } 
                       </div>
                       <div className='nameContainer containrowHorse'>
@@ -750,7 +750,7 @@ export default function Competiciones() {
                   {ListHorses.map(Horse=>{
                                 return(
                                   <tr>
-                                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>{Horse.nombre}</span></td>
+                                    <td className='NameTable b-none'><img  crossorigin="anonymous" src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>{Horse.nombre}</span></td>
                                     <td className='b-none text-table'><span className='item middle-size'>{Horse.edad+' meses'}</span></td>
                                     <td className='b-none text-table'><span className='item middle-size'>{'P'+Horse.andar}</span></td>
                                     <td className='b-none text-table'><span className='item middle-size'>{Horse.tipo}</span></td>

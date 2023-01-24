@@ -12,8 +12,6 @@ const createEvent= async (EventData,token,img)=>{
   
     
     let body = new FormData();
-  
-    console.log(EventData.imagen);
     
     body.append('nombre_evento',EventData.nombre_evento);
     body.append('competidores',"20");
