@@ -234,11 +234,11 @@ export default function Competiciones() {
     setSelectEvent(false);
     setSelectHorse(false);
 
-    if(events===null){
+    // if(events===null){
 
-      navigate('/Main/HorseApp/Analisis');
+    //   navigate('/Main/HorseApp/Analisis');
       
-    }
+    // }
   },[])
   /* useEffect */
   React.useEffect(()=>{
@@ -418,13 +418,25 @@ export default function Competiciones() {
               <div className='CountContainer'>
                  <span className='TextTitle bold-size '>Total competencias</span>
                  <div className='CountsBox'>
+                   {events!==null ?
+                   <>
                    <span className='TextCount '>{events.length}</span>
+                   </>
+                   :
+                   <></>}
+                   
                  </div>
               </div>
               <div className='CountContainer'>
                  <span className='TextTitle bold-size'>Total competidores</span>
                  <div className='CountsBox'>
-                     <span className='TextCount'>{checkTotalCompetidores()}</span>
+                 {events!==null ?
+                   <>
+                   <span className='TextCount'>{checkTotalCompetidores()}</span>
+                   </>
+                   :
+                   <></>}
+                     
                  </div>
               </div>
           </div>

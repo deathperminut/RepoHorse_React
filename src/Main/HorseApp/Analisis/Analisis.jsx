@@ -57,6 +57,7 @@ export default function Analisis() {
     token,setLoading,setEvents,
     SelectEvent,setSelectEvent,
     SelectHorse,setSelectHorse,
+    trimmedVideoFile,
     StadisticVideo,setStatisticVideo,inputVideoFile,setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
       , setThumbNails, setThumbnailIsProcessing,loading,loadEventsForSelect,originalVideo,setOriginalVideo,setCutVideo,setDowload,selectEvents,events,FindEventId
@@ -166,92 +167,107 @@ export default function Analisis() {
       return "Ejemplares del andar del Paso Fino Colombiano"
     }
   }
+  function dataURLtoFile(dataurl, filename) {
+ 
+    var arr = dataurl.split(','),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), 
+        n = bstr.length, 
+        u8arr = new Uint8Array(n);
+        
+    while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    
+    return new File([u8arr], filename, {type:mime});
+}
 
   const checkVideo=async()=>{
+    
     if(inputVideoFile===null){
-      Swal.fire({
-        icon: 'error',
-        title: 'Sube un video para analizar',
-      })
-    }else{
+       Swal.fire({
+         icon: 'error',
+         title: 'Sube un video para analizar',
+       })
+     }else{
+       
+       let result=undefined;
+       setLoading(true);
 
-      let result=undefined;
-      setLoading(true);
+       result=await setVideo(SelectHorse,token,dataURLtoFile(trimmedVideoFile,'project.mp4')).catch((error)=>{
+         console.log(error);
+         setLoading(false);
+         Swal.fire({
+           icon: 'error',
+           title: 'Problemas para ejecutar el modelo',
+         })
+       })
+       if(result!== undefined){
+         console.log(result['data']);
+         result=undefined;
 
-      result=await setVideo(SelectHorse,token,inputVideoFile).catch((error)=>{
-        console.log(error);
-        setLoading(false);
-        Swal.fire({
-          icon: 'error',
-          title: 'Problemas para ejecutar el modelo',
-        })
-      })
-      if(result!== undefined){
-        console.log(result['data']);
-        result=undefined;
-
-        result=await ProcessVideo(SelectHorse,token).catch((error)=>{
+         result=await ProcessVideo(SelectHorse,token).catch((error)=>{
          
-          console.log(error);
-          setLoading(false);
-          Swal.fire({
-            icon: 'error',
-            title: 'Problemas para ejecutar el modelo',
-          })
+           console.log(error);
+           setLoading(false);
+           Swal.fire({
+             icon: 'error',
+             title: 'Problemas para ejecutar el modelo',
+           })
 
-        })
+         })
 
-        if (result!== undefined){
-          console.log(result['data']);
-          setLoading(false);
-          Swal.fire({
-            icon: 'success',
-            title: 'Modelo ejecutado con exito',
-          })
+         if (result!== undefined){
+           console.log(result['data']);
+           setLoading(false);
+           Swal.fire({
+             icon: 'success',
+             title: 'Modelo ejecutado con exito',
+           })
 
 
 
-          /* CAMBIAMOS EL CABALLO SELECCIONADO */
-          setSelectHorse(result['data'].caballo);
-          let Copy={...Choose};
-          for (var i=0;i<Choose.Horses.length;i++){
-            if(Choose.Horses[i].id===result['data'].caballo.id){
+    //       /* CAMBIAMOS EL CABALLO SELECCIONADO */
+           setSelectHorse(result['data'].caballo);
+           let Copy={...Choose};
+           for (var i=0;i<Choose.Horses.length;i++){
+             if(Choose.Horses[i].id===result['data'].caballo.id){
               
-              Copy.Horses[i]=result['data'].caballo;
-              setChoose(Copy);
-              break;
+               Copy.Horses[i]=result['data'].caballo;
+               setChoose(Copy);
+               break;
 
-            }
-          }
+             }
+           }
 
-          /* CAMBIAMOS EL ARREGLO GLOBAL DE EVENTOS */
-          let Copy_events={...events};
-          for (var i=0;i<events.length;i++){
-            if(events[i].id===Copy.id){
-              Copy_events[i]=Copy;
-              setEvents(Copy_events);
-              break;
+    //       /* CAMBIAMOS EL ARREGLO GLOBAL DE EVENTOS */
+           let Copy_events={...events};
+           for (var i=0;i<events.length;i++){
+             if(events[i].id===Copy.id){
+               Copy_events[i]=Copy;
+               setEvents(Copy_events);
+               break;
 
-            }
-          }
+             }
+           }
 
-          /* CAMBIAMOS EL ARREGLO  */
+    //       /* CAMBIAMOS EL ARREGLO  */
 
-          if(Category==='P1'){
+           if(Category==='P1'){
             setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-            setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-          }else if (Category==="P2"){
-            setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-            setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+             setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+           }else if (Category==="P2"){
+             setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+             setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
       
-          }else if (Category==="P3"){
+           }else if (Category==="P3"){
       
-            setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-            setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-          }else{
-            setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-            setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-          }
+             setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+             setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+           }else{
+             setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+             setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+           }
           
           
 
@@ -260,15 +276,15 @@ export default function Analisis() {
 
 
 
-        }
+         }
         
         
 
-      }
+       }
   
 
 
-    }
+     }
   }
 
   return (

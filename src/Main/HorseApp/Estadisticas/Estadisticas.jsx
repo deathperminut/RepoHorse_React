@@ -24,6 +24,7 @@ export default function Estadisticas() {
 
   /* APP CONTEXT */
   let {
+    events,
     setSelectEvent,
     setSelectHorse,
     StadisticVideo,setStatisticVideo, setInputVideoFile
@@ -165,11 +166,18 @@ export default function Estadisticas() {
               <button  variant="primary" className='buttonEvent center btnHoverWhite' onClick={AppendEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px" >+</span><span className="c-orange font-size-10pt middle-size">Añadir otro</span></button>
           </div>
         </>}
+        {events!== null ?
+        <>
         <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
         selectEvent={(id)=>AppendEvent_2(id)}
       />
+        </>
+        :
+        <></>
+        }
+        
         
     </div>
   )
