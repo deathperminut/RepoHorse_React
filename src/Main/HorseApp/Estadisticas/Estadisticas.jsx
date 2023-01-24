@@ -14,6 +14,10 @@ import { AppContext } from '../../../Context';
 import ListGroup from 'react-bootstrap/ListGroup'; 
 import Swal from 'sweetalert2';
 
+/* TOOL TIP */
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+
 
 
 export default function Estadisticas() {
@@ -152,10 +156,19 @@ export default function Estadisticas() {
                         </div>
                         <div className='Est-Container-3' >
                           <ListGroup horizontal defaultActiveKey="#link1">
-                            <ListGroup.Item action eventKey="#link1">Andar P1</ListGroup.Item>
-                            <ListGroup.Item action eventKey="#link2">Andar P2</ListGroup.Item>
-                            <ListGroup.Item action eventKey="#link3">Andar P3</ListGroup.Item>
-                            <ListGroup.Item action eventKey="#link4">Andar P4</ListGroup.Item>
+                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar del Trote y Galope</Tooltip>}>
+                              <ListGroup.Item action eventKey="#link1">Andar P1</ListGroup.Item>
+                            </OverlayTrigger>
+                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar de la Trocha y Galope</Tooltip>}>
+                              <ListGroup.Item action eventKey="#link2">Andar P1</ListGroup.Item>
+                            </OverlayTrigger>
+                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar de la Trocha Pura Colombiana</Tooltip>}>
+                              <ListGroup.Item action eventKey="#link3">Andar P1</ListGroup.Item>
+                            </OverlayTrigger>
+                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar del Paso Fino Colombiano</Tooltip>}>
+                              <ListGroup.Item action eventKey="#link4">Andar P1</ListGroup.Item>
+                            </OverlayTrigger>
+
                           </ListGroup>
                           <div className='tableContainer'>
                             <div className='table'>

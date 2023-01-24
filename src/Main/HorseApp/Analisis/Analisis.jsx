@@ -188,7 +188,7 @@ export default function Analisis() {
                              <span className='gray fz-small'>Edad: <span className='white'>38 meses</span></span>
                              <span className='gray fz-small'>Tipo: <span className='orange fw'>C </span><span className='white'>Caballar</span></span>
                              <span className='gray fz-small'>Registro del equino: <span className='white'>ver</span></span>
-                             <span className='white fz-small'>Montador: <span className='orange fw'>Alejandro Soto</span></span>
+                             <span className='white fz-small'>Jinete: <span className='orange fw'>Alejandro Soto</span></span>
                         </div>
                         <div className='Container-horse-selected-buttons'>
                                 <button className='Button-horse-selected bg-green'>Analizar video</button>
@@ -279,9 +279,9 @@ export default function Analisis() {
             </div>
             <div className='ContainerOverflow-y'>
                 <div className='DetailsContainer_an'>
-                      <span className='white'>Participantes:  <span className='orange fw'>{Choose.number}</span></span>   
+                      <span className='white'>Participantes:  <span className='orange fw'>{Choose.Horses.length}</span></span>   
                       <span className='gray fz-small'>Andar: <span className='orange'>{Category}</span> <span>Paso fino Colombiano</span></span> 
-                      <p className='fz-small width-100 white'>{Choose.description}</p>
+                      <p className='fz-small width-100 white'>{Choose.descripcion}</p>
                       {/* <span className='gray fz-small'>Categoria:<span className='white'> Potros en proceso con primera enfrenada</span></span>  */}
                 </div>
 

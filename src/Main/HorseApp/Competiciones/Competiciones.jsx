@@ -16,8 +16,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {AiOutlineLeft} from 'react-icons/ai';
 import {FaTrash} from 'react-icons/fa';
+import {useNavigate} from 'react-router-dom';
 /*ListGroup*/
 import ListGroup from 'react-bootstrap/ListGroup'; 
+
+/* TOOL TIP */
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 
 
@@ -30,6 +35,7 @@ import { AppContext } from '../../../Context';
 import Preloader from '../../../Shared/preloader/preloader';
 import { toNumber } from 'lodash';
 import Swal from 'sweetalert2';
+import { createEvent } from '../../../Services/Events/events';
 
 const options = [
   { value: 'P1', label: 'P1' },
@@ -40,9 +46,12 @@ const options = [
 ]
 
 export default function Competiciones() {
+  //VARIABLE ROUTING
+  const navigate=useNavigate();
 
   /* APPCONTEXT */
   let {
+    token,
     SelectEvent,setSelectEvent,
     SelectHorse,setSelectHorse,
     StadisticVideo,setStatisticVideo, setInputVideoFile
@@ -66,6 +75,7 @@ export default function Competiciones() {
   /*USE STATES */
   let [CreateButton,setCreateButton]=React.useState(false);
   const [file, setFile] = React.useState(null);
+  let [imgFormEvent,setimgFormEvent]=React.useState(null);
   let [EditEvent,setEditEvent]=React.useState(false);
   let [EventSelected,setEventSelected]=React.useState(null);
   let [AddHorseButton,setAddHorseButton]=React.useState(false);
@@ -82,7 +92,7 @@ export default function Competiciones() {
     fecha_fin:'',
     competidores:'',
     descripcion:'',
-    horses:[],
+    Horses:[],
   })
   let [buttonEvent,setButtonEvent]=React.useState(true);
 
@@ -115,6 +125,8 @@ export default function Competiciones() {
     }
   /*FUNCTION IMAGE */
   function handleChange(e) {
+    console.log(new File([e.target.files[0]], 'project.png',{type: "image/png"}));
+    setimgFormEvent(new File([e.target.files[0]], 'project.png',{type: "image/png"}));
     setFile(URL.createObjectURL(e.target.files[0]));
     setEvent({...event,['imagen']:URL.createObjectURL(e.target.files[0])})
     checkEvent({...event,['imagen']:URL.createObjectURL(e.target.files[0])});
@@ -179,41 +191,69 @@ export default function Competiciones() {
     setOriginalVideo(null);
     setSelectEvent(false);
     setSelectHorse(false);
+
+    if(events===null){
+
+      navigate('/Main/HorseApp/Analisis');
+      
+    }
   },[])
   /* useEffect */
   React.useEffect(()=>{
     setFilter(events);
   },[events])
 
+
+
+
+
+
   const AppendEvent=async(EVENT)=>{
      EVENT.preventDefault();
 
-     let Events=[...events];
-     Events.push({...event,['id']:Events.length});
-     setEvents(Events);
-     setFilter(Events);
      setLoading(true);
-     await sleep(1500);
-     setLoading(false);
-     setCreateButton(false);
-     setFile(null);
-     setEvent({
-      img:'',
-      name:'',
-      number:'',
-      date_start:'',
-      date_end:'',
-      place:'',
-      description:'',
-      horses:[],
+     let result=undefined;
+     result=await createEvent(event,token,imgFormEvent).catch((error)=>{
+      console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Problemas al crear el evento',
+        text:'revisa tu conexión a internet'
+      })
+      setLoading(false);
      })
-     setButtonEvent(true);
-     
 
+     if(result!==undefined){
+      console.log(result['data']);
+      setLoading(false);
+      Swal.fire({
+        icon: 'success',
+        title: 'Evento creado correctamente',
+      })
+      let Events=[...events];
+      Events.push({...result['data'].evento,['Horses']:[]});
+      setEvents(Events);
+      setFilter(Events);
+      setCreateButton(false);
+      setimgFormEvent(null);
+      setFile(null);
+      setEvent({
+        imagen:'',
+        nombre_evento:'',
+        competidores:'',
+        fecha_inicio:'',
+        fecha_fin:'',
+        lugar:'',
+        descripcion:'',
+        Horses:[],
+      })
+      setButtonEvent(true);
+     }
   }
 
   const checkTotalCompetidores=()=>{
       let count=0;
+      console.log("eventos total competidores.",events);
       for (var i=0;i<events.length;i++){
            count=toNumber(count)+toNumber(events[i].Horses.length); 
         }
@@ -241,7 +281,7 @@ export default function Competiciones() {
    }
 
   const checkEvent=(event)=>{
-    if(event.nombre_evento !=="" && event.imagen!=="" && event.competidores !=="" && event.fecha_inicio!=="" && event.fecha_fin!=="" && event.lugar!==""){
+    if(event.nombre_evento !=="" && event.imagen!==""  && event.fecha_inicio!=="" && event.fecha_fin!=="" && event.lugar!==""){
       setButtonEvent(false);
     }else{
       setButtonEvent(true);
@@ -252,17 +292,20 @@ export default function Competiciones() {
       setValueFilter(event.target.value);
       if(event.target.value===""){
         setFilter(events);
+      }else{
+        const Array=events.filter((obj)=> obj.nombre_evento.toLowerCase().includes(event.target.value.toLowerCase()))
+        setFilter(Array);
       }
   }
 
-  const find=()=>{
-    if(valueFilter===""){
-      setFilter(events);
-    }else{
-      const Array=events.filter((obj)=> obj.name.toLowerCase().includes(valueFilter.toLowerCase()))
-      setFilter(Array);
-    }
-  }
+  // const find=()=>{
+  //   if(valueFilter===""){
+  //     setFilter(events);
+  //   }else{
+  //     const Array=events.filter((obj)=> obj.name.toLowerCase().includes(valueFilter.toLowerCase()))
+  //     setFilter(Array);
+  //   }
+  // }
 
   const getCount=(eventChoosed)=>{
     if(eventChoosed.horses!=undefined && eventChoosed.horses!=null){
@@ -387,9 +430,10 @@ export default function Competiciones() {
                       <input style={{visibility:"hidden"}} type="file" onChange={handleChange} accept="image/png, image/gif, image/jpeg" />
                    </div>
                    :
-                   <img style={{cursor:'pointer'}} className='imageEvent'   src={file} onClick={()=>{
+                   <img style={{cursor:'pointer'}} className='imageEvent'   src={event.imagen} onClick={()=>{
                       setFile(null);
-                      setEvent({...event,['img']:''})
+                      setimgFormEvent(null);
+                      setEvent({...event,['imagen']:''})
                       setButtonEvent(true);
 
                    }}/> 
@@ -399,10 +443,10 @@ export default function Competiciones() {
                  <span className="textFormEvent second-size">Nombre</span>
                  <input onChange={(event)=>CheckInput(event,'nombre_evento')} maxLength={21} className='inputEventForm second-size' type="text" placeholder='ingrese el nombre del evento'/>
                </div>
-               <div className='competidoresContainer containrow'>
+               {/* <div className='competidoresContainer containrow'>
                  <span className="textFormEvent second-size">Competidores</span>
                  <input onChange={(event)=>CheckInput(event,'competidores')} className='inputEventForm second-size' type="text" placeholder='# de competidores'/>
-               </div>
+               </div> */}
                <div className='dateContainer containrow second-size'>
                  <span className="textFormEvent second-size ">Fecha</span>
                  <DatePicker className='datepicker' onChange={onChange_start}  placeholder='Inicio' />
@@ -410,14 +454,14 @@ export default function Competiciones() {
                </div>
                <div className='placeContainer containrow'>
                  <span className="textFormEvent second-size">Lugar</span>
-                 <input  onChange={(event)=>CheckInput(event,'place')}  maxLength={16} className='inputEventForm second-size' type="text" placeholder='Ingrese el lugar'/>
+                 <input  onChange={(event)=>CheckInput(event,'lugar')}  maxLength={16} className='inputEventForm second-size' type="text" placeholder='Ingrese el lugar'/>
                </div>
                <div className='DescriptionContainer containrow'>
                  <span className="textFormEvent second-size">Descripción</span>
-                 <textarea onChange={(event)=>CheckInput(event,'description')}  className='textareaFormEvent second-size' placeholder='Descripción opcional'/>
+                 <textarea onChange={(event)=>CheckInput(event,'descripcion')}  className='textareaFormEvent second-size' placeholder='Descripción opcional'/>
                </div>
                <div className='containersubmitButton'>
-                  <button disabled={buttonEvent} onClick={AppendEvent} className='buttonComp_2'>Crear</button>
+                  <button disabled={buttonEvent} onClick={AppendEvent} className='buttonComp_2 button_correct_position'>Crear</button>
                </div>
            </form>
            </>
@@ -452,19 +496,13 @@ export default function Competiciones() {
                     <div className='CountContainer align-center margin-left-90px'>
                       <span className='TextTitle mb-'>Total competidores</span>
                       <div className='CountsBox w-'>
-                          <span className='TextCount'>{eventChoosed.competidores}</span>
+                          <span className='TextCount'>{eventChoosed.Horses.length}</span>
                       </div>
                     </div>
                     <div className='CountContainer align-center'>
-                      <span className='TextTitle mb-'>Agregados</span>
+                      <span className='TextTitle mb-'>Total categoria</span>
                       <div className='CountsBox w-'>
                           {/* <span className='TextCount'>{eventChoosed.horses.length}</span> */}
-                      </div>
-                    </div>
-                    <div className='CountContainer align-center'>
-                      <span className='TextTitle mb-'>Sin registrar</span>
-                      <div className='CountsBox w-'>
-                          {/* <span className='TextCount'>{getCount(eventChoosed)}</span> */}
                       </div>
                     </div>
                   </div>
@@ -481,10 +519,18 @@ export default function Competiciones() {
                   />
                 </InputGroup>
                 <ListGroup horizontal defaultActiveKey="#link1" className='ListAndar'>
-                          <ListGroup.Item action eventKey="#link1">Andar P1</ListGroup.Item>
-                          <ListGroup.Item action eventKey="#link2">Andar P2</ListGroup.Item>
-                          <ListGroup.Item action eventKey="#link3">Andar P3</ListGroup.Item>
-                          <ListGroup.Item action eventKey="#link4">Andar P4</ListGroup.Item>
+                          <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar del Trote y Galope</Tooltip>}>
+                             <ListGroup.Item action eventKey="#link1">Andar P1</ListGroup.Item>
+                          </OverlayTrigger>
+                          <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar de la Trocha y Galope</Tooltip>}>
+                             <ListGroup.Item action eventKey="#link2" >Andar P2</ListGroup.Item>
+                          </OverlayTrigger>
+                          <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar de la Trocha Pura Colombiana</Tooltip>}>
+                             <ListGroup.Item action eventKey="#link3">Andar P3</ListGroup.Item>
+                          </OverlayTrigger>
+                          <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar del Paso Fino Colombiano</Tooltip>}>
+                             <ListGroup.Item action eventKey="#link4">Andar P4</ListGroup.Item>
+                          </OverlayTrigger>
                 </ListGroup>
         </div>
          <div className='HorseDataContainer'>
@@ -537,7 +583,7 @@ export default function Competiciones() {
                         <input className='inputEventForm second-size' type="text" placeholder='# del competidor'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
-                        <span className="textFormEvent second-size">Caballista</span>
+                        <span className="textFormEvent second-size">Jinete</span>
                         <input className='inputEventForm second-size' type="text" placeholder='# del competidor'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
@@ -575,7 +621,7 @@ export default function Competiciones() {
                       <th className='titletext'>Edad</th>
                       <th className='titletext'>Andar</th>
                       <th className='titletext'>Tipo</th>
-                      <th className='titletext'>Caballista</th>
+                      <th className='titletext'>Jinete</th>
                       <th className='titletext'></th>
                       <th className='titletext'></th>
                     </tr>

@@ -101,7 +101,6 @@ function ProviderContext(props){
     /* UBICATE HORSES */
 
     const ubicateHorses=(eventsCopy,horsesCopy)=>{
-        console.log("que pasa: ",eventsCopy,horsesCopy)
         if(eventsCopy.length!==0){
             for (var i=0;i<eventsCopy.length;i++){
                 let ArrayHorses=[];

@@ -16,7 +16,7 @@
     margin-left: 1rem;
 }
 .ListAndar{
-    margin-left: 120px;
+    margin-left: 200px;
 }
 .CountContainer{
     display: flex;
@@ -126,6 +126,9 @@
 .buttonComp:hover{
     background-color: rgb(196, 145, 7);
 }
+.tooltipEdit{
+    font-size: 10px !important;
+}
 .buttonComp_2{
     background-color: #F7B500;
     border: none;
@@ -141,8 +144,11 @@
     justify-content: center;
     width: 5rem; 
     position: relative;
-    right: 7px;
 } 
+.button_correct_position{
+    right: 18px;
+    top: 50px;
+}
 .buttonComp_2:hover{
     background-color: rgb(196, 145, 7);
 }

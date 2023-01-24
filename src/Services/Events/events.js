@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { environment } from '../../environments/environment';
 
-const setEvent= async (EventData,token)=>{
+const createEvent= async (EventData,token,img)=>{
     const path= environment.api + environment.setEvent;
 
     let config = {
@@ -9,17 +9,19 @@ const setEvent= async (EventData,token)=>{
           Authorization: 'Token ' + token,
         },
       };
-
   
-    let body={
-      nombre_evento:EventData.nombre_evento,
-      competidores:EventData.competidores,
-      imagen:EventData.imagen,
-      fecha_inicio:EventData.fecha_inicio,
-      fecha_fin:EventData.fecha_fin,
-      lugar:EventData.lugar,
-      description:EventData.description,
-    }
+    
+    let body = new FormData();
+  
+    console.log(EventData.imagen);
+    
+    body.append('nombre_evento',EventData.nombre_evento);
+    body.append('competidores',"20");
+    body.append('imagen',img);
+    body.append('fecha_inicio',EventData.fecha_inicio);
+    body.append('fecha_fin',EventData.fecha_fin);
+    body.append('lugar',EventData.lugar);
+    body.append('descripcion',EventData.descripcion);
   
   
    return await axios.post(path,body,config);
@@ -50,4 +52,4 @@ const setEvent= async (EventData,token)=>{
 
 
 
-export {setEvent,getAllEvents};
+export {createEvent,getAllEvents};
