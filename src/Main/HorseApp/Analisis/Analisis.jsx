@@ -2,6 +2,9 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import {Navigate,Routes, Route} from 'react-router-dom';
 import './Analisis.css';
+/* TOOL TIP */
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 
 /* SELECT */
@@ -61,6 +64,9 @@ export default function Analisis() {
   /* REACT UseStates */
   let [Category,setCategory]=React.useState('P1');
   let [Choose,setChoose]=React.useState(null);
+  let [unprocess,setUnprocess]=React.useState([]);
+  let [process,setProcess]=React.useState([]);
+  let [valueInput,setValueInput]=React.useState("");
 
   /* VIDEO */
   let [file,setFile]=React.useState(null);
@@ -83,7 +89,11 @@ export default function Analisis() {
     let Value=null;
      if(select){
       Value=event.value;
-      console.log("op",FindEventId(event.value));
+      let feria=FindEventId(event.value);
+      setProcess(feria.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === "1"));
+      setUnprocess(feria.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === "1"));
+      console.log("PROCESADOS: ",feria.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === "1"))
+      console.log("NO PROCESADOS: ",feria.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === "1"))
       setChoose(FindEventId(event.value));
      }
      console.log(!SelectEvent);
@@ -91,8 +101,8 @@ export default function Analisis() {
      
   }
 
-  const getSelectHorse=(event)=>{
-    setSelectHorse(true); 
+  const getSelectHorse=(Horse)=>{
+    setSelectHorse(Horse); 
   }
 
 
@@ -105,6 +115,54 @@ export default function Analisis() {
   /* CHANGE DROP */
   const changeDrop=(event)=>{
     setCategory(event);
+    if(event==='P1'){
+      setProcess(Choose.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+      setUnprocess(Choose.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+    }else if (event==="P2"){
+      setProcess(Choose.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+      setUnprocess(Choose.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+
+    }else if (event==="P3"){
+
+      setProcess(Choose.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+      setUnprocess(Choose.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+    }else{
+      setProcess(Choose.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+      setUnprocess(Choose.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+    }
+    
+  }
+
+  const readInput=(event)=>{
+     setValueInput(event.target.value);
+     if(Category==='P1'){
+      setProcess(Choose.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
+      setUnprocess(Choose.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
+    }else if (Category==="P2"){
+      setProcess(Choose.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
+      setUnprocess(Choose.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
+
+    }else if (Category==="P3"){
+
+      setProcess(Choose.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
+      setUnprocess(Choose.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
+    }else{
+      setProcess(Choose.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
+      setUnprocess(Choose.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
+    }
+
+  }
+
+  const selectMessage=(categoria)=>{
+    if (categoria==="P1"){
+      return "Ejemplares del andar del Trote y Galope"
+    }else if (categoria==="P2"){
+       return "Ejemplares del andar de la Trocha y Galope"
+    }else if (categoria==="P3"){
+       return "Ejemplares del andar de la Trocha Pura Colombiana"
+    }else{
+      return "Ejemplares del andar del Paso Fino Colombiano"
+    }
   }
 
   return (
@@ -175,20 +233,22 @@ export default function Analisis() {
                 </div>
              </div>
 
-             {SelectHorse===true ? 
+             {SelectHorse!==false ? 
               <div className='Container_Details_Video'>
                 <div className='Container_Details_Video_1'>
                         <figure className='img-container Analitic-imag-2'>
                                     <img src={HorsePhoto} className='img-event Analitic-imag-2'></img>
                         </figure>
                         <div className='Details-horse-selected'>
-                             <span className='white fz-big'>Conde del viento</span>
-                             <span className='gray fz-small'>Andar: <span className='orange fw'>P4 </span><span className='white'>Paso fino Colombiano</span></span>
-                             <span className='gray fz-small'>Categoría: <span className='white'>Potros en proceso </span></span>
-                             <span className='gray fz-small'>Edad: <span className='white'>38 meses</span></span>
-                             <span className='gray fz-small'>Tipo: <span className='orange fw'>C </span><span className='white'>Caballar</span></span>
+                             <span className='white fz-big'>{SelectHorse.nombre}</span>
+                             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>{selectMessage('P'+SelectHorse.andar)}</Tooltip>}>
+                               <span className='gray fz-small display-f-80px'>Andar: <span className='orange fw'>{'P'+SelectHorse.andar+' '}</span></span>
+                             </OverlayTrigger>
+                             
+                             <span className='gray fz-small'>Edad: <span className='white'>{SelectHorse.edad+ ' meses'}</span></span>
+                             <span className='gray fz-small'>Número: <span className='orange fw'>{SelectHorse.tipo} </span></span>
                              <span className='gray fz-small'>Registro del equino: <span className='white'>ver</span></span>
-                             <span className='white fz-small'>Jinete: <span className='orange fw'>Alejandro Soto</span></span>
+                             <span className='white fz-small'>Jinete: <span className='orange fw'>{SelectHorse.caballista}</span></span>
                         </div>
                         <div className='Container-horse-selected-buttons'>
                                 <button className='Button-horse-selected bg-green'>Analizar video</button>
@@ -198,12 +258,13 @@ export default function Analisis() {
                 <div className='Container_Details_Video_2'>
                    <span className='white fz-big-2'>BPM</span>
                    <div className='Container-result-bpm'>
-                       <span className='bpm-result-text'>500</span>
+                       <span className='bpm-result-text'>{SelectHorse.video_procesado==="" ? <>---</> : <>{SelectHorse.bps}</>}</span>
                    </div>
                    <div className='Container-video-result-bpm'>
                       <span className='white mb-small'>video esqueleto:</span>
                       <div className='Container-video-result'>
-                           <video src={Marcadores} className="video-marcadores" controls></video>
+                            {SelectHorse.video_procesado!=="" ? <video src={Marcadores} className="video-marcadores" controls></video> : <></>}
+                           
                       </div>
                    </div>
                 </div>
@@ -249,19 +310,26 @@ export default function Analisis() {
                       <span className='TextChange' onClick={()=>{
                    setSelectEvent(false);
                    setSelectHorse(false);
+                   setCategory('P1');
+                   setValueInput("");
                 }}>cambiar</span>
                       <IoIosArrowDropdownCircle className='IconBack'onClick={()=>{
                    setSelectEvent(false);
                    setSelectHorse(false);
+                   setCategory('P1');
+                   setValueInput("");
                 }}/>
                   </div>
                   
                 </div>
             </div>
 
-
-            <div className='display-row mt-3 middle-size'>
-                <InputGroup   className="mt-3 ">
+            {
+              Choose.Horses.length===0 ?
+              <></>
+              :
+              <div className='display-row mt-3 middle-size'>
+                <InputGroup onChange={readInput}  className="mt-3 ">
                   <Form.Control  aria-label="TextInput middle-size" placeholder="ejemplar"/>
 
                     <DropdownButton
@@ -277,101 +345,100 @@ export default function Analisis() {
                   </DropdownButton>
                 </InputGroup>
             </div>
+            }
+            
             <div className='ContainerOverflow-y'>
+                
+
+                {Choose.Horses.length===0 ?
+                <>
+                <div className='ListInCompetitionContainer'>
+                    <div className='ListInCompetitionTitleContainer'>
+                        <span className='TitleInCompetition'>No hay Ejemplares</span><span className='NumberInCompetition'>0</span>
+                    </div>
+                </div>
+
+                 
+               
+                </>
+                :
+                <>
                 <div className='DetailsContainer_an'>
                       <span className='white'>Participantes:  <span className='orange fw'>{Choose.Horses.length}</span></span>   
-                      <span className='gray fz-small'>Andar: <span className='orange'>{Category}</span> <span>Paso fino Colombiano</span></span> 
+                      <span className='gray fz-small'>Andar: <span className='orange'>{Category}</span> </span> 
+                      <span className='gray fz-small'><span>{selectMessage(Category)}</span></span> 
                       <p className='fz-small width-100 white'>{Choose.descripcion}</p>
                       {/* <span className='gray fz-small'>Categoria:<span className='white'> Potros en proceso con primera enfrenada</span></span>  */}
                 </div>
-
+                {unprocess.length===0 ?
+                <></>
+                :
+                <>
                 <div className='ListInCompetitionContainer'>
                     <div className='ListInCompetitionTitleContainer'>
-                        <span className='TitleInCompetition'>Sin procesar</span><span className='NumberInCompetition'>5</span>
+                        <span className='TitleInCompetition c-green-title'>Sin procesar</span><span className='NumberInCompetition'>{unprocess.length}</span>
                     </div>
                 </div>
+                </>
+                }
+                
                 <div className='ListHorseContainer'>
-                     <div className='ElementHorseContainer' onClick={getSelectHorse}>
-                        <figure className='img-container Analitic-imag'>
-                            <img src={HorsePhoto} className='img-event Analitic-imag'></img>
-                        </figure>
-                        <div className='p-column' style={{paddingTop:"5px"}}>
-                          <span className='t-white t-b' style={{fontSize:"1rem"}}>Conde del viento</span>
-                          <span className='orange t-xs'>Alejandro soto</span>
-                        </div>
-                     </div>
-                     <div className='ElementHorseContainer' onClick={getSelectHorse}>
-                        <figure className='img-container Analitic-imag'>
-                            <img src={HorsePhoto} className='img-event Analitic-imag'></img>
-                        </figure>
-                        <div className='p-column' style={{paddingTop:"5px"}}>
-                          <span className='t-white t-b' style={{fontSize:"1rem"}}>Conde del viento</span>
-                          <span className='orange t-xs'>Alejandro soto</span>
-                        </div>
-                     </div>
-                     <div className='ElementHorseContainer' onClick={getSelectHorse}>
-                        <figure className='img-container Analitic-imag'>
-                            <img src={HorsePhoto} className='img-event Analitic-imag'></img>
-                        </figure>
-                        <div className='p-column' style={{paddingTop:"5px"}}>
-                          <span className='t-white t-b' style={{fontSize:"1rem"}}>Conde del viento</span>
-                          <span className='orange t-xs'>Alejandro soto</span>
-                        </div>
-                     </div> 
-                     <div className='ElementHorseContainer' onClick={getSelectHorse}>
-                        <figure className='img-container Analitic-imag'>
-                            <img src={HorsePhoto} className='img-event Analitic-imag'></img>
-                        </figure>
-                        <div className='p-column' style={{paddingTop:"5px"}}>
-                          <span className='t-white t-b' style={{fontSize:"1rem"}}>Conde del viento</span>
-                          <span className='orange t-xs'>Alejandro soto</span>
-                        </div>
-                     </div>
+                {unprocess.map(Horse=>{
+                              return(
+                                <div className='ElementHorseContainer' onClick={()=>getSelectHorse(Horse)}>
+                                    <figure className='img-container Analitic-imag'>
+                                        <img src={HorsePhoto} className='img-event Analitic-imag'></img>
+                                    </figure>
+                                    <div className='p-column' style={{paddingTop:"5px"}}>
+                                      <span className='t-white t-b' style={{fontSize:"1rem"}}>{Horse.nombre}</span>
+                                      <span className='orange t-xs'>{Horse.caballista}</span>
+                                    </div>
+                                </div>
+                                            
+                                            
+                                );
+                                            
+                       })}
                 </div>
 
-                <div className='ListInCompetitionContainer' onClick={getSelectHorse}>
+                {process.length!==0 ?
+                
+                <>
+                <div className='ListInCompetitionContainer'>
                     <div className='ListInCompetitionTitleContainer'>
-                        <span className='TitleInCompetition'>Procesados</span><span className='NumberInCompetition'>15</span>
+                        <span className='TitleInCompetition c-green-title'>Procesados</span><span className='NumberInCompetition'>{process.length}</span>
                     </div>
                 </div>
+                </>
+                :
+                <></>}
+
+                
                 <div className='ListHorseContainer'>
-                     <div className='ElementHorseContainer' onClick={getSelectHorse}>
-                        <figure className='img-container Analitic-imag'>
-                            <img src={HorsePhoto} className='img-event Analitic-imag'></img>
-                        </figure>
-                        <div className='p-column' style={{paddingTop:"5px"}}>
-                          <span className='t-white t-b' style={{fontSize:"1rem"}}>Conde del viento</span>
-                          <span className='orange t-xs'>Alejandro soto</span>
-                        </div>
-                     </div>
-                     <div className='ElementHorseContainer' onClick={getSelectHorse}>
-                        <figure className='img-container Analitic-imag'>
-                            <img src={HorsePhoto} className='img-event Analitic-imag'></img>
-                        </figure>
-                        <div className='p-column' style={{paddingTop:"5px"}}>
-                          <span className='t-white t-b' style={{fontSize:"1rem"}}>Conde del viento</span>
-                          <span className='orange t-xs'>Alejandro soto</span>
-                        </div>
-                     </div>
-                     <div className='ElementHorseContainer' onClick={getSelectHorse}>
-                        <figure className='img-container Analitic-imag'>
-                            <img src={HorsePhoto} className='img-event Analitic-imag'></img>
-                        </figure>
-                        <div className='p-column' style={{paddingTop:"5px"}}>
-                          <span className='t-white t-b' style={{fontSize:"1rem"}}>Conde del viento</span>
-                          <span className='orange t-xs'>Alejandro soto</span>
-                        </div>
-                     </div>
-                     <div className='ElementHorseContainer' onClick={getSelectHorse}>
-                        <figure className='img-container Analitic-imag'>
-                            <img src={HorsePhoto} className='img-event Analitic-imag'></img>
-                        </figure>
-                        <div className='p-column' style={{paddingTop:"5px"}}>
-                          <span className='t-white t-b' style={{fontSize:"1rem"}}>Conde del viento</span>
-                          <span className='orange t-xs'>Alejandro soto</span>
-                        </div>
-                     </div>
+
+                {process.map(Horse=>{
+                              return(
+                                <div className='ElementHorseContainer' onClick={()=>getSelectHorse(Horse)}>
+                                    <figure className='img-container Analitic-imag'>
+                                        <img src={HorsePhoto} className='img-event Analitic-imag'></img>
+                                    </figure>
+                                    <div className='p-column' style={{paddingTop:"5px"}}>
+                                      <span className='t-white t-b' style={{fontSize:"1rem"}}>{Horse.nombre}</span>
+                                      <span className='orange t-xs'>{Horse.caballista}</span>
+                                    </div>
+                                </div>
+                                            
+                                            
+                                );
+                                            
+                       })}
+                     
+                     
                 </div>
+                </>
+                }
+
+                
             </div>
            
             

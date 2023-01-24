@@ -16,7 +16,7 @@ function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,vid
   const fileInputChange=(event)=>{
 
      
-    if(SelectEvent && SelectHorse){
+    if(SelectEvent && SelectHorse!==false){
       if(event[0].type==="video/mp4"){
         let Object={target:{files:event}}
         handleChange(Object);

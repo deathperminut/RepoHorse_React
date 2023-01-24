@@ -8,6 +8,12 @@
     position:absolute;
     
 }
+.pt-15px{
+    padding-top: 15px !important;
+}
+.ml-20px{
+  margin-left: 10px;
+}
 .buttonVideo{
    position: absolute;
    z-index: 2; 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { environment } from '../../environments/environment';
 
-const setHorse= async (HorseData,token)=>{
+const generateHorse= async (HorseData,token)=>{
     const path= environment.api + environment.setHorse;
 
     let config = {
@@ -16,7 +16,7 @@ const setHorse= async (HorseData,token)=>{
       nombre:HorseData.nombre,
       caballista:HorseData.caballista,
       edad:HorseData.edad,
-      tipo:"Caballo",
+      tipo:HorseData.tipo,
       andar:HorseData.andar,
     }
   
@@ -49,4 +49,4 @@ const setHorse= async (HorseData,token)=>{
 
 
 
-export {setHorse,getAllHorses};
+export {generateHorse,getAllHorses};

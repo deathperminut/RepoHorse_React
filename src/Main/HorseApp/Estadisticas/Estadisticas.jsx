@@ -14,9 +14,8 @@ import { AppContext } from '../../../Context';
 import ListGroup from 'react-bootstrap/ListGroup'; 
 import Swal from 'sweetalert2';
 
-/* TOOL TIP */
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
+
+
 
 
 
@@ -35,6 +34,11 @@ export default function Estadisticas() {
   /*USE STATE */
   
   let [ListEvents,setListEvents]=React.useState([]);//LIST EVENTS
+  let [Andar,setAndar]=React.useState(1);
+  let [filterValueHorse,setFilterValueHorse]=React.useState("");
+  let [ListHorses,setListHorses]=React.useState([]);
+
+  
   /*USE STATE MODAL*/
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -107,6 +111,9 @@ export default function Estadisticas() {
              <>
              {ListEvents.map(Event=>{
 
+               
+
+                  
                 
                   return (
                       <div className='InfoContainer'>
@@ -126,56 +133,8 @@ export default function Estadisticas() {
                           <button className='buttonEvent center buttonEventEst' ><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px" >+</span><span className="c-orange font-size-10pt middle-size" >Añadir otro</span></button>
                           
                         </div>
-                        <div className='Est-Container-2'  >
-                          <div className='label-event-Estadistics-Container' >
-                              <figure className='img-container'  >
-                                <img src={Event.imagen} className='img-event'></img>
-                              </figure>
-                              
-                              <div className='p-column'>
-                                <span className='t-white t-b bold-size'  >{Event.nombre_evento}</span>
-                                <span className='t-white t-xs small-size' >{Event.lugar}</span>
-                                <span className='t-white t-xs small-size gray-dc' >{Event.fecha_inicio }<span className='small-size'>{' / '}</span> {Event.fecha_fin}</span>
-                                <div  className='changeContainer '>
-                                        <span className='TextChange mr--3' onClick={()=>{DeleteEvent()}}>Eliminar</span>
-                                        <AiFillCloseCircle className='IconBack'onClick={()=>{ DeleteEvent()}}/>
-                                </div>
-                              </div>
-                          </div>
-                          <div className='filter-Horse-Estadistics-Container'  >
-                              <InputGroup className="mb-3" id="p-row">
-                                <InputGroup.Text id="basic-addon1"><Icon.Search /></InputGroup.Text>
-                                <Form.Control
-                                  placeholder="Ingrese el ejemplar"
-                                  aria-label="Ingrese el ejemplar"
-                                  aria-describedby="basic-addon1"
-                                />
-                              </InputGroup>
-                          </div>
-                          
-                        </div>
-                        <div className='Est-Container-3' >
-                          <ListGroup horizontal defaultActiveKey="#link1">
-                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar del Trote y Galope</Tooltip>}>
-                              <ListGroup.Item action eventKey="#link1">Andar P1</ListGroup.Item>
-                            </OverlayTrigger>
-                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar de la Trocha y Galope</Tooltip>}>
-                              <ListGroup.Item action eventKey="#link2">Andar P1</ListGroup.Item>
-                            </OverlayTrigger>
-                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar de la Trocha Pura Colombiana</Tooltip>}>
-                              <ListGroup.Item action eventKey="#link3">Andar P1</ListGroup.Item>
-                            </OverlayTrigger>
-                            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar del Paso Fino Colombiano</Tooltip>}>
-                              <ListGroup.Item action eventKey="#link4">Andar P1</ListGroup.Item>
-                            </OverlayTrigger>
-
-                          </ListGroup>
-                          <div className='tableContainer'>
-                            <div className='table'>
-                              <Tablehorse />
-                            </div>
-                          </div>
-                        </div>
+                        <Tablehorse Event={Event}   DeleteEvent={DeleteEvent} />
+                        
                       </div>
                       </div>
                   );

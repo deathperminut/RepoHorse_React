@@ -36,6 +36,7 @@ import Preloader from '../../../Shared/preloader/preloader';
 import { toNumber } from 'lodash';
 import Swal from 'sweetalert2';
 import { createEvent } from '../../../Services/Events/events';
+import { generateHorse } from '../../../Services/Horses/horse';
 
 const options = [
   { value: 'P1', label: 'P1' },
@@ -82,6 +83,10 @@ export default function Competiciones() {
   let [EditHorseButton,setEditHorseButton]=React.useState(false);
   let [filter,setFilter]=React.useState(events);
   let [valueFilter,setValueFilter]=React.useState("");
+  let [Andar,setAndar]=React.useState(1);
+  let [filterValueHorse,setFilterValueHorse]=React.useState("");
+
+  let [ListHorses,setListHorses]=React.useState([]);
 
 
   let [event,setEvent]=React.useState({
@@ -94,11 +99,21 @@ export default function Competiciones() {
     descripcion:'',
     Horses:[],
   })
+
+  let [horse,setHorse]=React.useState({
+    id_evento:'',
+    nombre:'',
+    imagen:HorsePhoto,
+    caballista:'',
+    edad:'',
+    tipo:'C caballar',
+    andar:1,
+  })
   let [buttonEvent,setButtonEvent]=React.useState(true);
+  let [buttonHorse,setButtonhorse]=React.useState(true);
 
    /* INPUTS */
    const CheckInput=(Event,type)=>{
-    console.log(Event.target.value,type);
     setEvent({
       ... event,
       [type]: Event.target.value
@@ -109,22 +124,48 @@ export default function Competiciones() {
     });
 
   }
+  const ChangeInputHorse=(Event,type)=>{
+    console.log(Event.target.value);
+    setHorse({
+      ... horse,
+      [type]: Event.target.value
+    })
+    checkHorse({
+      ... horse,
+      [type]: Event.target.value
+    });
+  }
+  
+  const checkHorse=(caballo)=>{
+    
+     if (caballo.nombre!=="" && caballo.caballista!=="" && caballo.edad!=="" && caballo.tipo !=="" && caballo.andar!=="" ){
+       setButtonhorse(false);
+     } else{
+       setButtonhorse(true);
+     }
+
+
+  }
 
     /* SELECTS */
 
-    const CheckSelect=(event,type)=>{
-    
-      console.log(event);
-      if(event===null){
-        setEvent({...event,
-          [type]: ""} );
-      }else{
-        setEvent({...event,
-          [type]: event.value} );
-      }
+  const CheckSelect=(Event)=>{
+
+      setHorse({
+         ... horse,
+         ['andar']: Event.target.value
+       })
+      
     }
   /*FUNCTION IMAGE */
   function handleChange(e) {
+    console.log(new File([e.target.files[0]], 'project.png',{type: "image/png"}));
+    setimgFormEvent(new File([e.target.files[0]], 'project.png',{type: "image/png"}));
+    setFile(URL.createObjectURL(e.target.files[0]));
+    setEvent({...event,['imagen']:URL.createObjectURL(e.target.files[0])})
+    checkEvent({...event,['imagen']:URL.createObjectURL(e.target.files[0])});
+  }
+  function handleChange_horse(e) {
     console.log(new File([e.target.files[0]], 'project.png',{type: "image/png"}));
     setimgFormEvent(new File([e.target.files[0]], 'project.png',{type: "image/png"}));
     setFile(URL.createObjectURL(e.target.files[0]));
@@ -146,6 +187,7 @@ export default function Competiciones() {
   /*EDIT EVENT FUNCTION */
   const EditEventFunction=(Event)=>{
     setEventChoosed(Event);
+    setListHorses(Event.Horses.filter((obj)=>obj.andar===1 || obj.andar==="1"));
     setEditEvent(true);
     setCreateButton(false);
     //setEventSelected(event);
@@ -202,6 +244,50 @@ export default function Competiciones() {
   React.useEffect(()=>{
     setFilter(events);
   },[events])
+
+  const createHorse=async (event)=>{
+    
+    event.preventDefault();
+    console.log({...horse,['id_evento']:eventChoosed.id});
+
+    setLoading(true);
+
+    let result=await generateHorse({...horse,['id_evento']:eventChoosed.id},token).catch((error)=>{
+      console.log(error);
+      setLoading(false);
+      Swal.fire({
+        icon: 'error',
+        title: 'Problemas al crear el ejemplar',
+        text:'revisa tu conexión a internet',
+      })
+    })
+    if (result!==undefined){
+       console.log({...result['data'].caballo,['video_original']:"",['video_procesado']:""});
+       setLoading(false);
+       Swal.fire({
+          icon: 'success',
+          title: 'Ejemplar creado correctamente',
+        })
+        eventChoosed.Horses.push({...result['data'].caballo,['video_original']:"",['video_procesado']:""});
+        setFilterValueHorse("");
+        setListHorses(eventChoosed.Horses.filter((obj)=>toNumber(obj.andar)=== toNumber(Andar)));
+        replaceEvent(eventChoosed);
+    }
+  }
+
+
+  const replaceEvent=(eventReplace)=>{
+
+    let eventsCopy=[...events];
+
+    for (var i=0; i<events.length;i++){
+      if( eventsCopy[i].id===eventReplace.id){
+        eventsCopy[i]=eventReplace;
+        break;
+      }
+    }
+    setEvents(eventsCopy);
+  }
 
 
 
@@ -499,39 +585,70 @@ export default function Competiciones() {
                           <span className='TextCount'>{eventChoosed.Horses.length}</span>
                       </div>
                     </div>
-                    <div className='CountContainer align-center'>
+                    {/* <div className='CountContainer align-center'>
                       <span className='TextTitle mb-'>Total categoria</span>
                       <div className='CountsBox w-'>
-                          {/* <span className='TextCount'>{eventChoosed.horses.length}</span> */}
+                          <span className='TextCount'>{eventChoosed.horses.length}</span>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
             </div>
 
          </div>
          <div className='EventsContainer HorseFilter '>
-                <InputGroup className='inputComp middle-size'>
-                  <InputGroup.Text id="basic-addon1"><Icon.Search/></InputGroup.Text>
+                <InputGroup onChange={(event)=>{
+                  setFilterValueHorse(event.target.value);
+                  if(event.target.value===""){
+                    setListHorses(eventChoosed.Horses.filter((obj)=> toNumber(obj.andar) === toNumber(Andar)))
+                  }else{
+                    setListHorses(eventChoosed.Horses.filter((obj)=> obj.nombre.toLowerCase().includes(event.target.value.toLowerCase() && toNumber(obj.andar) === toNumber(Andar))))
+                  }
+
+                }} className='inputComp middle-size' >
+                  <InputGroup.Text id="basic-addon1" ><Icon.Search/></InputGroup.Text>
                   <Form.Control
                     placeholder="Buscar ejemplar "
                     aria-label="Buscar ejemplar"
                     aria-describedby="basic-addon1"
+                    value={filterValueHorse}
                   />
                 </InputGroup>
+                {eventChoosed.Horses.length!==0 ?
+                <>
                 <ListGroup horizontal defaultActiveKey="#link1" className='ListAndar'>
                           <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar del Trote y Galope</Tooltip>}>
-                             <ListGroup.Item action eventKey="#link1">Andar P1</ListGroup.Item>
+                             <ListGroup.Item action eventKey="#link1" onClick={()=>{
+                                setListHorses(eventChoosed.Horses.filter((obj)=>obj.andar===1 || obj.andar==="1"));
+                                setAndar(1);
+                                setFilterValueHorse("");
+                             }}>Andar P1</ListGroup.Item>
                           </OverlayTrigger>
                           <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar de la Trocha y Galope</Tooltip>}>
-                             <ListGroup.Item action eventKey="#link2" >Andar P2</ListGroup.Item>
+                             <ListGroup.Item action eventKey="#link2" onClick={()=>{
+                                setListHorses(eventChoosed.Horses.filter((obj)=>obj.andar===2 || obj.andar==="2"));
+                                setAndar(2);
+                                setFilterValueHorse("");
+                             }}>Andar P2</ListGroup.Item>
                           </OverlayTrigger>
                           <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar de la Trocha Pura Colombiana</Tooltip>}>
-                             <ListGroup.Item action eventKey="#link3">Andar P3</ListGroup.Item>
+                             <ListGroup.Item action eventKey="#link3" onClick={()=>{
+                                setListHorses(eventChoosed.Horses.filter((obj)=>obj.andar===3 || obj.andar==="3"));
+                                setAndar(3);
+                                setFilterValueHorse("");
+                             }}>Andar P3</ListGroup.Item>
                           </OverlayTrigger>
                           <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar del Paso Fino Colombiano</Tooltip>}>
-                             <ListGroup.Item action eventKey="#link4">Andar P4</ListGroup.Item>
+                             <ListGroup.Item action eventKey="#link4" onClick={()=>{
+                                setListHorses(eventChoosed.Horses.filter((obj)=>obj.andar===4 || obj.andar==="4"));
+                                setAndar(4)
+                             }}>Andar P4</ListGroup.Item>
                           </OverlayTrigger>
                 </ListGroup>
+                </>
+                :
+                <> </>
+                }
+                
         </div>
          <div className='HorseDataContainer'>
                {AddHorseButton===false ?
@@ -576,27 +693,27 @@ export default function Competiciones() {
                       </div>
                       <div className='nameContainer containrowHorse'>
                         <span className="textFormEvent second-size">Nombre</span>
-                        <input className='inputEventForm second-size' type="text" placeholder='Nombre del ejemplar'/>
+                        <input onChange={(event)=>ChangeInputHorse(event,'nombre')} className='inputEventForm second-size' maxLength={19}  type="text" placeholder='Nombre del ejemplar'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size"># Competidor</span>
-                        <input className='inputEventForm second-size' type="text" placeholder='# del competidor'/>
+                        <input onChange={(event)=>ChangeInputHorse(event,'tipo')} className='inputEventForm second-size' type="text"  maxLength={4} placeholder='# del competidor'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size">Jinete</span>
-                        <input className='inputEventForm second-size' type="text" placeholder='# del competidor'/>
+                        <input onChange={(event)=>ChangeInputHorse(event,'caballista')} className='inputEventForm second-size' maxLength={21} type="text" placeholder='Nombre Jinete'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size">Edad</span>
-                        <input className='inputEventForm second-size' type="text" placeholder='Edad'/>
+                        <input onChange={(event)=>ChangeInputHorse(event,'edad')} className='inputEventForm second-size' type="text" maxLength={21} placeholder='Edad (meses)'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size">Andar</span>
-                        <Form.Select className='inputEventForm second-size'>
-                          <option>P1</option>
-                          <option>P2</option>
-                          <option>P3</option>
-                          <option>P4</option>
+                        <Form.Select onChange={(event)=>CheckSelect(event,'andar')} className='inputEventForm second-size'>
+                          <option value={1} >P1</option>
+                          <option value={2} >P2</option>
+                          <option value={3} >P3</option>
+                          <option value={4} >P4</option>
                         </Form.Select>
                         {/* <input className='inputEventForm second-size' type="text" placeholder='Ingrese la categoria'/> */}
                       </div>
@@ -604,170 +721,71 @@ export default function Competiciones() {
                            {EditHorseButton===true  ?
                             <button className='buttonComp_2 middle-size'>Editar</button>
                             :
-                            <button className='buttonComp_2 middle-size'>Añadir</button>
+                            <button className='buttonComp_2 middle-size' disabled={buttonHorse} onClick={createHorse}>Añadir</button>
                             }
                       </div>
                 </form>
                </>
 
                }
-
-              <div className='tableContainerHorse'>
-              <div className='table'>
+              
+               {eventChoosed.Horses.length!==0 ?
+               <>
+               <div className='tableContainerHorse'>
+              <div className='table_2'>
                 <Table>
                   <thead>
                     <tr>
                       <th className='titletext'>Nombre</th>
                       <th className='titletext'>Edad</th>
                       <th className='titletext'>Andar</th>
-                      <th className='titletext'>Tipo</th>
+                      <th className='titletext'>Número</th>
                       <th className='titletext'>Jinete</th>
                       <th className='titletext'></th>
                       <th className='titletext'></th>
                     </tr>
                   </thead>
                   <tbody className='tablebody'>
-                    <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>P4</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>Alejandro Soto</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
-                          <RiEdit2Fill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                      <td className='b-none'>
-                          <FaTrash className='GarbageHorse item'/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>P4</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>Alejandro Soto</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
-                          <RiEdit2Fill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                      <td className='b-none'>
-                          <FaTrash className='GarbageHorse item'/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size' >Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>P4</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>Alejandro Soto</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
-                          <RiEdit2Fill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                      <td className='b-none'>
-                          <FaTrash className='GarbageHorse item'/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>P4</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>Alejandro Soto</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
-                          <RiEdit2Fill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                      <td className='b-none'>
-                          <FaTrash className='GarbageHorse item'/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>P4</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>Alejandro Soto</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
-                          <RiEdit2Fill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                      <td className='b-none'>
-                          <FaTrash className='GarbageHorse item'/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>P4</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>Alejandro Soto</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
-                          <RiEdit2Fill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                      <td className='b-none'>
-                          <FaTrash className='GarbageHorse item'/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>P4</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>Alejandro Soto</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
-                          <RiEdit2Fill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                      <td className='b-none'>
-                          <FaTrash className='GarbageHorse item'/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>P4</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>Alejandro Soto</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
-                          <RiEdit2Fill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                      <td className='b-none'>
-                          <FaTrash className='GarbageHorse item'/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size' >Conde del viento</span></td>
-                      <td className='b-none text-table'><span className='item middle-size'>38 meses</span></td>
-                      <td className='b-none text-table'><span className='item'>P4</span></td>
-                      <td className='b-none text-table'><span className='item'>C caballar</span></td>
-                      <td className='b-none text-table'><span className='item'>Alejandro Soto</span></td>
-                      <td className='b-none'>
-                        <div className='iconVideoPlayContainer' onClick={EditHorse}>
-                          <RiEdit2Fill className='iconVideoPlay'/>
-                        </div>
-                      </td>
-                      <td className='b-none'>
-                          <FaTrash className='GarbageHorse item'/>
-                      </td>
-                    </tr>
+                    
+                  {ListHorses.map(Horse=>{
+                                return(
+                                  <tr>
+                                    <td className='NameTable b-none'><img src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>{Horse.nombre}</span></td>
+                                    <td className='b-none text-table'><span className='item middle-size'>{Horse.edad+' meses'}</span></td>
+                                    <td className='b-none text-table'><span className='item middle-size'>{'P'+Horse.andar}</span></td>
+                                    <td className='b-none text-table'><span className='item middle-size'>{Horse.tipo}</span></td>
+                                    <td className='b-none text-table'><span className='item middle-size'>{Horse.caballista}</span></td>
+                                    <td className='b-none'>
+                                      <div className='iconVideoPlayContainer' onClick={EditHorse}>
+                                        <RiEdit2Fill className='iconVideoPlay'/>
+                                      </div>
+                                    </td>
+                                    <td className='b-none'>
+                                        <FaTrash className='GarbageHorse item'/>
+                                    </td>
+                                  </tr>
+                                                  
+                                    
+                                );
+                                    
+                                })}
+                   
+                   
+                    
+                    
                   </tbody>
                 </Table>
               </div>
              
 
-            </div> 
+              </div> 
+               </>
+               :
+               <>
+
+               </>
+               }
+              
              
          </div>
           
