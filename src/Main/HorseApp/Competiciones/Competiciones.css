@@ -11,7 +11,6 @@
 .CountsContainer{
     display: flex;
     flex-direction: row;
-    min-width: 1200px !important;
     margin-top: 7px;
     margin-left: 1rem;
 }

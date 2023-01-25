@@ -364,7 +364,7 @@ export default function Analisis() {
                         <div className='Details-horse-selected'>
                              <span className='white fz-big'>{SelectHorse.nombre}</span>
                              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>{selectMessage('P'+SelectHorse.andar)}</Tooltip>}>
-                               <span className='gray fz-small display-f-80px'>Andar: <span className='orange fw'>{'P'+SelectHorse.andar+' '}</span></span>
+                               <span className='gray fz-small display-f-80px'>Andar: <span className='orange fw'>{' P'+SelectHorse.andar+' '}</span></span>
                              </OverlayTrigger>
                              
                              <span className='gray fz-small'>Edad: <span className='white'>{SelectHorse.edad+ ' meses'}</span></span>
@@ -374,7 +374,19 @@ export default function Analisis() {
                         </div>
                         <div className='Container-horse-selected-buttons'>
                                 <button className='Button-horse-selected bg-green' onClick={checkVideo}>Analizar video</button>
-                                <button className='Button-horse-selected bg-orange'>Guardar</button>
+                                <button className='Button-horse-selected bg-orange' onClick={()=>{
+                                  setStatisticVideo(false);
+                                  setInputVideoFile(null);
+                                  setVideoMeta(null);
+                                  setTrimmedVideoFile(null);
+                                  setURL([]);
+                                  setTrimIsProcessing(false);
+                                  setRstart(0);
+                                  setRend(100);
+                                  setThumbNails([]);
+                                  setThumbnailIsProcessing(false);
+                                  setOriginalVideo(null);
+                                }}>Guardar</button>
                         </div>
                 </div>
                 <div className='Container_Details_Video_2'>
@@ -385,7 +397,7 @@ export default function Analisis() {
                    <div className='Container-video-result-bpm'>
                       <span className='white mb-small'>video esqueleto:</span>
                       <div className='Container-video-result'>
-                            {SelectHorse.video_procesado!=="" ? <video src={Marcadores} className="video-marcadores" controls></video> : <></>}
+                            {SelectHorse.video_procesado!=="" ? <video crossorigin="anonymous" src={SelectHorse.video_procesado} className="video-marcadores" controls></video> : <></>}
                            
                       </div>
                    </div>
@@ -426,7 +438,7 @@ export default function Analisis() {
                 </figure>
                 <div className='p-column'>
                   <span className='t-white t-b font-size bold-size'>{Choose.nombre_evento}</span>
-                  <span className='t-white t-xs middle-size small-size'>{Choose.lugar}</span>
+                  <span className='t-white t-xs middle-size small-size orange'>{Choose.lugar}</span>
                   <span className='t-white t-xs middle-size  small-size '>{Choose.fecha_inicio }<span className='small-size'>{' / '}</span> {Choose.fecha_fin}</span>
                   <div  className='changeContainer right-10px'>
                       <span className='TextChange' onClick={()=>{

@@ -480,7 +480,7 @@ export default function Competiciones() {
                               </figure>
                               <div className='p-column-event'>
                                 <span className='t-white t-b t-b2  overflox-x-hidden '>{Event.nombre_evento}</span>
-                                <span className='t-white t-xs small-size'>{Event.lugar+' '}</span>
+                                <span className='t-white t-xs small-size orange'>{Event.lugar+' '}</span>
                                 <span className='t-white t-xs small-size gray-dc'>{Event.fecha_inicio }<span className='small-size'>{' / '}</span> {Event.fecha_fin}</span>
                                 <div className='d-row flex-end'>
                                       <div className='iconEditEvent' onClick={()=>EditEventFunction(Event)}>
@@ -585,7 +585,7 @@ export default function Competiciones() {
                 </figure>
                 <div className='p-column-event'>
                   <span className='t-white t-b t-b2  overflox-x-hidden bold-size'>{eventChoosed.nombre_evento}</span>
-                  <span className='t-white t-xs  small-size'>{eventChoosed.lugar}</span>
+                  <span className='t-white t-xs  small-size orange'>{eventChoosed.lugar}</span>
                   <span className='t-white t-xs small-size gray-dc' >{eventChoosed.fecha_inicio }<span className='small-size'>{' / '}</span> {eventChoosed.fecha_fin}</span>
                 </div>
             </div>

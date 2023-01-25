@@ -25,6 +25,7 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
     let [Andar,setAndar]=React.useState(1);
     let [filterValueHorse,setFilterValueHorse]=React.useState("");
     let [ListHorses,setListHorses]=React.useState([]);
+    let [videoFile,setVideoFile]=React.useState(null);
     /* ARRAY */
     let [horses,setHorses]=React.useState(Event.Horses.filter((obj)=> obj.andar.toString() === Andar.toString()));
 
@@ -53,7 +54,7 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                               
                               <div className='p-column'>
                                 <span className='t-white t-b bold-size'  >{Event.nombre_evento}</span>
-                                <span className='t-white t-xs small-size' >{Event.lugar}</span>
+                                <span className='t-white t-xs small-size orange' >{Event.lugar}</span>
                                 <span className='t-white t-xs small-size gray-dc' >{Event.fecha_inicio }<span className='small-size'>{' / '}</span> {Event.fecha_fin}</span>
                                 <div  className='changeContainer '>
                                         <span className='TextChange mr--3' onClick={()=>{DeleteEvent()}}>Eliminar</span>
@@ -136,7 +137,11 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                                     </>
                                                     :
                                                     <>
-                                                    <div className='iconVideoPlayContainer' onClick={()=>setShowVideo(true)}>
+                                                    <div className='iconVideoPlayContainer' onClick={()=>{
+                                                      setShowVideo(true);
+                                                      setVideoFile(Horse.video_procesado);
+                                                      
+                                                    }}>
                                                       <BsFillPlayFill className='iconVideoPlay margin-left'/>
                                                     </div>
 
@@ -158,7 +163,7 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                               :
                               <>
                                 
-                              <ReactPlayer className="VideoPlayer"   controls={true} url={Conteo} playing={true} width={'100%'} height={'100%'} youtubeConfig={{ playerVars: { showinfo: 1 } }}/>
+                              <ReactPlayer className="VideoPlayer"   controls={true} url={videoFile} playing={true} width={'100%'} height={'100%'} youtubeConfig={{ playerVars: { showinfo: 1 } }}/>
                               <button className='buttonVideo' onClick={()=>setShowVideo(false)}>X</button>
 
                               </>

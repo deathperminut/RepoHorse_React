@@ -76,7 +76,6 @@ function RegisterInfo() {
       let result=undefined
 
       result=await setRegister(userData).catch((error)=>{
-        console.log("Response",error.response.data.username[0]);
         setLoading(false);
         if(error.response.data.username[0]==="A user with that username already exists."){
           Swal.fire({
