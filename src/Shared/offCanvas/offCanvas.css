@@ -1,7 +1,7 @@
 
 .offCanvasContainer{
-    min-width: 14rem;
-    width: 14rem;
+    min-width: 16.5rem;
+    width: 16.5rem;
     padding-left: 10pt;
     padding-top: 10pt;
     background-color: #11342F;
@@ -18,7 +18,7 @@
 
 .textOffcanvas{
     color:#FFFFFF;
-    font-size: 0.7rem;
+    font-size: 10pt !important;
     width: 100pt !important;
 }
 
