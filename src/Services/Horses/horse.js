@@ -66,6 +66,32 @@ const generateHorse= async (HorseData,token)=>{
     
   }
 
+  const changeHorse= async (HorseData,token,img)=>{
+    const path= environment.api + environment.editHorse+HorseData.id;
+
+    let config = {
+        headers: {
+          Authorization: 'Token ' + token,
+        },
+      };
+
+    let body = new FormData();
+    
+    body.append('id_evento',HorseData.id_evento);
+    body.append('nombre',HorseData.nombre);
+    body.append('caballista',HorseData.caballista);
+    body.append('edad',HorseData.edad);
+    body.append('tipo',HorseData.tipo);
+    body.append('andar',HorseData.andar);
+    body.append('imagen',img);
+    
+    console.log("body: ",body);
+
+  
+  
+   return await axios.post(path,body,config);
+    
+  }
 
 
 
@@ -75,4 +101,5 @@ const generateHorse= async (HorseData,token)=>{
 
 
 
-export {generateHorse,getAllHorses,deleteHorse};
+
+export {generateHorse,getAllHorses,deleteHorse,changeHorse};

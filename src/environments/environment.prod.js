@@ -24,7 +24,8 @@ export const environment={
   //HORSES
   setHorse:'create-caballo/',
   getHorse:'listar-caballos/',
-  deleteHorse:'eliminar-caballo/',
+  deleteHorse:'eliminar-caballo',
+  editHorse:'editar-caballo/',
 
   //MODEL
   setVideoHorse:'agregar-video/',

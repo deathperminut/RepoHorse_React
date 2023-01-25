@@ -36,7 +36,7 @@ import Preloader from '../../../Shared/preloader/preloader';
 import { toNumber } from 'lodash';
 import Swal from 'sweetalert2';
 import { createEvent, deleteEvent } from '../../../Services/Events/events';
-import { deleteHorse, generateHorse } from '../../../Services/Horses/horse';
+import { changeHorse, deleteHorse, editHorse, generateHorse } from '../../../Services/Horses/horse';
 
 const options = [
   { value: 'P1', label: 'P1' },
@@ -107,11 +107,12 @@ export default function Competiciones() {
     imagen:'',
     caballista:'',
     edad:'',
-    tipo:'C caballar',
+    tipo:'',
     andar:1,
   })
   let [buttonEvent,setButtonEvent]=React.useState(true);
   let [buttonHorse,setButtonhorse]=React.useState(true);
+  let [horseEdit,setHorseEdit]=React.useState(null);
 
    /* INPUTS */
    const CheckInput=(Event,type)=>{
@@ -158,6 +159,17 @@ export default function Competiciones() {
        })
       
     }
+   
+  async function createFile(URL){
+      let response = await fetch(URL);
+      let data = await response.blob();
+      let metadata = {
+        type: 'image/png'
+      };
+      let file = new File([data], "test.png", metadata);
+      return file;
+      // ... do something with the file or return it
+  }
   /*FUNCTION IMAGE */
   function handleChange(e) {
     console.log(new File([e.target.files[0]], 'project.png',{type: "image/png"}));
@@ -195,6 +207,16 @@ export default function Competiciones() {
   }
   const EditEventFunction_2=()=>{
     setEditEvent(false);
+    setFile(null);
+    setHorse({
+      id_evento:'',
+      nombre:'',
+      imagen:'',
+      caballista:'',
+      edad:'',
+      tipo:'',
+      andar:1,
+    });
   }
 
 
@@ -211,11 +233,30 @@ export default function Competiciones() {
   const ResetAddHorse=()=>{
     setAddHorseButton(false);
     setEditHorseButton(false);
+    setHorse({
+      id_evento:'',
+      nombre:'',
+      imagen:'',
+      caballista:'',
+      edad:'',
+      tipo:'',
+      andar:1,
+    });
     setFile(null);
   }
-  const EditHorse=()=>{
-    setAddHorseButton(true);
-    setEditHorseButton(true);
+  const EditHorse=async(HORSE)=>{
+    if(HORSE.imagen!==undefined){
+      console.log(HORSE.imagen);
+      setAddHorseButton(true);
+      setEditHorseButton(true);
+      setHorse(HORSE);
+      setLoading(true);
+      setImgFormHorse(await createFile(HORSE.imagen));
+      setLoading(false);
+      setFile(HORSE.imagen);
+      setButtonhorse(false);
+    }
+    
   }
   
   /* LISTA EVENTOS */
@@ -274,6 +315,17 @@ export default function Competiciones() {
          setFilterValueHorse("");
          setListHorses(eventChoosed.Horses.filter((obj)=>toNumber(obj.andar)=== toNumber(Andar)));
          replaceEvent(eventChoosed);
+         setHorse({
+          id_evento:'',
+          nombre:'',
+          imagen:'',
+          caballista:'',
+          edad:'',
+          tipo:'',
+          andar:1,
+        });
+        setFile(null);
+
      }
   }
 
@@ -414,6 +466,7 @@ export default function Competiciones() {
 
 
   const DeleteH=async(HORSE)=>{
+    ResetAddHorse();
     Swal.fire({
       title: '¿Seguro que desea eliminar el ejemplar?',
       showDenyButton: true,
@@ -458,6 +511,49 @@ export default function Competiciones() {
    
     
 
+  }
+
+  const editHorses=async(EVENT)=>{
+
+    EVENT.preventDefault();
+    setLoading(true);  
+    let result=undefined;
+    result=await changeHorse(horse,token,imgFormHorse).catch((error)=>{
+      console.log(error);
+      setLoading(false);  
+      Swal.fire({
+        icon: 'error',
+        title: 'Problemas al editar ejemplar',
+      })
+    })
+    if(result !==undefined){
+      console.log(result['data']);
+      setLoading(false);  
+      Swal.fire({
+        icon: 'success',
+        title: 'Ejemplar actualizado',
+      })
+      /* ACTUALIZAMOS DEL ARREGLO LOCAL DEL EVENTO SELECCIONADO*/
+      let Horses=[];
+      for (var i=0;i<eventChoosed.Horses.length;i++){
+        if(eventChoosed.Horses[i].id.toString()===horse.id.toString()){
+          Horses.push(horse);
+        }else{
+          Horses.push(eventChoosed.Horses[i]);
+        }
+      }
+
+      let CopyEventChoosed={...eventChoosed,['Horses']:Horses};
+      setEventChoosed(CopyEventChoosed);
+
+      /* VOLVEMOS A FILTRAR EN LOS QUE ESTABAMOS */
+
+      setFilterValueHorse("");
+      setListHorses(CopyEventChoosed.Horses.filter((obj)=>toNumber(obj.andar)=== toNumber(Andar)));
+      replaceEvent(CopyEventChoosed);
+
+
+    }
   }
   
 
@@ -574,7 +670,17 @@ export default function Competiciones() {
            <div className='buttonregisterEvent_2 mt-14px' onClick={()=>{
                       setFile(null);
                       setimgFormEvent(null);
-                      setEvent({...event,['imagen']:''})
+                      
+                      setEvent({
+                        imagen:'',
+                        nombre_evento:'',
+                        lugar:'',
+                        fecha_inicio:'',
+                        fecha_fin:'',
+                        competidores:'',
+                        descripcion:'',
+                        Horses:[],
+                      })
                       setButtonEvent(true);
                       setCreateButton(false);
            }}>
@@ -590,7 +696,16 @@ export default function Competiciones() {
                     <AiFillCloseCircle className='CloseIcon' onClick={()=> {
                       setFile(null);
                       setimgFormEvent(null);
-                      setEvent({...event,['imagen']:''})
+                      setEvent({
+                        imagen:'',
+                        nombre_evento:'',
+                        lugar:'',
+                        fecha_inicio:'',
+                        fecha_fin:'',
+                        competidores:'',
+                        descripcion:'',
+                        Horses:[],
+                      })
                       setButtonEvent(true);
                       setCreateButton(false);
                     }}/>
@@ -780,23 +895,23 @@ export default function Competiciones() {
                       </div>
                       <div className='nameContainer containrowHorse'>
                         <span className="textFormEvent second-size">Nombre</span>
-                        <input onChange={(event)=>ChangeInputHorse(event,'nombre')} className='inputEventForm second-size' maxLength={19}  type="text" placeholder='Nombre del ejemplar'/>
+                        <input onChange={(event)=>ChangeInputHorse(event,'nombre')} value={horse.nombre} className='inputEventForm second-size' maxLength={19}  type="text" placeholder='Nombre del ejemplar'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size"># Competidor</span>
-                        <input onChange={(event)=>ChangeInputHorse(event,'tipo')} className='inputEventForm second-size' type="text"  maxLength={4} placeholder='# del competidor'/>
+                        <input onChange={(event)=>ChangeInputHorse(event,'tipo')} value={horse.tipo} className='inputEventForm second-size' type="text"  maxLength={4} placeholder='# del competidor'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size">Jinete</span>
-                        <input onChange={(event)=>ChangeInputHorse(event,'caballista')} className='inputEventForm second-size' maxLength={21} type="text" placeholder='Nombre Jinete'/>
+                        <input onChange={(event)=>ChangeInputHorse(event,'caballista')} value={horse.caballista} className='inputEventForm second-size' maxLength={21} type="text" placeholder='Nombre Jinete'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size">Edad</span>
-                        <input onChange={(event)=>ChangeInputHorse(event,'edad')} className='inputEventForm second-size' type="text" maxLength={21} placeholder='Edad (meses)'/>
+                        <input onChange={(event)=>ChangeInputHorse(event,'edad')} value={horse.edad} className='inputEventForm second-size' type="text" maxLength={21} placeholder='Edad (meses)'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size">Andar</span>
-                        <Form.Select onChange={(event)=>CheckSelect(event,'andar')} className='inputEventForm second-size'>
+                        <Form.Select onChange={(event)=>CheckSelect(event,'andar')} value={horse.andar}  className='inputEventForm second-size'>
                           <option value={1} >P1</option>
                           <option value={2} >P2</option>
                           <option value={3} >P3</option>
@@ -806,7 +921,7 @@ export default function Competiciones() {
                       </div>
                       <div className='ButtonContainer'>
                            {EditHorseButton===true  ?
-                            <button className='buttonComp_2 middle-size'>Editar</button>
+                            <button className='buttonComp_2 middle-size' disabled={buttonHorse} onClick={editHorses}>Editar</button>
                             :
                             <button className='buttonComp_2 middle-size' disabled={buttonHorse} onClick={createHorse}>Añadir</button>
                             }
@@ -843,7 +958,7 @@ export default function Competiciones() {
                                     <td className='b-none text-table'><span className='item middle-size'>{Horse.tipo}</span></td>
                                     <td className='b-none text-table'><span className='item middle-size'>{Horse.caballista}</span></td>
                                     <td className='b-none'>
-                                      <div className='iconVideoPlayContainer' onClick={EditHorse}>
+                                      <div className='iconVideoPlayContainer' onClick={()=>EditHorse(Horse)}>
                                         <RiEdit2Fill className='iconVideoPlay'/>
                                       </div>
                                     </td>
