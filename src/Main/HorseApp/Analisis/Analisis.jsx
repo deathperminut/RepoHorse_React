@@ -369,7 +369,7 @@ export default function Analisis() {
                              
                              <span className='gray fz-small'>Edad: <span className='white'>{SelectHorse.edad+ ' meses'}</span></span>
                              <span className='gray fz-small'>Número: <span className='orange fw'>{SelectHorse.tipo} </span></span>
-                             <span className='gray fz-small'>Registro del equino: <span className='white'>ver</span></span>
+                             {/* <span className='gray fz-small'>Registro del equino: <span className='white'>ver</span></span> */}
                              <span className='white fz-small'>Jinete: <span className='orange fw'>{SelectHorse.caballista}</span></span>
                         </div>
                         <div className='Container-horse-selected-buttons'>
