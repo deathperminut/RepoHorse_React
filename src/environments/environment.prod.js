@@ -19,6 +19,7 @@ export const environment={
   //EVENTS
   setEvent:'create-event/',
   getEvents:'list-event/',
+  deleteEvent:'eliminar-evento/',
 
   //HORSES
   setHorse:'create-caballo/',

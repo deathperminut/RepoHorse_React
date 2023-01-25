@@ -40,6 +40,26 @@ const createEvent= async (EventData,token,img)=>{
    return await axios.get(path,config);
     
   }
+  const deleteEvent= async (event,token)=>{
+    const path= environment.api + environment.deleteEvent;
+
+    let config = {
+        headers: {
+          Authorization: 'Token ' + token,
+        },
+      };
+
+      
+      let body={
+        id_evento:event.id,
+        nombre:event.nombre,
+        id:event.id,
+      }
+  
+  
+   return await axios.post(path,body,config);
+    
+  }
 
 
 
@@ -50,4 +70,4 @@ const createEvent= async (EventData,token,img)=>{
 
 
 
-export {createEvent,getAllEvents};
+export {createEvent,getAllEvents,deleteEvent};

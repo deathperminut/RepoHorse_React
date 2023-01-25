@@ -35,7 +35,7 @@ import { AppContext } from '../../../Context';
 import Preloader from '../../../Shared/preloader/preloader';
 import { toNumber } from 'lodash';
 import Swal from 'sweetalert2';
-import { createEvent } from '../../../Services/Events/events';
+import { createEvent, deleteEvent } from '../../../Services/Events/events';
 import { deleteHorse, generateHorse } from '../../../Services/Horses/horse';
 
 const options = [
@@ -211,6 +211,7 @@ export default function Competiciones() {
   const ResetAddHorse=()=>{
     setAddHorseButton(false);
     setEditHorseButton(false);
+    setFile(null);
   }
   const EditHorse=()=>{
     setAddHorseButton(true);
@@ -347,7 +348,7 @@ export default function Competiciones() {
       return count
   }
 
-  const DeleteEvent=(id)=>{
+  const DeleteEvent=(Event)=>{
     Swal.fire({
       title: '¿Seguro que desea eliminar el evento?',
       showDenyButton: true,
@@ -355,14 +356,39 @@ export default function Competiciones() {
       denyButtonText: 'No',
     }).then(async (result) => {
       if (result.isConfirmed) {
-         let ListEvents=[]
-         for (var i=0;i<events.length;i++){
-          if(events[i].id !==id){
-            ListEvents.push(events[i]);
+
+        setLoading(true);
+
+        let Result=undefined;
+        Result=await deleteEvent(Event,token).catch((error)=>{
+          console.log(error);
+          setLoading(false);
+          Swal.fire({
+            icon: 'error',
+            title: 'Falla al eliminar evento',
+          })
+
+        })
+        if(Result!==undefined){
+          console.log(Result['data']);
+          setLoading(false);
+          Swal.fire({
+            icon: 'success',
+            title: 'Evento eliminado correctamente',
+          })
+          let ListEvents=[]
+          for (var i=0;i<events.length;i++){
+           if(events[i].id.toString() !==Event.id.toString()){
+             ListEvents.push(events[i]);
+           }
           }
-         }
          setEvents(ListEvents);
          setFilter(ListEvents);
+         setValueFilter("");
+
+
+        }
+          
       }
    })
    }
@@ -478,9 +504,10 @@ export default function Competiciones() {
         
         <div className='EventsContainer-2'>
                 
-                <InputGroup onChange={filterFunction} value={valueFilter} className='inputComp middle-size'>
+                <InputGroup onChange={filterFunction} className='inputComp middle-size'>
                   <InputGroup.Text  id="basic-addon1"><Icon.Search/></InputGroup.Text>
                   <Form.Control
+                    value={valueFilter} 
                     placeholder="Buscar competición"
                     aria-label="Buscar competición"
                     aria-describedby="basic-addon1"
@@ -521,7 +548,7 @@ export default function Competiciones() {
                                       <div className='iconEditEvent' onClick={()=>EditEventFunction(Event)}>
                                       <RiEdit2Fill className='iconVideoPlay'/>
                                       </div>
-                                      <FaTrash className='option-icon IconPointer' onClick={()=>DeleteEvent(Event.id)}></FaTrash>
+                                      <FaTrash className='option-icon IconPointer' onClick={()=>DeleteEvent(Event)}></FaTrash>
                                 </div>
                               </div>
                             </div>
