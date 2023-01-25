@@ -371,7 +371,7 @@ export default function Competiciones() {
         title: 'Evento creado correctamente',
       })
       let Events=[...events];
-      Events.push({...result['data'].evento,['Horses']:[],['image']:'http://34.69.136.244:8000/'+result['data'].imagen});
+      Events.push({...result['data'].evento,['Horses']:[],['image']:'https://34.69.136.244:8000/'+result['data'].imagen});
       setEvents(Events);
       setFilter(Events);
       setCreateButton(false);
