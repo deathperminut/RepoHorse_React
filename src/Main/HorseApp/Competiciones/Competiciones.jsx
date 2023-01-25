@@ -36,7 +36,7 @@ import Preloader from '../../../Shared/preloader/preloader';
 import { toNumber } from 'lodash';
 import Swal from 'sweetalert2';
 import { createEvent } from '../../../Services/Events/events';
-import { generateHorse } from '../../../Services/Horses/horse';
+import { deleteHorse, generateHorse } from '../../../Services/Horses/horse';
 
 const options = [
   { value: 'P1', label: 'P1' },
@@ -77,6 +77,7 @@ export default function Competiciones() {
   let [CreateButton,setCreateButton]=React.useState(false);
   const [file, setFile] = React.useState(null);
   let [imgFormEvent,setimgFormEvent]=React.useState(null);
+  let [imgFormHorse,setImgFormHorse]=React.useState(null);
   let [EditEvent,setEditEvent]=React.useState(false);
   let [EventSelected,setEventSelected]=React.useState(null);
   let [AddHorseButton,setAddHorseButton]=React.useState(false);
@@ -103,7 +104,7 @@ export default function Competiciones() {
   let [horse,setHorse]=React.useState({
     id_evento:'',
     nombre:'',
-    imagen:HorsePhoto,
+    imagen:'',
     caballista:'',
     edad:'',
     tipo:'C caballar',
@@ -138,7 +139,7 @@ export default function Competiciones() {
   
   const checkHorse=(caballo)=>{
     
-     if (caballo.nombre!=="" && caballo.caballista!=="" && caballo.edad!=="" && caballo.tipo !=="" && caballo.andar!=="" ){
+     if (caballo.nombre!=="" && caballo.caballista!=="" && caballo.edad!=="" && caballo.tipo !=="" && caballo.andar!=="" && caballo.imagen!=="" ){
        setButtonhorse(false);
      } else{
        setButtonhorse(true);
@@ -167,10 +168,10 @@ export default function Competiciones() {
   }
   function handleChange_horse(e) {
     console.log(new File([e.target.files[0]], 'project.png',{type: "image/png"}));
-    setimgFormEvent(new File([e.target.files[0]], 'project.png',{type: "image/png"}));
+    setImgFormHorse(new File([e.target.files[0]], 'project.png',{type: "image/png"}));
     setFile(URL.createObjectURL(e.target.files[0]));
-    setEvent({...event,['imagen']:URL.createObjectURL(e.target.files[0])})
-    checkEvent({...event,['imagen']:URL.createObjectURL(e.target.files[0])});
+    setHorse({...horse,['imagen']:URL.createObjectURL(e.target.files[0])})
+    checkHorse({...horse,['imagen']:URL.createObjectURL(e.target.files[0])});
   }
   const clickImageInput=()=>{
     let A_element=$("input")[1];
@@ -248,31 +249,31 @@ export default function Competiciones() {
   const createHorse=async (event)=>{
     
     event.preventDefault();
-    console.log({...horse,['id_evento']:eventChoosed.id});
+    console.log({...horse,['id_evento']:eventChoosed.id,['imagen']:imgFormHorse});
 
-    setLoading(true);
+     setLoading(true);
 
-    let result=await generateHorse({...horse,['id_evento']:eventChoosed.id},token).catch((error)=>{
-      console.log(error);
-      setLoading(false);
-      Swal.fire({
-        icon: 'error',
-        title: 'Problemas al crear el ejemplar',
-        text:'revisa tu conexión a internet',
-      })
-    })
-    if (result!==undefined){
-       console.log({...result['data'].caballo,['video_original']:"",['video_procesado']:""});
+     let result=await generateHorse({...horse,['id_evento']:eventChoosed.id,['imagen']:imgFormHorse},token).catch((error)=>{
+       console.log(error);
        setLoading(false);
        Swal.fire({
-          icon: 'success',
-          title: 'Ejemplar creado correctamente',
-        })
-        eventChoosed.Horses.push({...result['data'].caballo,['video_original']:"",['video_procesado']:""});
-        setFilterValueHorse("");
-        setListHorses(eventChoosed.Horses.filter((obj)=>toNumber(obj.andar)=== toNumber(Andar)));
-        replaceEvent(eventChoosed);
-    }
+         icon: 'error',
+         title: 'Problemas al crear el ejemplar',
+         text:'revisa tu conexión a internet',
+       })
+     })
+     if (result!==undefined){
+        console.log({...result['data'].caballo,['video_original']:"",['video_procesado']:""});
+        setLoading(false);
+        Swal.fire({
+           icon: 'success',
+           title: 'Ejemplar creado correctamente',
+         })
+         eventChoosed.Horses.push({...result['data'].caballo,['video_original']:"",['video_procesado']:""});
+         setFilterValueHorse("");
+         setListHorses(eventChoosed.Horses.filter((obj)=>toNumber(obj.andar)=== toNumber(Andar)));
+         replaceEvent(eventChoosed);
+     }
   }
 
 
@@ -384,19 +385,53 @@ export default function Competiciones() {
       }
   }
 
-  // const find=()=>{
-  //   if(valueFilter===""){
-  //     setFilter(events);
-  //   }else{
-  //     const Array=events.filter((obj)=> obj.name.toLowerCase().includes(valueFilter.toLowerCase()))
-  //     setFilter(Array);
-  //   }
-  // }
 
-  const getCount=(eventChoosed)=>{
-    if(eventChoosed.horses!=undefined && eventChoosed.horses!=null){
-      return toNumber(eventChoosed.number) - toNumber(eventChoosed.horses.length)
-    }
+
+  const DeleteH=async(HORSE)=>{
+    Swal.fire({
+      title: '¿Seguro que desea eliminar el ejemplar?',
+      showDenyButton: true,
+      confirmButtonText: 'Si',
+      denyButtonText: 'No',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+
+        let result=undefined;
+
+        setLoading(true);
+    
+        result=await deleteHorse(HORSE,token).catch((error)=>{
+          console.log(error);
+          setLoading(false);
+          Swal.fire({
+            icon: 'error',
+            title: 'Falla al eliminar ejemplar',
+          })
+
+        })
+        if (result!==undefined){
+          console.log(result['data']);
+          setLoading(false);
+          Swal.fire({
+            icon: 'success',
+            title: 'Ejemplar eliminado',
+          })
+          /* ELIMINAMOS DEL ARREGLO LOCAL DEL EVENTO SELECCIONADO*/
+          let CopyEventChoosed={...eventChoosed,['Horses']:eventChoosed.Horses.filter((obj)=> obj.id.toString() !== HORSE.id.toString())};
+          setEventChoosed(CopyEventChoosed);
+
+          /* VOLVEMOS A FILTRAR EN LOS QUE ESTABAMOS */
+
+          setFilterValueHorse("");
+          setListHorses(CopyEventChoosed.Horses.filter((obj)=>toNumber(obj.andar)=== toNumber(Andar)));
+          replaceEvent(CopyEventChoosed);
+        }
+         
+      }
+   })
+   
+    
+
   }
   
 
@@ -509,7 +544,13 @@ export default function Competiciones() {
            :
            <>
            
-           <div className='buttonregisterEvent_2 mt-14px' onClick={()=> setCreateButton(false)}>
+           <div className='buttonregisterEvent_2 mt-14px' onClick={()=>{
+                      setFile(null);
+                      setimgFormEvent(null);
+                      setEvent({...event,['imagen']:''})
+                      setButtonEvent(true);
+                      setCreateButton(false);
+           }}>
                <AiFillPlusCircle className='IconEventButton_2' />
                <div className='textButtonregisterEvent font-size-1rem'>
                   <span className='TextTitle'>Crear</span>
@@ -519,7 +560,13 @@ export default function Competiciones() {
            <form className='RegisterEvent mt-14px'>
                <div className='CloseContainer'>
                     <span className='TextTitle2'> Crear nuevo evento</span>
-                    <AiFillCloseCircle className='CloseIcon' onClick={()=> setCreateButton(false)}/>
+                    <AiFillCloseCircle className='CloseIcon' onClick={()=> {
+                      setFile(null);
+                      setimgFormEvent(null);
+                      setEvent({...event,['imagen']:''})
+                      setButtonEvent(true);
+                      setCreateButton(false);
+                    }}/>
                </div>
                <div className='imageContainer'>
                    {file===null ?
@@ -541,10 +588,7 @@ export default function Competiciones() {
                  <span className="textFormEvent second-size">Nombre</span>
                  <input onChange={(event)=>CheckInput(event,'nombre_evento')} maxLength={21} className='inputEventForm second-size' type="text" placeholder='ingrese el nombre del evento'/>
                </div>
-               {/* <div className='competidoresContainer containrow'>
-                 <span className="textFormEvent second-size">Competidores</span>
-                 <input onChange={(event)=>CheckInput(event,'competidores')} className='inputEventForm second-size' type="text" placeholder='# de competidores'/>
-               </div> */}
+               
                <div className='dateContainer containrow second-size'>
                  <span className="textFormEvent second-size ">Fecha</span>
                  <DatePicker className='datepicker' onChange={onChange_start}  placeholder='Inicio' />
@@ -697,10 +741,14 @@ export default function Competiciones() {
                           {file===null ?
                           <div className="imageInputContainerHorse">
                               <BiImageAdd className='iconImageFile' onClick={clickImageInput}/>
-                              <input style={{visibility:"hidden"}} type="file" onChange={handleChange}  accept="image/png, image/gif, image/jpeg"/>
+                              <input style={{visibility:"hidden"}} type="file" onChange={handleChange_horse}  accept="image/png, image/gif, image/jpeg"/>
                           </div>
                           :
-                          <img  crossorigin="anonymous" className='imageEventHorse'   src={file} onClick={()=>setFile(null)}/> 
+                          <img  crossorigin="anonymous" className='imageEventHorse' style={{cursor:'pointer'}}  src={file} onClick={()=>{
+                            setFile(null);
+                            setHorse({...horse,['imagen']:''});
+                            checkHorse({...horse,['imagen']:''});
+                          }}/> 
                           } 
                       </div>
                       <div className='nameContainer containrowHorse'>
@@ -762,7 +810,7 @@ export default function Competiciones() {
                   {ListHorses.map(Horse=>{
                                 return(
                                   <tr>
-                                    <td className='NameTable b-none'><img  crossorigin="anonymous" src={HorsePhoto} className='HorseImage'/><span className='NameText middle-size'>{Horse.nombre}</span></td>
+                                    <td className='NameTable b-none'> <img  crossorigin="anonymous" src={Horse.imagen} className='HorseImage'/><span className='NameText middle-size'>{Horse.nombre}</span></td>
                                     <td className='b-none text-table'><span className='item middle-size'>{Horse.edad+' meses'}</span></td>
                                     <td className='b-none text-table'><span className='item middle-size'>{'P'+Horse.andar}</span></td>
                                     <td className='b-none text-table'><span className='item middle-size'>{Horse.tipo}</span></td>
@@ -772,7 +820,7 @@ export default function Competiciones() {
                                         <RiEdit2Fill className='iconVideoPlay'/>
                                       </div>
                                     </td>
-                                    <td className='b-none'>
+                                    <td className='b-none' onClick={()=>DeleteH(Horse)}>
                                         <FaTrash className='GarbageHorse item'/>
                                     </td>
                                   </tr>

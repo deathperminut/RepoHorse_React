@@ -23,6 +23,7 @@ export const environment={
   //HORSES
   setHorse:'create-caballo/',
   getHorse:'listar-caballos/',
+  deleteHorse:'eliminar-caballo/',
 
   //MODEL
   setVideoHorse:'agregar-video/',

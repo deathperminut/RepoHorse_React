@@ -10,15 +10,18 @@ const generateHorse= async (HorseData,token)=>{
         },
       };
 
-  
-    let body={
-      id_evento:HorseData.id_evento,
-      nombre:HorseData.nombre,
-      caballista:HorseData.caballista,
-      edad:HorseData.edad,
-      tipo:HorseData.tipo,
-      andar:HorseData.andar,
-    }
+    let body = new FormData();
+    
+    body.append('id_evento',HorseData.id_evento);
+    body.append('nombre',HorseData.nombre);
+    body.append('caballista',HorseData.caballista);
+    body.append('edad',HorseData.edad);
+    body.append('tipo',HorseData.tipo);
+    body.append('andar',HorseData.andar);
+    body.append('imagen',HorseData.imagen);
+    
+    console.log("body: ",body);
+
   
   
    return await axios.post(path,body,config);
@@ -39,6 +42,29 @@ const generateHorse= async (HorseData,token)=>{
    return await axios.get(path,config);
     
   }
+  const deleteHorse= async (HorseData,token)=>{
+    const path= environment.api + environment.deleteHorse;
+
+    let config = {
+        headers: {
+          Authorization: 'Token ' + token,
+        },
+      };
+
+    let body = {
+      id_evento:HorseData.id_evento_id,
+      nombre:HorseData.nombre,
+      id:HorseData.id,
+    };
+    
+
+    
+
+  
+  
+   return await axios.post(path,body,config);
+    
+  }
 
 
 
@@ -49,4 +75,4 @@ const generateHorse= async (HorseData,token)=>{
 
 
 
-export {generateHorse,getAllHorses};
+export {generateHorse,getAllHorses,deleteHorse};

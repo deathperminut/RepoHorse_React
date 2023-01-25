@@ -359,7 +359,7 @@ export default function Analisis() {
               <div className='Container_Details_Video'>
                 <div className='Container_Details_Video_1'>
                         <figure className='img-container Analitic-imag-2'>
-                                    <img crossorigin="anonymous" src={HorsePhoto} className='img-event Analitic-imag-2'></img>
+                                    <img crossorigin="anonymous" src={SelectHorse.imagen} className='img-event Analitic-imag-2'></img>
                         </figure>
                         <div className='Details-horse-selected'>
                              <span className='white fz-big'>{SelectHorse.nombre}</span>
@@ -505,7 +505,22 @@ export default function Analisis() {
                       {/* <span className='gray fz-small'>Categoria:<span className='white'> Potros en proceso con primera enfrenada</span></span>  */}
                 </div>
                 {unprocess.length===0 ?
+                <>
+                { process.length===0 ? 
+                <>
+                <div className='ListInCompetitionContainer'>
+                    <div className='ListInCompetitionTitleContainer'>
+                        <span className='TitleInCompetition white'>No hay Ejemplares</span><span className='NumberInCompetition'>{0}</span>
+                    </div>
+                </div>
+
+                </>
+
+                :
                 <></>
+                }
+
+                </>
                 :
                 <>
                 <div className='ListInCompetitionContainer'>
@@ -521,7 +536,7 @@ export default function Analisis() {
                               return(
                                 <div className='ElementHorseContainer' onClick={()=>getSelectHorse(Horse)}>
                                     <figure className='img-container Analitic-imag'>
-                                        <img crossorigin="anonymous" src={HorsePhoto} className='img-event Analitic-imag'></img>
+                                        <img crossorigin="anonymous" src={Horse.imagen} className='img-event Analitic-imag'></img>
                                     </figure>
                                     <div className='p-column' style={{paddingTop:"5px"}}>
                                       <span className='t-white t-b' style={{fontSize:"1rem"}}>{Horse.nombre}</span>
@@ -554,7 +569,7 @@ export default function Analisis() {
                               return(
                                 <div className='ElementHorseContainer' onClick={()=>getSelectHorse(Horse)}>
                                     <figure className='img-container Analitic-imag'>
-                                        <img crossorigin="anonymous" src={HorsePhoto} className='img-event Analitic-imag'></img>
+                                        <img crossorigin="anonymous" src={Horse.imagen} className='img-event Analitic-imag'></img>
                                     </figure>
                                     <div className='p-column' style={{paddingTop:"5px"}}>
                                       <span className='t-white t-b' style={{fontSize:"1rem"}}>{Horse.nombre}</span>

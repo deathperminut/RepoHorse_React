@@ -106,7 +106,11 @@ function ProviderContext(props){
                 let ArrayHorses=[];
                 for (var h=0;h<horsesCopy.length;h++){
                     if(horsesCopy[h].id_evento_id===eventsCopy[i].id){
-                        ArrayHorses.push(horsesCopy[h]);
+                        let hs=horsesCopy[h];
+                        if(hs.imagen!==""){
+                           hs={...hs,['imagen']:'http://34.69.229.54:8000/'+hs['imagen']} 
+                        }
+                        ArrayHorses.push(hs);
                     }
                 }
                 eventsCopy[i]['Horses']=ArrayHorses;

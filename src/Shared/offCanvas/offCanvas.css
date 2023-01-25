@@ -83,7 +83,7 @@ ul{
 .mt-c{
     position: fixed;
     top:90%;
-    left: 55px;
+    /* left: 55px; */
 }
 @media (max-height:400px ){
     .mt-c{
