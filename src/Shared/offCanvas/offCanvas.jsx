@@ -21,7 +21,10 @@ import Preloader from "../preloader/preloader";
 
 function OffCanvas() {
 
-    let {token,setToken,setUserData,horses,setHorses,events,setEvents,loading,setLoading,ubicateHorses}=React.useContext(AppContext);
+     /* NAVIGATE */
+    const navigate=useNavigate();
+
+    let {token,setToken,setUserData,horses,setHorses,events,setEvents,loading,setLoading,ubicateHorses,CloseSesion}=React.useContext(AppContext);
 
 
     React.useEffect(()=>{
@@ -31,11 +34,20 @@ function OffCanvas() {
         let UserData=JSON.parse(sessionStorage.getItem('UserHorseAppSessionStorage'));
         let Token=JSON.parse(sessionStorage.getItem('TokenUserHorseApp'));
         console.log(UserData,Token);
-        setUserData(UserData);
-        setToken(Token);
+        if(UserData===null || Token ===null){
+            Swal.fire({
+                icon: 'error',
+                title: 'Sesión finalizada',
+            })
+            navigate('/Landing/Inicio');
 
-        //getEvents And Horses.
-        getEvents(Token);
+        }else{
+            setUserData(UserData);
+            setToken(Token);
+            //getEvents And Horses.
+            getEvents(Token);
+        }
+        
      }else{
         if(events===null){
             getEvents(token);
@@ -100,7 +112,7 @@ function OffCanvas() {
 
 
     
-    const navigate=useNavigate();
+    
     const Exit=()=>{
         Swal.fire({
             title: '¿Seguro que desea cerrar sesión?',
@@ -110,7 +122,7 @@ function OffCanvas() {
           }).then(async (result) => {
             if (result.isConfirmed) {
                /* NAVIGATE  */
-               
+               CloseSesion();
                navigate('/Landing/Inicio');
             }
          })

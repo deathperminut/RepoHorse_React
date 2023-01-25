@@ -66,6 +66,66 @@ function ProviderContext(props){
        });
     
     let [selectEvents,setSelectEvents]=React.useState([]);
+
+
+    const CloseSesion=()=>{
+        /* USER INFO */
+
+     setUserData(null);
+     setToken(null);
+
+
+    /* STATISDIC VIDEO (ANALIZAR) */
+
+    setStatisticVideo(false);
+    setInputVideoFile(null);
+    setVideoMeta(null);
+    setTrimmedVideoFile(null);
+    setURL([]);
+    setTrimIsProcessing(false);
+    setRstart(0);
+    setRend(100);
+    setThumbNails([]);
+    setThumbnailIsProcessing(false);
+    setOriginalVideo(null);
+    setCutVideo(false);
+    setDowload(false);
+
+    /* LOADING */
+    setLoading(false);
+   
+    /* FOR VIDEO EDITOR INFO */
+    setSelectEvent(false);
+    setSelectHorse(false);
+
+
+    /* ArratEvents */
+
+    setEvents(null);
+    setHorses(null);
+
+
+    setEventChoosed({
+        img:'',
+        name:'',
+        number:'',
+        date_start:'',
+        date_end:'',
+        place:'',
+        description:'',
+        horses:[],
+       });
+    
+    setSelectEvents([]);
+    
+    /* LIMPIAMOS EL SESSION STORAGE */
+    sessionStorage.setItem("UserHorseAppSessionStorage",null);
+    sessionStorage.setItem('TokenUserHorseApp', null);
+    
+
+
+
+    }
    
 
     /* FUNCTIONS EVENTS */
@@ -139,7 +199,7 @@ function ProviderContext(props){
             ,videoMeta, setVideoMeta , trimmedVideoFile, setTrimmedVideoFile,URL, setURL, trimIsProcessing, setTrimIsProcessing,rStart, setRstart,rEnd, setRend
             ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,loading,setLoading,originalVideo,setOriginalVideo,cutVideo,setCutVideo,
             dowload,loadEventsForSelect,setDowload,sleep,events,setEvents,eventChoosed,setEventChoosed,selectEvents,setSelectEvents,FindEventId,SelectEvent,setSelectEvent
-            ,SelectHorse,setSelectHorse
+            ,SelectHorse,setSelectHorse,CloseSesion
         }}>
             {props.children}
         </AppContext.Provider>
