@@ -14,6 +14,9 @@
     margin-top: 7px;
     margin-left: 1rem;
 }
+.mt-40{
+    margin-top: 40px !important;
+}
 .ListAndar{
     margin-left: 200px;
 }
@@ -167,7 +170,7 @@
     margin-right: 50px;
 }
 .mr-3:hover{
-    border: 1px solid #6d655a;
+    border: 1px solid #FF9300;
     cursor: pointer;
 }
 .pr-l-10{

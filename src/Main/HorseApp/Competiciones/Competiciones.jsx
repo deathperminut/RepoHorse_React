@@ -371,7 +371,7 @@ export default function Competiciones() {
         title: 'Evento creado correctamente',
       })
       let Events=[...events];
-      Events.push({...result['data'].evento,['Horses']:[],['image']:'https://34.69.136.244:8000/'+result['data'].imagen});
+      Events.push({...result['data'].evento,['Horses']:[],['image']:'http://34.69.229.54:8000/'+result['data'].imagen});
       setEvents(Events);
       setFilter(Events);
       setCreateButton(false);
@@ -401,6 +401,7 @@ export default function Competiciones() {
   }
 
   const DeleteEvent=(Event)=>{
+    console.log(event);
     Swal.fire({
       title: '¿Seguro que desea eliminar el evento?',
       showDenyButton: true,
@@ -571,13 +572,19 @@ export default function Competiciones() {
     <div className='CompetenciasContainer'>
         {EditEvent===false ?
           <>
-          <div className='CountsContainer'>
+          <div className='CountsContainer mt-40'>
               <div className='CountContainer'>
                  <span className='TextTitle bold-size '>Total competencias</span>
                  <div className='CountsBox'>
                    {events!==null ?
                    <>
+                   {events.length===0  ?
+                   <><span className='TextCount '>{0}</span></>
+                   :
+                   <>
                    <span className='TextCount '>{events.length}</span>
+                   </>
+                   }
                    </>
                    :
                    <></>}
@@ -742,7 +749,7 @@ export default function Competiciones() {
                </div>
                <div className='DescriptionContainer containrow'>
                  <span className="textFormEvent second-size">Descripción</span>
-                 <textarea onChange={(event)=>CheckInput(event,'descripcion')}  className='textareaFormEvent second-size' placeholder='Descripción opcional'/>
+                 <textarea onChange={(event)=>CheckInput(event,'descripcion')}  className='textareaFormEvent second-size' placeholder='Descripción (opcional)'/>
                </div>
                <div className='containersubmitButton'>
                   <button disabled={buttonEvent} onClick={AppendEvent} className='buttonComp_2 button_correct_position'>Crear</button>
@@ -759,7 +766,7 @@ export default function Competiciones() {
          
         :
         <>
-         <div className='BackToCreateEventContainer'>
+         <div className='BackToCreateEventContainer mt-40'>
              <div className='BackContainer'  onClick={EditEventFunction_2}>
                <AiOutlineLeft className='orange'/>
              </div>
@@ -899,7 +906,7 @@ export default function Competiciones() {
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size"># Competidor</span>
-                        <input onChange={(event)=>ChangeInputHorse(event,'tipo')} value={horse.tipo} className='inputEventForm second-size' type="text"  maxLength={4} placeholder='# del competidor'/>
+                        <input onChange={(event)=>ChangeInputHorse(event,'tipo')} value={horse.tipo} className='inputEventForm second-size' type="number"  maxLength={4} placeholder='# del competidor'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size">Jinete</span>
@@ -907,7 +914,7 @@ export default function Competiciones() {
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size">Edad</span>
-                        <input onChange={(event)=>ChangeInputHorse(event,'edad')} value={horse.edad} className='inputEventForm second-size' type="text" maxLength={21} placeholder='Edad (meses)'/>
+                        <input onChange={(event)=>ChangeInputHorse(event,'edad')} value={horse.edad} className='inputEventForm second-size' type="number" maxLength={21} placeholder='Edad (meses)'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size">Andar</span>

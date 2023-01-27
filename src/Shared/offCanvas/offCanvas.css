@@ -27,11 +27,11 @@
    margin-bottom: 15pt;
    display: flex;
    position: relative;
-   right: 20pt;
+   right: 24pt;
 }
 .iconOffCanvas{
     color:#FF9300;
-    margin-right: 2pt;
+    margin-right: 4pt;
 }
 
 .active{
@@ -83,7 +83,7 @@ ul{
 .mt-c{
     position: fixed;
     top:90%;
-    /* left: 55px; */
+    left: 65px;
 }
 @media (max-height:400px ){
     .mt-c{

@@ -1,8 +1,19 @@
 import axios from 'axios';
 import { environment } from '../../environments/environment';
 
+
+ 
+const https=require('https');
+
 const setLogin= async (userData)=>{
     const path= environment.api + environment.login;
+
+    const instance = axios.create({
+      httpsAgent: new https.Agent({  
+        rejectUnauthorized: false
+      })
+    });
+
 
   
     let body={
@@ -11,7 +22,7 @@ const setLogin= async (userData)=>{
     }
   
   
-   return await axios.post(path,body);
+   return await instance.post(path,body);
     
   }
 

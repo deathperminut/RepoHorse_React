@@ -24,7 +24,7 @@ function OffCanvas() {
      /* NAVIGATE */
     const navigate=useNavigate();
 
-    let {token,setToken,setUserData,horses,setHorses,events,setEvents,loading,setLoading,ubicateHorses,CloseSesion}=React.useContext(AppContext);
+    let {token,setToken,setUserData,userData,horses,setHorses,events,setEvents,loading,setLoading,ubicateHorses,CloseSesion}=React.useContext(AppContext);
 
 
     React.useEffect(()=>{
@@ -79,8 +79,9 @@ function OffCanvas() {
         })
         if (result!==undefined){
             console.log("eventos cargados con exito.",result['data']);
+            console.log("eventos unicamente del usuario: ",result['data'].filter((obj)=> obj.creado_por.toString()===JSON.parse(sessionStorage.getItem('UserHorseAppSessionStorage')).email));
             //setEvents(result['data']);
-            getHorses(Token,result['data']);
+            getHorses(Token,result['data'].filter((obj)=> obj.creado_por.toString()===JSON.parse(sessionStorage.getItem('UserHorseAppSessionStorage')).email));
         }
     }
     /* GET Horses */
@@ -168,7 +169,7 @@ function OffCanvas() {
                     to="/Main/HorseApp/Estadisticas"
                     className={({ isActive }) => (isActive ? 'active' : 'inactive')}
                 >
-                    <GoGraph className="iconOffCanvas"/><span className="textOffcanvas middle-size">Estadisticas</span>
+                    <GoGraph className="iconOffCanvas"/><span className="textOffcanvas middle-size">Estadísticas</span>
                 </NavLink>
                 </li>
                 <li className="sectionOffcanvas ">
