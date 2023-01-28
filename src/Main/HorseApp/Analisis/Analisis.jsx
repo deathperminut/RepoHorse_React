@@ -241,7 +241,7 @@ export default function Analisis() {
            }
 
     //       /* CAMBIAMOS EL ARREGLO GLOBAL DE EVENTOS */
-           let Copy_events={...events};
+           let Copy_events=[...events];
            for (var i=0;i<events.length;i++){
              if(events[i].id===Copy.id){
                Copy_events[i]=Copy;
