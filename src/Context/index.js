@@ -168,16 +168,16 @@ function ProviderContext(props){
                     if(horsesCopy[h].id_evento_id===eventsCopy[i].id){
                         let hs=horsesCopy[h];
                         if(hs.imagen!==""){
-                           hs={...hs,['imagen']:'http://34.69.229.54:8000/'+hs['imagen']} 
+                           hs={...hs,['imagen']:'https://back.orcas-buho.com.co/'+hs['imagen']} 
                         }
                         ArrayHorses.push(hs);
                     }
                 }
                 eventsCopy[i]['Horses']=ArrayHorses;
-                eventsCopy[i]['imagen']='http://34.69.229.54:8000/'+eventsCopy[i]['imagen'];
+                eventsCopy[i]['imagen']='https://back.orcas-buho.com.co/'+eventsCopy[i]['imagen'];
                 if(eventsCopy[i]['video_procesado']!==""){
-                    eventsCopy[i]['video_procesado']='http://34.69.229.54:8000/'+eventsCopy[i]['video_procesado'];
-                    eventsCopy[i]['video_original']='http://34.69.229.54:8000/'+eventsCopy[i]['video_original'];
+                    eventsCopy[i]['video_procesado']='https://back.orcas-buho.com.co/'+eventsCopy[i]['video_procesado'];
+                    eventsCopy[i]['video_original']='https://back.orcas-buho.com.co/'+eventsCopy[i]['video_original'];
                 }
                 
             }

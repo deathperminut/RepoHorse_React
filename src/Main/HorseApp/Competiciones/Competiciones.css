@@ -18,7 +18,7 @@
     margin-top: 40px !important;
 }
 .ListAndar{
-    margin-left: 200px;
+    margin-left: 145px;
 }
 .CountContainer{
     display: flex;
@@ -29,6 +29,10 @@
 .TextTitle{
     color:white;
     font-weight:bold;
+}
+select option:checked,
+select option:hover{
+    box-shadow: 0 0 10px 100px #061920 inset !important;
 }
 .CountsBox{
     border-radius: 7px;
@@ -169,6 +173,9 @@
 .mr-3{
     margin-right: 50px;
 }
+select option:focus{
+    background-color: #FF9300 !important;
+}
 .mr-3:hover{
     border: 1px solid #FF9300;
     cursor: pointer;
@@ -204,7 +211,9 @@
 .pr-{
     margin-right: 10px;
 }
-
+.ant-picker-disabled{
+    background-color: white !important;
+}
 
 .buttonregisterEvent{
     background-color: #134D44;

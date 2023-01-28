@@ -33,9 +33,19 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
     const ChangeInputHorse=(event)=>{
                setFilterValueHorse(event.target.value);
                if(event.target.value===""){
-                setHorses(Event.Horses.filter((obj)=> obj.andar.toString() === Andar.toString()));
+                if(Andar===0){
+                  setHorses(Event.Horses);
+                }else{
+                  setHorses(Event.Horses.filter((obj)=> obj.andar.toString() === Andar.toString()));
+                }
+                
                }else{
-                setHorses(Event.Horses.filter((obj)=> obj.andar.toString() === Andar.toString() && obj.nombre.toString().toLowerCase().includes(event.target.value.toLowerCase())) );
+                if (Andar==0){
+                  setHorses(Event.Horses.filter((obj)=>  obj.nombre.toString().toLowerCase().includes(event.target.value.toLowerCase())) );
+                }else{
+                  setHorses(Event.Horses.filter((obj)=> obj.andar.toString() === Andar.toString() && obj.nombre.toString().toLowerCase().includes(event.target.value.toLowerCase())) );
+                }
+               
                }     
     }
 
@@ -76,6 +86,10 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
              </div>
              <div className='Est-Container-3' >
                           <ListGroup horizontal defaultActiveKey="#link1">
+                            <ListGroup.Item action eventKey="#linkAll" onClick={()=>{
+                                setHorses(Event.Horses);
+                                setAndar(0);
+                              }}>Todos</ListGroup.Item>
                             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar del Trote y Galope</Tooltip>}>
                               <ListGroup.Item action eventKey="#link1" onClick={()=>{
                                 setHorses(Event.Horses.filter((obj)=> obj.andar.toString() === "1" && obj.nombre.toString().toLowerCase().includes(filterValueHorse.toLowerCase())));
@@ -128,12 +142,12 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                                 <td className='b-none text-table second-size pt-15px'>{Horse.edad+' meses'}</td>
                                                 <td className='b-none text-table second-size pt-15px'>{'P'+Horse.andar}</td>
                                                 <td className='b-none text-table second-size pt-15px'>{Horse.tipo}</td>
-                                                <td className='b-none'>{Horse.bps!==null ? <><span className='BPMData middle-size'>{Horse.bps}</span></> :<> <AiFillCloseCircle className='iconVideoPlay ml-20px'/></>}</td>
+                                                <td className='b-none'>{Horse.bps!==null ? <><span className='BPMData middle-size'>{Horse.bps}</span></> :<></>}</td>
                                                 <td className='b-none'><span className='PointData middle-size pt-15px'>{Horse.caballista}</span></td>
                                                 <td className='b-none'>
                                                     {Horse.video_procesado===""  ?
                                                     <>
-                                                      <AiFillCloseCircle className='iconVideoPlay ml-20px'/> 
+                                                     
                                                     </>
                                                     :
                                                     <>

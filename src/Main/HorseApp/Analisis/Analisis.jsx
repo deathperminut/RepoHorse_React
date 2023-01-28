@@ -389,6 +389,8 @@ export default function Analisis() {
                                 }}>Guardar</button>
                         </div>
                 </div>
+                {SelectHorse.bps!==null ?
+                <>
                 <div className='Container_Details_Video_2'>
                    <span className='white fz-big-2'>BPM</span>
                    <div className='Container-result-bpm'>
@@ -402,6 +404,11 @@ export default function Analisis() {
                       </div>
                    </div>
                 </div>
+                </>
+                :
+                <></>
+                }
+                
 
 
              </div>

@@ -18,14 +18,25 @@ const toTimeString = (sec, showMilliSeconds = true) => {
   let maltissaRegex = /\..*$/; // matches the decimal point and the digits after it e.g if the number is 4.567 it matches .567
 
   let millisec = String(seconds).match(maltissaRegex);
-  return (
-    hours +
-    ":" +
-    minutes +
-    ":" +
-    String(seconds).replace(maltissaRegex, "") +
-    (showMilliSeconds ? (millisec ? millisec[0] : ".000") : "")
-  );
+  if(hours!=="00"){
+    return (
+      hours +
+      ":" +
+      minutes +
+      ":" +
+      String(seconds).replace(maltissaRegex, "") +
+      (showMilliSeconds ? (millisec ? millisec[0] : ".000") : "")
+    );
+  }else{
+    return (
+
+      minutes +
+      ":" +
+      String(seconds).replace(maltissaRegex, "") +
+      (showMilliSeconds ? (millisec ? millisec[0] : ".000") : "")
+    );
+  }
+  
 };
 
 const readFileAsBase64 = async (file) => {

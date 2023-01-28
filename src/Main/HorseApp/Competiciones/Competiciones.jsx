@@ -46,6 +46,15 @@ const options = [
 
 ]
 
+const customStyles = {
+  option: (base, { data, isDisabled, isFocused, isSelected }) => {
+  return {
+    ...base,
+    backgroundColor: isFocused ? "red" : "blue",
+  };
+}
+};
+
 export default function Competiciones() {
   //VARIABLE ROUTING
   const navigate=useNavigate();
@@ -65,6 +74,13 @@ export default function Competiciones() {
   const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 
   function onChange_start(date, dateString) {
+    console.log(date,dateString);
+    if(dateString===""){
+      setDisabledDate(true);
+      setEvent({...event,['fecha_fin']:""})
+    }else{
+      setDisabledDate(false);
+    }
     setEvent({...event,['fecha_inicio']:dateString})
 
   }
@@ -86,8 +102,8 @@ export default function Competiciones() {
   let [valueFilter,setValueFilter]=React.useState("");
   let [Andar,setAndar]=React.useState(1);
   let [filterValueHorse,setFilterValueHorse]=React.useState("");
-
   let [ListHorses,setListHorses]=React.useState([]);
+  let [disabledDate,setDisabledDate]=React.useState(true);
 
 
   let [event,setEvent]=React.useState({
@@ -200,7 +216,7 @@ export default function Competiciones() {
   /*EDIT EVENT FUNCTION */
   const EditEventFunction=(Event)=>{
     setEventChoosed(Event);
-    setListHorses(Event.Horses.filter((obj)=>obj.andar===1 || obj.andar==="1"));
+    setListHorses(Event.Horses);
     setEditEvent(true);
     setCreateButton(false);
     //setEventSelected(event);
@@ -313,7 +329,11 @@ export default function Competiciones() {
          })
          eventChoosed.Horses.push({...result['data'].caballo,['video_original']:"",['video_procesado']:""});
          setFilterValueHorse("");
-         setListHorses(eventChoosed.Horses.filter((obj)=>toNumber(obj.andar)=== toNumber(Andar)));
+         if(Andar!==0){
+          setListHorses(eventChoosed.Horses.filter((obj)=>toNumber(obj.andar)=== toNumber(Andar)));
+        }else{
+          setListHorses(eventChoosed.Horses);
+        }
          replaceEvent(eventChoosed);
          setHorse({
           id_evento:'',
@@ -371,7 +391,7 @@ export default function Competiciones() {
         title: 'Evento creado correctamente',
       })
       let Events=[...events];
-      Events.push({...result['data'].evento,['Horses']:[],['image']:'http://34.69.229.54:8000/'+result['data'].imagen});
+      Events.push({...result['data'].evento,['Horses']:[],['image']:'https://back.orcas-buho.com.co/'+result['data'].imagen});
       setEvents(Events);
       setFilter(Events);
       setCreateButton(false);
@@ -503,7 +523,12 @@ export default function Competiciones() {
           /* VOLVEMOS A FILTRAR EN LOS QUE ESTABAMOS */
 
           setFilterValueHorse("");
-          setListHorses(CopyEventChoosed.Horses.filter((obj)=>toNumber(obj.andar)=== toNumber(Andar)));
+          if(Andar!==0){
+            setListHorses(CopyEventChoosed.Horses.filter((obj)=>toNumber(obj.andar)=== toNumber(Andar)));
+          }else{
+            setListHorses(CopyEventChoosed.Horses);
+          }
+          
           replaceEvent(CopyEventChoosed);
         }
          
@@ -547,10 +572,14 @@ export default function Competiciones() {
       let CopyEventChoosed={...eventChoosed,['Horses']:Horses};
       setEventChoosed(CopyEventChoosed);
 
-      /* VOLVEMOS A FILTRAR EN LOS QUE ESTABAMOS */
+      /* COLOCAMOS TODOS LOS CABALLOS  */
 
       setFilterValueHorse("");
-      setListHorses(CopyEventChoosed.Horses.filter((obj)=>toNumber(obj.andar)=== toNumber(Andar)));
+      if(Andar!==0){
+        setListHorses(CopyEventChoosed.Horses.filter((obj)=>toNumber(obj.andar)=== toNumber(Andar)));
+      }else{
+        setListHorses(CopyEventChoosed.Horses);
+      }
       replaceEvent(CopyEventChoosed);
 
 
@@ -740,8 +769,8 @@ export default function Competiciones() {
                
                <div className='dateContainer containrow second-size'>
                  <span className="textFormEvent second-size ">Fecha</span>
-                 <DatePicker className='datepicker' onChange={onChange_start}  placeholder='Inicio' />
-                 <DatePicker  className='datepicker' onChange={onChange_end}  placeholder='Fin'/>
+                 <DatePicker className='datepicker' onChange={onChange_start}  placeholder='Inicio' disabledDate={d => !d || d.isAfter(event.fecha_fin)}/>
+                 <DatePicker id="datepicker2"  className='datepicker' onChange={onChange_end}  placeholder='Fin' disabled={disabledDate}  disabledDate={d => !d || d.isBefore(event.fecha_inicio)} />
                </div>
                <div className='placeContainer containrow'>
                  <span className="textFormEvent second-size">Lugar</span>
@@ -804,9 +833,19 @@ export default function Competiciones() {
                 <InputGroup onChange={(event)=>{
                   setFilterValueHorse(event.target.value);
                   if(event.target.value===""){
-                    setListHorses(eventChoosed.Horses.filter((obj)=> toNumber(obj.andar) === toNumber(Andar)))
+                    if(Andar===0){
+                      setListHorses(eventChoosed.Horses);
+                    }else{
+                      setListHorses(eventChoosed.Horses.filter((obj)=> toNumber(obj.andar) === toNumber(Andar)))
+                    }
+                    
                   }else{
-                    setListHorses(eventChoosed.Horses.filter((obj)=> obj.nombre.toLowerCase().includes(event.target.value.toLowerCase() && toNumber(obj.andar) === toNumber(Andar))))
+                    if (Andar===0){
+                      setListHorses(eventChoosed.Horses.filter((obj)=> obj.nombre.toLowerCase().includes(event.target.value.toLowerCase()))) 
+                    }else{
+                      setListHorses(eventChoosed.Horses.filter((obj)=> obj.nombre.toLowerCase().includes(event.target.value.toLowerCase() && toNumber(obj.andar) === toNumber(Andar))))
+                    }
+                    
                   }
 
                 }} className='inputComp middle-size' >
@@ -820,7 +859,14 @@ export default function Competiciones() {
                 </InputGroup>
                 {eventChoosed.Horses.length!==0 ?
                 <>
-                <ListGroup horizontal defaultActiveKey="#link1" className='ListAndar'>
+                <ListGroup horizontal defaultActiveKey="#linkAll" className='ListAndar'>
+                          <ListGroup.Item action eventKey="#linkAll" onClick={()=>{
+                                setListHorses(eventChoosed.Horses);
+                                setAndar(0);
+                                setFilterValueHorse("");
+                             }}>Todos
+                          </ListGroup.Item>
+                             
                           <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar del Trote y Galope</Tooltip>}>
                              <ListGroup.Item action eventKey="#link1" onClick={()=>{
                                 setListHorses(eventChoosed.Horses.filter((obj)=>obj.andar===1 || obj.andar==="1"));
@@ -910,15 +956,15 @@ export default function Competiciones() {
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size">Jinete</span>
-                        <input onChange={(event)=>ChangeInputHorse(event,'caballista')} value={horse.caballista} className='inputEventForm second-size' maxLength={21} type="text" placeholder='Nombre Jinete'/>
+                        <input onChange={(event)=>ChangeInputHorse(event,'caballista')} value={horse.caballista} className='inputEventForm second-size' maxLength={20} type="text" placeholder='Nombre Jinete'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size">Edad</span>
-                        <input onChange={(event)=>ChangeInputHorse(event,'edad')} value={horse.edad} className='inputEventForm second-size' type="number" maxLength={21} placeholder='Edad (meses)'/>
+                        <input onChange={(event)=>ChangeInputHorse(event,'edad')} value={horse.edad} className='inputEventForm second-size' type="number" maxLength={20} placeholder='Edad (meses)'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size">Andar</span>
-                        <Form.Select onChange={(event)=>CheckSelect(event,'andar')} value={horse.andar}  className='inputEventForm second-size'>
+                        <Form.Select onChange={(event)=>CheckSelect(event,'andar')} value={horse.andar}  className='inputEventForm second-size' styles={customStyles}>
                           <option value={1} >P1</option>
                           <option value={2} >P2</option>
                           <option value={3} >P3</option>

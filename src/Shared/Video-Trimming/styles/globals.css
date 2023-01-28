@@ -107,9 +107,9 @@ input[type="file"] {
 .clip_box::before,
 .clip_box::after {
   position: absolute;
-  top: 90%;
+  top: 30%;
   transform: translateY(104%);
-  background-color: #000;
+  background-color:transparent;
   color: #fff;
   border-radius: 5px;
   padding: 0.7rem;
