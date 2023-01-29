@@ -428,7 +428,6 @@ export default function Analisis() {
                       <span className='white mb-small'>video esqueleto:</span>
                       <div className='Container-video-result'>
                             {SelectHorse.video_procesado!=="" ? <video crossorigin="anonymous" src={SelectHorse.video_procesado} className="video-marcadores" controls></video> : <></>}
-                           
                       </div>
                    </div>
                 </div>
