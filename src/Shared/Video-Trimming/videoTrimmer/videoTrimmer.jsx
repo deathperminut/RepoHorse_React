@@ -91,7 +91,7 @@ export default function     VideoTrimmer() {
       const arrayOfImageURIs = [];
       FF.FS("writeFile", inputVideoFile.name, await fetchFile(inputVideoFile));
       
-      if(NUMBER_OF_IMAGES<15){
+      if(NUMBER_OF_IMAGES<13){
         NUMBER_OF_IMAGES=15;
         if(offset<1.2){
           offset=0.1;
