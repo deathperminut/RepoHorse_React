@@ -93,7 +93,11 @@ export default function     VideoTrimmer() {
       
       if(NUMBER_OF_IMAGES<15){
         NUMBER_OF_IMAGES=15;
-        offset=0.1;
+        if(offset<1.2){
+          offset=0.1;
+        }
+        
+        
       }
       
       for (let i = 0; i < NUMBER_OF_IMAGES; i++) {
