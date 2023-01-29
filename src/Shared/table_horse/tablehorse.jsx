@@ -153,7 +153,13 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                                     <>
                                                     <div className='iconVideoPlayContainer' onClick={()=>{
                                                       setShowVideo(true);
-                                                      setVideoFile(Horse.video_procesado);
+                                                      console.log()
+                                                      if(!Horse.video_procesado.includes('https')){
+                                                        setVideoFile('https://back.orcas-buho.com.co/'+Horse.video_procesado);
+                                                      }else{
+                                                        setVideoFile(Horse.video_procesado);
+                                                      }
+                                                      
                                                       
                                                     }}>
                                                       <BsFillPlayFill className='iconVideoPlay margin-left'/>
@@ -177,7 +183,7 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                               :
                               <>
                                 
-                              <ReactPlayer className="VideoPlayer"   controls={true} url={videoFile} playing={true} width={'100%'} height={'100%'} youtubeConfig={{ playerVars: { showinfo: 1 } }}/>
+                              <video crossorigin="anonymous" className="VideoPlayer"   controls={true} src={videoFile} playing={true} width={'100%'} height={'100%'} youtubeConfig={{ playerVars: { showinfo: 1 } }}/>
                               <button className='buttonVideo' onClick={()=>setShowVideo(false)}>X</button>
 
                               </>

@@ -174,6 +174,12 @@ function ProviderContext(props){
                         if(hs.imagen!==""){
                            hs={...hs,['imagen']:'https://back.orcas-buho.com.co/'+hs['imagen']} 
                         }
+                        if(hs.video_original!==""){
+                            hs={...hs,['video_original']:'https://back.orcas-buho.com.co/'+hs['video_original']}  
+                        }
+                        if(hs.video_procesado!==""){
+                            hs={...hs,['video_procesado']:'https://back.orcas-buho.com.co/'+hs['video_procesado']}   
+                        }
                         ArrayHorses.push(hs);
                     }
                 }
