@@ -84,13 +84,18 @@ export default function     VideoTrimmer() {
       setRend(100);
       let MAX_NUMBER_OF_IMAGES = 15;
       let NUMBER_OF_IMAGES = duration < MAX_NUMBER_OF_IMAGES ? duration : 15;
+      
       let offset =
         duration === MAX_NUMBER_OF_IMAGES ? 1 : duration / NUMBER_OF_IMAGES;
-  
+      console.log("NUmeros",NUMBER_OF_IMAGES,duration,offset);
       const arrayOfImageURIs = [];
       FF.FS("writeFile", inputVideoFile.name, await fetchFile(inputVideoFile));
       
-  
+      if(NUMBER_OF_IMAGES<15){
+        NUMBER_OF_IMAGES=15;
+        offset=0.1;
+      }
+      
       for (let i = 0; i < NUMBER_OF_IMAGES; i++) {
         let startTimeInSecs = helpers.toTimeString(Math.round(i * offset));
   
@@ -101,7 +106,7 @@ export default function     VideoTrimmer() {
             "-i",
             inputVideoFile.name,
             "-t",
-            "00:00:1.000",
+            "00:00:1.00",
             "-vf",
             `scale=150:-1`,
             `img${i}.png`
@@ -121,8 +126,7 @@ export default function     VideoTrimmer() {
       setLoading(false);
       setThumbnailIsProcessing(false);
       setStatisticVideo(true);
-      
-      console.log("intento de finalizar?");
+
   
       return arrayOfImageURIs;
     };
