@@ -31,6 +31,8 @@ function ProviderContext(props){
     const [originalVideo,setOriginalVideo]=React.useState(null);
     const [cutVideo,setCutVideo]=React.useState(false);
     const [dowload,setDowload]=React.useState(false);
+    /* VIDEO PLAYER LOADING*/
+    let [Loading_video,setLoading_video]=React.useState(false);
 
     /* LOADING */
     const [loading,setLoading]=React.useState(false);
@@ -103,6 +105,8 @@ function ProviderContext(props){
 
     setEvents(null);
     setHorses(null);
+
+    
 
 
     setEventChoosed({
@@ -200,7 +204,7 @@ function ProviderContext(props){
             ,videoMeta, setVideoMeta , trimmedVideoFile, setTrimmedVideoFile,URL, setURL, trimIsProcessing, setTrimIsProcessing,rStart, setRstart,rEnd, setRend
             ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,loading,setLoading,originalVideo,setOriginalVideo,cutVideo,setCutVideo,
             dowload,loadEventsForSelect,setDowload,sleep,events,setEvents,eventChoosed,setEventChoosed,selectEvents,setSelectEvents,FindEventId,SelectEvent,setSelectEvent
-            ,SelectHorse,setSelectHorse,CloseSesion
+            ,SelectHorse,setSelectHorse,CloseSesion,Loading_video,setLoading_video
         }}>
             {props.children}
         </AppContext.Provider>

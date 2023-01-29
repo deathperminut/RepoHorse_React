@@ -46,6 +46,18 @@ const options = [
 
 ]
 
+const styles = {
+  option: (base) => ({
+      ...base,
+      cursor: "pointer",
+      background: "white",   // this was the mistake (I needed to remove this)
+      ":hover": {
+         backgroundColor: "#FF9300",
+         color:'white',
+       },
+})
+}
+
 const customStyles = {
   option: (base, { data, isDisabled, isFocused, isSelected }) => {
   return {
@@ -964,11 +976,11 @@ export default function Competiciones() {
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size">Andar</span>
-                        <Form.Select onChange={(event)=>CheckSelect(event,'andar')} value={horse.andar}  className='inputEventForm second-size' styles={customStyles}>
-                          <option value={1} >P1</option>
-                          <option value={2} >P2</option>
-                          <option value={3} >P3</option>
-                          <option value={4} >P4</option>
+                        <Form.Select onChange={(event)=>CheckSelect(event,'andar')} value={horse.andar}  className='inputEventForm second-size' styles={styles} bsPrefix={'custom-select'}>
+                          <option className='option_select' value={1} >P1</option>
+                          <option className='option_select' value={2} >P2</option>
+                          <option className='option_select' value={3} >P3</option>
+                          <option className='option_select' value={4} >P4</option>
                         </Form.Select>
                         {/* <input className='inputEventForm second-size' type="text" placeholder='Ingrese la categoria'/> */}
                       </div>

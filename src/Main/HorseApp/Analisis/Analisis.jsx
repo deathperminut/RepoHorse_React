@@ -34,6 +34,18 @@ import {IoIosArrowDropdownCircle} from 'react-icons/io';
 import Preloader from '../../../Shared/preloader/preloader';
 import { ProcessVideo, setVideo } from '../../../Services/video/videoModel';
 
+const styles = {
+  option: (base) => ({
+      ...base,
+      cursor: "pointer",
+      background: "white",   // this was the mistake (I needed to remove this)
+      ":hover": {
+         backgroundColor: "#FF9300",
+         color:'white',
+       },
+})
+}
+
 
 
 
@@ -53,7 +65,8 @@ export default function Analisis() {
   const styleLoading = { position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" ,zIndex:"3"};
  
   /* CONTEXT */
-  let {
+  let {Loading_video,
+    setLoading_video,
     token,setLoading,setEvents,
     SelectEvent,setSelectEvent,
     SelectHorse,setSelectHorse,
@@ -184,6 +197,7 @@ export default function Analisis() {
 
   const checkVideo=async()=>{
     
+    
     if(inputVideoFile===null){
        Swal.fire({
          icon: 'error',
@@ -192,11 +206,13 @@ export default function Analisis() {
      }else{
        
        let result=undefined;
-       setLoading(true);
+       //setLoading(true);
+       setLoading_video(true);
 
        result=await setVideo(SelectHorse,token,dataURLtoFile(trimmedVideoFile,'project.mp4')).catch((error)=>{
          console.log(error);
-         setLoading(false);
+         setLoading_video(false);
+         //setLoading(false);
          Swal.fire({
            icon: 'error',
            title: 'Problemas para ejecutar el modelo',
@@ -209,7 +225,8 @@ export default function Analisis() {
          result=await ProcessVideo(SelectHorse,token).catch((error)=>{
          
            console.log(error);
-           setLoading(false);
+           setLoading_video(false);
+           //setLoading(false);
            Swal.fire({
              icon: 'error',
              title: 'Problemas para ejecutar el modelo',
@@ -219,7 +236,8 @@ export default function Analisis() {
 
          if (result!== undefined){
            console.log(result['data']);
-           setLoading(false);
+           setLoading_video(false);
+           //setLoading(false);
            Swal.fire({
              icon: 'success',
              title: 'Modelo ejecutado con exito',
@@ -373,7 +391,17 @@ export default function Analisis() {
                              <span className='white fz-small'>Jinete: <span className='orange fw'>{SelectHorse.caballista}</span></span>
                         </div>
                         <div className='Container-horse-selected-buttons'>
+                                {Loading_video ===true ?
+                                
+                                <>
+                                <button className='Button-horse-selected bg-green'>Analizando...</button>
+                                </>
+                                :
+                                <>
                                 <button className='Button-horse-selected bg-green' onClick={checkVideo}>Analizar video</button>
+                                </>
+                                }
+                                
                                 <button className='Button-horse-selected bg-orange' onClick={()=>{
                                   setStatisticVideo(false);
                                   setInputVideoFile(null);
@@ -424,6 +452,7 @@ export default function Analisis() {
               <>
               <div className='Select' style={{cursor:"pointer"}}>
                 <Select
+                styles={styles}
                 onChange={(event)=>ChangeSelectEvent(event,true)}
                 options = {selectEvents}  
                 className="selectAnalisis middle-size" 

@@ -26,13 +26,27 @@
     margin-left: 30px;
     width: 160px;
 }
+.custom-select .option_2:hover{
+  background-color: #FF9300 !important;
+  color:white !important;
+}
 .TextTitle{
     color:white;
     font-weight:bold;
 }
+select.decorated option:hover {
+    box-shadow: 0 0 10px 100px #1882A8 inset;
+    background-color: red !important;
+}
 select option:checked,
 select option:hover{
     box-shadow: 0 0 10px 100px #061920 inset !important;
+    background-color: #FF9300 !important;
+    color:white  !important;
+}
+select:focus > option:checked { 
+    background: #FF9300 !important;
+
 }
 .CountsBox{
     border-radius: 7px;
@@ -700,6 +714,8 @@ select option:focus{
     position: relative;
     top:8px
 }
+
+
 
 @media (max-width:   1219px){
     .CompetenciasContainer {

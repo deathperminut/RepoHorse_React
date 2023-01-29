@@ -284,6 +284,10 @@
     fill: #FF9300 !important;
     width: 15px;
 }
+.dropdown-item:hover{
+    background-color: #FF9300 !important;
+    color:white !important;
+}
 .css-qc6sy-singleValue{
     color:white !important; 
 }

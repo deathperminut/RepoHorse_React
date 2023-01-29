@@ -6,7 +6,8 @@ import RangeInput from "../components/RangeInput";
 import './videoTrimmer.css';
 import '../styles/globals.css';
 import { AppContext } from '../../../Context';
-
+import Preloader_2 from '../../preloader/preloader_2/preloader_2';
+import Preloader_3 from '../../preloader/preloader_2/preloader_3';
 
 
 const FF = createFFmpeg({
@@ -22,13 +23,16 @@ const FF = createFFmpeg({
 export default function     VideoTrimmer() {
 
     /*USAMOS EL CONTEXT*/
-    let { StadisticVideo,setStatisticVideo,inputVideoFile, setInputVideoFile
+    let {Loading_video, setLoading_video,StadisticVideo,setStatisticVideo,inputVideoFile, setInputVideoFile
       ,videoMeta, setVideoMeta , trimmedVideoFile, setTrimmedVideoFile,URL, setURL, trimIsProcessing, setTrimIsProcessing,rStart, setRstart,rEnd, setRend
       ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,setLoading,originalVideo,setOriginalVideo,
       cutVideo,setCutVideo,dowload,setDowload}=React.useContext(AppContext); 
 
 
       /*USE STATE */
+
+
+      
 
 
 
@@ -39,6 +43,7 @@ export default function     VideoTrimmer() {
       let file = e.target.files[0];
       let fileCopy=new File([file], 'project.mp4',{type: "video/mp4"});
       setInputVideoFile(fileCopy);
+      //setLoading_video(true);
       setLoading(true);
       // setStatisticVideo(true);
       let Filedowload=await helpers.readFileAsBase64(fileCopy);
@@ -112,6 +117,7 @@ export default function     VideoTrimmer() {
           console.log({ message: error });
         }
       }
+      //setLoading_video(false);
       setLoading(false);
       setThumbnailIsProcessing(false);
       setStatisticVideo(true);
@@ -122,6 +128,7 @@ export default function     VideoTrimmer() {
     };
   
     const handleTrim = async () => {
+      //setLoading_video(true);
       setLoading(true);
       setTrimIsProcessing(true);
       setCutVideo(false);
@@ -209,6 +216,30 @@ export default function     VideoTrimmer() {
    
     return (
       <>
+      {
+                Loading_video ?
+                <>
+                <Preloader_2/>
+                
+                </>
+                :
+
+                <></>
+      }
+      {
+                Loading_video ?
+                <>
+                <Preloader_3/>
+                
+                </>
+                :
+
+                <></>
+      }
+
+          
+           
+           
       
 
             <VideoFilePicker
@@ -217,7 +248,9 @@ export default function     VideoTrimmer() {
               thumbNails={thumbNails}
               videoSrc={trimmedVideoFile}
             >
-               <video
+              
+            
+                  <video
                   onTimeUpdate={updateTime}
                   id='VideoPlayerHorseApp'
                   className={`videoStyles ${StadisticVideo ? "display-flex" : "display-none"}`}
@@ -227,7 +260,9 @@ export default function     VideoTrimmer() {
                   onLoadedMetadata={handleLoadedData}
                   width="620"
                   height="400"
-                />
+                >
+              
+                </video>
                 
 
             </VideoFilePicker>

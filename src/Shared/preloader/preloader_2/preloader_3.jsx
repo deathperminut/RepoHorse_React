@@ -4,19 +4,19 @@ import MoonLoader from "react-spinners/MoonLoader";
 import './preloader.css';
 
 
-export default function Preloader_2() {
+export default function Preloader_3() {
   return (
-    <div id="preloader-wrapper_2">
+    <div id="preloader-wrapper_3">
     <div className="w-auto d-flex flex-column justify-content-center align-items-center align-self-center">
       <div id="preloader" className="preloader"></div>
-      {/* <MoonLoader
+      <MoonLoader
             color={"#FF9300"}
             loading={true}
             size={50}
             aria-label="Loading Spinner"
             data-testid="loader"
-          /> */}
-      {/* <div className="txt-loading">
+          />
+      <div className="txt-loading">
         <span data-text-preloader="C" className="letters-loading">
           C
         </span>
@@ -42,7 +42,7 @@ export default function Preloader_2() {
           O
         </span>
 
-      </div>  */}
+      </div> 
     </div>
   </div>
 
