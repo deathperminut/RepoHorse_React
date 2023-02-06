@@ -119,7 +119,7 @@ export default function Estadisticas() {
                   return (
                       <div className='InfoContainer'>
                       <div  className='InfoContainer-2' key={Event.id}>
-                        <div className='Est-Container-1 margin-top-20px' >
+                        <div className='Est-Container-1' >
                               <h1 className='Est-Container-1-text bold-size margin-left-15px'  >Total competidores</h1>
                               <div className='Est-Container-1-container-count display-none'  >
                                   <h1 className='Est-Container-1-container-count-text big-size'>{Event.Horses.length}</h1>

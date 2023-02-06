@@ -56,6 +56,8 @@
   flex-direction: column;
   justify-content: start;
   align-items: flex-start;
+  position: relative;
+  top: 15px;
 }
 
 
@@ -89,14 +91,14 @@
 
 .Est-Container-2{
   height: 16%;
-    padding: 5px;
-    display: flex;
-    position: relative;
-    top:30px;
-    margin-bottom: 30px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  padding: 5px;
+  display: flex;
+  position: relative;
+  top: 30px;
+  margin-bottom: 10px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .label-event-Estadistics-Container{
@@ -214,15 +216,17 @@
 }
 
 .Est-Container-3{
-    height: 68%;
-    width: 100%;
-    /* border-right:1pt solid #FF9300; */
-    padding: 1rem;
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  height: 68%;
+  width: 100%;
+  /* border-right: 1pt solid #FF9300; */
+  padding: 1rem;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  top: 20px;
 
 }
 

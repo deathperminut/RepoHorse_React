@@ -216,7 +216,7 @@ export default function Competiciones() {
       };
       let file = new File([data], "test.png", metadata);
       return file;
-      // ... do something with the file or return it
+
   }
   /*FUNCTION IMAGE */
   function handleChange(e) {
@@ -253,7 +253,7 @@ export default function Competiciones() {
 
 
   /*EDIT EVENT FUNCTION */
-  const EditEventFunction=(Event)=>{
+  const goToHorsesFunction=(Event)=>{
     setEventChoosed(Event);
     setListHorses(Event.Horses);
     setEditEvent(true);
@@ -782,7 +782,7 @@ export default function Competiciones() {
                       <div className='buttonregisterEvent' onClick={()=> setCreateButton(true)}>
                         <AiFillPlusCircle className='IconEventButton' />
                         <div className='textButtonregisterEvent font-size-1rem'>
-                            <span className='TextTitle bold-size' onClick={async()=> await console.log("CABALLO: ",createFile(HorseImageDefault))}>Crear</span>
+                            <span className='TextTitle bold-size'>Crear</span>
                             <span className='TextTitle bold-size'>nuevo evento</span>
                         </div>
                       </div>
@@ -795,15 +795,15 @@ export default function Competiciones() {
 
                             <Col key={Event.id} className='EventComponent'>
                             <div className='Event display-row' >
-                              <figure className='img-container CompetitionsImag_2'>
+                              <figure className='img-container CompetitionsImag_2' onClick={()=>goToHorsesFunction(Event)} style={{cursor:'pointer'}}>
                                   <img  crossorigin="anonymous"  className='img-event CompetitionsImag' src={Event.imagen} alt=""></img>
                               </figure>
-                              <div className='p-column-event'>
-                                <span className='t-white t-b t-b2  overflox-x-hidden '>{Event.nombre_evento}</span>
-                                <span className='t-white t-xs small-size orange'>{Event.lugar+' '}</span>
-                                <span className='t-white t-xs small-size gray-dc'>{Event.fecha_inicio }<span className='small-size'>{' / '}</span> {Event.fecha_fin}</span>
+                              <div className='p-column-event' >
+                                <span className='t-white t-b t-b2  overflox-x-hidden ' onClick={()=>goToHorsesFunction(Event)} style={{cursor:'pointer'}}>{Event.nombre_evento}</span>
+                                <span className='t-white t-xs small-size orange' onClick={()=>goToHorsesFunction(Event)} style={{cursor:'pointer'}}>{Event.lugar+' '}</span>
+                                <span className='t-white t-xs small-size gray-dc' onClick={()=>goToHorsesFunction(Event)} style={{cursor:'pointer'}}>{Event.fecha_inicio }<span className='small-size'>{' / '}</span> {Event.fecha_fin}</span>
                                 <div className='d-row flex-end'>
-                                      <div className='iconEditEvent' onClick={()=>EditEventFunction(Event)}>
+                                      <div className='iconEditEvent' >
                                       <RiEdit2Fill className='iconVideoPlay'/>
                                       </div>
                                       <FaTrash className='option-icon IconPointer' onClick={()=>DeleteEvent(Event)}></FaTrash>
