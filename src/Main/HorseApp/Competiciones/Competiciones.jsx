@@ -188,7 +188,7 @@ export default function Competiciones() {
   
   const checkHorse=(caballo)=>{
     
-     if (caballo.nombre!=="" && caballo.caballista!=="" && caballo.edad!=="" && caballo.tipo !=="" && caballo.andar!=="" && caballo.imagen!=="" ){
+     if (caballo.nombre!=="" && caballo.caballista!=="" && caballo.edad!=="" && caballo.tipo !=="" && caballo.andar!==""  ){
        setButtonhorse(false);
      } else{
        setButtonhorse(true);
