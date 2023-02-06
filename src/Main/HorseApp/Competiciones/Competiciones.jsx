@@ -5,6 +5,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import * as Icon from 'react-bootstrap-icons';
 import HorsePhoto from '../../../Sources/Images/Estadisticas/HorsePhoto.jpg';
+import EventImageDefault from '../../../Sources/Images/Estadisticas/EventDefaultImage.jpg';
+import HorseImageDefault from '../../../Sources/Images/Estadisticas//HorseDefaultImage.jpg';
 import {AiFillPlusCircle,AiFillCloseCircle} from 'react-icons/ai';
 import {RiEdit2Fill} from 'react-icons/ri';
 import {BiImageAdd} from 'react-icons/bi';
@@ -155,15 +157,33 @@ export default function Competiciones() {
 
   }
   const ChangeInputHorse=(Event,type)=>{
-    console.log(Event.target.value);
-    setHorse({
-      ... horse,
-      [type]: Event.target.value
-    })
-    checkHorse({
-      ... horse,
-      [type]: Event.target.value
-    });
+    if(type==="edad" || type==="tipo"){
+      const inputValue = Event.target.value;
+      const numberValue = Number(inputValue);
+      if (isFinite(numberValue)) {
+        setHorse({
+          ... horse,
+          [type]: Event.target.value
+        })
+        checkHorse({
+          ... horse,
+          [type]: Event.target.value
+        });
+      } 
+
+
+
+    }else{
+      setHorse({
+        ... horse,
+        [type]: Event.target.value
+      })
+      checkHorse({
+        ... horse,
+        [type]: Event.target.value
+      });
+    }
+    
   }
   
   const checkHorse=(caballo)=>{
@@ -200,6 +220,7 @@ export default function Competiciones() {
   }
   /*FUNCTION IMAGE */
   function handleChange(e) {
+    
     console.log(new File([e.target.files[0]], 'project.png',{type: "image/png"}));
     setimgFormEvent(new File([e.target.files[0]], 'project.png',{type: "image/png"}));
     setFile(URL.createObjectURL(e.target.files[0]));
@@ -217,6 +238,12 @@ export default function Competiciones() {
     let A_element=$("input")[1];
     A_element.click();
   }
+
+  const getFileFromLocalImage = async (image) => {
+    const response = await fetch(image);
+    const blob = await response.blob();
+    return new File([blob], 'image.jpg', { type: 'image/png' });
+  };
 
     
   
@@ -291,6 +318,7 @@ export default function Competiciones() {
 
   /* useEffect */
   React.useEffect(()=>{
+    
     setStatisticVideo(false);
     setInputVideoFile(null);
     setVideoMeta(null);
@@ -322,43 +350,86 @@ export default function Competiciones() {
     console.log({...horse,['id_evento']:eventChoosed.id,['imagen']:imgFormHorse});
 
      setLoading(true);
+     
+     if (imgFormHorse===null){
+      let imageDefault_1=await createFile(HorseImageDefault);
 
-     let result=await generateHorse({...horse,['id_evento']:eventChoosed.id,['imagen']:imgFormHorse},token).catch((error)=>{
-       console.log(error);
-       setLoading(false);
-       Swal.fire({
-         icon: 'error',
-         title: 'Problemas al crear el ejemplar',
-         text:'revisa tu conexión a internet',
-       })
-     })
-     if (result!==undefined){
-        console.log({...result['data'].caballo,['video_original']:"",['video_procesado']:""});
+      let result=await generateHorse({...horse,['id_evento']:eventChoosed.id,['imagen']:imageDefault_1},token).catch((error)=>{
+        console.log(error);
         setLoading(false);
         Swal.fire({
-           icon: 'success',
-           title: 'Ejemplar creado correctamente',
-         })
-         eventChoosed.Horses.push({...result['data'].caballo,['video_original']:"",['video_procesado']:""});
-         setFilterValueHorse("");
-         if(Andar!==0){
-          setListHorses(eventChoosed.Horses.filter((obj)=>toNumber(obj.andar)=== toNumber(Andar)));
-        }else{
-          setListHorses(eventChoosed.Horses);
-        }
-         replaceEvent(eventChoosed);
-         setHorse({
-          id_evento:'',
-          nombre:'',
-          imagen:'',
-          caballista:'',
-          edad:'',
-          tipo:'',
-          andar:1,
-        });
-        setFile(null);
+          icon: 'error',
+          title: 'Problemas al crear el ejemplar',
+          text:'revisa tu conexión a internet',
+        })
+      })
+      if (result!==undefined){
+         console.log({...result['data'].caballo,['video_original']:"",['video_procesado']:""});
+         setLoading(false);
+         Swal.fire({
+            icon: 'success',
+            title: 'Ejemplar creado correctamente',
+          })
+          eventChoosed.Horses.push({...result['data'].caballo,['video_original']:"",['video_procesado']:""});
+          setFilterValueHorse("");
+          if(Andar!==0){
+           setListHorses(eventChoosed.Horses.filter((obj)=>toNumber(obj.andar)=== toNumber(Andar)));
+         }else{
+           setListHorses(eventChoosed.Horses);
+         }
+          replaceEvent(eventChoosed);
+          setHorse({
+           id_evento:'',
+           nombre:'',
+           imagen:'',
+           caballista:'',
+           edad:'',
+           tipo:'',
+           andar:1,
+         });
+         setFile(null);
+ 
+      }
 
+     }else{
+      let result=await generateHorse({...horse,['id_evento']:eventChoosed.id,['imagen']:imgFormHorse},token).catch((error)=>{
+        console.log(error);
+        setLoading(false);
+        Swal.fire({
+          icon: 'error',
+          title: 'Problemas al crear el ejemplar',
+          text:'revisa tu conexión a internet',
+        })
+      })
+      if (result!==undefined){
+         console.log({...result['data'].caballo,['video_original']:"",['video_procesado']:""});
+         setLoading(false);
+         Swal.fire({
+            icon: 'success',
+            title: 'Ejemplar creado correctamente',
+          })
+          eventChoosed.Horses.push({...result['data'].caballo,['video_original']:"",['video_procesado']:""});
+          setFilterValueHorse("");
+          if(Andar!==0){
+           setListHorses(eventChoosed.Horses.filter((obj)=>toNumber(obj.andar)=== toNumber(Andar)));
+         }else{
+           setListHorses(eventChoosed.Horses);
+         }
+          replaceEvent(eventChoosed);
+          setHorse({
+           id_evento:'',
+           nombre:'',
+           imagen:'',
+           caballista:'',
+           edad:'',
+           tipo:'',
+           andar:1,
+         });
+         setFile(null);
+ 
+      }
      }
+     
   }
 
 
@@ -385,42 +456,85 @@ export default function Competiciones() {
 
      setLoading(true);
      let result=undefined;
-     result=await createEvent(event,token,imgFormEvent).catch((error)=>{
-      console.log(error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Problemas al crear el evento',
-        text:'revisa tu conexión a internet'
-      })
-      setLoading(false);
-     })
+     if (imgFormEvent===null){
+        let imageDefault_1=await createFile(EventImageDefault);
+        result=await createEvent(event,token,imageDefault_1).catch((error)=>{
+          console.log(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Problemas al crear el evento',
+            text:'revisa tu conexión a internet'
+          })
+          setLoading(false);
+         })
+    
+         if(result!==undefined){
+          console.log(result['data']);
+          setLoading(false);
+          Swal.fire({
+            icon: 'success',
+            title: 'Evento creado correctamente',
+          })
+          let Events=[...events];
+          Events.push({...result['data'].evento,['Horses']:[],['image']:'https://back.orcas-buho.com.co/'+result['data'].imagen});
+          setEvents(Events);
+          setFilter(Events);
+          setCreateButton(false);
+          setimgFormEvent(null);
+          setFile(null);
+          setEvent({
+            imagen:'',
+            nombre_evento:'',
+            competidores:'',
+            fecha_inicio:'',
+            fecha_fin:'',
+            lugar:'',
+            descripcion:'',
+            Horses:[],
+          })
+          setButtonEvent(true);
+         }
+        
+     }else{
+      result=await createEvent(event,token,imgFormEvent).catch((error)=>{
+        console.log(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Problemas al crear el evento',
+          text:'revisa tu conexión a internet'
+        })
+        setLoading(false);
+       })
+  
+       if(result!==undefined){
+        console.log(result['data']);
+        setLoading(false);
+        Swal.fire({
+          icon: 'success',
+          title: 'Evento creado correctamente',
+        })
+        let Events=[...events];
+        Events.push({...result['data'].evento,['Horses']:[],['image']:'https://back.orcas-buho.com.co/'+result['data'].imagen});
+        setEvents(Events);
+        setFilter(Events);
+        setCreateButton(false);
+        setimgFormEvent(null);
+        setFile(null);
+        setEvent({
+          imagen:'',
+          nombre_evento:'',
+          competidores:'',
+          fecha_inicio:'',
+          fecha_fin:'',
+          lugar:'',
+          descripcion:'',
+          Horses:[],
+        })
+        setButtonEvent(true);
+       }
 
-     if(result!==undefined){
-      console.log(result['data']);
-      setLoading(false);
-      Swal.fire({
-        icon: 'success',
-        title: 'Evento creado correctamente',
-      })
-      let Events=[...events];
-      Events.push({...result['data'].evento,['Horses']:[],['image']:'https://back.orcas-buho.com.co/'+result['data'].imagen});
-      setEvents(Events);
-      setFilter(Events);
-      setCreateButton(false);
-      setimgFormEvent(null);
-      setFile(null);
-      setEvent({
-        imagen:'',
-        nombre_evento:'',
-        competidores:'',
-        fecha_inicio:'',
-        fecha_fin:'',
-        lugar:'',
-        descripcion:'',
-        Horses:[],
-      })
-      setButtonEvent(true);
      }
+     
   }
 
   const checkTotalCompetidores=()=>{
@@ -479,7 +593,7 @@ export default function Competiciones() {
    }
 
   const checkEvent=(event)=>{
-    if(event.nombre_evento !=="" && event.imagen!==""  && event.fecha_inicio!=="" && event.fecha_fin!=="" && event.lugar!==""){
+    if(event.nombre_evento !==""   && event.fecha_inicio!=="" && event.fecha_fin!=="" && event.lugar!==""){
       setButtonEvent(false);
     }else{
       setButtonEvent(true);
@@ -668,7 +782,7 @@ export default function Competiciones() {
                       <div className='buttonregisterEvent' onClick={()=> setCreateButton(true)}>
                         <AiFillPlusCircle className='IconEventButton' />
                         <div className='textButtonregisterEvent font-size-1rem'>
-                            <span className='TextTitle bold-size'>Crear</span>
+                            <span className='TextTitle bold-size' onClick={async()=> await console.log("CABALLO: ",createFile(HorseImageDefault))}>Crear</span>
                             <span className='TextTitle bold-size'>nuevo evento</span>
                         </div>
                       </div>

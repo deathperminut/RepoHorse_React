@@ -157,6 +157,9 @@
   min-width: 70px;
   
 }
+.margin-top-20px{
+  margin-top: 20px;
+}
 .buttonEstadistic:hover{
   background-color: #F7B500;
 }

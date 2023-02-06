@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { AppContext } from "../../../Context";
 
 
-function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,videoSrc, children }) {
+function VideoFilePicker({ showVideo, handleChange, children }) {
 
 
   /* USE CONTEXT */
@@ -47,17 +47,13 @@ function VideoFilePicker({ showVideo,thumbNails,StatisticVideo, handleChange,vid
     <>
 
     <Dropzone onDrop={acceptedFiles => fileInputChange(acceptedFiles)} >
-    {({getRootProps, getInputProps}) => (
+    {({getRootProps}) => (
       <label 
       id={`${showVideo ? "file_picker_small" : ""}`}
       className={`file_picker `} {...getRootProps()}>
-          {/* <BsPlay className='iconFilm'/> */}
           <span className='textdragContainer'>Arrastre el video aquí</span>
           <span className='textdragContainer'>{"o"}</span>
           <span className='buttonAnalisis btnHoverWhite'><MdOutlineDriveFolderUpload className='iconVideo'/><span className='textButtonVideo'>Subir video</span></span>
-
-          {/* <input onChange={acceptedFiles => fileInputChange(acceptedFiles)} type="file" id="x" accept="video/mp4" /> */}
-
       </label>
     )}
     </Dropzone>

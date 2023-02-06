@@ -16,7 +16,7 @@ export default function Preloader_3() {
             aria-label="Loading Spinner"
             data-testid="loader"
           />
-      <div className="txt-loading">
+      {/* <div className="txt-loading">
         <span data-text-preloader="C" className="letters-loading">
           C
         </span>
@@ -42,7 +42,7 @@ export default function Preloader_3() {
           O
         </span>
 
-      </div> 
+      </div>  */}
     </div>
   </div>
 

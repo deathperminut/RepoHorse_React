@@ -489,6 +489,7 @@ select option:focus{
 .ant-picker{
     width:125px !important;
     border-radius: 30px !important;
+    border:none !important;
     margin-right: 2px;
     color:#7A86A1 !important;
     padding: 6px 11px 6px !important;
@@ -710,6 +711,8 @@ select option:focus{
     /* margin-left: 2rem; */
     padding: 1rem;
 }
+
+
 .item{
     position: relative;
     top:8px
