@@ -1395,7 +1395,7 @@ export default function Competiciones() {
                       </div>
                       <div className='nameContainer containrowHorse'>
                         <span className="textFormEvent second-size">Nombre</span>
-                        <input onChange={(event)=>ChangeInputHorse(event,'nombre')} value={horse.nombre} className='inputEventForm second-size' maxLength={19}  type="text" placeholder='Nombre del ejemplar'/>
+                        <input onChange={(event)=>ChangeInputHorse(event,'nombre')} value={horse.nombre} className='inputEventForm second-size' maxLength={39}  type="text" placeholder='Nombre del ejemplar'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size"># Competidor</span>
@@ -1462,7 +1462,7 @@ export default function Competiciones() {
                   {ListHorses.map(Horse=>{
                                 return(
                                   <tr>
-                                    <td className='NameTable b-none'> <img  crossorigin="anonymous" src={Horse.imagen} className='HorseImage'/><span className='NameText middle-size'>{Horse.nombre}</span></td>
+                                    <td className='NameTable b-none'> <img  crossorigin="anonymous" src={Horse.imagen} className='HorseImage'/><span className='NameText middle-size max-140'>{Horse.nombre}</span></td>
                                     <td className='b-none text-table'><span className='item middle-size'>{Horse.edad+' meses'}</span></td>
                                     <td className='b-none text-table'><span className='item middle-size'>{'P'+Horse.andar}</span></td>
                                     <td className='b-none text-table'><span className='item middle-size'>{Horse.tipo}</span></td>

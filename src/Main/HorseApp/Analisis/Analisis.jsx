@@ -390,15 +390,15 @@ export default function Analisis() {
                                     <img crossorigin="anonymous" src={SelectHorse.imagen} className='img-event Analitic-imag-2'></img>
                         </figure>
                         <div className='Details-horse-selected'>
-                             <span className='white fz-big'>{SelectHorse.nombre}</span>
+                             <span className='white fz-big extend fz-08'>{SelectHorse.nombre}</span>
                              <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>{selectMessage('P'+SelectHorse.andar)}</Tooltip>}>
                                <span className='gray fz-small display-f-80px'>Andar: <span className='orange fw'>{' P'+SelectHorse.andar+' '}</span></span>
                              </OverlayTrigger>
                              
-                             <span className='gray fz-small'>Edad: <span className='white'>{SelectHorse.edad+ ' meses'}</span></span>
-                             <span className='gray fz-small'>Número: <span className='orange fw'>{SelectHorse.tipo} </span></span>
-                             {/* <span className='gray fz-small'>Registro del equino: <span className='white'>ver</span></span> */}
-                             <span className='white fz-small'>Jinete: <span className='orange fw'>{SelectHorse.caballista}</span></span>
+                             <span className='gray fz-small extend'>Edad: <span className='white'>{SelectHorse.edad+ ' meses'}</span></span>
+                             <span className='gray fz-small extend'>Jinete: <span className='orange fw'>{SelectHorse.caballista}</span></span>
+                             <span className='gray fz-small extend'>Criador: <span className='white fw'>{SelectHorse.criador}</span></span>
+                             <span className='gray fz-small extend'>Propietario: <span className='orange fw'>{SelectHorse.propietario}</span></span>
                         </div>
                         <div className='Container-horse-selected-buttons'>
                                 
@@ -456,7 +456,8 @@ export default function Analisis() {
                 </div>
                 </>
                 :
-                <></>
+                <>
+                </>
                 }
                 
 
@@ -596,8 +597,8 @@ export default function Analisis() {
                                         <img crossorigin="anonymous" src={Horse.imagen} className='img-event Analitic-imag'></img>
                                     </figure>
                                     <div className='p-column' style={{paddingTop:"5px"}}>
-                                      <span className='t-white t-b' style={{fontSize:"1rem"}}>{Horse.nombre}</span>
-                                      <span className='orange t-xs'>{Horse.caballista}</span>
+                                      <span className='t-white t-b extend w-200' style={{fontSize:"1rem"}}>{Horse.nombre}</span>
+                                      <span className='orange t-xs extend w-200'>{Horse.caballista}</span>
                                     </div>
                                 </div>
                                             
@@ -629,8 +630,8 @@ export default function Analisis() {
                                         <img crossorigin="anonymous" src={Horse.imagen} className='img-event Analitic-imag'></img>
                                     </figure>
                                     <div className='p-column' style={{paddingTop:"5px"}}>
-                                      <span className='t-white t-b' style={{fontSize:"1rem"}}>{Horse.nombre}</span>
-                                      <span className='orange t-xs'>{Horse.caballista}</span>
+                                      <span className='t-white t-b extend w-200' style={{fontSize:"1rem"}}>{Horse.nombre}</span>
+                                      <span className='orange t-xs extend w-200'>{Horse.caballista}</span>
                                     </div>
                                 </div>
                                             
