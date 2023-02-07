@@ -138,7 +138,7 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                         return(
                                             
                                             <tr key={Horse.id}>
-                                                <td className='NameTable b-none'><img  crossorigin="anonymous" src={Horse.imagen} className='HorseImage'/><span className='NameText middle-size'>{Horse.nombre}</span></td>
+                                                <td className='NameTable b-none'><img  crossorigin="anonymous" src={Horse.imagen} className='HorseImage'/><span className='NameText middle-size max-140'>{Horse.nombre}</span></td>
                                                 <td className='b-none text-table second-size pt-15px'>{Horse.edad+' meses'}</td>
                                                 <td className='b-none text-table second-size pt-15px'>{'P'+Horse.andar}</td>
                                                 <td className='b-none text-table second-size pt-15px'>{Horse.tipo}</td>
