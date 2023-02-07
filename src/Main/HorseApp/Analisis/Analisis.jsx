@@ -38,7 +38,7 @@ const styles = {
   option: (base) => ({
       ...base,
       cursor: "pointer",
-      background: "white",   // this was the mistake (I needed to remove this)
+      background: "#e7d6a7",   // this was the mistake (I needed to remove this)
       ":hover": {
          backgroundColor: "#FF9300",
          color:'white',

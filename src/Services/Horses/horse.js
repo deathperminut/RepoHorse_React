@@ -19,8 +19,10 @@ const generateHorse= async (HorseData,token)=>{
     body.append('tipo',HorseData.tipo);
     body.append('andar',HorseData.andar);
     body.append('imagen',HorseData.imagen);
+    body.append('criador',HorseData.criador);
+    body.append('propietario',HorseData.propietario);
+    body.append('competidor',HorseData.competidor);
     
-    console.log("body: ",body);
 
   
   
@@ -84,8 +86,10 @@ const generateHorse= async (HorseData,token)=>{
     body.append('tipo',HorseData.tipo);
     body.append('andar',HorseData.andar);
     body.append('imagen',img);
-    
-    console.log("body: ",body);
+    body.append('criador',HorseData.criador);
+    body.append('propietario',HorseData.propietario);
+    body.append('competidor',HorseData.competidor);
+
 
   
   

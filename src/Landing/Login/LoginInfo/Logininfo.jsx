@@ -11,6 +11,7 @@ import {AiOutlineEye,AiOutlineEyeInvisible} from 'react-icons/ai';
 import { AppContext } from '../../../Context';
 import Preloader from '../../../Shared/preloader/preloader';
 import { setLogin } from '../../../Services/Auth/login';
+import { getUser } from '../../../Services/Auth/auth';
 
 
 
@@ -117,15 +118,27 @@ function LoginInfo() {
         }
         
         /* SAVE ON SESSION STORAGE */
-        let user={email:Email,password:Password};
-        user=JSON.stringify(user);
+        let GETUSER=undefined;
 
-        sessionStorage.setItem("UserHorseAppSessionStorage",user);
-        sessionStorage.setItem('TokenUserHorseApp', JSON.stringify(result['data'].token));
+        GETUSER=await getUser(result['data'].token).catch((error)=>{
+          console.log("getUserERROR",error);
 
-        setToken(result['data'].token);
-        setUserData({username:Email,password:Password});
-        navigate('/Main/HorseApp');
+        });
+
+        if(GETUSER!==undefined){
+          console.log("GET USER DATA",{...GETUSER['data'],['password']:Password});
+          let user={...GETUSER['data'],['password']:Password};
+          user=JSON.stringify(user);
+
+          sessionStorage.setItem("UserHorseAppSessionStorage",user);
+          sessionStorage.setItem('TokenUserHorseApp', JSON.stringify(result['data'].token));
+
+          setToken(result['data'].token);
+          setUserData({...GETUSER['data'],['password']:Password});
+          navigate('/Main/HorseApp');
+        }
+
+        
 
       }
 

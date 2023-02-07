@@ -12,6 +12,8 @@ const createEvent= async (EventData,token,img)=>{
   
     
     let body = new FormData();
+
+    console.log("EVENTO A CREAR: ",EventData);
     
     body.append('nombre_evento',EventData.nombre_evento);
     body.append('competidores',"20");
@@ -26,6 +28,38 @@ const createEvent= async (EventData,token,img)=>{
     
   }
 
+  const editEvent= async (EventData,token,img)=>{
+    const path= environment.api + environment.editEvent+EventData.id;
+
+    let config = {
+        headers: {
+          Authorization: 'Token ' + token,
+        },
+      };
+  
+    
+    let body = new FormData();
+    
+    body.append('nombre_evento',EventData.nombre_evento);
+    body.append('competidores',"20");
+    body.append('imagen',img);
+    body.append('fecha_inicio',EventData.fecha_inicio);
+    body.append('fecha_fin',EventData.fecha_fin);
+    body.append('lugar',EventData.lugar);
+    if(EventData.descripcion===null || EventData.descripcion===""){
+      body.append('descripcion',"");
+    }
+    
+    body.append('pk',EventData.id);
+    body.append('id',EventData.id);
+
+    console.log("body para actualizar: ",img,EventData);
+  
+  
+   return await axios.post(path,body,config);
+    
+  }
+
   const getAllEvents= async (token)=>{
     const path= environment.api + environment.getEvents;
 
@@ -33,7 +67,7 @@ const createEvent= async (EventData,token,img)=>{
         headers: {
           Authorization: 'Token ' + token,
         },
-      };
+    };
 
   
   
@@ -70,4 +104,4 @@ const createEvent= async (EventData,token,img)=>{
 
 
 
-export {createEvent,getAllEvents,deleteEvent};
+export {createEvent,getAllEvents,deleteEvent,editEvent};

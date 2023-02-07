@@ -33,7 +33,7 @@ function OffCanvas() {
         //Get of session Storage
         let UserData=JSON.parse(sessionStorage.getItem('UserHorseAppSessionStorage'));
         let Token=JSON.parse(sessionStorage.getItem('TokenUserHorseApp'));
-        console.log(UserData,Token);
+        
         if(UserData===null || Token ===null){
             Swal.fire({
                 icon: 'error',
@@ -79,9 +79,9 @@ function OffCanvas() {
         })
         if (result!==undefined){
             console.log("eventos cargados con exito.",result['data']);
-            console.log("eventos unicamente del usuario: ",result['data'].filter((obj)=> obj.creado_por.toString()===JSON.parse(sessionStorage.getItem('UserHorseAppSessionStorage')).email));
+            console.log("eventos unicamente del usuario: ",result['data'].filter((obj)=> obj.creado_por.toString()===JSON.parse(sessionStorage.getItem('UserHorseAppSessionStorage')).username));
             //setEvents(result['data']);
-            getHorses(Token,result['data'].filter((obj)=> obj.creado_por.toString()===JSON.parse(sessionStorage.getItem('UserHorseAppSessionStorage')).email));
+            getHorses(Token,result['data'].filter((obj)=> obj.creado_por.toString()===JSON.parse(sessionStorage.getItem('UserHorseAppSessionStorage')).username));
         }
     }
     /* GET Horses */

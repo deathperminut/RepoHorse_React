@@ -19,12 +19,15 @@ import Col from 'react-bootstrap/Col';
 import {AiOutlineLeft} from 'react-icons/ai';
 import {FaTrash} from 'react-icons/fa';
 import {useNavigate} from 'react-router-dom';
+import Select from 'react-select';
+import moment from 'moment';
 /*ListGroup*/
 import ListGroup from 'react-bootstrap/ListGroup'; 
 
 /* TOOL TIP */
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import CreatableSelect from 'react-select/creatable';
 
 
 
@@ -37,28 +40,38 @@ import { AppContext } from '../../../Context';
 import Preloader from '../../../Shared/preloader/preloader';
 import { toNumber } from 'lodash';
 import Swal from 'sweetalert2';
-import { createEvent, deleteEvent } from '../../../Services/Events/events';
+import { createEvent, deleteEvent, editEvent } from '../../../Services/Events/events';
 import { changeHorse, deleteHorse, editHorse, generateHorse } from '../../../Services/Horses/horse';
 
-const options = [
-  { value: 'P1', label: 'P1' },
-  { value: 'P2', label: 'P2' },
-  { value: 'P3', label: 'P3' },
-  { value: 'P4', label: 'P4' },
+const options_andar = [
+  { value: 1, label: 'P1' },
+  { value: 2, label: 'P2' },
+  { value: 3, label: 'P3' },
+  { value: 4, label: 'P4' },
 
+]
+const options_tipo=[
+  { value: 'Mular', label: 'Mular' },
+  { value: 'Asnal', label: 'Asnal' },
+  { value: 'Caballar', label: 'Caballar' },
 ]
 
 const styles = {
   option: (base) => ({
       ...base,
       cursor: "pointer",
-      background: "white",   // this was the mistake (I needed to remove this)
+      background: "#e7d6a7",   // this was the mistake (I needed to remove this)
       ":hover": {
          backgroundColor: "#FF9300",
          color:'white',
        },
+      ":active":{
+        backgroundColor: "#FF9300",
+      }
 })
 }
+
+
 
 const customStyles = {
   option: (base, { data, isDisabled, isFocused, isSelected }) => {
@@ -84,8 +97,6 @@ export default function Competiciones() {
   }=React.useContext(AppContext); 
   
 
-  /* CALENDAR */
-  const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 
   function onChange_start(date, dateString) {
     console.log(date,dateString);
@@ -96,11 +107,22 @@ export default function Competiciones() {
       setDisabledDate(false);
     }
     setEvent({...event,['fecha_inicio']:dateString})
+    checkEvent({...event,['fecha_inicio']:dateString});
 
   }
   function onChange_end(date, dateString) {
     setEvent({...event,['fecha_fin']:dateString})
+    checkEvent({...event,['fecha_fin']:dateString});
 
+  }
+  function onChange_start_Edit(date, dateString) {
+    setEditarEvento({...editarEvento,['fecha_inicio']:dateString});
+    checkEvent_Edit({...editarEvento,['fecha_inicio']:dateString});
+  }
+
+  function onChange_end_Edit(date, dateString) {
+    setEditarEvento({...editarEvento,['fecha_fin']:dateString});
+    checkEvent_Edit({...editarEvento,['fecha_fin']:dateString});
   }
   
   /*USE STATES */
@@ -114,10 +136,24 @@ export default function Competiciones() {
   let [EditHorseButton,setEditHorseButton]=React.useState(false);
   let [filter,setFilter]=React.useState(events);
   let [valueFilter,setValueFilter]=React.useState("");
-  let [Andar,setAndar]=React.useState(1);
+  let [Andar,setAndar]=React.useState(0);
   let [filterValueHorse,setFilterValueHorse]=React.useState("");
   let [ListHorses,setListHorses]=React.useState([]);
   let [disabledDate,setDisabledDate]=React.useState(true);
+  let [file_edit_event,set_file_edit_event]=React.useState(null);
+  let [Lista_lugares,setLista_lugares]=React.useState([]);
+  let [editarEvento,setEditarEvento]=React.useState({
+    imagen:'',
+    nombre_evento:'',
+    lugar:'',
+    fecha_inicio:'2023-02-07',
+    fecha_fin:'2023-02-07',
+    competidores:'',
+    descripcion:'',
+    Horses:[],
+  });
+
+  let [ButtonEventEdit,setButtonEventEdit]=React.useState(false);
 
 
   let [event,setEvent]=React.useState({
@@ -137,8 +173,12 @@ export default function Competiciones() {
     imagen:'',
     caballista:'',
     edad:'',
-    tipo:'',
+    tipo:'Mular',
     andar:1,
+    criador:'',
+    propietario:'',
+    competidor:'',
+
   })
   let [buttonEvent,setButtonEvent]=React.useState(true);
   let [buttonHorse,setButtonhorse]=React.useState(true);
@@ -154,10 +194,69 @@ export default function Competiciones() {
       ... event,
       [type]: Event.target.value
     });
+  }
+  const ReadSelectEvent=(EVENT,type)=>{
+    console.log("EVENT SELECT: ",EVENT);
+    if(event===null){
+      setEvent({
+        ... event,
+        [type]: ""
+      })
+      checkEvent({
+        ... event,
+        [type]: "",
+      })
+    }else{
+      console.log("EVENT SELECT: ",EVENT);
+       setEvent({
+         ... event,
+         [type]: EVENT.value.charAt(0).toUpperCase() + EVENT.value.slice(1),
+       })
+      checkEvent({
+        ... event,
+        [type]: EVENT.value,
+      })
+    }
+  
+
+  }
+  const ReadSelectEvent_edit=(EVENT,type)=>{
+    if(event===null){
+      setEditarEvento({
+        ... editarEvento,
+        [type]: ""
+      })
+      checkEvent_Edit({
+        ... editarEvento,
+        [type]: "",
+      })
+    }else{
+       setEditarEvento({
+         ... editarEvento,
+         [type]: EVENT.value.charAt(0).toUpperCase() + EVENT.value.slice(1),
+       })
+       checkEvent_Edit({
+        ... editarEvento,
+        [type]: EVENT.value,
+      })
+    }
+  
+
+  }
+  const CheckInput_Edit=(Event,type)=>{
+      setEditarEvento({
+        ... editarEvento,
+        [type]: Event.target.value
+      })
+    
+    checkEvent_Edit({
+      ... editarEvento,
+      [type]: Event.target.value
+    });
 
   }
   const ChangeInputHorse=(Event,type)=>{
-    if(type==="edad" || type==="tipo"){
+    if(type==="edad" || type==="competidor"){
       const inputValue = Event.target.value;
       const numberValue = Number(inputValue);
       if (isFinite(numberValue)) {
@@ -188,7 +287,7 @@ export default function Competiciones() {
   
   const checkHorse=(caballo)=>{
     
-     if (caballo.nombre!=="" && caballo.caballista!=="" && caballo.edad!=="" && caballo.tipo !=="" && caballo.andar!==""  ){
+     if (caballo.nombre!=="" && caballo.caballista!=="" && caballo.edad!=="" && caballo.tipo !=="" && caballo.andar!=="" && caballo.criador!=="" && caballo.propietario!=="" && caballo.competidor  ){
        setButtonhorse(false);
      } else{
        setButtonhorse(true);
@@ -199,11 +298,12 @@ export default function Competiciones() {
 
     /* SELECTS */
 
-  const CheckSelect=(Event)=>{
+  const CheckSelect=(Event,type)=>{
+    console.log("EVENT: ",Event);
 
       setHorse({
          ... horse,
-         ['andar']: Event.target.value
+         [type]: Event.value
        })
       
     }
@@ -218,6 +318,11 @@ export default function Competiciones() {
       return file;
 
   }
+
+
+
+
+
   /*FUNCTION IMAGE */
   function handleChange(e) {
     
@@ -225,7 +330,12 @@ export default function Competiciones() {
     setimgFormEvent(new File([e.target.files[0]], 'project.png',{type: "image/png"}));
     setFile(URL.createObjectURL(e.target.files[0]));
     setEvent({...event,['imagen']:URL.createObjectURL(e.target.files[0])})
-    checkEvent({...event,['imagen']:URL.createObjectURL(e.target.files[0])});
+
+  }
+  function handleChange_edit_event(e) {
+    
+    set_file_edit_event(new File([e.target.files[0]], 'project.png',{type: "image/png"}));
+    setEditarEvento({...editarEvento,['imagen']:URL.createObjectURL(e.target.files[0])});
   }
   function handleChange_horse(e) {
     console.log(new File([e.target.files[0]], 'project.png',{type: "image/png"}));
@@ -239,19 +349,8 @@ export default function Competiciones() {
     A_element.click();
   }
 
-  const getFileFromLocalImage = async (image) => {
-    const response = await fetch(image);
-    const blob = await response.blob();
-    return new File([blob], 'image.jpg', { type: 'image/png' });
-  };
-
     
   
-
-
-
-
-
   /*EDIT EVENT FUNCTION */
   const goToHorsesFunction=(Event)=>{
     setEventChoosed(Event);
@@ -269,20 +368,18 @@ export default function Competiciones() {
       imagen:'',
       caballista:'',
       edad:'',
-      tipo:'',
+      tipo:'Mular',
       andar:1,
+      criador:'',
+      propietario:'',
+      competidor:'',
+  
     });
   }
 
 
 
   /*SELECT*/
-  let options_andar=[
-    { value: 'P1', label: 'P1' },
-    { value: 'P2', label: 'P2' },
-    { value: 'P3', label: 'P3' },
-    { value: 'P4', label: 'P4' }
-  ]
 
 
   const ResetAddHorse=()=>{
@@ -294,8 +391,12 @@ export default function Competiciones() {
       imagen:'',
       caballista:'',
       edad:'',
-      tipo:'',
+      tipo:'Mular',
       andar:1,
+      criador:'',
+      propietario:'',
+      competidor:'',
+  
     });
     setFile(null);
   }
@@ -342,6 +443,9 @@ export default function Competiciones() {
   /* useEffect */
   React.useEffect(()=>{
     setFilter(events);
+    if(events!==null){
+      getPlaces(events);
+    }
   },[events])
 
   const createHorse=async (event)=>{
@@ -379,14 +483,18 @@ export default function Competiciones() {
          }
           replaceEvent(eventChoosed);
           setHorse({
-           id_evento:'',
-           nombre:'',
-           imagen:'',
-           caballista:'',
-           edad:'',
-           tipo:'',
-           andar:1,
-         });
+            id_evento:'',
+            nombre:'',
+            imagen:'',
+            caballista:'',
+            edad:'',
+            tipo:'Mular',
+            andar:1,
+            criador:'',
+            propietario:'',
+            competidor:'',
+        
+          });
          setFile(null);
  
       }
@@ -417,19 +525,42 @@ export default function Competiciones() {
          }
           replaceEvent(eventChoosed);
           setHorse({
-           id_evento:'',
-           nombre:'',
-           imagen:'',
-           caballista:'',
-           edad:'',
-           tipo:'',
-           andar:1,
-         });
+            id_evento:'',
+            nombre:'',
+            imagen:'',
+            caballista:'',
+            edad:'',
+            tipo:'Mular',
+            andar:1,
+            criador:'',
+            propietario:'',
+            competidor:'',
+        
+          });
          setFile(null);
  
       }
      }
      
+  }
+
+  const getPlaces=(EVENTS)=>{
+  
+    let Lugares=[];
+    for (var i=0;i<EVENTS.length;i++){
+      let place=EVENTS[i].lugar.charAt(0).toUpperCase() + EVENTS[i].lugar.slice(1);
+      if( Lugares.indexOf(place)===-1){
+        Lugares.push(place);
+      }
+        
+    }
+
+    let ListRepeatClean=[...new Set(Lugares)];
+    Lugares=[];
+    for (var i=0;i<ListRepeatClean.length;i++){
+      Lugares.push({value:ListRepeatClean[i],label:ListRepeatClean[i]})
+    }
+    setLista_lugares(Lugares);
   }
 
 
@@ -599,6 +730,13 @@ export default function Competiciones() {
       setButtonEvent(true);
     }
   }
+  const checkEvent_Edit=(event)=>{
+    if(event.nombre_evento !==""   && event.fecha_inicio!=="" && event.fecha_fin!=="" && event.lugar!==""){
+      setButtonEventEdit(false);
+    }else{
+      setButtonEventEdit(true);
+    }
+  }
   
   const filterFunction=(event)=>{
       setValueFilter(event.target.value);
@@ -711,6 +849,118 @@ export default function Competiciones() {
 
     }
   }
+
+  const editarEventoFuncion=async (eventoEdit)=>{
+    
+    setEditarEvento(eventoEdit);
+    setCreateButton(true);
+    setLoading(true);
+    let File=await createFile(eventoEdit.imagen)
+    set_file_edit_event(File);
+    setLoading(false);
+    
+
+  }
+
+  const EditEventFunction=async (EVENT)=>{
+     EVENT.preventDefault();
+     
+     if(file_edit_event===null){
+      setLoading(true);
+     let result=undefined;
+     let imagen=await createFile(EventImageDefault);
+     result=await editEvent(editarEvento,token,imagen).catch((error)=>{
+      console.log(error);
+      setLoading(false);
+      Swal.fire({
+        icon: 'error',
+        title: 'Problemas para actualizar evento',
+      })
+     })
+     if (result!==undefined){
+        console.log("evento actualizado: ",result['data']);
+        Swal.fire({
+          icon: 'success',
+          title: 'evento actualizado con exito.',
+        })
+        setLoading(false);
+
+        /* ACTUALIZAMOS EN EL ARREGLO GLOBAL DE EVENTOS */
+        let ListEvents=[]
+        for (var i=0;i<events.length;i++){
+          if(events[i].id.toString() !==editarEvento.id.toString()){
+            ListEvents.push(events[i]);
+          }else{
+            ListEvents.push({...editarEvento,['imagen']:EventImageDefault})
+          }
+        }
+         setEvents(ListEvents);
+         setFilter(ListEvents);
+         setValueFilter("");
+         setEditarEvento({
+          imagen:'',
+          nombre_evento:'',
+          lugar:'',
+          fecha_inicio:'2020-01-01',
+          fecha_fin:'2020-01-01',
+          competidores:'',
+          descripcion:'',
+          Horses:[],
+        })
+        setCreateButton(false);
+        set_file_edit_event(null);
+
+     }
+
+     }else{
+      setLoading(true);
+     let result=undefined;
+     result=await editEvent(editarEvento,token,file_edit_event).catch((error)=>{
+      console.log(error);
+      setLoading(false);
+      Swal.fire({
+        icon: 'error',
+        title: 'Problemas para actualizar evento',
+      })
+     })
+     if (result!==undefined){
+        console.log("evento actualizado: ",result['data']);
+        Swal.fire({
+          icon: 'success',
+          title: 'evento actualizado con exito.',
+        })
+        setLoading(false);
+
+        /* ACTUALIZAMOS EN EL ARREGLO GLOBAL DE EVENTOS */
+        let ListEvents=[]
+        for (var i=0;i<events.length;i++){
+          if(events[i].id.toString() !==editarEvento.id.toString()){
+            ListEvents.push(events[i]);
+          }else{
+            ListEvents.push({...editarEvento,['imagen']:URL.createObjectURL(file_edit_event)})
+          }
+        }
+         setEvents(ListEvents);
+         setFilter(ListEvents);
+         setValueFilter("");
+         setEditarEvento({
+          imagen:'',
+          nombre_evento:'',
+          lugar:'',
+          fecha_inicio:'2020-01-01',
+          fecha_fin:'2020-01-01',
+          competidores:'',
+          descripcion:'',
+          Horses:[],
+        })
+        setCreateButton(false);
+        set_file_edit_event(null);
+
+     }
+     }
+     
+       
+  }
   
 
   return (
@@ -791,7 +1041,6 @@ export default function Competiciones() {
                   <>
                   {filter.map(Event=>(
 
-                            console.log(Event),
 
                             <Col key={Event.id} className='EventComponent'>
                             <div className='Event display-row' >
@@ -804,7 +1053,7 @@ export default function Competiciones() {
                                 <span className='t-white t-xs small-size gray-dc' onClick={()=>goToHorsesFunction(Event)} style={{cursor:'pointer'}}>{Event.fecha_inicio }<span className='small-size'>{' / '}</span> {Event.fecha_fin}</span>
                                 <div className='d-row flex-end'>
                                       <div className='iconEditEvent' >
-                                      <RiEdit2Fill className='iconVideoPlay'/>
+                                      <RiEdit2Fill className='iconVideoPlay' onClick={()=>editarEventoFuncion(Event)}/>
                                       </div>
                                       <FaTrash className='option-icon IconPointer' onClick={()=>DeleteEvent(Event)}></FaTrash>
                                 </div>
@@ -828,7 +1077,9 @@ export default function Competiciones() {
            
            :
            <>
-           
+
+           {editarEvento.competidores==="" ?
+           <>
            <div className='buttonregisterEvent_2 mt-14px' onClick={()=>{
                       setFile(null);
                       setimgFormEvent(null);
@@ -895,12 +1146,17 @@ export default function Competiciones() {
                
                <div className='dateContainer containrow second-size'>
                  <span className="textFormEvent second-size ">Fecha</span>
-                 <DatePicker className='datepicker' onChange={onChange_start}  placeholder='Inicio' disabledDate={d => !d || d.isAfter(event.fecha_fin)}/>
-                 <DatePicker id="datepicker2"  className='datepicker' onChange={onChange_end}  placeholder='Fin' disabled={disabledDate}  disabledDate={d => !d || d.isBefore(event.fecha_inicio)} />
+                 <DatePicker className='datepicker' onChange={onChange_start}  placeholder='Inicio' disabledDate={d => !d || d.isAfter(event.fecha_fin)} />
+                 <DatePicker  className='datepicker' onChange={onChange_end}  placeholder='Fin' disabled={disabledDate}  disabledDate={d => !d || d.isBefore(event.fecha_inicio)} />
                </div>
                <div className='placeContainer containrow'>
                  <span className="textFormEvent second-size">Lugar</span>
-                 <input  onChange={(event)=>CheckInput(event,'lugar')}  maxLength={16} className='inputEventForm second-size' type="text" placeholder='Ingrese el lugar'/>
+                <CreatableSelect  options = {Lista_lugares}  
+                className="selectAnalisis middle-size" 
+                placeholder="Seleccione un lugar"
+                onChange={(event)=>ReadSelectEvent(event,'lugar')}
+                styles={styles}
+                />
                </div>
                <div className='DescriptionContainer containrow'>
                  <span className="textFormEvent second-size">Descripción</span>
@@ -910,6 +1166,77 @@ export default function Competiciones() {
                   <button disabled={buttonEvent} onClick={AppendEvent} className='buttonComp_2 button_correct_position'>Crear</button>
                </div>
            </form>
+           </>
+           :
+
+           <>
+           <form className='RegisterEvent_2 mt-14px'>
+               <div className='CloseContainer'>
+                    <span className='TextTitle2'> Editar evento</span>
+                    <AiFillCloseCircle className='CloseIcon' onClick={()=> {
+                      setEditarEvento({
+                        imagen:'',
+                        nombre_evento:'',
+                        lugar:'',
+                        fecha_inicio:'2020-01-01',
+                        fecha_fin:'2020-01-01',
+                        competidores:'',
+                        descripcion:'',
+                        Horses:[],
+                      })
+                      setCreateButton(false);
+                      set_file_edit_event(null);
+                    }}/>
+               </div>
+               <div className='imageContainer'>
+                   {file_edit_event===null ?
+                   <div className="imageInputContainer">
+                      <BiImageAdd style={{cursor:'pointer'}} className='iconImageFile' onClick={clickImageInput}/>
+                      <input style={{visibility:"hidden"}} type="file" onChange={handleChange_edit_event} accept="image/png, image/gif, image/jpeg" />
+                   </div>
+                   :
+                   <img  crossorigin="anonymous" style={{cursor:'pointer'}} className='imageEvent'   src={editarEvento.imagen} onClick={()=>{
+                      set_file_edit_event(null);
+                      setEditarEvento({...editarEvento,['imagen']:""});
+                      checkEvent_Edit({...editarEvento,['imagen']:""});
+                   }}/> 
+                   } 
+               </div>
+               <div className='nameContainer containrow'>
+                 <span className="textFormEvent second-size">Nombre</span>
+                 <input onChange={(event)=>CheckInput_Edit(event,'nombre_evento')} maxLength={21} className='inputEventForm second-size' type="text" placeholder='ingrese el nombre del evento' value={editarEvento.nombre_evento}/>
+               </div>
+               
+               <div className='dateContainer containrow second-size ojala'>
+                 <span className="textFormEvent second-size ">Fecha</span>
+                 <DatePicker onChange={onChange_start_Edit} className='datepicker_2 datepicker_start'   placeholder={editarEvento.fecha_inicio}   />
+                 <DatePicker onChange={onChange_end_Edit} className='datepicker_2 datepicker_end'      placeholder={editarEvento.fecha_fin}      />
+               </div>
+               <div className='placeContainer containrow'>
+                 <span className="textFormEvent second-size">Lugar</span>
+                 <CreatableSelect  options = {Lista_lugares}  
+                  className="selectAnalisis middle-size" 
+                  placeholder="Seleccione un lugar"
+                  onChange={(event)=>ReadSelectEvent_edit(event,'lugar')}
+                  value={{value:editarEvento.lugar,label:editarEvento.lugar}}
+                  styles={styles}
+                 />
+               </div>
+               <div className='DescriptionContainer containrow'>
+                 <span className="textFormEvent second-size">Descripción</span>
+                 <textarea onChange={(event)=>CheckInput_Edit(event,'descripcion')}  className='textareaFormEvent second-size' placeholder='Descripción (opcional)' value={editarEvento.descripcion}/>
+               </div>
+               <div className='containersubmitButton'>
+                  <button disabled={ButtonEventEdit} onClick={EditEventFunction} className='buttonComp_2 button_correct_position'>Editar</button>
+               </div>
+           </form>
+
+            
+           </>
+           
+           }
+           
+           
            </>
            
 
@@ -945,12 +1272,6 @@ export default function Competiciones() {
                           <span className='TextCount'>{eventChoosed.Horses.length}</span>
                       </div>
                     </div>
-                    {/* <div className='CountContainer align-center'>
-                      <span className='TextTitle mb-'>Total categoria</span>
-                      <div className='CountsBox w-'>
-                          <span className='TextCount'>{eventChoosed.horses.length}</span>
-                      </div>
-                    </div> */}
                   </div>
             </div>
 
@@ -1078,7 +1399,7 @@ export default function Competiciones() {
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size"># Competidor</span>
-                        <input onChange={(event)=>ChangeInputHorse(event,'tipo')} value={horse.tipo} className='inputEventForm second-size' type="number"  maxLength={4} placeholder='# del competidor'/>
+                        <input onChange={(event)=>ChangeInputHorse(event,'competidor')} value={horse.competidor} className='inputEventForm second-size' type="number"  maxLength={4} placeholder='# del competidor'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size">Jinete</span>
@@ -1089,20 +1410,29 @@ export default function Competiciones() {
                         <input onChange={(event)=>ChangeInputHorse(event,'edad')} value={horse.edad} className='inputEventForm second-size' type="number" maxLength={20} placeholder='Edad (meses)'/>
                       </div>
                       <div className='competidoresContainer containrowHorse'>
+                        <span className="textFormEvent second-size">Criador</span>
+                        <input onChange={(event)=>ChangeInputHorse(event,'criador')} value={horse.criador} className='inputEventForm second-size' type="text" maxLength={20} placeholder='Criador'/>
+                      </div>
+                      <div className='competidoresContainer containrowHorse'>
+                        <span className="textFormEvent second-size">Propietario</span>
+                        <input onChange={(event)=>ChangeInputHorse(event,'propietario')} value={horse.propietario} className='inputEventForm second-size' type="text" maxLength={20} placeholder='Propietario'/>
+                      </div>
+                      <div className='competidoresContainer containrowHorse'>
                         <span className="textFormEvent second-size">Andar</span>
-                        <Form.Select onChange={(event)=>CheckSelect(event,'andar')} value={horse.andar}  className='inputEventForm second-size' styles={styles} bsPrefix={'custom-select'}>
-                          <option className='option_select' value={1} >P1</option>
-                          <option className='option_select' value={2} >P2</option>
-                          <option className='option_select' value={3} >P3</option>
-                          <option className='option_select' value={4} >P4</option>
-                        </Form.Select>
+                        <Select options = {options_andar}  className="selectAnalisis middle-size"   styles={styles}  onChange={(event)=>CheckSelect(event,'andar')} value={{value:horse.andar,label:'P'+horse.andar}}/>
+                        {/* <input className='inputEventForm second-size' type="text" placeholder='Ingrese la categoria'/> */}
+                      </div>
+                      <div className='competidoresContainer containrowHorse'>
+                        <span className="textFormEvent second-size">Tipo</span>
+                        <Select options = {options_tipo}  className="selectAnalisis middle-size"   styles={styles}  onChange={(event)=>CheckSelect(event,'tipo')} value={{value:horse.tipo,label:horse.tipo}}/>
+
                         {/* <input className='inputEventForm second-size' type="text" placeholder='Ingrese la categoria'/> */}
                       </div>
                       <div className='ButtonContainer'>
                            {EditHorseButton===true  ?
-                            <button className='buttonComp_2 middle-size' disabled={buttonHorse} onClick={editHorses}>Editar</button>
+                            <button className='buttonComp_2 middle-size bottom-10' disabled={buttonHorse} onClick={editHorses}>Editar</button>
                             :
-                            <button className='buttonComp_2 middle-size' disabled={buttonHorse} onClick={createHorse}>Añadir</button>
+                            <button className='buttonComp_2 middle-size bottom-10' disabled={buttonHorse} onClick={createHorse}>Añadir</button>
                             }
                       </div>
                 </form>
@@ -1120,8 +1450,9 @@ export default function Competiciones() {
                       <th className='titletext'>Nombre</th>
                       <th className='titletext'>Edad</th>
                       <th className='titletext'>Andar</th>
-                      <th className='titletext'>Número</th>
+                      <th className='titletext'>Tipo</th>
                       <th className='titletext'>Jinete</th>
+                      <th className='titletext'>#</th>
                       <th className='titletext'></th>
                       <th className='titletext'></th>
                     </tr>
@@ -1136,6 +1467,7 @@ export default function Competiciones() {
                                     <td className='b-none text-table'><span className='item middle-size'>{'P'+Horse.andar}</span></td>
                                     <td className='b-none text-table'><span className='item middle-size'>{Horse.tipo}</span></td>
                                     <td className='b-none text-table'><span className='item middle-size'>{Horse.caballista}</span></td>
+                                    <td className='b-none text-table'><span className='item middle-size'>{Horse.competidor}</span></td>
                                     <td className='b-none'>
                                       <div className='iconVideoPlayContainer' onClick={()=>EditHorse(Horse)}>
                                         <RiEdit2Fill className='iconVideoPlay'/>

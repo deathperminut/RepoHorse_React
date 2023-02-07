@@ -15,11 +15,13 @@ export const environment={
   ResetPassword_2:'password_reset/confirm/',
   ChangePassword:'change-password/',
   LogoutAll:'logout/',
+  user:'user/',
 
   //EVENTS
   setEvent:'create-event/',
   getEvents:'list-event/',
   deleteEvent:'eliminar-evento/',
+  editEvent:'editar-evento/',
 
   //HORSES
   setHorse:'create-caballo/',

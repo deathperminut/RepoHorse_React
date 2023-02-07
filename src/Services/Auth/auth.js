@@ -25,10 +25,20 @@ const ConfirmResetPassword=async (userData)=>{
      return await axios.post(path,body);
 }
 
+const getUser=async(token)=>{
+  const path= environment.api+environment.user;
+  let config = {
+    headers: {
+      Authorization: 'Token ' + token,
+    },
+  };
+  return await axios.get(path,config);
+}
 
 
 
 
 
 
-export {setResetPassword,ConfirmResetPassword};
+
+export {setResetPassword,ConfirmResetPassword,getUser};

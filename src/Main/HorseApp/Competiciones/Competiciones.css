@@ -288,6 +288,10 @@ select option:focus{
     flex-direction: column;
     margin-left: 10px;
 }
+.bottom-10{
+    position: relative;
+    bottom: 10px;
+}
 .buttonregisterEvent_2{
     background-color: #F7B500;
     cursor:pointer;
@@ -317,6 +321,13 @@ select option:focus{
     box-shadow: 4px 22px 54px #695F971A;
     border-radius: 30px;
     margin-left: 90px;
+}
+.RegisterEvent_2{
+    min-width: 450px;
+    min-height: 600px;
+    background-color:#134D44 ;
+    box-shadow: 4px 22px 54px #695F971A;
+    border-radius: 30px;
 }
 .mt-14px{
     margin-top: 14px;
@@ -455,6 +466,9 @@ select option:focus{
 .datepicker::placeholder{
     color:rgb(196, 196, 196) !important; 
 }
+.datepicker_2::placeholder{
+    color:rgb(196, 196, 196) !important; 
+}
 .textareaFormEvent::placeholder{
     color:rgb(196, 196, 196) !important; 
 }
@@ -507,10 +521,99 @@ select option:focus{
   }
 
 .ant-picker input::placeholder{
-    color:rgb(196, 196, 196) !important;
+    color:rgb(196, 196, 196);
+}
+.ojala .ant-picker input::placeholder{
+    color:#7A86A1 !important;
 }
 .ant-picker:focus{
     border:none !important;
+}
+
+/*SELECT*/
+.placeContainer .css-1s2u09g-control{
+    background-color: white !important;
+    border-radius: 20px !important;
+    border: none !important;
+    color:rgb(196, 196, 196) !important;
+}
+.placeContainer .css-qc6sy-singleValue{
+    color:#7A86A1 !important;
+}
+.placeContainer .css-14el2xx-placeholder{
+    color:rgb(196, 196, 196) !important;
+}
+.placeContainer input{
+    padding-left: 0px !important;
+    color:#7A86A1 !important;
+}
+/*CONTAINER ITEMS*/
+.placeContainer .css-319lph-ValueContainer{
+    border-radius: 20px !important;
+}
+
+.placeContainer .css-1s2u09g-control{
+  border-color: rgba(255, 255, 255, 1) !important;
+  text-decoration: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.placeContainer .css-1pahdxg-control{
+    background-color: rgba(255, 255, 255, 1) !important;
+    border-radius: 20px !important;
+    border:none !important ;
+    box-shadow: none !important;
+}
+.placeContainer .css-1okebmr-indicatorSeparator{
+    display: none !important;
+}
+.placeContainer .css-tj5bde-Svg {
+    fill: #FF9300 !important;
+    width: 15px;
+}
+
+/*SELECT*/
+.competidoresContainer .css-1s2u09g-control{
+    background-color: white !important;
+    border-radius: 20px !important;
+    border: none !important;
+    color:rgb(196, 196, 196) !important;
+}
+.competidoresContainer .css-qc6sy-singleValue{
+    color:#7A86A1 !important;
+}
+.competidoresContainer .css-14el2xx-placeholder{
+    color:rgb(196, 196, 196) !important;
+}
+.competidoresContainer input{
+    padding-left: 0px !important;
+    color:#7A86A1 !important;
+}
+/*CONTAINER ITEMS*/
+.competidoresContainer .css-319lph-ValueContainer{
+    border-radius: 20px !important;
+}
+
+.competidoresContainer .css-1s2u09g-control{
+  border-color: rgba(255, 255, 255, 1) !important;
+  text-decoration: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.competidoresContainer .css-1pahdxg-control{
+    background-color: rgba(255, 255, 255, 1) !important;
+    border-radius: 20px !important;
+    border:none !important ;
+    box-shadow: none !important;
+}
+.competidoresContainer .css-1okebmr-indicatorSeparator{
+    display: none !important;
+}
+.competidoresContainer .css-tj5bde-Svg {
+    fill: #FF9300 !important;
+    width: 15px;
 }
 
 .EventInfoContainer{
@@ -608,7 +711,7 @@ select option:focus{
 }
 .RegisterHorseForm{
     width: 350px;
-    height:560px; 
+    height:710px; 
     background-color:#134D44 ;
     box-shadow: 4px 22px 54px #695F971A;
     border-radius: 30px;
