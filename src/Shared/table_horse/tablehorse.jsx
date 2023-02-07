@@ -127,7 +127,7 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                         <th className='titletext'>Nombre</th>
                                         <th className='titletext'>Edad</th>
                                         <th className='titletext'>Andar</th>
-                                        <th className='titletext'>Número</th>
+                                        <th className='titletext'>Tipo</th>
                                         <th className='titletext'>BPM</th>
                                         <th className='titletext'>Jinete</th>
                                         <th className='titletext'>Videos</th>

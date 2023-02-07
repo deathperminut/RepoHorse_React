@@ -31,6 +31,7 @@ function ProviderContext(props){
     const [originalVideo,setOriginalVideo]=React.useState(null);
     const [cutVideo,setCutVideo]=React.useState(false);
     const [dowload,setDowload]=React.useState(false);
+
     /* VIDEO PLAYER LOADING*/
     let [Loading_video,setLoading_video]=React.useState(false);
 
@@ -54,6 +55,9 @@ function ProviderContext(props){
 
     let [events,setEvents]=React.useState(null);
     let [horses,setHorses]=React.useState(null);
+    let [showModal,setshowModal]=React.useState(true);
+
+    let [typeModel,setTypeModel]=React.useState("Batidas");
 
 
     let [eventChoosed,setEventChoosed]=React.useState({
@@ -210,7 +214,7 @@ function ProviderContext(props){
             ,videoMeta, setVideoMeta , trimmedVideoFile, setTrimmedVideoFile,URL, setURL, trimIsProcessing, setTrimIsProcessing,rStart, setRstart,rEnd, setRend
             ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,loading,setLoading,originalVideo,setOriginalVideo,cutVideo,setCutVideo,
             dowload,loadEventsForSelect,setDowload,sleep,events,setEvents,eventChoosed,setEventChoosed,selectEvents,setSelectEvents,FindEventId,SelectEvent,setSelectEvent
-            ,SelectHorse,setSelectHorse,CloseSesion,Loading_video,setLoading_video
+            ,SelectHorse,setSelectHorse,CloseSesion,Loading_video,setLoading_video,showModal,setshowModal,typeModel,setTypeModel
         }}>
             {props.children}
         </AppContext.Provider>

@@ -34,6 +34,9 @@ import {IoIosArrowDropdownCircle} from 'react-icons/io';
 import Preloader from '../../../Shared/preloader/preloader';
 import { ProcessVideo, setVideo } from '../../../Services/video/videoModel';
 
+/* MODAL */
+import Modal_image from '../../../Shared/Modal_image/modal_image';
+
 const styles = {
   option: (base) => ({
       ...base,
@@ -45,6 +48,11 @@ const styles = {
        },
 })
 }
+
+const Models=[
+  {value:"Batidas",label:"Batidas"},
+  {value:"Esqueleto",label:"Esqueleto"},
+]
 
 
 
@@ -70,7 +78,7 @@ export default function Analisis() {
     token,setLoading,setEvents,
     SelectEvent,setSelectEvent,
     SelectHorse,setSelectHorse,
-    trimmedVideoFile,
+    trimmedVideoFile,showModal,setshowModal,typeModel,setTypeModel,
     StadisticVideo,setStatisticVideo,inputVideoFile,setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
       , setThumbNails, setThumbnailIsProcessing,loading,loadEventsForSelect,originalVideo,setOriginalVideo,setCutVideo,setDowload,selectEvents,events,FindEventId
@@ -86,6 +94,8 @@ export default function Analisis() {
 
   /* VIDEO */
   let [file,setFile]=React.useState(null);
+
+
 
   const fileInputChange=(event)=>{
      if(!SelectHorse){
@@ -391,6 +401,19 @@ export default function Analisis() {
                              <span className='white fz-small'>Jinete: <span className='orange fw'>{SelectHorse.caballista}</span></span>
                         </div>
                         <div className='Container-horse-selected-buttons'>
+                                
+                                {/* <button className='Button-horse-selected bg-green'>Eliminar</button> */}
+                                <button className='Button-horse-selected bg-orange'>Eliminar</button>
+                                <Select
+                                  styles={styles}
+                                  options = {Models}
+                                  onChange={(event)=>setTypeModel(event.value)}
+                                  value={{value:typeModel,label:typeModel}}  
+                                  className="Button-horse-selected" 
+                                  placeholder="Modelo"
+                                />
+                        </div>
+                        <div className='Container-horse-selected-buttons'>
                                 {Loading_video ===true ?
                                 
                                 <>
@@ -455,10 +478,9 @@ export default function Analisis() {
                 onChange={(event)=>ChangeSelectEvent(event,true)}
                 options = {selectEvents}  
                 className="selectAnalisis middle-size" 
-                placeholder="Seleccione un evento"
-                
-                
+                placeholder="Seleccione evento"
                 />
+
               </div>
               <div className='buttonEventContainer'>
                 <button className='buttonEvent pl-5 btnHoverWhite ' onClick={RedirectCreateEvent}><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px font-size ml-4px ">+</span><span className="c-orange middle-size">Nuevo Evento</span></button>
@@ -629,9 +651,15 @@ export default function Analisis() {
 
              </>
             }
-            
+            <Modal_image
+            show={showModal}
+            onHide={() => setshowModal(false)}
+          />  
           </div>
+          
         </div>
+
+        
     </>
     
   )
