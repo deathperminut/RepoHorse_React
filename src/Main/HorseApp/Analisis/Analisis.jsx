@@ -403,7 +403,6 @@ export default function Analisis() {
                         <div className='Container-horse-selected-buttons'>
                                 
                                 {/* <button className='Button-horse-selected bg-green'>Eliminar</button> */}
-                                <button className='Button-horse-selected bg-orange'>Eliminar</button>
                                 <Select
                                   styles={styles}
                                   options = {Models}
@@ -412,6 +411,8 @@ export default function Analisis() {
                                   className="Button-horse-selected" 
                                   placeholder="Modelo"
                                 />
+                                <button className='Button-horse-selected bg-red bottom-10px'>Cancelar</button>
+                                
                         </div>
                         <div className='Container-horse-selected-buttons'>
                                 {Loading_video ===true ?
@@ -448,7 +449,7 @@ export default function Analisis() {
                        <span className='bpm-result-text'>{SelectHorse.video_procesado==="" ? <>---</> : <>{SelectHorse.bps}</>}</span>
                    </div>
                    <div className='Container-video-result-bpm'>
-                      <span className='white mb-small'>video esqueleto:</span>
+                      <span className='white mb-small'>video resultante:</span>
                       <div className='Container-video-result'>
                             {SelectHorse.video_procesado!=="" ? <video crossorigin="anonymous" src={SelectHorse.video_procesado} className="video-marcadores" controls></video> : <></>}
                       </div>

@@ -491,8 +491,15 @@
     width: 11rem;
     border: 0px;
     margin-bottom: 13px;
-    margin-right: 5px;
+    margin-right: 8px;
     color:white
+}
+.bg-red{
+    background-color: #e15a5a;
+}
+.bottom-10px{
+    position: relative;
+    bottom: 10px;
 }
 .bg-orange{
   background-color: #FF9300;

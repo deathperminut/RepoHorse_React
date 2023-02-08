@@ -8,6 +8,7 @@ import './tablehorse.css';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import * as Icon from 'react-bootstrap-icons';
+import {AiOutlineArrowDown} from 'react-icons/ai';
 /* TOOL TIP */
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
@@ -48,6 +49,45 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                
                }     
     }
+
+    async function createFile(URL){
+      let response = await fetch(URL);
+      let data = await response.blob();
+      let metadata = {
+        type: 'video/mp4'
+      };
+      let file = new File([data], "test.mp4", metadata);
+      return file;
+
+  }
+  
+  function downloadFile(url) {
+    let link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'video.mp4');
+    document.body.appendChild(link); // Required for FF
+    link.click(); 
+    document.body.removeChild(link); 
+  }
+
+  function fetchFile(url){
+    fetch(url).then(res => res.blob()).then(file=>{
+       let tempUrl = URL.createObjectURL(file);
+       let aTag = document.createElement('a');
+       aTag.href = tempUrl;
+       aTag.download=url.replace(/^.*[\\\/]/,"");
+       document.body.appendChild(aTag);
+       aTag.click();
+       aTag.remove();
+    });
+
+  }
+ 
+  
+  
+  
+  
+  
 
 
     
@@ -185,6 +225,7 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                 
                               <video crossorigin="anonymous" className="VideoPlayer"   controls={true} src={videoFile} playing={true} width={'100%'} height={'100%'} youtubeConfig={{ playerVars: { showinfo: 1 } }}/>
                               <button className='buttonVideo' onClick={()=>setShowVideo(false)}>X</button>
+                              <button className='buttonVideo_2' onClick={()=>fetchFile(videoFile)}><AiOutlineArrowDown/></button>
 
                               </>
                             }

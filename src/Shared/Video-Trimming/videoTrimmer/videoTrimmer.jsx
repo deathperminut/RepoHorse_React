@@ -214,8 +214,8 @@ export default function     VideoTrimmer() {
       if(videoMeta!=null){
         let end=((rEnd / 100) * videoMeta.duration).toFixed(2);
         if (Video.currentTime >= end){
-          let Start=((rStart / 100) * videoMeta.duration).toFixed(2);
-          Video.currentTime=Start
+          //let Start=((rStart / 100) * videoMeta.duration).toFixed(2);
+          //Video.currentTime=Start
           //Video.stop();
         }
       }
@@ -285,9 +285,13 @@ export default function     VideoTrimmer() {
                 let Video=document.getElementById('VideoPlayerHorseApp');
                 let startTime=((event / 100) * videoMeta.duration).toFixed(2);
                 Video.currentTime=startTime;
-                console.log(helpers.toTimeString(startTime));
               })}
-              handleUpdaterEnd={handleUpdateRange(setRend)}
+              handleUpdaterEnd={handleUpdateRange((event)=>{
+                setRend(event);
+                let Video=document.getElementById('VideoPlayerHorseApp');
+                let startTime=((event / 100) * videoMeta.duration).toFixed(2);
+                Video.currentTime=startTime;
+              })}
               loading={thumbnailIsProcessing}
               videoMeta={videoMeta}
               control={
