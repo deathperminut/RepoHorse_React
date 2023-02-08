@@ -33,6 +33,8 @@ export const environment={
   setVideoHorse:'agregar-video/',
   processVideo:'procesar-video/',
   processVideoEsqueleto:'procesar-esqueleto/',
+  saveVideoCount:'guardar-video/',
+  saveVideoEsqueleto:'guardar-esqueleto/',
 
   
 

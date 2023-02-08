@@ -174,21 +174,47 @@ function ProviderContext(props){
     /* UBICATE HORSES */
 
     const ubicateHorses=(eventsCopy,horsesCopy)=>{
+        console.log("CABALLOS: ",horsesCopy);
+        console.log("EVENTOS: ",eventsCopy);
         if(eventsCopy.length!==0){
             for (var i=0;i<eventsCopy.length;i++){
                 let ArrayHorses=[];
                 for (var h=0;h<horsesCopy.length;h++){
                     if(horsesCopy[h].id_evento_id===eventsCopy[i].id){
                         let hs=horsesCopy[h];
-                        if(hs.imagen!==""){
+
+                        if(hs.video_esqueleto_guardado===null){
+                            hs = {...hs,['video_esqueleto_guardado']:""}
+                        }
+
+                        if(hs.video_guardado===null){
+                            hs={...hs,['video_guardado']:""}
+                        }
+
+                        if(hs.imagen !== ""){
                            hs={...hs,['imagen']:'https://back.orcas-buho.com.co/'+hs['imagen']} 
                         }
-                        if(hs.video_original!==""){
-                            hs={...hs,['video_original']:'https://back.orcas-buho.com.co/'+hs['video_original']}  
+
+                        if(hs.video_original !==""){
+                            hs={...hs,['video_original']:''}  
                         }
+
                         if(hs.video_procesado!==""){
-                            hs={...hs,['video_procesado']:'https://back.orcas-buho.com.co/'+hs['video_procesado']}   
+                            hs={...hs,['video_procesado']:''}   
                         }
+                        if(hs.video_esqueleto!==""){
+                            hs={...hs,['video_esqueleto']:''}   
+                        }
+                        
+                        if(hs.video_esqueleto_guardado!==""){
+                            hs={...hs,['video_esqueleto_guardado']:hs['video_esqueleto_guardado']} 
+                        }
+                        
+
+                        if(hs.video_guardado!==""){
+                            hs={...hs,['video_guardado']:'https://back.orcas-buho.com.co/'+hs['video_guardado']} 
+                        }
+                        console.log("CABALLOS EJEMPLO: ",hs);
                         ArrayHorses.push(hs);
                     }
                 }
@@ -202,6 +228,7 @@ function ProviderContext(props){
             }
             setEvents(eventsCopy);
         }
+        console.log("eventos mas caballos: ",eventsCopy);
         setEvents(eventsCopy);
         
     }

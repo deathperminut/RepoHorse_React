@@ -66,6 +66,48 @@ const setVideo= async (Horse,token,video)=>{
    return await axios.post(path,body,config);
     
   }
+  const SaveVideoConteo= async (Horse,token)=>{
+    const path= environment.api + environment.saveVideoCount;
+
+    let config = {
+        headers: {
+          Authorization: 'Token ' + token,
+        },
+      };
+    
+    let body={
+        id_evento:Horse.id_evento_id,
+        nombre:Horse.nombre,
+        id:Horse.id,
+    }
+   
+
+  
+  
+   return await axios.post(path,body,config);
+    
+  }
+  const SaveVideoEsqueleto= async (Horse,token)=>{
+    const path= environment.api + environment.saveVideoEsqueleto;
+
+    let config = {
+        headers: {
+          Authorization: 'Token ' + token,
+        },
+      };
+    
+    let body={
+        id_evento:Horse.id_evento_id,
+        nombre:Horse.nombre,
+        id:Horse.id,
+    }
+   
+
+  
+  
+   return await axios.post(path,body,config);
+    
+  }
 
 
 
@@ -76,4 +118,4 @@ const setVideo= async (Horse,token,video)=>{
 
 
 
-export {setVideo,ProcessVideo,ProcessVideoEsqueleto};
+export {setVideo,ProcessVideo,ProcessVideoEsqueleto,SaveVideoEsqueleto,SaveVideoConteo};

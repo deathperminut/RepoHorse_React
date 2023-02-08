@@ -184,20 +184,23 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                                 <td className='b-none text-table second-size pt-15px'>{Horse.tipo}</td>
                                                 <td className='b-none'>{Horse.bps!==null ? <><span className='BPMData middle-size'>{Horse.bps}</span></> :<></>}</td>
                                                 <td className='b-none'>
-                                                    {Horse.video_esqueleto===""  ?
+                                                    {Horse.video_esqueleto_guardado==="" || Horse.video_esqueleto_guardado===null  ?
                                                     <>
                                                      
                                                     </>
                                                     :
                                                     <>
                                                     <div className='iconVideoPlayContainer' onClick={()=>{
+                                                      console.log("CABALLO: ",Horse)
                                                       setShowVideo(true);
                                                       console.log()
-                                                      if(!Horse.video_procesado.includes('http')){
-                                                        setVideoFile('http://34.125.24.248:8000/'+Horse.video_esqueleto);
+                                                      if(!Horse.video_esqueleto_guardado.includes('http')){
+                                                      setVideoFile('http://34.125.24.248:8000/'+Horse.video_esqueleto_guardado);
                                                       }else{
-                                                        setVideoFile(Horse.video_procesado);
+                                                        setVideoFile(Horse.video_esqueleto_guardado);
                                                       }
+                                                      
+                                                      
                                                       
                                                       
                                                     }}>
@@ -209,7 +212,7 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                                     
                                                 </td>
                                                 <td className='b-none'>
-                                                    {Horse.video_procesado===""  ?
+                                                    {Horse.video_guardado==="" || Horse.video_guardado===null  ?
                                                     <>
                                                      
                                                     </>
@@ -218,10 +221,10 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                                     <div className='iconVideoPlayContainer' onClick={()=>{
                                                       setShowVideo(true);
                                                       console.log()
-                                                      if(!Horse.video_procesado.includes('https')){
-                                                        setVideoFile('https://back.orcas-buho.com.co/'+Horse.video_procesado);
+                                                      if(!Horse.video_guardado.includes('https')){
+                                                        setVideoFile('https://back.orcas-buho.com.co/'+Horse.video_guardado);
                                                       }else{
-                                                        setVideoFile(Horse.video_procesado);
+                                                        setVideoFile(Horse.video_guardado);
                                                       }
                                                       
                                                       
