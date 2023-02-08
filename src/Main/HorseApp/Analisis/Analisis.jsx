@@ -116,10 +116,11 @@ export default function Analisis() {
      if(select){
       Value=event.value;
       let feria=FindEventId(event.value);
-      setProcess(feria.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === "1"));
+      let process_2=feria.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === "1");
+      setProcess(process_2);
       setUnprocess(feria.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === "1"));
-      console.log("PROCESADOS: ",feria.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === "1"))
-      console.log("NO PROCESADOS: ",feria.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === "1"))
+      console.log("PROCESADOS: ",feria.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === "1"))
+      console.log("NO PROCESADOS: ",feria.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === "1"))
       setChoose(FindEventId(event.value));
      }
      console.log(!SelectEvent);

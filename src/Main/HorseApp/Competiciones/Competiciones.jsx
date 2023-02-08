@@ -470,7 +470,7 @@ export default function Competiciones() {
             icon: 'success',
             title: 'Ejemplar creado correctamente',
           })
-          eventChoosed.Horses.push({...result['data'].caballo,['video_original']:"",['video_procesado']:""});
+          eventChoosed.Horses.push({...result['data'].caballo,['video_original']:"",['video_procesado']:"",['video_esqueleto']:"",['video_esqueleto_guardado']:"",['video_guardado']:""});
           setFilterValueHorse("");
           if(Andar!==0){
            setListHorses(eventChoosed.Horses.filter((obj)=>toNumber(obj.andar)=== toNumber(Andar)));
