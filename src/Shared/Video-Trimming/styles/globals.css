@@ -120,12 +120,12 @@ input[type="file"] {
 .clip_box::before {
   content: attr(data-start);
   left: 0;
-  transform: translateY(90%) translateX(-50%);
+  transform: translateY(90%) translateX(-90%);
 }
 .clip_box::after {
   content: attr(data-end);
   right: 0;
-  transform: translateY(90%) translateX(50%);
+  transform: translateY(90%) translateX(90%);
 }
 
 .clip_box_des {

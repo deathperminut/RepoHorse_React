@@ -473,6 +473,7 @@
     display: flex;
     flex-direction: column;
     max-width: 220px;
+    min-width: 140px;
     margin-right: 30px;
 }
 .fz-big{
@@ -496,6 +497,9 @@
 }
 .bg-red{
     background-color: #e15a5a;
+}
+.bg-red:hover{
+    background-color: #bb4a4a;
 }
 .bottom-10px{
     position: relative;
@@ -567,6 +571,10 @@
     display: flex;
     flex-direction: column;
     margin-left: 100px;
+}
+.Container-video-result-esqueleto{
+    display: flex;
+    flex-direction: column;
 }
 .Container-video-result{
     width: 250px;

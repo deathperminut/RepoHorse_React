@@ -26,7 +26,7 @@ export default function     VideoTrimmer() {
     let {Loading_video, setLoading_video,StadisticVideo,setStatisticVideo,inputVideoFile, setInputVideoFile
       ,videoMeta, setVideoMeta , trimmedVideoFile, setTrimmedVideoFile,URL, setURL, trimIsProcessing, setTrimIsProcessing,rStart, setRstart,rEnd, setRend
       ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,setLoading,originalVideo,setOriginalVideo,
-      cutVideo,setCutVideo,dowload,setDowload}=React.useContext(AppContext); 
+      cutVideo,setCutVideo,dowload,setDowload,setRETURN_ORIGINAL,RETURN_ORIGINAL,Video_original}=React.useContext(AppContext); 
 
 
       /*USE STATE */
@@ -208,6 +208,13 @@ export default function     VideoTrimmer() {
         setDowload(false);
       }
      },[dowload])
+
+     React.useEffect(()=>{
+      if(RETURN_ORIGINAL){
+        handleChange(Video_original);
+        setRETURN_ORIGINAL(false);
+      }
+     },[RETURN_ORIGINAL])
 
      const updateTime=(event)=>{
       let Video=document.getElementById('VideoPlayerHorseApp');

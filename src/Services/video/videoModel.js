@@ -36,7 +36,30 @@ const setVideo= async (Horse,token,video)=>{
         id_evento:Horse.id_evento_id,
         nombre:Horse.nombre,
         id:Horse.id,
-    } 
+    }
+   
+
+  
+  
+   return await axios.post(path,body,config);
+    
+  }
+
+  const ProcessVideoEsqueleto= async (Horse,token)=>{
+    const path= environment.api + environment.processVideoEsqueleto;
+
+    let config = {
+        headers: {
+          Authorization: 'Token ' + token,
+        },
+      };
+    
+    let body={
+        id_evento:Horse.id_evento_id,
+        nombre:Horse.nombre,
+        id:Horse.id,
+    }
+   
 
   
   
@@ -53,4 +76,4 @@ const setVideo= async (Horse,token,video)=>{
 
 
 
-export {setVideo,ProcessVideo};
+export {setVideo,ProcessVideo,ProcessVideoEsqueleto};

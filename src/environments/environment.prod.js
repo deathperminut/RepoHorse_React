@@ -32,6 +32,7 @@ export const environment={
   //MODEL
   setVideoHorse:'agregar-video/',
   processVideo:'procesar-video/',
+  processVideoEsqueleto:'procesar-esqueleto/',
 
   
 

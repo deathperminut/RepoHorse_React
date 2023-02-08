@@ -88,7 +88,7 @@ export default function Competiciones() {
 
   /* APPCONTEXT */
   let {
-    token,
+    token,setcutCount,
     SelectEvent,setSelectEvent,
     SelectHorse,setSelectHorse,
     StadisticVideo,setStatisticVideo, setInputVideoFile
@@ -433,12 +433,8 @@ export default function Competiciones() {
     setOriginalVideo(null);
     setSelectEvent(false);
     setSelectHorse(false);
-
-    // if(events===null){
-
-    //   navigate('/Main/HorseApp/Analisis');
-      
-    // }
+    setcutCount(false);
+    
   },[])
   /* useEffect */
   React.useEffect(()=>{

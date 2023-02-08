@@ -20,7 +20,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import HorsePhoto from '../../../Sources/Images/Estadisticas/HorsePhoto.jpg';
 import {FaTrash} from 'react-icons/fa';
 import {RiScissorsCutFill} from 'react-icons/ri';
-import {BsDownload} from 'react-icons/bs';
+import {BsDownload,BsArrowCounterclockwise} from 'react-icons/bs';
 import Marcadores from '../../../Sources/Video/Marcadores.mp4';
 
 
@@ -32,7 +32,7 @@ import {IoIosArrowDropdownCircle} from 'react-icons/io';
 
 /* LOADING */
 import Preloader from '../../../Shared/preloader/preloader';
-import { ProcessVideo, setVideo } from '../../../Services/video/videoModel';
+import { ProcessVideo, ProcessVideoEsqueleto, setVideo } from '../../../Services/video/videoModel';
 
 /* MODAL */
 import Modal_image from '../../../Shared/Modal_image/modal_image';
@@ -50,7 +50,7 @@ const styles = {
 }
 
 const Models=[
-  {value:"Batidas",label:"Batidas"},
+  {value:"Conteo",label:"Conteo"},
   {value:"Esqueleto",label:"Esqueleto"},
 ]
 
@@ -74,14 +74,14 @@ export default function Analisis() {
  
   /* CONTEXT */
   let {Loading_video,
-    setLoading_video,
+    setLoading_video,cutCount,setcutCount,
     token,setLoading,setEvents,
     SelectEvent,setSelectEvent,
     SelectHorse,setSelectHorse,
     trimmedVideoFile,showModal,setshowModal,typeModel,setTypeModel,
     StadisticVideo,setStatisticVideo,inputVideoFile,setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
-      , setThumbNails, setThumbnailIsProcessing,loading,loadEventsForSelect,originalVideo,setOriginalVideo,setCutVideo,setDowload,selectEvents,events,FindEventId
+      , setThumbNails, setThumbnailIsProcessing,loading,loadEventsForSelect,originalVideo,setOriginalVideo,setCutVideo,setDowload,selectEvents,events,FindEventId,setRETURN_ORIGINAL
   }=React.useContext(AppContext); 
 
   
@@ -214,106 +214,212 @@ export default function Analisis() {
          title: 'Sube un video para analizar',
        })
      }else{
-       
-       let result=undefined;
-       //setLoading(true);
-       setLoading_video(true);
 
-       result=await setVideo(SelectHorse,token,dataURLtoFile(trimmedVideoFile,'project.mp4')).catch((error)=>{
-         console.log(error);
-         setLoading_video(false);
-         //setLoading(false);
-         Swal.fire({
-           icon: 'error',
-           title: 'Problemas para ejecutar el modelo',
-         })
-       })
-       if(result!== undefined){
-         console.log(result['data']);
-         result=undefined;
+      if(typeModel==="Tipo"){
+        Swal.fire({
+          icon: 'error',
+          title: 'Selecciona el tipo de modelo para procesar',
+        })
+      }else{
 
-         result=await ProcessVideo(SelectHorse,token).catch((error)=>{
-         
-           console.log(error);
-           setLoading_video(false);
-           //setLoading(false);
-           Swal.fire({
-             icon: 'error',
-             title: 'Problemas para ejecutar el modelo',
-           })
+        if(typeModel==="Conteo"){
+          let result=undefined;
+            //setLoading(true);
+            setLoading_video(true);
 
-         })
+            result=await setVideo(SelectHorse,token,dataURLtoFile(trimmedVideoFile,'project.mp4')).catch((error)=>{
+              console.log(error);
+              setLoading_video(false);
+              //setLoading(false);
+              Swal.fire({
+                icon: 'error',
+                title: 'Problemas para ejecutar el modelo',
+              })
+            })
+            if(result!== undefined){
+              console.log(result['data']);
+              result=undefined;
 
-         if (result!== undefined){
-           console.log(result['data']);
-           setLoading_video(false);
-           //setLoading(false);
-           Swal.fire({
-             icon: 'success',
-             title: 'Modelo ejecutado con exito',
-           })
-
-
-
-    //       /* CAMBIAMOS EL CABALLO SELECCIONADO */
-           setSelectHorse(result['data'].caballo);
-           let Copy={...Choose};
-           for (var i=0;i<Choose.Horses.length;i++){
-             if(Choose.Horses[i].id===result['data'].caballo.id){
+              result=await ProcessVideo(SelectHorse,token).catch((error)=>{
               
-               Copy.Horses[i]=result['data'].caballo;
-               setChoose(Copy);
-               break;
+                console.log(error);
+                setLoading_video(false);
+                //setLoading(false);
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Problemas para ejecutar el modelo',
+                })
 
-             }
-           }
+              })
 
-    //       /* CAMBIAMOS EL ARREGLO GLOBAL DE EVENTOS */
-           let Copy_events=[...events];
-           for (var i=0;i<events.length;i++){
-             if(events[i].id===Copy.id){
-               Copy_events[i]=Copy;
-               setEvents(Copy_events);
-               break;
-
-             }
-           }
-
-    //       /* CAMBIAMOS EL ARREGLO  */
-
-           if(Category==='P1'){
-            setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-             setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-           }else if (Category==="P2"){
-             setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-             setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-      
-           }else if (Category==="P3"){
-      
-             setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-             setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-           }else{
-             setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-             setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-           }
-          
-          
-
-
-          
+              if (result!== undefined){
+                console.log(result['data']);
+                setLoading_video(false);
+                //setLoading(false);
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Modelo ejecutado con exito',
+                })
 
 
 
-         }
+          //       /* CAMBIAMOS EL CABALLO SELECCIONADO */
+                setSelectHorse(result['data'].caballo);
+                let Copy={...Choose};
+                for (var i=0;i<Choose.Horses.length;i++){
+                  if(Choose.Horses[i].id===result['data'].caballo.id){
+                    
+                    Copy.Horses[i]=result['data'].caballo;
+                    setChoose(Copy);
+                    break;
+
+                  }
+                }
+
+          //       /* CAMBIAMOS EL ARREGLO GLOBAL DE EVENTOS */
+                let Copy_events=[...events];
+                for (var i=0;i<events.length;i++){
+                  if(events[i].id===Copy.id){
+                    Copy_events[i]=Copy;
+                    setEvents(Copy_events);
+                    break;
+
+                  }
+                }
+
+          //       /* CAMBIAMOS EL ARREGLO  */
+
+                if(Category==='P1'){
+                  setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                  setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                }else if (Category==="P2"){
+                  setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                  setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+            
+                }else if (Category==="P3"){
+            
+                  setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                  setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                }else{
+                  setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                  setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                }
+                
+                
+
+
+                
+
+
+
+              }
+              
+              
+
+            }
         
+
+
+     
+        }else{
+            let result=undefined;
+            setLoading_video(true);
+            result=await setVideo(SelectHorse,token,dataURLtoFile(trimmedVideoFile,'project.mp4')).catch((error)=>{
+              console.log(error);
+              setLoading_video(false);
+              Swal.fire({
+                icon: 'error',
+                title: 'Problemas para ejecutar el modelo',
+              })
+            })
+            if(result!== undefined){
+              console.log(result['data']);
+              result=undefined;
+              result=await ProcessVideoEsqueleto(SelectHorse,token).catch((error)=>{
+              
+                console.log(error);
+                setLoading_video(false);
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Problemas para ejecutar el modelo',
+                })
+
+              })
+
+              if (result!== undefined){
+                console.log("resultados caballo esqueleto: ",result['data']);
+                setLoading_video(false);
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Modelo ejecutado con exito',
+                })
+
+
+
+          //       /* CAMBIAMOS EL CABALLO SELECCIONADO */
+                setSelectHorse(result['data'].caballo);
+                let Copy={...Choose};
+                for (var i=0;i<Choose.Horses.length;i++){
+                  if(Choose.Horses[i].id===result['data'].caballo.id){
+                    
+                    Copy.Horses[i]=result['data'].caballo;
+                    setChoose(Copy);
+                    break;
+
+                  }
+                }
+
+          //       /* CAMBIAMOS EL ARREGLO GLOBAL DE EVENTOS */
+                let Copy_events=[...events];
+                for (var i=0;i<events.length;i++){
+                  if(events[i].id===Copy.id){
+                    Copy_events[i]=Copy;
+                    setEvents(Copy_events);
+                    break;
+
+                  }
+                }
+
+          //       /* CAMBIAMOS EL ARREGLO  */
+
+                if(Category==='P1'){
+                  setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                  setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                }else if (Category==="P2"){
+                  setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                  setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+            
+                }else if (Category==="P3"){
+            
+                  setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                  setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                }else{
+                  setProcess(Copy.Horses.filter((obj)=>obj.video_procesado!=="" && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                  setUnprocess(Copy.Horses.filter((obj)=>obj.video_procesado==="" && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                }
+                
+                
+
+
+                
+
+
+
+              }
+              
+              
+
+            }
+
+        }
         
 
-       }
-  
 
-
-     }
+      }
+       
+       
   }
+ }
 
   return (
      
@@ -340,7 +446,8 @@ export default function Analisis() {
                         <></>
                         :
                         <RiScissorsCutFill className='option-icon-video' onClick={()=>
-                        {
+                        { 
+                          setcutCount(true);
                           setCutVideo(true);
                         }                          
                         }></RiScissorsCutFill>
@@ -380,6 +487,22 @@ export default function Analisis() {
                         }
                     
                   </div>
+                  <div className='option'>
+                      {StadisticVideo===false ?
+                        <></>
+                        :
+                        <BsArrowCounterclockwise className='option-icon-video' onClick={()=>{
+                            if(cutCount===true){
+                              setcutCount(false);
+                              setRETURN_ORIGINAL(true);
+                            }
+                            
+                        }
+                         
+                        }></BsArrowCounterclockwise>
+                        }
+                    
+                  </div>
                 </div>
              </div>
 
@@ -402,7 +525,6 @@ export default function Analisis() {
                         </div>
                         <div className='Container-horse-selected-buttons'>
                                 
-                                {/* <button className='Button-horse-selected bg-green'>Eliminar</button> */}
                                 <Select
                                   styles={styles}
                                   options = {Models}
@@ -411,7 +533,20 @@ export default function Analisis() {
                                   className="Button-horse-selected" 
                                   placeholder="Modelo"
                                 />
-                                <button className='Button-horse-selected bg-red bottom-10px'>Cancelar</button>
+                                <button className='Button-horse-selected bg-red bottom-10px' onClick={()=>{
+                                  setStatisticVideo(false);
+                                  setInputVideoFile(null);
+                                  setVideoMeta(null);
+                                  setTrimmedVideoFile(null);
+                                  setURL([]);
+                                  setTrimIsProcessing(false);
+                                  setRstart(0);
+                                  setRend(100);
+                                  setThumbNails([]);
+                                  setThumbnailIsProcessing(false);
+                                  setOriginalVideo(null);
+                                  setSelectHorse(false);
+                                }}>Cancelar</button>
                                 
                         </div>
                         <div className='Container-horse-selected-buttons'>
@@ -426,22 +561,10 @@ export default function Analisis() {
                                 </>
                                 }
                                 
-                                <button className='Button-horse-selected bg-orange' onClick={()=>{
-                                  setStatisticVideo(false);
-                                  setInputVideoFile(null);
-                                  setVideoMeta(null);
-                                  setTrimmedVideoFile(null);
-                                  setURL([]);
-                                  setTrimIsProcessing(false);
-                                  setRstart(0);
-                                  setRend(100);
-                                  setThumbNails([]);
-                                  setThumbnailIsProcessing(false);
-                                  setOriginalVideo(null);
-                                }}>Guardar</button>
+                                <button className='Button-horse-selected bg-orange' >Guardar</button>
                         </div>
                 </div>
-                {SelectHorse.bps!==null ?
+                {SelectHorse.bps!==null && typeModel==="Conteo" ?
                 <>
                 <div className='Container_Details_Video_2'>
                    <span className='white fz-big-2'>BPM</span>
@@ -452,6 +575,21 @@ export default function Analisis() {
                       <span className='white mb-small'>video resultante:</span>
                       <div className='Container-video-result'>
                             {SelectHorse.video_procesado!=="" ? <video crossorigin="anonymous" src={SelectHorse.video_procesado} className="video-marcadores" controls></video> : <></>}
+                      </div>
+                   </div>
+                </div>
+                </>
+                :
+                <>
+                </>
+                }
+                {SelectHorse.video_esqueleto!==null && typeModel==="Esqueleto" ?
+                <>
+                <div className='Container_Details_Video_2'>
+                   <div className='Container-video-result-esqueleto'>
+                      <span className='white mb-small'>video resultante:</span>
+                      <div className='Container-video-result'>
+                            {SelectHorse.video_esqueleto!=="" ? <video crossorigin="anonymous" src={SelectHorse.video_esqueleto} className="video-marcadores" controls></video> : <></>}
                       </div>
                    </div>
                 </div>

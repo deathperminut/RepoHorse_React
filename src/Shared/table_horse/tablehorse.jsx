@@ -169,8 +169,8 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                         <th className='titletext'>Andar</th>
                                         <th className='titletext'>Tipo</th>
                                         <th className='titletext'>BPM</th>
-                                        <th className='titletext'>Jinete</th>
-                                        <th className='titletext'>Videos</th>
+                                        <th className='titletext'>Video E.</th>
+                                        <th className='titletext'>Video C.</th>
                                         </tr>
                                     </thead>
                                     <tbody className='tablebody'>
@@ -183,7 +183,31 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                                 <td className='b-none text-table second-size pt-15px'>{'P'+Horse.andar}</td>
                                                 <td className='b-none text-table second-size pt-15px'>{Horse.tipo}</td>
                                                 <td className='b-none'>{Horse.bps!==null ? <><span className='BPMData middle-size'>{Horse.bps}</span></> :<></>}</td>
-                                                <td className='b-none'><span className='PointData middle-size pt-15px'>{Horse.caballista}</span></td>
+                                                <td className='b-none'>
+                                                    {Horse.video_esqueleto===""  ?
+                                                    <>
+                                                     
+                                                    </>
+                                                    :
+                                                    <>
+                                                    <div className='iconVideoPlayContainer' onClick={()=>{
+                                                      setShowVideo(true);
+                                                      console.log()
+                                                      if(!Horse.video_procesado.includes('http')){
+                                                        setVideoFile('http://34.125.24.248:8000/'+Horse.video_esqueleto);
+                                                      }else{
+                                                        setVideoFile(Horse.video_procesado);
+                                                      }
+                                                      
+                                                      
+                                                    }}>
+                                                      <BsFillPlayFill className='iconVideoPlay margin-left'/>
+                                                    </div>
+
+                                                    </>
+                                                    }
+                                                    
+                                                </td>
                                                 <td className='b-none'>
                                                     {Horse.video_procesado===""  ?
                                                     <>

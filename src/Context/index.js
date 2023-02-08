@@ -38,6 +38,11 @@ function ProviderContext(props){
     /* LOADING */
     const [loading,setLoading]=React.useState(false);
 
+    /* RESET VIDEO */
+    let [Video_original,setVideo_original]=React.useState(null);
+    let [RETURN_ORIGINAL,setRETURN_ORIGINAL]=React.useState(false);
+    let [cutCount,setcutCount]=React.useState(false);
+
 
     /* FUNCTIONS */
     const sleep = async (milliseconds) => {
@@ -57,7 +62,7 @@ function ProviderContext(props){
     let [horses,setHorses]=React.useState(null);
     let [showModal,setshowModal]=React.useState(true);
 
-    let [typeModel,setTypeModel]=React.useState("Batidas");
+    let [typeModel,setTypeModel]=React.useState("Tipo");
 
 
     let [eventChoosed,setEventChoosed]=React.useState({
@@ -213,8 +218,8 @@ function ProviderContext(props){
             StadisticVideo,setStatisticVideo,inputVideoFile, setInputVideoFile
             ,videoMeta, setVideoMeta , trimmedVideoFile, setTrimmedVideoFile,URL, setURL, trimIsProcessing, setTrimIsProcessing,rStart, setRstart,rEnd, setRend
             ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,loading,setLoading,originalVideo,setOriginalVideo,cutVideo,setCutVideo,
-            dowload,loadEventsForSelect,setDowload,sleep,events,setEvents,eventChoosed,setEventChoosed,selectEvents,setSelectEvents,FindEventId,SelectEvent,setSelectEvent
-            ,SelectHorse,setSelectHorse,CloseSesion,Loading_video,setLoading_video,showModal,setshowModal,typeModel,setTypeModel
+            dowload,loadEventsForSelect,setDowload,sleep,events,setEvents,eventChoosed,setEventChoosed,selectEvents,setSelectEvents,FindEventId,SelectEvent,setSelectEvent,cutCount,setcutCount
+            ,SelectHorse,setSelectHorse,CloseSesion,Loading_video,setLoading_video,showModal,setshowModal,typeModel,setTypeModel,Video_original,setVideo_original,RETURN_ORIGINAL,setRETURN_ORIGINAL
         }}>
             {props.children}
         </AppContext.Provider>

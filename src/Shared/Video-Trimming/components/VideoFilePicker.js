@@ -29,20 +29,11 @@ function VideoFilePicker({ showVideo, handleChange, children }) {
 
 
   /* USE CONTEXT */
-  let {SelectEvent,setSelectEvent,
-    SelectHorse,setSelectHorse}=React.useContext(AppContext);
+  let {SelectEvent,
+    SelectHorse,setVideo_original}=React.useContext(AppContext);
   
 
-  async function createFile(URL){
-      let response = await fetch(URL);
-      let data = await response.blob();
-      let metadata = {
-        type: 'video/mp4'
-      };
-      let file = new File([data], "video.mp4", metadata);
-      return file;
 
-  }
 
   const fileInputChange= async (event)=>{
 
@@ -52,6 +43,7 @@ function VideoFilePicker({ showVideo, handleChange, children }) {
     if(SelectEvent && SelectHorse!==false){
         if(event[0].type==="video/mp4"){
           let Object={target:{files:event}}
+          setVideo_original(Object);
           handleChange(Object);
         }else{
           Swal.fire({
@@ -76,6 +68,7 @@ function VideoFilePicker({ showVideo, handleChange, children }) {
    
         if(event.target.files[0].type==="video/mp4"){
           let Object={target:{files:event.target.files}}
+          setVideo_original(Object);
           handleChange(Object);
         }else{
           Swal.fire({
@@ -118,7 +111,6 @@ function VideoFilePicker({ showVideo, handleChange, children }) {
           <span className='textdragContainer'>{"o"}</span>
           <span className='buttonAnalisis btnHoverWhite'><MdOutlineDriveFolderUpload className='iconVideo'/><span className='textButtonVideo'>Subir video</span></span>
           {isSafari ? <input style={{visibility:"hidden"}} type="file" onChange={fileInputChange_safari}  /> : <></>}
-          
       </label>
     )}
     </Dropzone>

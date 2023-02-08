@@ -25,7 +25,7 @@ export default function Estadisticas() {
   /* APP CONTEXT */
   let {
     events,
-    setSelectEvent,
+    setSelectEvent,setcutCount,
     setSelectHorse,
     StadisticVideo,setStatisticVideo, setInputVideoFile
       ,setVideoMeta , setTrimmedVideoFile, setURL, setTrimIsProcessing, setRstart, setRend
@@ -103,6 +103,7 @@ export default function Estadisticas() {
     setOriginalVideo(null);
     setSelectEvent(false);
     setSelectHorse(false);
+    setcutCount(false);
   },[])
   
 
