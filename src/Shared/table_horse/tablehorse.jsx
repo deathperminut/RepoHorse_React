@@ -195,7 +195,7 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                                       setShowVideo(true);
                                                       console.log()
                                                       if(!Horse.video_esqueleto_guardado.includes('http')){
-                                                      setVideoFile('http://34.125.24.248:8000/'+Horse.video_esqueleto_guardado);
+                                                      setVideoFile('https://gpu.orcas-buho.com.co/'+Horse.video_esqueleto_guardado);
                                                       }else{
                                                         setVideoFile(Horse.video_esqueleto_guardado);
                                                       }

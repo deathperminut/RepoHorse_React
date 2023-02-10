@@ -41,7 +41,8 @@ const styles = {
   option: (base) => ({
       ...base,
       cursor: "pointer",
-      background: "#e7d6a7",   // this was the mistake (I needed to remove this)
+      background: "white",
+      color:'black !important',   // this was the mistake (I needed to remove this)
       ":hover": {
          backgroundColor: "#FF9300",
          color:'white',
@@ -426,18 +427,7 @@ export default function Analisis() {
              setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
              setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
            }
-           setStatisticVideo(false);
-          setInputVideoFile(null);
-          setVideoMeta(null);
-          setTrimmedVideoFile(null);
-          setURL([]);
-          setTrimIsProcessing(false);
-          setRstart(0);
-          setRend(100);
-          setThumbNails([]);
-          setThumbnailIsProcessing(false);
-          setOriginalVideo(null);
-          setSelectHorse(false);
+          
         }
       
       }
@@ -512,30 +502,6 @@ export default function Analisis() {
                 setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
                 setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
               }
-
-              setStatisticVideo(false);
-              setInputVideoFile(null);
-              setVideoMeta(null);
-              setTrimmedVideoFile(null);
-              setURL([]);
-              setTrimIsProcessing(false);
-              setRstart(0);
-              setRend(100);
-              setThumbNails([]);
-              setThumbnailIsProcessing(false);
-              setOriginalVideo(null);
-              setSelectHorse(false);
-              
-              
-
-        
-              
-
-
-
-            
-
-
         }
       
       }
@@ -718,7 +684,11 @@ export default function Analisis() {
                 {SelectHorse.video_esqueleto!==null && typeModel==="Esqueleto" ?
                 <>
                 <div className='Container_Details_Video_2'>
-                   <div className='Container-video-result-esqueleto'>
+                   <span className='white fz-big-2' style={{visibility:'hidden'}}>BPM</span>
+                    <div className='Container-result-bpm' style={{visibility:'hidden'}}>
+                        <span className='bpm-result-text'>{SelectHorse.video_procesado==="" ? <>---</> : <>{SelectHorse.bps}</>}</span>
+                   </div>
+                   <div className='Container-video-result-bpm'>
                       <span className='white mb-small'>video resultante:</span>
                       <div className='Container-video-result'>
                             {SelectHorse.video_esqueleto!=="" ? <video crossorigin="anonymous" src={SelectHorse.video_esqueleto} className="video-marcadores" controls></video> : <></>}

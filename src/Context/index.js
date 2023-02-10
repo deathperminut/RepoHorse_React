@@ -226,10 +226,13 @@ function ProviderContext(props){
                 }
                 
             }
+            console.log("eventos mas caballos: ",eventsCopy);
+            setEvents(eventsCopy);
+        }else{
+            console.log("eventos mas caballos: ",eventsCopy);
             setEvents(eventsCopy);
         }
-        console.log("eventos mas caballos: ",eventsCopy);
-        setEvents(eventsCopy);
+        
         
     }
 

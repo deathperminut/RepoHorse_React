@@ -601,6 +601,9 @@ select option:focus{
   outline: none !important;
   box-shadow: none !important;
 }
+.mb-40px{
+    margin-bottom: 150px !important;
+}
 
 .competidoresContainer .css-1pahdxg-control{
     background-color: rgba(255, 255, 255, 1) !important;

@@ -60,7 +60,8 @@ const styles = {
   option: (base) => ({
       ...base,
       cursor: "pointer",
-      background: "#e7d6a7",   // this was the mistake (I needed to remove this)
+      background: "white",
+      color:'black !important',   // this was the mistake (I needed to remove this)
       ":hover": {
          backgroundColor: "#FF9300",
          color:'white',
@@ -1357,7 +1358,7 @@ export default function Competiciones() {
                </>
                :
                <>
-               <form className='RegisterHorseForm mr-18px'>
+               <form className='RegisterHorseForm mr-18px mb-40px'>
                       <div className='CloseContainerHorse'>
                             {EditHorseButton===true  ?
                               <>
