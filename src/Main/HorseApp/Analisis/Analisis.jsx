@@ -42,7 +42,8 @@ const styles = {
       ...base,
       cursor: "pointer",
       background: "white",
-      color:'black !important',   // this was the mistake (I needed to remove this)
+      color:'black !important', 
+      fontSize:'0.7rem !important',
       ":hover": {
          backgroundColor: "#FF9300",
          color:'white',
