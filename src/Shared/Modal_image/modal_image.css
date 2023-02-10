@@ -1,5 +1,5 @@
 #modal_center .modal-content{
-    background-color: #134D44 !important;
+    background-color: #11342F !important;
     width: 740px !important;
     height: 500px !important;
     position: relative;
@@ -42,8 +42,38 @@
 .imageClass{
     display: block!important;
     position: relative !important;
-    left: 180px !important;
-    width: 50% !important;
+    left: 124px !important;
+    width: 65% !important;
+    height: 320px !important;
+    border-radius: 20px;
+}
+.imageClass_2{
+    display: block!important;
+    position: relative !important;
+    left: 124px !important;
+    width: 65% !important;
     height: 300px !important;
-    border-radius: 20px !important;
+
+}
+.textImage_1{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    color: white;
+    font-size: 0.8rem;
+    justify-content: center;
+    /* left: 10px;*/
+
+}
+.textImage_2{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    left: 20px;
+    position: relative;
+    color: white;
+    font-size: 0.8rem;
+    justify-content: center;
+    text-align: center;
 }
