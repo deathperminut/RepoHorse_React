@@ -77,3 +77,16 @@
     justify-content: center;
     text-align: center;
 }
+
+
+@media (min-width: 576px){
+    #modal_center .modal {
+        --bs-modal-margin: 0rem !important;
+        --bs-modal-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+}
+#modal_center .modal {
+    --bs-modal-width: 740px !important;
+    --bs-modal-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    margin-left: 30px;
+}

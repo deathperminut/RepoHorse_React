@@ -618,28 +618,7 @@
         height: 100vh !important;
         
      } 
-    /*SELECT CONTAINET*/
-    /* .SelectContainer{
-    padding: 10pt;
-    padding-top: 30pt;
-    width: 81vw;
-    min-width: none;
-    max-width: none;
-    height: 20%;
-    order: 1;
-    background-color: #11342F;
-    border-left:0.5pt solid rgb(90, 68, 38);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-} */
-/* .selectAnalisis{
-    width: 75%;
-}
-.videoContainer{
-    width: 35rem;
-    min-width: 35rem;
-} */
+
 
 }
 
@@ -671,36 +650,8 @@
         height: 100% !important;
         width: calc( 100% - 19rem );
     }
-    /* .SelectContainer{
-        width: 100vw; 
-        
-    } */
-    /* .videoContainer{
-        width: 25rem;
-        min-width: 25rem;
-        height: 27rem;
-    }
-    
-    .optionsContainer{
-        flex-direction: row;
-    }
-    .optionsContainer{
-        max-width: 20rem;
-        width: 10rem; 
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
 
-    }
-    .option{
-        margin-left: 0.4rem;
-        margin-bottom: 0.4rem;
-        width: 50%;
-        height: 2rem;
-        border-radius: 10pt;
-        background-color: #134D44;
-        padding-top: 20px;
-        padding-bottom: 20px;
-      }  */
 }
+
+
 
