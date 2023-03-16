@@ -216,7 +216,17 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                                     </>
                                                     :
                                                     <>
-                                                    <div className='iconVideoPlayContainer pr-10' onClick={()=>{}}>
+                                                    <div className='iconVideoPlayContainer pr-10' onClick={()=>{
+                                                      setShowVideo(true);
+                                                      console.log()
+                                                      if(!Horse.video_esqueleto_guardado.includes('https')){
+                                                        setVideoFile('https://back.orcas-buho.com.co/'+Horse.video_esqueleto_guardado);
+                                                      }else{
+                                                        setVideoFile(Horse.video_esqueleto_guardado);
+                                                      }
+                                                      
+                                                      
+                                                    }}>
                                                       <BsFillPlayFill className='iconVideoPlay margin-left'/>
                                                     </div>
 
