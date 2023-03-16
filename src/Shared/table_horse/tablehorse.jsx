@@ -172,7 +172,7 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                         <th className='titletext'>Video C.</th>
                                         <th className='titletext'>Video E.</th>
                                         <th className='titletext'>Video EO.</th>
-                                        <th className='titletext'>Excel</th>
+                                        <th className='titletext'>Coordenadas</th>
                                         </tr>
                                     </thead>
                                     <tbody className='tablebody'>
