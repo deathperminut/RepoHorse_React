@@ -524,8 +524,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 150px;
-    height: 80px;
+    padding: 5px;
+    min-width: 190px;
+    max-height: 90px;
     background-color: #FF9300;
     border-radius: 17px;
 }
@@ -570,7 +571,7 @@
 .Container-video-result-bpm{
     display: flex;
     flex-direction: column;
-    margin-left: 100px;
+    margin-left: 50px;
 }
 .Container-video-result-esqueleto{
     display: flex;

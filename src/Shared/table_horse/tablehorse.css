@@ -11,6 +11,10 @@
 .pt-15px{
     padding-top: 15px !important;
 }
+.pr-10{
+    position: relative;
+    left: 10px;
+}
 .max-140{
     max-width: 140px;
 }

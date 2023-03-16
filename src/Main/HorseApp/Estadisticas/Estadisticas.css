@@ -318,6 +318,16 @@
   align-items: center;
   cursor: pointer;
 }
+.iconVideoPlayContainer-excel{
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 2rem;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
 .iconVideoPlay{
   color:#FF9300 !important;
  
@@ -330,6 +340,8 @@
   background-color: #FF9300;
   border-radius: 17px;
   color: white;
+  position: relative;
+  top: 4px;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
   padding-left: 10px;

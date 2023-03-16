@@ -14,6 +14,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import ListGroup from 'react-bootstrap/ListGroup'; 
 import {AiFillCloseCircle} from 'react-icons/ai';
+import {FaRegFileExcel} from 'react-icons/fa';
 // import  Video from  '../../Sources/Video/MessiCampeon.mp4';
 
 export default function Tablehorse({Event,filterValue,DeleteEvent}) {
@@ -167,10 +168,11 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                         <th className='titletext'>Nombre</th>
                                         <th className='titletext'>Edad</th>
                                         <th className='titletext'>Andar</th>
-                                        <th className='titletext'>Tipo</th>
                                         <th className='titletext'>BPM</th>
-                                        <th className='titletext'>Video E.</th>
                                         <th className='titletext'>Video C.</th>
+                                        <th className='titletext'>Video E.</th>
+                                        <th className='titletext'>Video EO.</th>
+                                        <th className='titletext'>Excel</th>
                                         </tr>
                                     </thead>
                                     <tbody className='tablebody'>
@@ -181,36 +183,7 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                                 <td className='NameTable b-none'><img  crossorigin="anonymous" src={Horse.imagen} className='HorseImage'/><span className='NameText middle-size max-140'>{Horse.nombre}</span></td>
                                                 <td className='b-none text-table second-size pt-15px'>{Horse.edad+' meses'}</td>
                                                 <td className='b-none text-table second-size pt-15px'>{'P'+Horse.andar}</td>
-                                                <td className='b-none text-table second-size pt-15px'>{Horse.tipo}</td>
-                                                <td className='b-none'>{Horse.bps!==null ? <><span className='BPMData middle-size'>{Horse.bps}</span></> :<></>}</td>
-                                                <td className='b-none'>
-                                                    {Horse.video_esqueleto_guardado==="" || Horse.video_esqueleto_guardado===null  ?
-                                                    <>
-                                                     
-                                                    </>
-                                                    :
-                                                    <>
-                                                    <div className='iconVideoPlayContainer' onClick={()=>{
-                                                      console.log("CABALLO: ",Horse)
-                                                      setShowVideo(true);
-                                                      console.log()
-                                                      if(!Horse.video_esqueleto_guardado.includes('http')){
-                                                      setVideoFile('https://gpu.orcas-buho.com.co/'+Horse.video_esqueleto_guardado);
-                                                      }else{
-                                                        setVideoFile(Horse.video_esqueleto_guardado);
-                                                      }
-                                                      
-                                                      
-                                                      
-                                                      
-                                                    }}>
-                                                      <BsFillPlayFill className='iconVideoPlay margin-left'/>
-                                                    </div>
-
-                                                    </>
-                                                    }
-                                                    
-                                                </td>
+                                                <td className='b-none'>{Horse.video_guardado==="" || Horse.video_guardado===null ? <></> : <span className='BPMData middle-size'>{Horse.bps}</span>}</td>
                                                 <td className='b-none'>
                                                     {Horse.video_guardado==="" || Horse.video_guardado===null  ?
                                                     <>
@@ -218,7 +191,7 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                                     </>
                                                     :
                                                     <>
-                                                    <div className='iconVideoPlayContainer' onClick={()=>{
+                                                    <div className='iconVideoPlayContainer pr-10' onClick={()=>{
                                                       setShowVideo(true);
                                                       console.log()
                                                       if(!Horse.video_guardado.includes('https')){
@@ -236,6 +209,84 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                                     }
                                                     
                                                 </td>
+                                                <td className='b-none'>
+                                                    {Horse.video_esqueleto_guardado==="" || Horse.video_esqueleto_guardado===null  ?
+                                                    <>
+                                                     
+                                                    </>
+                                                    :
+                                                    <>
+                                                    <div className='iconVideoPlayContainer pr-10' onClick={()=>{}}>
+                                                      <BsFillPlayFill className='iconVideoPlay margin-left'/>
+                                                    </div>
+
+                                                    </>
+                                                    }
+                                                    
+                                                </td>
+                                                <td className='b-none'>
+                                                    {Horse.video_esqueleto_guardado==="" || Horse.video_esqueleto_guardado===null  ?
+                                                    <>
+                                                     
+                                                    </>
+                                                    :
+                                                    <>
+                                                    <div className='iconVideoPlayContainer pr-10' onClick={()=>{
+                                                      console.log("CABALLO: ",Horse)
+                                                      setShowVideo(true);
+                                                      console.log()
+                                                      if(!Horse.video_esqueleto_guardado.includes('http')){
+                                                      setVideoFile('https://back.orcas-buho.com.co/'+Horse.video_analisis);
+                                                      }else{
+                                                        setVideoFile(Horse.video_analisis);
+                                                      }
+                                                    }}>
+                                                      <BsFillPlayFill className='iconVideoPlay margin-left'/>
+                                                    </div>
+
+                                                    </>
+                                                    }
+                                                    
+                                                </td>
+                                                <td className='b-none'>
+                                                  {Horse.video_esqueleto_guardado==="" || Horse.video_esqueleto_guardado===null  ?
+                                                    <>
+                                                     
+                                                    </>
+                                                    :
+                                                    <>
+                                                    <div className='iconVideoPlayContainer-excel' onClick={()=>{ 
+
+                                                      /* GESTIONAMOS LA URL */
+                                                      
+                                                      let urlObject=null;
+                                                      if(!Horse.video_analisis.includes('http')){
+
+                                                       urlObject='https://back.orcas-buho.com.co/'+Horse.excel_analisis;
+
+                                                      }else{
+
+                                                        urlObject=Horse.excel_analisis;
+                                                      
+                                                      }
+
+                                                      /* DESCARGAR */
+                                                      const link = document.createElement('a');
+                                                      link.href = urlObject;
+                                                      link.download = 'Coordenadas.xlsx';
+                                                      document.body.appendChild(link);
+                                                      link.click();
+                                                      link.remove();
+
+
+                                                     }}>
+                                                      <FaRegFileExcel className='iconVideoPlay'/>
+                                                    </div>
+                                                    </>
+                                                  }
+                                                    
+                                                </td>
+                                                
                                             </tr>
                                         );
                                             
