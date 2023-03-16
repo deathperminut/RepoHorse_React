@@ -481,9 +481,11 @@
     font-weight: 700;
 }
 .Container-horse-selected-buttons{
+
     height: 100%;
     display: flex;
     flex-direction: column;
+    
 }
 .Button-horse-selected{
     border-radius: 20px;
@@ -503,7 +505,7 @@
 }
 .bottom-10px{
     position: relative;
-    bottom: 13px;
+    bottom: 14px;
 }
 .bg-orange{
   background-color: #FF9300;
