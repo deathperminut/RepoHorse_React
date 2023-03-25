@@ -143,7 +143,7 @@ export default function Analisis() {
   const changeDrop=(event)=>{
     setCategory(event);
     if(event==='P1'){
-      setProcess(Choose.Horses.filter((obj)=>(obj.obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0 ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+      setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0 ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
       setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0 ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
     }else if (event==="P2"){
       setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0 ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
