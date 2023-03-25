@@ -118,11 +118,9 @@ export default function Analisis() {
      if(select){
       Value=event.value;
       let feria=FindEventId(event.value);
-      let process_2=feria.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === "1");
+      let process_2=feria.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0 ) && obj.andar.toString() === "1");
       setProcess(process_2);
-      setUnprocess(feria.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === "1"));
-      console.log("PROCESADOS: ",feria.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === "1"))
-      console.log("NO PROCESADOS: ",feria.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === "1"))
+      setUnprocess(feria.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 && obj.video_guardado.length===0 ) && obj.andar.toString() === "1"));
       setChoose(FindEventId(event.value));
      }
      console.log(!SelectEvent);
@@ -131,7 +129,7 @@ export default function Analisis() {
   }
 
   const getSelectHorse=(Horse)=>{
-    setSelectHorse(Horse); 
+    setSelectHorse({...Horse,['bps']:"",['video_procesado']:"",['video_esqueleto']:""}); 
   }
 
 
@@ -145,19 +143,19 @@ export default function Analisis() {
   const changeDrop=(event)=>{
     setCategory(event);
     if(event==='P1'){
-      setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-      setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+      setProcess(Choose.Horses.filter((obj)=>(obj.obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0 ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+      setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0 ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
     }else if (event==="P2"){
-      setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-      setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+      setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0 ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+      setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0 ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
 
     }else if (event==="P3"){
 
-      setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-      setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+      setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0  ) && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+      setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0  ) && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
     }else{
-      setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-      setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" || obj.video_guardado==="" ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+      setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0  ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+      setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0  ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
     }
     
   }
@@ -165,19 +163,19 @@ export default function Analisis() {
   const readInput=(event)=>{
      setValueInput(event.target.value);
      if(Category==='P1'){
-      setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
-      setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
+      setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0  ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
+      setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0  ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
     }else if (Category==="P2"){
-      setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
-      setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
+      setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0  ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
+      setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0  ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
 
     }else if (Category==="P3"){
 
-      setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
-      setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
+      setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0  ) && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
+      setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0  ) && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
     }else{
-      setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
-      setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
+      setProcess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0  ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
+      setUnprocess(Choose.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0  ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(event.target.value.toLowerCase())));
     }
 
   }
@@ -414,19 +412,19 @@ export default function Analisis() {
      //       /* CAMBIAMOS EL ARREGLO  */
 
            if(Category==='P1'){
-             setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-             setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+             setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0  ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+             setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0  ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
            }else if (Category==="P2"){
-             setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-             setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+             setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0  ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+             setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0  ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
        
            }else if (Category==="P3"){
        
-             setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-             setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+             setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0  ) && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+             setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0  ) && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
            }else{
-             setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-             setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+             setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0  ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+             setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0  ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
            }
           
         }
@@ -489,19 +487,19 @@ export default function Analisis() {
         //       /* CAMBIAMOS EL ARREGLO  */
 
               if(Category==='P1'){
-                setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-                setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0  ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0  ) && obj.andar.toString() === '1' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
               }else if (Category==="P2"){
-                setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-                setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0  ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0  ) && obj.andar.toString() === '2' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
           
               }else if (Category==="P3"){
           
-                setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-                setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0  ) && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0  ) && obj.andar.toString() === '3' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
               }else{
-                setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado!=="" || obj.video_guardado!=="" ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
-                setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado==="" && obj.video_guardado==="" ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                setProcess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length!==0 || obj.video_guardado.length!==0  ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
+                setUnprocess(Copy.Horses.filter((obj)=>(obj.video_esqueleto_guardado.length===0 || obj.video_guardado.length===0  ) && obj.andar.toString() === '4' && obj.nombre.toLowerCase().includes(valueInput.toLowerCase())));
               }
         }
       
@@ -668,7 +666,7 @@ export default function Analisis() {
                 <div className='Container_Details_Video_2'>
                    <span className='white fz-big-2'>BPM</span>
                    <div className='Container-result-bpm'>
-                       <span className='bpm-result-text'>{SelectHorse.video_procesado==="" ? <>---</> : <>{SelectHorse.bps}</>}</span>
+                       <span className='bpm-result-text'>{SelectHorse.video_procesado==="" ? <></> : <>{SelectHorse.bps}</>}</span>
                    </div>
                    <div className='Container-video-result-bpm'>
                       <span className='white mb-small'>video resultante:</span>

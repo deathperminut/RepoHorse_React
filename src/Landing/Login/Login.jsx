@@ -17,7 +17,6 @@ function Login() {
             <div className='BackContainer positionAbsolute' onClick={()=>navigate('/Landing/Inicio')} >
               <AiOutlineLeft className='orange'/>
             </div>
-
             <LoginInfo/>
          </div>
     );

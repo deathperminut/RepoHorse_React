@@ -170,6 +170,91 @@ function ProviderContext(props){
         return result;
     }
 
+    /* FIND EVENT FOR STADISTIC */
+
+    const FindEventId_Stadistic=(id)=>{
+
+        let result=null;
+        for (var i=0;i<events.length;i++){
+            if(events[i].id===id){
+                result={...events[i]};
+                break;
+            }
+        } 
+
+        /* MIRAMOS CABALLOS */
+
+        let Horses=result.Horses;
+        if(Horses.length===0){
+            return result
+        }else{
+
+            let NewHorsesList=[];
+
+            for (var i=0;i<Horses.length;i++){
+                console.log("CABALLOS ANALISIS: ",Horses[i])
+                /* MIRAMOS CUAL DE LAS 2 LISTAS ES MAS LARGA */
+                let BPS=Horses[i].video_guardado;
+                let BPS_DATA=Horses[i].bps_guardado;
+                let ESQUELETO=Horses[i].video_esqueleto_guardado;
+                let ESQUELETO_EXCEL=Horses[i].excel_analisis_guardado;
+
+                let lengthBPS=BPS.length;
+                let lengthESQUELETO=ESQUELETO.length;
+
+                if(lengthBPS==0 && lengthESQUELETO==0){
+                    NewHorsesList.push({...Horses[i],['bps']:"",['video_guardado']:'',['video_esqueleto_guardado']:'',['excel_analisis']:'',}); // NO HAY ANALISIS SE MANTIENE IGUAL
+                }else if(lengthBPS>lengthESQUELETO){
+
+                    for (var a=0;a<lengthBPS;a++){
+                       
+                       let Horse_={...Horses[i],['bps']:"",['video_guardado']:'',['video_esqueleto_guardado']:'',['excel_analisis']:''};
+
+                       Horse_['bps']=BPS_DATA[a];
+                       Horse_['video_guardado']=BPS[a];
+
+                       if (i<lengthESQUELETO){
+                        Horse_['video_esqueleto_guardado']=ESQUELETO[a];
+                        Horse_['excel_analisis']=ESQUELETO_EXCEL[a];
+                       }
+
+                       NewHorsesList.push(Horse_)
+
+
+
+                    }   
+
+                }else{
+
+                    for (var a=0;a<lengthESQUELETO;a++){
+                       
+                        let Horse_={...Horses[i],['bps']:"",['video_guardado']:'',['video_esqueleto_guardado']:'',['excel_analisis']:''};
+ 
+                         Horse_['video_esqueleto_guardado']=ESQUELETO[a];
+                         Horse_['excel_analisis']=ESQUELETO_EXCEL[a];
+ 
+                        if (a<lengthESQUELETO){
+
+                            Horse_['bps']=BPS_DATA[a];
+                            Horse_['video_guardado']=BPS[a];
+                        }
+
+                        NewHorsesList.push(Horse_)
+ 
+                     } 
+
+                }
+
+            
+
+            }
+            console.log("LISTA GENERADA DE CABALLOS: ",NewHorsesList);
+            return {...result,['Horses']:NewHorsesList};
+            
+
+        }
+        
+    }
 
     /* UBICATE HORSES */
 
@@ -195,25 +280,7 @@ function ProviderContext(props){
                            hs={...hs,['imagen']:'https://back.orcas-buho.com.co/'+hs['imagen']} 
                         }
 
-                        if(hs.video_original !==""){
-                            hs={...hs,['video_original']:''}  
-                        }
-
-                        if(hs.video_procesado!==""){
-                            hs={...hs,['video_procesado']:''}   
-                        }
-                        if(hs.video_esqueleto!==""){
-                            hs={...hs,['video_esqueleto']:''}   
-                        }
                         
-                        if(hs.video_esqueleto_guardado!==""){
-                            hs={...hs,['video_esqueleto_guardado']:hs['video_esqueleto_guardado']} 
-                        }
-                        
-
-                        if(hs.video_guardado!==""){
-                            hs={...hs,['video_guardado']:'https://back.orcas-buho.com.co/'+hs['video_guardado']} 
-                        }
                         console.log("CABALLOS EJEMPLO: ",hs);
                         ArrayHorses.push(hs);
                     }
@@ -249,7 +316,7 @@ function ProviderContext(props){
             ,videoMeta, setVideoMeta , trimmedVideoFile, setTrimmedVideoFile,URL, setURL, trimIsProcessing, setTrimIsProcessing,rStart, setRstart,rEnd, setRend
             ,thumbNails, setThumbNails,thumbnailIsProcessing, setThumbnailIsProcessing,loading,setLoading,originalVideo,setOriginalVideo,cutVideo,setCutVideo,
             dowload,loadEventsForSelect,setDowload,sleep,events,setEvents,eventChoosed,setEventChoosed,selectEvents,setSelectEvents,FindEventId,SelectEvent,setSelectEvent,cutCount,setcutCount
-            ,SelectHorse,setSelectHorse,CloseSesion,Loading_video,setLoading_video,showModal,setshowModal,typeModel,setTypeModel,Video_original,setVideo_original,RETURN_ORIGINAL,setRETURN_ORIGINAL
+            ,SelectHorse,setSelectHorse,CloseSesion,Loading_video,setLoading_video,showModal,setshowModal,typeModel,setTypeModel,Video_original,setVideo_original,RETURN_ORIGINAL,setRETURN_ORIGINAL,FindEventId_Stadistic
         }}>
             {props.children}
         </AppContext.Provider>

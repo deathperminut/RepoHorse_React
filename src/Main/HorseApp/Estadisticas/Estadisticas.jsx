@@ -24,6 +24,7 @@ export default function Estadisticas() {
 
   /* APP CONTEXT */
   let {
+    FindEventId_Stadistic,
     events,
     setSelectEvent,setcutCount,
     setSelectHorse,
@@ -61,7 +62,7 @@ export default function Estadisticas() {
   
   const AppendEvent_2=(id)=>{
     let List_Events=[...ListEvents];
-    let Event=FindEventId(id);
+    let Event=FindEventId_Stadistic(id);
     List_Events.push(Event);
     setListEvents(List_Events);
   }

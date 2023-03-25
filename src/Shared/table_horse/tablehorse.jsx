@@ -128,29 +128,37 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
              <div className='Est-Container-3' >
                           <ListGroup horizontal defaultActiveKey="#link1">
                             <ListGroup.Item action eventKey="#linkAll" onClick={()=>{
+                                setHorses([]);
                                 setHorses(Event.Horses);
                                 setAndar(0);
                               }}>Todos</ListGroup.Item>
                             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar del Trote y Galope</Tooltip>}>
                               <ListGroup.Item action eventKey="#link1" onClick={()=>{
+                                console.log(Event,Event.Horses.filter((obj)=>  obj.andar.toString() === "1" && obj.nombre.toString().toLowerCase().includes(filterValueHorse.toLowerCase())))
+                                setHorses([]);
                                 setHorses(Event.Horses.filter((obj)=> obj.andar.toString() === "1" && obj.nombre.toString().toLowerCase().includes(filterValueHorse.toLowerCase())));
                                 setAndar(1);
                               }}>Andar P1</ListGroup.Item>
                             </OverlayTrigger>
                             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar de la Trocha y Galope</Tooltip>}>
                               <ListGroup.Item action eventKey="#link2"  onClick={()=>{
+                                console.log(Event,Event.Horses.filter((obj)=>  obj.andar.toString() === "2" && obj.nombre.toString().toLowerCase().includes(filterValueHorse.toLowerCase())))
+                                setHorses([]);
                                 setHorses(Event.Horses.filter((obj)=> obj.andar.toString() === "2" && obj.nombre.toString().toLowerCase().includes(filterValueHorse.toLowerCase())));
                                 setAndar(2);
                               }}>Andar P2</ListGroup.Item>
                             </OverlayTrigger>
                             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar de la Trocha Pura Colombiana</Tooltip>}>
                               <ListGroup.Item action eventKey="#link3"  onClick={()=>{
+                                setHorses([]);
                                 setHorses(Event.Horses.filter((obj)=> obj.andar.toString() === "3" && obj.nombre.toString().toLowerCase().includes(filterValueHorse.toLowerCase())));
                                 setAndar(3);
                               }}>Andar P3</ListGroup.Item>
                             </OverlayTrigger>
                             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" className='tooltipEdit'>Ejemplares del andar del Paso Fino Colombiano</Tooltip>}>
                               <ListGroup.Item action eventKey="#link4"  onClick={()=>{
+                                console.log(Event,Event.Horses.filter((obj)=>  obj.andar.toString() === "4" && obj.nombre.toString().toLowerCase().includes(filterValueHorse.toLowerCase())))
+                                setHorses([]);
                                 setHorses(Event.Horses.filter((obj)=>  obj.andar.toString() === "4" && obj.nombre.toString().toLowerCase().includes(filterValueHorse.toLowerCase())));
                                 setAndar(4);
                               }}>Andar P4</ListGroup.Item>
@@ -176,10 +184,11 @@ export default function Tablehorse({Event,filterValue,DeleteEvent}) {
                                         </tr>
                                     </thead>
                                     <tbody className='tablebody'>
-                                        {horses.map(Horse=>{
+                                        {horses.map((Horse,index)=>{
+                                          console.log("Caballo ciclo:",Horse)
                                         return(
                                             
-                                            <tr key={Horse.id}>
+                                            <tr key={index}>
                                                 <td className='NameTable b-none'><img  crossorigin="anonymous" src={Horse.imagen} className='HorseImage'/><span className='NameText middle-size max-140'>{Horse.nombre}</span></td>
                                                 <td className='b-none text-table second-size pt-15px'>{Horse.edad+' meses'}</td>
                                                 <td className='b-none text-table second-size pt-15px'>{'P'+Horse.andar}</td>
