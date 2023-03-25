@@ -121,21 +121,6 @@ export default function Estadisticas() {
                   return (
                       <div className='InfoContainer'>
                       <div  className='InfoContainer-2' key={Event.id}>
-                        <div className='Est-Container-1' >
-                              <h1 className='Est-Container-1-text bold-size margin-left-15px'  >Total competidores</h1>
-                              <div className='Est-Container-1-container-count display-none'  >
-                                  <h1 className='Est-Container-1-container-count-text big-size'>{Event.Horses.length}</h1>
-                              </div>
-
-                          <div className='Est-Container-1-1' >
-                              <h1 className='Est-Container-1-text bold-size margin-left-15px bold-size' >Total competidores</h1>
-                              <div className='Est-Container-1-container-count' >
-                                  <h1 className='Est-Container-1-container-count-text big-size'>{Event.Horses.length}</h1>
-                              </div>
-                          </div>
-                          <button className='buttonEvent center buttonEventEst' ><span className="tw-500 font-size-15pt  c-orange mr-3px mt-3px" >+</span><span className="c-orange font-size-10pt middle-size" >Añadir otro</span></button>
-                          
-                        </div>
                         <Tablehorse Event={Event}   DeleteEvent={DeleteEvent} />
                         
                       </div>
