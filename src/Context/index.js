@@ -192,30 +192,31 @@ function ProviderContext(props){
             let NewHorsesList=[];
 
             for (var i=0;i<Horses.length;i++){
-                console.log("CABALLOS ANALISIS: ",Horses[i])
                 /* MIRAMOS CUAL DE LAS 2 LISTAS ES MAS LARGA */
                 let BPS=Horses[i].video_guardado;
                 let BPS_DATA=Horses[i].bps_guardado;
                 let ESQUELETO=Horses[i].video_esqueleto_guardado;
                 let ESQUELETO_EXCEL=Horses[i].excel_analisis_guardado;
+                let ESQUELETO_CO=Horses[i].video_analisis_guardado;
 
                 let lengthBPS=BPS.length;
                 let lengthESQUELETO=ESQUELETO.length;
 
                 if(lengthBPS==0 && lengthESQUELETO==0){
-                    NewHorsesList.push({...Horses[i],['bps']:"",['video_guardado']:'',['video_esqueleto_guardado']:'',['excel_analisis']:'',}); // NO HAY ANALISIS SE MANTIENE IGUAL
+                    NewHorsesList.push({...Horses[i],['bps']:"",['video_guardado']:'',['video_analisis']:"",['video_esqueleto_guardado']:'',['excel_analisis']:'',}); // NO HAY ANALISIS SE MANTIENE IGUAL
                 }else if(lengthBPS>lengthESQUELETO){
 
                     for (var a=0;a<lengthBPS;a++){
                        
-                       let Horse_={...Horses[i],['bps']:"",['video_guardado']:'',['video_esqueleto_guardado']:'',['excel_analisis']:''};
+                       let Horse_={...Horses[i],['bps']:"",['video_guardado']:'',['video_esqueleto_guardado']:'',['excel_analisis']:'',['video_analisis']:""};
 
                        Horse_['bps']=BPS_DATA[a];
                        Horse_['video_guardado']=BPS[a];
 
-                       if (i<lengthESQUELETO){
+                       if (a<lengthESQUELETO){
                         Horse_['video_esqueleto_guardado']=ESQUELETO[a];
                         Horse_['excel_analisis']=ESQUELETO_EXCEL[a];
+                        Horse_['video_analisis']=ESQUELETO_CO[a];
                        }
 
                        NewHorsesList.push(Horse_)
@@ -232,6 +233,7 @@ function ProviderContext(props){
  
                          Horse_['video_esqueleto_guardado']=ESQUELETO[a];
                          Horse_['excel_analisis']=ESQUELETO_EXCEL[a];
+                         Horse_['video_analisis']=ESQUELETO_CO[a];
  
                         if (a<lengthESQUELETO){
 
