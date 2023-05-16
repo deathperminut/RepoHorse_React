@@ -1,0 +1,92 @@
+#modal_center .modal-content{
+    background-color: #11342F !important;
+    width: 740px !important;
+    height: 500px !important;
+    position: relative;
+    left: 0px !important;
+}
+#modal_center .modal-title {
+    position: relative;
+    left: 240px !important;
+}
+.align-center{
+  
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.carousel-inner .active{
+    background-color: transparent !important;
+    border-radius: 0pt !important;
+    padding-top: 0pt !important;
+    padding-bottom: 0pt !important;
+    padding-left: 0pt !important;
+    padding-right: 0pt !important;
+}
+.carousel-indicators{
+    position: absolute !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    z-index: 2 !important;
+    display: flex !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin-right: 15% !important;
+    /* margin-top: 8rem; */
+    /* position: relative; */
+    top: 350px !important;
+    margin-left: 15% !important;
+    list-style: none !important;
+}
+.imageClass{
+    display: block!important;
+    position: relative !important;
+    left: 124px !important;
+    width: 65% !important;
+    height: 320px !important;
+    border-radius: 20px;
+}
+.imageClass_2{
+    display: block!important;
+    position: relative !important;
+    left: 124px !important;
+    width: 65% !important;
+    height: 300px !important;
+
+}
+.textImage_1{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    color: white;
+    font-size: 0.8rem;
+    justify-content: center;
+    /* left: 10px;*/
+
+}
+.textImage_2{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    left: 20px;
+    position: relative;
+    color: white;
+    font-size: 0.8rem;
+    justify-content: center;
+    text-align: center;
+}
+
+
+@media (min-width: 576px){
+    #modal_center .modal {
+        --bs-modal-margin: 0rem !important;
+        --bs-modal-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+}
+#modal_center .modal {
+    --bs-modal-width: 740px !important;
+    --bs-modal-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    margin-left: 30px;
+}

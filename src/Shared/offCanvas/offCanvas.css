@@ -1,7 +1,7 @@
 
 .offCanvasContainer{
-    min-width: 14rem;
-    width: 14rem;
+    min-width: 16.5rem;
+    width: 16.5rem;
     padding-left: 10pt;
     padding-top: 10pt;
     background-color: #11342F;
@@ -9,6 +9,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    min-height: 617px;
     justify-content: start;
 }
 .ulOffcanvas{
@@ -17,7 +18,7 @@
 
 .textOffcanvas{
     color:#FFFFFF;
-    font-size: 10pt;
+    font-size: 10pt !important;
     width: 100pt !important;
 }
 
@@ -26,17 +27,24 @@
    margin-bottom: 15pt;
    display: flex;
    position: relative;
-   right: 20pt;
+   right: 24pt;
 }
 .iconOffCanvas{
     color:#FF9300;
-    margin-right: 2pt;
+    margin-right: 4pt;
 }
 
 .active{
 
     background-color: #FF9300;
-    border-radius: 20pt;
+    border-radius: 10pt;
+    padding-top: 6pt;
+    padding-bottom: 6pt;
+    padding-left: 6pt;
+    padding-right: 10pt;
+}
+.inactive{
+    border-radius: 10pt;
     padding-top: 6pt;
     padding-bottom: 6pt;
     padding-left: 6pt;
@@ -53,10 +61,51 @@
     justify-items: center;
     color: orange
 }
+.LogoOffcanvas{
+    width: 160px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.LogoOffcanvas_only{
+    display:none;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    height: 40px;
+    width: 40px;
+}
+ul{
+    height: calc( 100% - 30px );
+}
 
-@media (max-width: 1180px) {
+.gray{
+ color:gray !important;
+}
+.mt-c{
+    position: fixed;
+    top:90%;
+    left: 65px;
+}
+@media (max-height:400px ){
+    .mt-c{
+        position: relative;
+        top:0%;
+        left: 10px;
+    }
+}
+
+
+
+@media (max-width: 1219px) {
    .textOffcanvas{
     display: none;
+   }
+   .LogoOffcanvas{
+    display: none;
+   }
+   .LogoOffcanvas_only{
+    display:flex;
+    /* width: 300px;
+    height: 300px; */
    }
    .offCanvasContainer{
     min-width: 5rem !important;
@@ -83,14 +132,34 @@
     padding-left: 0pt;
     padding-right: 0pt;
 }
+.inactive{
+    
+    border-radius: 0pt;
+    padding-top: 0pt;
+    padding-bottom: 0pt;
+    padding-left: 0pt;
+    padding-right: 0pt;
+}
+.mt-c{
+  left:20px;
+
+}
+.mt-c:hover{
+    fill:white !important;
+}
 
 }
 
-@media (max-width: 680px) {
+@media (max-width: 1071px) {
+
+    .LogoOffcanvas_only{
+        margin-top: 5px;
+     }
 
     .offCanvasContainer{
-        height: 10vh;
-        width: 100vw;
+        height: 63.8px;
+        min-height: 63.8px;
+        width: 100%;
         display: flex;
         flex-direction: row;
         padding-top: 5pt;
@@ -139,6 +208,14 @@
         color: orange;
         position: relative;
         bottom: 0.5rem;
+    } 
+    .hover-white:hover{
+        color:white;
+    }
+    .mt-c{
+        position: relative;
+        top:0%;
+        left:0px;
     }
 
 }

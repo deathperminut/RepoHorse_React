@@ -1,30 +1,63 @@
 
 .EstadisticasContainer{
-    width: calc( 100vw - 14rem );
-    height: 100vh;
+    width: calc( 100% - 14rem );
+    height: 100%;
     display: flex;
-    flex-direction: row;;
+    flex-direction: row;
+    overflow-x: auto;
 }
 /*INFO CONTAINER*/
 .InfoContainer{
-   width: calc( 100vw - 34rem );
-   height: 100%;
-   background-color: #11342F;
-   display: flex;
-   justify-content: center;
-   flex-direction: column;
-   justify-content: center;align-items: center;   padding: 2rem;
+  width: calc( 100% - 10rem );
+  height: 100%;
+  background-color: #11342F;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  /* min-width: calc( 100vw - 31rem ); */
+  /* max-width: 1rem !important; */
+  max-width: calc;
+  /* overflow-x: auto; */
+  max-width: 100%;
+}
+.InfoContainer-3{
+    height: 100%;
+    width: 100%;
+    /* border-right: 1pt solid #FF9300; */
+    padding: 1rem;
+    background-color: #11342F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.InfoContainer-2{
+  height: 100%;
+    background-color: #11342F;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* min-width: calc( 100vw - 32rem ); */
+    /* max-width: 1000px!important;*/
 }
 
 .Est-Container-1{
-  width: 100%;
-  height: 16vh;
+  height: 12%;
+  width: 230px;
   position: relative;
   bottom: 0.5rem;
+  right: 225px;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: flex-start;
+  position: relative;
+  top: 15px;
 }
 
 
@@ -33,11 +66,13 @@
   font-size: 1.3rem;
 
 }
+.mr--3{
+  margin-right: 4px !important;
+}
 .Est-Container-1-container-count{
   min-width: 11rem;
   width: 11rem;
-  height: 2.8rem;
-  height: 2.8rem;
+  height: 2.3rem;
   border: 1px solid #FF9300;
   background-color: #134D44;
   border-radius: 7px;
@@ -55,13 +90,14 @@
 }
 
 .Est-Container-2{
-  width: 100%;
-  height: 16vh;
+  height: 16%;
   padding: 5px;
   display: flex;
+  position: relative;
+  margin-bottom: 10px;
   flex-direction: row;
-  border-right:1pt solid #FF9300;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 }
 
 .label-event-Estadistics-Container{
@@ -99,6 +135,12 @@
   height: 100%;
   margin-left: 3rem;
 }
+.align-center{
+  align-items: center;
+}
+.margin-left-15px{
+  margin-left: 15px !important;
+}
 
 .buttonEstadistic{
   background-color: #FF9300;
@@ -112,13 +154,21 @@
   padding-bottom: 1.2rem;
   display: flex;
   align-items: center;
-  width: 4.5rem;
+  justify-content: center;
+  min-width: 70px;
   
 }
+.margin-top-20px{
+  margin-top: 20px;
+}
+.buttonEstadistic:hover{
+  background-color: #F7B500;
+}
+
 
 /* INPUT */
 .filter-Horse-Estadistics-Container .input-group{
-  width: 20rem !important;
+  width: 16rem !important;
   background-color: transparent;
   flex-wrap:nowrap !important;
   position:relative;
@@ -126,8 +176,8 @@
   border-radius: 20px;
   background-color: white;
   margin-right: 10px;
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
   
 }
 .filter-Horse-Estadistics-Container .input-group-text{
@@ -139,27 +189,53 @@
   border:none !important ;
   color:#73819A !important;
   padding-left: 0px !important;
+  font-size: 12px !important;
+}
+.left-20px{
+  left: 20px;
+}
+.gray-dc{
+  color:#e7e2e2 !important;
 }
 
-
+.list-group-item{
+  position: relative !important;
+  display: block !important;
+  color: white !important;
+  width: 100px !important;
+  background-color: transparent !important;
+  cursor: pointer;
+  font-size: 0.8rem !important;
+  border: 0px !important;
+}
+.list-group-item.active{
+  border: 0px;
+  color:#FF9300 !important;
+  font-size: 0.8rem !important;
+}
 
 .Est-Container-3{
-    height: 68vh;
-    width: 100%;
-    border-right:1pt solid #FF9300;
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  height: 68%;
+  width: 100%;
+  /* border-right: 1pt solid #FF9300; */
+  padding: 1rem;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  top: 20px;
 
 }
 
 .tableContainer{
-  width: 100%;
-  min-width: 29rem;
-  max-width: 50rem;
+  width: 91%;
+  min-width: 660px;
+  max-width: 55rem;
   height: 100%;
+  max-height: 390px;
+  min-height: 347px;
   background-color: #134D44;
   border-radius: 18px;
   position: relative;
@@ -170,11 +246,29 @@
 .tablebody{
   margin-top: 20px !important;
 }
-.table{
+.table_2{
   overflow-y: auto !important;
   overflow-x: auto !important;
   width: 100%;
-  height: 100%;
+  height: 95%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top:6px
+}
+.IconCloseEvent{
+  position:relative;
+  z-index: 2;
+  color:#FF9300;
+  right:1rem;
+  bottom: 2.5rem;
+  cursor: pointer;
+}
+.textNeedEvent{
+  color:white;
+  opacity: 0.5;
+  font-size: 1.3rem;
+
 }
 .table>:not(caption)>*>* {
   border: none !important;
@@ -221,15 +315,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+.iconVideoPlayContainer-excel{
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 2rem;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  left: 25px;
 }
 .iconVideoPlay{
-  color:#FF9300 !important
+  color:#FF9300 !important;
+ 
+}
+.margin-left{
+  margin-left: 2px;
 }
 
 .BPMData{
   background-color: #FF9300;
   border-radius: 17px;
   color: white;
+  position: relative;
+  top: 4px;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
   padding-left: 10px;
@@ -251,9 +364,10 @@
 .SelectEventContainer{
     padding: 10pt;
     padding-top: 30pt;
-    width: 20rem;
-    min-width: 20rem;
-    max-width: 20rem;
+    border-left:1pt solid #FF9300;
+    width: 17rem;
+    min-width: 10rem;
+    max-width: 10rem;
     height: 100%;
     background-color: #11342F;
     padding-top: 10rem;
@@ -274,14 +388,48 @@
 
 /*MEDIA QUERIES*/
 
-@media (max-width:  1310px){
+@media (max-width:   1219px){
+
+  .EstadisticasContainer {
+    width: calc( 100% - 5rem );
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+}
+.InfoContainer {
+  width: calc( 100% - 10rem );
+  height: 100%;
+  background-color: #11342F;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  /* min-width: calc( 100vw - 31rem ); */
+  /* max-width: 1rem !important; */
+  max-width: calc;
+  /* overflow-x: auto; */
+  max-width: 100%;
+}
+.InfoContainer-2 {
+  height: 100%;
+  background-color: #11342F;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
    
-  .EstadisticasContainer{
+  /* .EstadisticasContainer{
     flex-direction: column;
+    
   }
+  
   .InfoContainer{
     order: 2;
-    width: calc( 100vw - 14rem );
+    width: calc( 100% - 5rem );
     height: 100%;
   }
   .SelectEventContainer{
@@ -315,20 +463,62 @@
   }
   .LabelDisappear{
     display: none;
-  }
+  } */
 
 
 }
-@media (max-width: 1180px){
-  .InfoContainer{
+@media (max-width: 1071px){
+  .EstadisticasContainer{
+    width: 100%;
+  }
+  .InfoContainer-2 {
+    height: 100%;
+    background-color: #11342F;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-width: 750px;
+}
+.InfoContainer {
+  min-width: calc( 100% - 10rem );;
+}
+.tableContainer {
+  width: 91%;
+  min-width: 660px;
+  max-width: 50rem;
+  height: 100%;
+  max-height: 390px;
+  min-height: 330px;
+  background-color: #134D44;
+  border-radius: 18px;
+  position: relative;
+  right: 0.5rem;
+  padding: 1rem;
+}
+.InfoContainer-2 {
+  height: 100%;
+  background-color: #11342F;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-width: 700px;
+}
+
+  /* .InfoContainer{
     order: 2;
     width: calc( 100vw - 5rem );
     height: 100%;
-  }
+  } */
 }
 
 @media (max-width: 950px){
-  .Est-Container-2{
+  /* .Est-Container-2{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -374,13 +564,18 @@
     position: relative;
     right: 14.5rem;
     top: 3.5rem;
-  }
+  } */
 
 }
 @media (max-width: 680px){
-  .InfoContainer{
+  /* .InfoContainer{
     order: 2;
     width: 100vw;
     height: 100%;
-  }
+  } */
+}
+
+
+.table::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
 }

@@ -3,21 +3,19 @@
 .InitContainer{
     width: 100vw;
     height: 100vh;
+    min-height: 607px;
     display: flex;
     flex-direction: column;
-    background-color: rgb(8, 8, 39);
-
 }
 
 /*HEADER*/
 .HeaderContainer{
-    height: 21vh;
-    width: 50%;
+    height: 100px;
+    width: 100%;
     background-color:transparent;
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: 5%
 }
 .InputText{
     height: 40%;
@@ -88,15 +86,18 @@ input {
     font-size: 0.7rem !important;
     height: 20%;
 }
+.text-center{
+    text-align: center;
+}
 
 /* CSS */
 .button_18{
   align-items: center;
   background-color: transparent !important;
-  border: 1pt solid #707070 !important;
+  border: 2pt solid #FF9300 !important;
   border-radius: 22pt !important;
   box-sizing: border-box !important;
-  color: #ffffff !important;
+  color: #FF9300 !important;
   cursor: pointer !important;
   display: inline-flex !important;
   font-size: 0.8rem !important;
@@ -114,8 +115,8 @@ input {
   text-align: center !important;
 }
 .button_18:hover{
-    border: 0.1px solid #FF9300  !important;
-    color: #FF9300 !important;
+    border: 2px solid #d99d4c  !important;
+    color: #d99d4c !important;
 }
 
 
@@ -125,13 +126,13 @@ input {
 
 /*CONTENT*/
 .ServicesContainer{
-   height: 100vh;
-   width: 100%;
-   margin:0;
+    height: 79vh;
+    min-height: 607px;
+    width: 100%;
+    margin: 0;
 }
 
 .ContainerRows{
-    padding-top: 2%;
     display: flex ;
     flex-direction: column ;
     align-items: center;
@@ -148,6 +149,7 @@ input {
    align-items: center;
 }
 .col{
+    font-family: 'Fira Sans Condensed', sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -157,19 +159,27 @@ input {
     max-width: 300px !important;
     width: 240px ;
     min-width: 100px;
-    border: 1px solid #707070;
     border-radius: 46px;
     margin-bottom:1rem;
     margin-right:1rem;
     margin-left: 0.5rem;
-    align-items: center;
-    background-color: rgb(33, 33, 66);
+    align-items: center; 
     letter-spacing: 0px;
     color: #FFFFFF;
-    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+
+
+    
 }
 .col-element{
    margin-bottom: 20px;
+}
+.Logo{
+    width: 95%;
+    margin-top: 65px;
+    margin-bottom: 20px;
 }
 .col-Icon{
 
@@ -178,12 +188,18 @@ input {
     margin-bottom: 10%;
     color:#FF9300
 }
-.col:hover{
+/* .col:hover{
     border: 0.1px solid rgb(228, 228, 228) ;
-}
+} */
 
 .HorseAppTitle{
     color:#FF9300
+}
+
+/*BACKGROUND-CARD*/
+.overlayCard{
+    width: 250px;
+    height: 250px;
 }
 
 

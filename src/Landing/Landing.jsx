@@ -13,9 +13,7 @@ function Landing() {
     /* NAVIGATE  */
     const navigate=useNavigate();
     /* FUNCTIONS */
-    const RedirectHorseApp=(event)=>{
-        navigate('/Main/HorseApp')
-    }
+
     return (
     <React.Fragment>
       <Routes>

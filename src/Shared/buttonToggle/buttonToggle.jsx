@@ -3,14 +3,17 @@
 import React from "react";
 import "./buttonToggle.css";
   
-const ToggleSwitch = ({ label }) => {
+const ToggleSwitch = ({saveFunction,RememberPassword}) => {
+
+
+
   return (
     <div className="container">
-      <span className="labelSwitch">{label}{" "}</span>
+      <span className="labelSwitch">{'Recordarme'}{" "}</span>
       <div className="toggle-switch">
         <input type="checkbox" className="checkbox" 
-               name={label} id={label} />
-        <label className="label" htmlFor={label}>
+               name={'Recordarme'} id={'Recordarme'} onChange={saveFunction} checked={RememberPassword} />
+        <label className="label" htmlFor={'Recordarme'}>
           <span className="inner" />
           <span className="switch" />
         </label>

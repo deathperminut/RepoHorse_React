@@ -23,3 +23,13 @@ function App() {
 }
 
 export default App;
+
+export async function getServerSideProps(context) {
+  // set HTTP header
+
+  context.res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+  context.res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  return {
+    props: {}
+  };
+}

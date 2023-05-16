@@ -5,12 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {HashRouter} from 'react-router-dom';
+import { ProviderContext } from './Context';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <HashRouter>
-      <App/>
+      <ProviderContext>
+        <App/>
+      </ProviderContext> 
   </HashRouter>
 );
 
@@ -18,3 +21,12 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+export async function getServerSideProps(context) {
+  // set HTTP header
+
+  context.res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+  context.res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  return {
+    props: {}
+  };
+}

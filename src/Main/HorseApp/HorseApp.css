@@ -1,15 +1,19 @@
 .HorseAppContainer{
     width: 100vw;
     height: 100vh;
+    min-height: 617px;
     display: flex;
     flex-direction: row;
+    font-family: 'Montserrat', sans-serif;
+
 }
 
-@media (max-width: 680px) {
+@media (max-width: 1071px) {
     .HorseAppContainer{
         width: 100vw;
         height: 100vh;
         display: flex;
         flex-direction: column;
+        min-width: 1000px;
     }
 }

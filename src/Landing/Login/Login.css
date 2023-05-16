@@ -1,7 +1,15 @@
 .LoginContainer{
     width: 100vw;
-    height: 110vh;
+    height: 100vh;
+    min-height: 607px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+.positionAbsolute{
+    position: absolute;
+    right: 93%;
+    bottom: 90%;
+    z-index: 2;
 }
